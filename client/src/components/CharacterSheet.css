@@ -1,0 +1,312 @@
+.sheet {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+.sheet-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.back-btn {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.6rem;
+}
+
+.sheet-identity {
+  flex: 1;
+  min-width: 0;
+}
+
+.sheet-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed var(--border);
+  padding: 0.15rem 0;
+  color: var(--accent);
+}
+
+.sheet-meta {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.sheet-meta input {
+  flex: 1;
+  min-width: 8rem;
+  font-size: 0.85rem;
+}
+
+.sheet-body {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vitals-panel .vital-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(74, 60, 42, 0.3);
+}
+
+.vital-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.formula-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.skill-header-row {
+  display: grid;
+  grid-template-columns: 1fr 2.5rem 2.5rem;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.attr-block {
+  margin-bottom: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-input);
+}
+
+.attr-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(
+    135deg,
+    var(--attr-bg) 0%,
+    rgba(30, 24, 18, 0.95) 55%
+  );
+  border-left: 3px solid var(--attr-accent);
+}
+
+.attr-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--attr-accent);
+  border: 1px solid color-mix(in srgb, var(--attr-accent) 35%, transparent);
+}
+
+.attr-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.attr-short {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--attr-accent);
+  line-height: 1.1;
+}
+
+.attr-full {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+  opacity: 0.9;
+  line-height: 1.2;
+}
+
+.attr-value-input,
+.attr-header .readonly-value {
+  flex-shrink: 0;
+  width: 2.75rem !important;
+  min-width: 2.75rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0.25rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--attr-accent) 45%, var(--border));
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+}
+
+.attr-header .readonly-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+}
+
+.attr-header--ref { --attr-accent: #e8708f; --attr-bg: rgba(232, 112, 143, 0.14); }
+.attr-header--emp { --attr-accent: #e8a0b0; --attr-bg: rgba(232, 160, 176, 0.12); }
+.attr-header--int { --attr-accent: #6eb8d4; --attr-bg: rgba(110, 184, 212, 0.14); }
+.attr-header--dex { --attr-accent: #6ec492; --attr-bg: rgba(110, 196, 146, 0.14); }
+.attr-header--will { --attr-accent: #a88fd4; --attr-bg: rgba(168, 143, 212, 0.14); }
+.attr-header--cra { --attr-accent: #c9a86a; --attr-bg: rgba(201, 168, 106, 0.14); }
+.attr-header--body { --attr-accent: #c4a882; --attr-bg: rgba(196, 168, 130, 0.14); }
+
+.attr-block .skill-header-row {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.3rem 0.65rem;
+}
+
+.attr-block .skill-row:last-child {
+  border-bottom: none;
+}
+
+
+.misc-stats .stat-grid,
+.bonus-melee .stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.misc-stats label,
+.bonus-melee label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.dynamic-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dynamic-table input {
+  min-width: 3rem;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.3rem;
+}
+
+.dynamic-table .danger {
+  padding: 0.1rem 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.armor-notes {
+  margin-top: 0.5rem;
+  width: 100%;
+  resize: vertical;
+}
+
+.readonly-banner {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: rgba(201, 162, 39, 0.1);
+  border-bottom: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+}
+
+.sheet-name-display {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.sheet-meta-display {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.sheet-meta-display span:not(:last-child)::after {
+  content: '·';
+  margin-left: 0.75rem;
+  color: var(--border-light);
+}
+
+.counter-readonly {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.readonly-value {
+  display: inline-block;
+  min-width: 2rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.readonly-empty {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.readonly-notes {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+}
+
+.luck-pip-static {
+  cursor: default;
+}
+
+.magic-section {
+  grid-column: 1 / -1;
+}
+
+.loading-msg {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .sheet-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .sheet-body > section:first-child {
+    grid-column: 1;
+  }
+}

@@ -1,0 +1,242 @@
+[
+  {
+    "id": "aard",
+    "category": "sign",
+    "name": "Aard",
+    "staCost": 2,
+    "range": "8m",
+    "duration": "Instant",
+    "effect": "Telekinetic blast. Target must defend or be knocked back 2m and suffer 1d6 bludgeoning damage.",
+    "tags": ["witcher", "air", "push"]
+  },
+  {
+    "id": "igni",
+    "category": "sign",
+    "name": "Igni",
+    "staCost": 2,
+    "range": "8m",
+    "duration": "Instant",
+    "effect": "Cone of flame. 2d6 fire damage; target may catch fire on failed defense.",
+    "tags": ["witcher", "fire"]
+  },
+  {
+    "id": "yrden",
+    "category": "sign",
+    "name": "Yrden",
+    "staCost": 2,
+    "range": "Self (2m radius)",
+    "duration": "5 rounds",
+    "effect": "Magic trap slows enemies in area; forces spectral foes corporeal.",
+    "tags": ["witcher", "trap", "control"]
+  },
+  {
+    "id": "quen",
+    "category": "sign",
+    "name": "Quen",
+    "staCost": 2,
+    "range": "Self",
+    "duration": "Until broken",
+    "effect": "Absorbs damage from one attack before dissipating.",
+    "tags": ["witcher", "shield", "defense"]
+  },
+  {
+    "id": "axii",
+    "category": "sign",
+    "name": "Axii",
+    "staCost": 2,
+    "range": "8m",
+    "duration": "1 round",
+    "effect": "Stuns target on failed defense; usable in social encounters to influence.",
+    "tags": ["witcher", "mind", "control"]
+  },
+  {
+    "id": "zephyr",
+    "category": "spell",
+    "name": "Zephyr",
+    "staCost": 5,
+    "range": "2m",
+    "duration": "Instant",
+    "effect": "Burst of wind blasts targets within 2m back 6m for 1d6 damage; ramming damage on impact.",
+    "tags": ["air", "mage", "basic"]
+  },
+  {
+    "id": "magic-healing",
+    "category": "spell",
+    "name": "Magic Healing",
+    "staCost": 5,
+    "range": "Touch",
+    "duration": "1 turn",
+    "effect": "Heals 3 HP per turn while maintained.",
+    "tags": ["water", "mage", "healing"]
+  },
+  {
+    "id": "dispel",
+    "category": "spell",
+    "name": "Dispel",
+    "staCost": 6,
+    "range": "10m",
+    "duration": "Instant",
+    "effect": "Ends an active spell or blocks a magical attack (may be used as defensive action).",
+    "tags": ["neutral", "mage", "counter"]
+  },
+  {
+    "id": "cadfans-grasp",
+    "category": "spell",
+    "name": "Cadfan's Grasp",
+    "staCost": 8,
+    "range": "10m",
+    "duration": "Instant",
+    "effect": "Super-heats metal item: holder drops it or takes 2d6 limb damage; or heats weapon for +2d6 and 50% ignite.",
+    "tags": ["fire", "mage", "intermediate"]
+  },
+  {
+    "id": "carys-hail",
+    "category": "spell",
+    "name": "Carys' Hail",
+    "staCost": 10,
+    "range": "20m",
+    "duration": "Instant",
+    "effect": "Hail of ice shards strikes a 2m area for 2d6 cold damage per target.",
+    "tags": ["water", "mage", "intermediate"]
+  },
+  {
+    "id": "melgars-fire",
+    "category": "spell",
+    "name": "Melgar's Fire",
+    "staCost": 12,
+    "range": "20m",
+    "duration": "Instant",
+    "effect": "Calls fire from the sky on a target for 4d6 fire damage.",
+    "tags": ["fire", "mage", "advanced"]
+  },
+  {
+    "id": "rhwystr-graig",
+    "category": "spell",
+    "name": "Rhwystr Graig",
+    "staCost": 10,
+    "range": "20m",
+    "duration": "5 rounds",
+    "effect": "Creates a stone wall up to 3m × 2m within range.",
+    "tags": ["earth", "mage", "intermediate"]
+  },
+  {
+    "id": "teleportation",
+    "category": "spell",
+    "name": "Teleportation",
+    "staCost": 15,
+    "range": "Self",
+    "duration": "Instant",
+    "effect": "Instantly move to a known location within line of sight or memory.",
+    "tags": ["neutral", "mage", "advanced"]
+  },
+  {
+    "id": "dormyn",
+    "category": "invocation",
+    "name": "Dormyn's Blessing",
+    "staCost": 5,
+    "range": "Touch",
+    "duration": "1 hour",
+    "effect": "Blessed target gains +2 to Courage and Resist Coercion.",
+    "tags": ["priest", "blessing"]
+  },
+  {
+    "id": "divine-wisdom",
+    "category": "invocation",
+    "name": "Divine Wisdom",
+    "staCost": 6,
+    "range": "Self",
+    "duration": "10 minutes",
+    "effect": "+3 to Education, Awareness, and Social Etiquette rolls.",
+    "tags": ["priest", "blessing", "utility"]
+  },
+  {
+    "id": "afans-mirror",
+    "category": "invocation",
+    "name": "Afan's Mirror",
+    "staCost": 8,
+    "range": "10m",
+    "duration": "5 rounds",
+    "effect": "Creates illusory duplicates; controlled copies cannot leave spell range.",
+    "tags": ["priest", "illusion"]
+  },
+  {
+    "id": "odi-bywyd",
+    "category": "invocation",
+    "name": "Odi Bywyd",
+    "staCost": 10,
+    "range": "Touch",
+    "duration": "Instant",
+    "effect": "Restores a dying target to 1 HP and stabilizes wounds.",
+    "tags": ["priest", "healing", "emergency"]
+  },
+  {
+    "id": "curse-of-pain",
+    "category": "hex",
+    "name": "Curse of Pain",
+    "staCost": 6,
+    "range": "10m",
+    "duration": "1 hour",
+    "effect": "Target suffers −2 to all actions until hex is removed.",
+    "tags": ["hex", "curse", "debuff"]
+  },
+  {
+    "id": "hex-of-binding",
+    "category": "hex",
+    "name": "Hex of Binding",
+    "staCost": 8,
+    "range": "10m",
+    "duration": "5 rounds",
+    "effect": "Target's legs bind; movement halved and cannot run.",
+    "tags": ["hex", "curse", "control"]
+  },
+  {
+    "id": "stammelford",
+    "category": "ritual",
+    "name": "Stammelford's Arcane Seal",
+    "staCost": 15,
+    "range": "Touch",
+    "duration": "Permanent",
+    "effect": "Inscribes a ward on a doorway or object; triggers chosen effect when disturbed.",
+    "tags": ["ritual", "ward", "long-cast"]
+  },
+  {
+    "id": "ritual-of-scrying",
+    "category": "ritual",
+    "name": "Ritual of Scrying",
+    "staCost": 12,
+    "range": "Unlimited",
+    "duration": "10 minutes",
+    "effect": "Observe a person or place you have seen before; requires focus object.",
+    "tags": ["ritual", "divination", "long-cast"]
+  },
+  {
+    "id": "druid-commune",
+    "category": "ritual",
+    "name": "Commune with Nature",
+    "staCost": 10,
+    "range": "Self",
+    "duration": "30 minutes",
+    "effect": "Learn about flora, fauna, and weather in the surrounding region.",
+    "tags": ["ritual", "druid", "utility"]
+  },
+  {
+    "id": "druid-growth",
+    "category": "spell",
+    "name": "Entangling Growth",
+    "staCost": 8,
+    "range": "15m",
+    "duration": "5 rounds",
+    "effect": "Vegetation restrains targets in a 3m area; REF defense to avoid.",
+    "tags": ["earth", "druid", "control"]
+  },
+  {
+    "id": "druid-storm",
+    "category": "spell",
+    "name": "Call Storm",
+    "staCost": 12,
+    "range": "Sight",
+    "duration": "10 minutes",
+    "effect": "Summons rain and wind; ranged attacks penalized in area.",
+    "tags": ["air", "druid", "advanced"]
+  }
+]

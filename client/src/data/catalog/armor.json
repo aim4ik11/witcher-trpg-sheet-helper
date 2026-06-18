@@ -1,0 +1,218 @@
+[
+  {
+    "id": "leather-cap",
+    "name": "Leather Cap",
+    "slot": "head",
+    "sp": 3,
+    "weight": 0.5,
+    "effects": "",
+    "tags": ["light", "leather"]
+  },
+  {
+    "id": "steel-cap",
+    "name": "Steel Cap",
+    "slot": "head",
+    "sp": 8,
+    "weight": 2,
+    "effects": "",
+    "tags": ["medium", "metal"]
+  },
+  {
+    "id": "sallet",
+    "name": "Sallet",
+    "slot": "head",
+    "sp": 12,
+    "weight": 3,
+    "effects": "",
+    "tags": ["heavy", "plate"]
+  },
+  {
+    "id": "great-helm",
+    "name": "Great Helm",
+    "slot": "head",
+    "sp": 15,
+    "weight": 4,
+    "effects": "−3 Awareness",
+    "tags": ["heavy", "plate", "knight"]
+  },
+  {
+    "id": "leather-jacket",
+    "name": "Leather Jacket",
+    "slot": "torso",
+    "sp": 6,
+    "weight": 2,
+    "effects": "",
+    "tags": ["light", "leather"]
+  },
+  {
+    "id": "gambeson",
+    "name": "Gambeson",
+    "slot": "torso",
+    "sp": 8,
+    "weight": 3,
+    "effects": "",
+    "tags": ["light", "padded"]
+  },
+  {
+    "id": "brigandine",
+    "name": "Brigandine",
+    "slot": "torso",
+    "sp": 14,
+    "weight": 8,
+    "effects": "",
+    "tags": ["medium", "flexible"]
+  },
+  {
+    "id": "hauberk",
+    "name": "Hauberk",
+    "slot": "torso",
+    "sp": 16,
+    "weight": 10,
+    "effects": "",
+    "tags": ["medium", "mail"]
+  },
+  {
+    "id": "breastplate",
+    "name": "Breastplate",
+    "slot": "torso",
+    "sp": 18,
+    "weight": 12,
+    "effects": "",
+    "tags": ["heavy", "plate"]
+  },
+  {
+    "id": "full-plate",
+    "name": "Full Plate",
+    "slot": "torso",
+    "sp": 22,
+    "weight": 18,
+    "effects": "−2 REF, −2 DEX",
+    "tags": ["heavy", "plate", "knight"]
+  },
+  {
+    "id": "leather-gloves",
+    "name": "Leather Gloves",
+    "slot": "rArm",
+    "sp": 2,
+    "weight": 0.25,
+    "effects": "",
+    "tags": ["light", "leather"]
+  },
+  {
+    "id": "leather-gloves-l",
+    "name": "Leather Gloves",
+    "slot": "lArm",
+    "sp": 2,
+    "weight": 0.25,
+    "effects": "",
+    "tags": ["light", "leather"]
+  },
+  {
+    "id": "gauntlets",
+    "name": "Gauntlets",
+    "slot": "rArm",
+    "sp": 6,
+    "weight": 1.5,
+    "effects": "",
+    "tags": ["medium", "metal"]
+  },
+  {
+    "id": "gauntlets-l",
+    "name": "Gauntlets",
+    "slot": "lArm",
+    "sp": 6,
+    "weight": 1.5,
+    "effects": "",
+    "tags": ["medium", "metal"]
+  },
+  {
+    "id": "plate-gauntlets",
+    "name": "Plate Gauntlets",
+    "slot": "rArm",
+    "sp": 10,
+    "weight": 2,
+    "effects": "",
+    "tags": ["heavy", "plate"]
+  },
+  {
+    "id": "plate-gauntlets-l",
+    "name": "Plate Gauntlets",
+    "slot": "lArm",
+    "sp": 10,
+    "weight": 2,
+    "effects": "",
+    "tags": ["heavy", "plate"]
+  },
+  {
+    "id": "leather-trousers",
+    "name": "Leather Trousers",
+    "slot": "rLeg",
+    "sp": 3,
+    "weight": 1,
+    "effects": "",
+    "tags": ["light", "leather"]
+  },
+  {
+    "id": "leather-trousers-l",
+    "name": "Leather Trousers",
+    "slot": "lLeg",
+    "sp": 3,
+    "weight": 1,
+    "effects": "",
+    "tags": ["light", "leather"]
+  },
+  {
+    "id": "greaves",
+    "name": "Greaves",
+    "slot": "rLeg",
+    "sp": 8,
+    "weight": 3,
+    "effects": "",
+    "tags": ["medium", "metal"]
+  },
+  {
+    "id": "greaves-l",
+    "name": "Greaves",
+    "slot": "lLeg",
+    "sp": 8,
+    "weight": 3,
+    "effects": "",
+    "tags": ["medium", "metal"]
+  },
+  {
+    "id": "plate-greaves",
+    "name": "Plate Greaves",
+    "slot": "rLeg",
+    "sp": 12,
+    "weight": 5,
+    "effects": "",
+    "tags": ["heavy", "plate"]
+  },
+  {
+    "id": "plate-greaves-l",
+    "name": "Plate Greaves",
+    "slot": "lLeg",
+    "sp": 12,
+    "weight": 5,
+    "effects": "",
+    "tags": ["heavy", "plate"]
+  },
+  {
+    "id": "leather-boots",
+    "name": "Leather Boots",
+    "slot": "rLeg",
+    "sp": 2,
+    "weight": 0.5,
+    "effects": "",
+    "tags": ["light", "footwear"]
+  },
+  {
+    "id": "leather-boots-l",
+    "name": "Leather Boots",
+    "slot": "lLeg",
+    "sp": 2,
+    "weight": 0.5,
+    "effects": "",
+    "tags": ["light", "footwear"]
+  }
+]
