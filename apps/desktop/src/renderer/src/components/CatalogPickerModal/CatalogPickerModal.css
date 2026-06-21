@@ -1,0 +1,100 @@
+.catalog-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: rgba(10, 8, 6, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.catalog-modal {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  max-height: min(85vh, 36rem);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.catalog-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 1.4rem;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.catalog-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding-right: 2rem;
+}
+
+.catalog-search {
+  margin-bottom: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  font-size: 1rem;
+}
+
+.catalog-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 0;
+}
+
+.catalog-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  width: 100%;
+  cursor: pointer;
+}
+
+.catalog-item:hover { border-color: var(--accent); background: var(--bg-panel); }
+.catalog-item-name { font-weight: 600; color: var(--text); }
+.catalog-item-meta { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.03em; }
+.catalog-item-effect {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.catalog-empty { color: var(--text-muted); font-style: italic; text-align: center; padding: 2rem 1rem; }
+
+.catalog-footer {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.catalog-custom-btn { width: 100%; font-size: 0.85rem; color: var(--text-muted); }
+
+.add-actions { display: flex; gap: 0.35rem; margin-top: 0.35rem; flex-wrap: wrap; }
+.add-actions button { font-size: 0.8rem; }
+
+.armor-name-cell { display: flex; flex-direction: column; gap: 0.2rem; }
+.armor-piece-name { font-size: 0.8rem; color: var(--accent); }
+.armor-pick-btn { font-size: 0.7rem; padding: 0.15rem 0.4rem; align-self: flex-start; }
