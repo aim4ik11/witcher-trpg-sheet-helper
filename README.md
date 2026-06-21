@@ -1,95 +1,76 @@
-# Witcher TRPG Sheet Helper
+# Вільмак — менеджер сесій рольової гри
 
-A local DM helper for the Witcher Tabletop RPG. Run a host server on your laptop, share a link with players on their phones, and manage digital character sheets with real-time sync.
+Десктоп-застосунок гейммайстра (Electron + React), який локально піднімає сервер
+у вашій WiFi-мережі. Гравці підключаються через браузер за нікнеймом і кодом.
+Архітектура одразу закладена так, щоб у майбутньому той самий сервер працював і
+на віддаленому хості (варіант 2) без переписування.
 
-## Features
+## Структура
 
-- **DM Console** — create and manage player characters, enemies, and NPCs
-- **Player access** — players connect via nickname and edit their own sheet from a phone
-- **Digital sheet** — attributes, skills (auto-calculated base), vitals with +/- counters, weapons, armor, consumables, spells, wounds, status effects
-- **Real-time sync** — changes broadcast instantly via WebSockets (DM sees player updates live)
-- **JSON storage** — no database; character data saved as JSON files in `data/`
+```
+apps/
+  server/      Express + Socket.io. Подвійний режим:
+               - forked    — локально форкається Electron'ом (process.parentPort);
+               - standalone — `node src/index.js` на VPS (env-конфіг) для варіанту 2.
+  desktop/     Electron + React (UI гейммайстра). Головний процес форкає сервер
+               і є ЄДИНИМ привілейованим каналом GM-команд.
+  player-web/  React-клієнт гравця. Віддається сервером з того ж origin.
+sessions/      Приклад файлу сесії (нікнейми + коди).
+```
 
-## Quick Start
+## Ініціалізація
 
 ```bash
-# Install dependencies
-npm install
-cd client && npm install && cd ..
+npm install            # у корені; workspaces підтягнуть усі залежності
+```
 
-# Run in development (server + client)
+## Розробка
+
+Одна команда (збере плеєрський UI, підніме Vite GM-рендерера, дочекається його й
+запустить Electron):
+
+```bash
 npm run dev
 ```
 
-- **DM**: open http://localhost:5173 → "DM Host"
-- **Players on phones**: use the **Network** link in DM Console (e.g. `http://192.168.0.100:5173/play`) — not `localhost`
-
-### Same WiFi (phones & tablets)
-
-`localhost` only works on the computer running the server. Other devices need your machine's **local IP**.
-
-**Option A — Development** (hot reload, two ports):
+Або покроково, якщо так зручніше:
 
 ```bash
-npm run dev
+npm run build:player       # щоб сервер мав що віддавати гравцям
+npm run dev:gm             # Vite GM-рендерера на http://localhost:5173
+npm run electron           # Electron (в окремому терміналі)
 ```
 
-1. In the terminal, look for Vite's **Network** line, e.g. `http://192.168.0.100:5173/`
-2. On phones, open `http://192.168.0.100:5173/play` (replace with your IP)
-3. Or open DM Console — it lists copyable player links
+Для живої розробки плеєрського UI: `npm run dev:player` (http://localhost:5174,
+з проксі на сервер, тож CORS не виникає).
 
-**Option B — Game night (recommended, one port):**
+### Сценарій у застосунку
+«Локальна сесія» → «Завантажити файл сесії…» → виберіть `sessions/example-session.json`
+→ «Підняти сесію». З'явиться LAN-адреса і QR. Гравець у тій самій мережі відкриває
+адресу, вводить нік (напр. `Mira`) і код (`5678`).
+
+## Збірка інсталятора (один застосунок, без cmd)
 
 ```bash
-npm run lan
+npm run dist
 ```
 
-1. Terminal prints `Network: http://192.168.x.x:3456`
-2. DM opens that URL on the host laptop
-3. Players open `http://192.168.x.x:3456/play`
+Кроки всередині: збірка GM-рендерера (Vite) → бандл сервера в один файл (esbuild) →
+збірка плеєрського UI → `electron-builder`. Готовий інсталятор з'явиться в `dist/`.
+Кінцевий користувач ставить його, запускає з меню «Пуск» подвійним кліком — жодного
+вікна консолі, сервер піднімається тихо у фоні процесу.
 
-**macOS firewall:** If phones can't connect, allow incoming connections for Node when prompted, or System Settings → Network → Firewall → allow Node.
+Цілі збірки налаштовані в `apps/desktop/package.json → build`: Windows `nsis`,
+mac `dmg`, Linux `AppImage`. Іконка не задана — використовується дефолтна Electron;
+щоб додати свою, покладіть `build/icon.ico` (Win) / `icon.icns` (mac) і вкажіть у конфігу.
 
-For production (single port, no Vite dev server):
+## Нотатки
 
-```bash
-npm run build
-npm start
-# DM + Players: http://localhost:3456
-```
-
-## Player Setup
-
-1. DM creates a player character and sets a **nickname** (e.g. `geralt`)
-2. DM shares the player URL from the console
-3. Player opens the link on their phone, enters nickname, and gets their sheet
-
-A sample character "Geralt" (nickname: `geralt`) is created on first run for testing.
-
-## Project Structure
-
-```
-server/           Express + Socket.io backend
-  characterSchema.js   Character data model & formulas
-  storage.js           JSON file read/write
-  index.js             API routes & WebSocket handlers
-client/           Vite + React frontend
-data/              Character JSON files (gitignored, created at runtime)
-```
-
-## Vitals Formulas
-
-| Stat    | Max Formula          |
-|---------|----------------------|
-| HP      | (BODY + WILL) / 2 × 5 |
-| STA     | (BODY + WILL) / 2 × 5 |
-| Resolve | (INT + WILL) / 2 × 5  |
-
-Skill **Base** = Attribute value + Skill level (calculated automatically).
-
-## Tech Stack
-
-- Node.js + Express
-- Socket.io (real-time)
-- React + Vite
-- JSON file storage
+- **Нативні модулі.** Коли додасте `better-sqlite3` для збереження стану, esbuild
+  його не забандлить: позначте `--external:better-sqlite3`, прогоніть `electron-rebuild`
+  і покладіть через `asarUnpack`/`extraResources`. Зараз залежності чисто-JS — бандл
+  працює без зайвих рухів.
+- **HTTPS у LAN не потрібен.** Для текст/кубики/синхронізація HTTP коректний.
+  HTTPS знадобиться лише під secure-context фічі (камера/мікрофон, PWA) — це аргумент
+  винести їх у варіант 2 з реальним доменом.
+- **Версії в package.json** — стартові; за потреби `npm outdated` і оновлення.

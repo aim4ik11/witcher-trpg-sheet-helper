@@ -1,23 +1,20 @@
 {
-  "name": "witcher-trpg-sheet-helper",
-  "version": "0.1.0",
+  "name": "wilmak",
   "private": true,
-  "type": "module",
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "node --watch server/index.js",
-    "dev:client": "npm run dev --prefix client",
-    "build": "npm run build --prefix client",
-    "start": "NODE_ENV=production node server/index.js",
-    "lan": "npm run build && NODE_ENV=production node server/index.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
-    "socket.io": "^4.8.1",
-    "uuid": "^11.1.0"
+    "dev": "npm run build -w player-web && concurrently -k -n GM,ELECTRON -c blue,magenta \"npm run dev -w desktop\" \"wait-on tcp:5173 && npm run electron -w desktop\"",
+    "dev:gm": "npm run dev -w desktop",
+    "dev:player": "npm run dev -w player-web",
+    "electron": "npm run electron -w desktop",
+    "build:player": "npm run build -w player-web",
+    "dist": "npm run build -w desktop && npm run build:server -w desktop && npm run build -w player-web && npm run pack -w desktop"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.0.1",
+    "wait-on": "^8.0.1"
   }
 }
