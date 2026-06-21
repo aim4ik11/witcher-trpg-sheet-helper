@@ -1,0 +1,67 @@
+{
+  "name": "desktop",
+  "private": true,
+  "version": "0.1.0",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:server": "esbuild ../server/src/index.js --bundle --platform=node --format=cjs --outfile=../server/dist/server.cjs",
+    "electron": "cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "pack": "electron-builder"
+  },
+  "dependencies": {
+    "qrcode.react": "^4.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "cross-env": "^7.0.3",
+    "electron": "31.7.7",
+    "electron-builder": "^25.1.8",
+    "esbuild": "^0.23.1",
+    "vite": "^5.4.0"
+  },
+  "build": {
+    "appId": "com.wilmak.gm",
+    "productName": "Вільмак",
+    "directories": {
+      "output": "../../dist"
+    },
+    "files": [
+      "renderer/**",
+      "electron/**"
+    ],
+    "extraResources": [
+      {
+        "from": "../server/dist/server.cjs",
+        "to": "server/server.cjs"
+      },
+      {
+        "from": "../player-web/dist",
+        "to": "player-web"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  }
+}

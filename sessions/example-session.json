@@ -1,0 +1,9 @@
+{
+  "sessionName": "Вільмак — Печери Тіней",
+  "port": 4317,
+  "players": [
+    { "nickname": "Aldric", "code": "1234" },
+    { "nickname": "Mira",   "code": "5678" },
+    { "nickname": "Garek",  "code": "9012" }
+  ]
+}
