@@ -3,18 +3,20 @@
   "private": true,
   "version": "0.1.0",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "dev": "npm run build -w player-web && concurrently -k -n GM,ELECTRON -c blue,magenta \"npm run dev -w desktop\" \"wait-on tcp:5173 && npm run electron -w desktop\"",
+    "dev": "npm run build -w player-web && npm run build:server -w desktop && concurrently -k -n SRV,APP -c yellow,magenta \"npm run watch:server -w desktop\" \"npm run dev -w desktop\"",
     "dev:gm": "npm run dev -w desktop",
     "dev:player": "npm run dev -w player-web",
-    "electron": "npm run electron -w desktop",
     "build:player": "npm run build -w player-web",
-    "dist": "npm run build -w desktop && npm run build:server -w desktop && npm run build -w player-web && npm run pack -w desktop"
+    "dist": "npm run build -w desktop && npm run build:server -w desktop && npm run build -w player-web && npm run pack -w desktop",
+    "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "devDependencies": {
     "concurrently": "^9.0.1",
-    "wait-on": "^8.0.1"
+    "wait-on": "^8.0.1",
+    "typescript": "^5.5.4"
   }
 }

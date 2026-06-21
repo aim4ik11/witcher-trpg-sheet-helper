@@ -1,0 +1,9 @@
+{
+  "name": "@wilmak/shared",
+  "version": "0.1.0",
+  "private": true,
+  "types": "./src/protocol.ts",
+  "main": "./src/protocol.ts",
+  "exports": { ".": "./src/protocol.ts" },
+  "scripts": { "typecheck": "tsc --noEmit" }
+}

@@ -1,17 +1,25 @@
 import { useEffect, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import type { SessionConfig, ServerInfo, Player } from '@wilmak/shared';
 import './styles.css';
 
+type Mode = 'local' | 'remote' | null;
+
 export default function App() {
-  const [mode, setMode] = useState(null);      // 'local' | 'remote'
-  const [config, setConfig] = useState(null);  // loaded session file
-  const [server, setServer] = useState(null);  // { urls, port }
-  const [players, setPlayers] = useState([]);
+  const [mode, setMode] = useState<Mode>(null);
+  const [config, setConfig] = useState<SessionConfig | null>(null);
+  const [server, setServer] = useState<ServerInfo | null>(null);
+  const [players, setPlayers] = useState<Player[]>([]);
 
   useEffect(() => window.api.onPlayersUpdate(setPlayers), []);
 
-  const pick = async () => { const c = await window.api.pickConfig(); if (c) setConfig(c); };
-  const start = async () => setServer(await window.api.startSession(config));
+  const pick = async (): Promise<void> => {
+    const c = await window.api.pickConfig();
+    if (c) setConfig(c);
+  };
+  const start = async (): Promise<void> => {
+    if (config) setServer(await window.api.startSession(config));
+  };
 
   if (!mode) {
     return (
@@ -37,17 +45,19 @@ export default function App() {
   return (
     <div className="wrap">
       <h1>Локальна сесія</h1>
-
       {!server && (
         <div className="card">
           <p>1. Завантажте файл налаштувань сесії (нікнейми гравців і коди).</p>
           <button className="ghost" onClick={pick}>Завантажити файл сесії…</button>
-          {config && <p className="muted">Завантажено: <b>{config.sessionName}</b> · гравців: {config.players?.length ?? 0}</p>}
+          {config && (
+            <p className="muted">
+              Завантажено: <b>{config.sessionName}</b> · гравців: {config.players.length}
+            </p>
+          )}
           <p style={{ marginTop: 20 }}>2. Підняти сервер.</p>
           <button onClick={start} disabled={!config}>Підняти сесію</button>
         </div>
       )}
-
       {server && (
         <>
           <div className="card">
@@ -60,7 +70,6 @@ export default function App() {
               </div>
             ))}
           </div>
-
           <div className="card">
             <h3>Гравці в лобі ({players.length})</h3>
             {players.length === 0 && <p className="muted">Поки нікого. Чекаємо підключень…</p>}

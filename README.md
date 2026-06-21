@@ -1,76 +1,69 @@
-# Вільмак — менеджер сесій рольової гри
+# Вільмак — менеджер сесій рольової гри (TypeScript)
 
-Десктоп-застосунок гейммайстра (Electron + React), який локально піднімає сервер
-у вашій WiFi-мережі. Гравці підключаються через браузер за нікнеймом і кодом.
-Архітектура одразу закладена так, щоб у майбутньому той самий сервер працював і
-на віддаленому хості (варіант 2) без переписування.
+Десктоп-застосунок гейммайстра (Electron + electron-vite + React, увесь код на
+TypeScript), що локально піднімає сервер у вашій WiFi-мережі. Гравці підключаються
+через браузер за нікнеймом і кодом. Архітектура закладена так, щоб той самий сервер
+згодом працював і на віддаленому хості (варіант 2) без переписування.
 
 ## Структура
 
 ```
+packages/
+  shared/      @wilmak/shared — ЄДИНЕ джерело типів протоколу між процесами:
+               повідомлення IPC main<->server, події Socket.io server<->гравець,
+               форма window.api. Тільки типи, без рантайму.
 apps/
-  server/      Express + Socket.io. Подвійний режим:
-               - forked    — локально форкається Electron'ом (process.parentPort);
-               - standalone — `node src/index.js` на VPS (env-конфіг) для варіанту 2.
-  desktop/     Electron + React (UI гейммайстра). Головний процес форкає сервер
-               і є ЄДИНИМ привілейованим каналом GM-команд.
-  player-web/  React-клієнт гравця. Віддається сервером з того ж origin.
+  server/      Express + Socket.io (TS). Типізований сервер (дженерики Socket.io).
+               Подвійний режим: forked (Electron) / standalone (VPS, env).
+               esbuild бандлить src/index.ts -> dist/server.cjs.
+  desktop/     Electron + electron-vite + React (TS):
+               src/main      — головний процес (форкає сервер);
+               src/preload   — місток IPC (єдиний привілейований канал GM);
+               src/renderer  — React-UI гейммайстра.
+  player-web/  React-клієнт гравця (TS). Віддається СЕРВЕРОМ з того ж origin.
 sessions/      Приклад файлу сесії (нікнейми + коди).
 ```
+
+## Типізований протокол (головна вигода)
+
+`packages/shared/src/protocol.ts` описує контракти один раз. Socket.io підхоплює їх
+дженериками (`Server<ClientToServerEvents, ServerToClientEvents, ..., SocketData>` і
+`io<ServerToClientEvents, ClientToServerEvents>()`), а `window.api` типизується через
+`src/renderer/src/global.d.ts`. Назви подій, payload'и й форма повідомлень перевіряються
+на компіляції в усіх процесах.
 
 ## Ініціалізація
 
 ```bash
-npm install            # у корені; workspaces підтягнуть усі залежності
+npm install
 ```
 
 ## Розробка
 
-Одна команда (збере плеєрський UI, підніме Vite GM-рендерера, дочекається його й
-запустить Electron):
-
 ```bash
-npm run dev
+npm run dev        # build player-web -> build+watch server -> electron-vite dev (HMR)
+npm run typecheck  # tsc --noEmit по всіх пакетах
 ```
 
-Або покроково, якщо так зручніше:
+У застосунку: Локальна сесія → «Завантажити файл сесії…» → `sessions/example-session.json`
+→ «Підняти сесію». Зʼявиться LAN-адреса і QR. Гравець вводить, напр., `Mira` / `5678`.
+Жива розробка плеєрського UI окремо: `npm run dev:player` (порт 5174, з проксі на сервер).
+
+## Збірка інсталятора
 
 ```bash
-npm run build:player       # щоб сервер мав що віддавати гравцям
-npm run dev:gm             # Vite GM-рендерера на http://localhost:5173
-npm run electron           # Electron (в окремому терміналі)
+npm run dist       # electron-vite build -> esbuild сервера -> build player-web -> electron-builder
 ```
 
-Для живої розробки плеєрського UI: `npm run dev:player` (http://localhost:5174,
-з проксі на сервер, тож CORS не виникає).
-
-### Сценарій у застосунку
-«Локальна сесія» → «Завантажити файл сесії…» → виберіть `sessions/example-session.json`
-→ «Підняти сесію». З'явиться LAN-адреса і QR. Гравець у тій самій мережі відкриває
-адресу, вводить нік (напр. `Mira`) і код (`5678`).
-
-## Збірка інсталятора (один застосунок, без cmd)
-
-```bash
-npm run dist
-```
-
-Кроки всередині: збірка GM-рендерера (Vite) → бандл сервера в один файл (esbuild) →
-збірка плеєрського UI → `electron-builder`. Готовий інсталятор з'явиться в `dist/`.
-Кінцевий користувач ставить його, запускає з меню «Пуск» подвійним кліком — жодного
-вікна консолі, сервер піднімається тихо у фоні процесу.
-
-Цілі збірки налаштовані в `apps/desktop/package.json → build`: Windows `nsis`,
-mac `dmg`, Linux `AppImage`. Іконка не задана — використовується дефолтна Electron;
-щоб додати свою, покладіть `build/icon.ico` (Win) / `icon.icns` (mac) і вкажіть у конфігу.
+Інсталятор зʼявиться в `dist/`. Цілі: Windows `nsis`, mac `dmg`/`zip`, Linux `AppImage`/`deb`.
+Mac збирається лише на macOS; для Mac/Linux без заліза — GitHub Actions (matrix).
 
 ## Нотатки
 
-- **Нативні модулі.** Коли додасте `better-sqlite3` для збереження стану, esbuild
-  його не забандлить: позначте `--external:better-sqlite3`, прогоніть `electron-rebuild`
-  і покладіть через `asarUnpack`/`extraResources`. Зараз залежності чисто-JS — бандл
-  працює без зайвих рухів.
-- **HTTPS у LAN не потрібен.** Для текст/кубики/синхронізація HTTP коректний.
-  HTTPS знадобиться лише під secure-context фічі (камера/мікрофон, PWA) — це аргумент
-  винести їх у варіант 2 з реальним доменом.
-- **Версії в package.json** — стартові; за потреби `npm outdated` і оновлення.
+- TypeScript перевіряє типи лише через `tsc` (`npm run typecheck`). esbuild/Vite
+  типи НЕ перевіряють — зрізають. Ганяйте typecheck локально та в CI.
+- **electronVersion** у `apps/desktop/package.json → build` має збігатися зі
+  встановленою (`npm ls electron`); пін без `^` уникає помилки в workspaces.
+- **winCodeSign / symlink на Windows** — Режим розробника або термінал від адміна.
+- **Нативні модулі** (коли додасте `better-sqlite3`): `--external` для esbuild +
+  `electron-rebuild` + `asarUnpack`.
