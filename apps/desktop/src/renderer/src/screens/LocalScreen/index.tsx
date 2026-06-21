@@ -2,10 +2,15 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { useAppStore } from '../../store';
+import { setApiBase } from '../../api';
 
 const LocalScreen = () => {
   const navigate = useNavigate();
   const { config, server, players, setConfig, setServer, setPlayers } = useAppStore();
+
+  useEffect(() => {
+    if (server) setApiBase(server.port);
+  }, [server]);
 
   useEffect(() => {
     return window.api.onPlayersUpdate(setPlayers);
@@ -20,6 +25,7 @@ const LocalScreen = () => {
     if (!config) return;
     const info = await window.api.startSession(config);
     setServer(info);
+    setApiBase(info.port);
   };
 
   const handleBack = () => {
@@ -31,7 +37,7 @@ const LocalScreen = () => {
 
   return (
     <div className="wrap">
-      <div className="row" style={{ borderBottom: 'none', paddingBottom: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
         <h1 style={{ margin: 0 }}>Локальна сесія</h1>
         <button className="ghost" onClick={handleBack}>← Назад</button>
       </div>
@@ -61,6 +67,9 @@ const LocalScreen = () => {
                 <QRCodeSVG value={u} size={88} bgColor="#1e1c28" fgColor="#ece9f5" />
               </div>
             ))}
+            <button style={{ marginTop: 16 }} onClick={() => navigate('/session')}>
+              Відкрити DM Console →
+            </button>
           </div>
 
           <div className="card">

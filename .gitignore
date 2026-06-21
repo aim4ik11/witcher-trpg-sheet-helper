@@ -3,6 +3,5 @@ apps/desktop/renderer/
 apps/player-web/dist/
 apps/server/dist/
 dist/
-data/
 .DS_Store
 *.log

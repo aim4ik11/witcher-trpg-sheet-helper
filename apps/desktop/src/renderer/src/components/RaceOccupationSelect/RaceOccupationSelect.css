@@ -1,0 +1,10 @@
+.sheet-meta select,
+.create-modal-form select {
+  width: 100%;
+}
+
+.sheet-meta select {
+  flex: 1;
+  min-width: 8rem;
+  font-size: 0.85rem;
+}

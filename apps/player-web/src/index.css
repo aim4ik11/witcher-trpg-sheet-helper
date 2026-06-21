@@ -11,58 +11,29 @@
   --accent:      #c9a227;
   --accent-dim:  #8a7020;
   --danger:      #b44;
-  --success:     #5a8;
   --font-display: 'Georgia', serif;
   --font-body:    system-ui, sans-serif;
 }
 
 html { font-size: 14px; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--bg-dark);
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.4;
-  -webkit-app-region: drag;
-  user-select: none;
-}
-
-button, input, a, select, textarea, [role="button"] {
-  -webkit-app-region: no-drag;
-  user-select: auto;
-}
-
-#root { min-height: 100vh; }
+body { font-family: var(--font-body); background: var(--bg-dark); color: var(--text); min-height: 100dvh; line-height: 1.4; }
+#root { min-height: 100dvh; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 600; }
 
 button {
-  font-family: var(--font-body);
-  cursor: pointer;
-  border: 1px solid var(--border);
-  background: var(--bg-panel);
-  color: var(--text);
-  border-radius: 4px;
-  padding: 0.4rem 0.75rem;
-  font-size: 0.9rem;
-  transition: background 0.15s, border-color 0.15s;
+  font-family: var(--font-body); cursor: pointer;
+  border: 1px solid var(--border); background: var(--bg-panel); color: var(--text);
+  border-radius: 4px; padding: 0.4rem 0.75rem; font-size: 0.9rem; transition: background 0.15s;
 }
 button:hover:not(:disabled) { background: var(--border); border-color: var(--border-light); }
 button:disabled { opacity: 0.5; cursor: not-allowed; }
 button.primary { background: var(--accent-dim); border-color: var(--accent); color: #fff; }
 button.primary:hover:not(:disabled) { background: var(--accent); }
-button.ghost { background: transparent; border-color: var(--border); }
-button.danger { border-color: var(--danger); color: var(--danger); }
 
 input, select, textarea {
-  font-family: var(--font-body);
-  background: var(--bg-input);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 3px;
-  padding: 0.3rem 0.5rem;
-  font-size: 0.9rem;
-  width: 100%;
+  font-family: var(--font-body); background: var(--bg-input);
+  border: 1px solid var(--border); color: var(--text);
+  border-radius: 3px; padding: 0.3rem 0.5rem; font-size: 0.9rem; width: 100%;
 }
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
 input[type="number"] { -moz-appearance: textfield; }
@@ -71,17 +42,13 @@ input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
 
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
 th, td { border: 1px solid var(--border); padding: 0.25rem 0.4rem; text-align: left; }
-th {
-  background: var(--bg-panel);
-  font-weight: 600; font-size: 0.75rem;
-  text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted);
-}
+th { background: var(--bg-panel); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); }
 
 .panel { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem; }
 .panel-title {
-  font-family: var(--font-display);
-  font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--accent); margin-bottom: 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid var(--border);
+  font-family: var(--font-display); font-size: 0.85rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem; border-bottom: 1px solid var(--border);
 }
 
 .counter { display: flex; align-items: center; gap: 0.35rem; }
@@ -90,18 +57,11 @@ th {
 .counter .max { color: var(--text-muted); font-size: 0.85rem; }
 
 .luck-bar { display: flex; gap: 0.35rem; flex-wrap: wrap; }
-.luck-pip {
-  width: 1.75rem; height: 1.75rem; border: 2px solid var(--accent);
-  border-radius: 50%; cursor: pointer; transition: background 0.15s;
-}
+.luck-pip { width: 1.75rem; height: 1.75rem; border: 2px solid var(--accent); border-radius: 50%; cursor: pointer; }
 .luck-pip.used { background: var(--accent); }
 
-.tab-bar { display: flex; gap: 0; border-bottom: 2px solid var(--border); overflow-x: auto; }
-.tab-bar button {
-  border: none; border-radius: 0; background: transparent;
-  padding: 0.6rem 1rem; white-space: nowrap; color: var(--text-muted);
-  border-bottom: 2px solid transparent; margin-bottom: -2px;
-}
+.tab-bar { display: flex; gap: 0; border-bottom: 2px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tab-bar button { border: none; border-radius: 0; background: transparent; padding: 0.6rem 1rem; white-space: nowrap; color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -2px; }
 .tab-bar button.active { color: var(--accent); border-bottom-color: var(--accent); }
 
 .skill-row {
@@ -112,14 +72,18 @@ th {
 .skill-row .base { text-align: center; color: var(--accent); font-weight: 600; }
 .skill-row.special .name { font-style: italic; }
 .skill-row.special .name::after { content: ' *'; color: var(--text-muted); }
-
 .add-row-btn { width: 100%; margin-top: 0.35rem; font-size: 0.8rem; color: var(--text-muted); }
 
-// ── Legacy classes used by MainScreen / LocalScreen ───────────────────────
-.wrap { max-width: 880px; margin: 0 auto; padding: 32px 24px; }
-.card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin: 16px 0; }
-.choices { display: flex; gap: 16px; margin-top: 24px; }
-.choices .card { flex: 1; text-align: center; }
-.url { font-family: ui-monospace, monospace; font-size: 18px; color: var(--accent); }
-.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); }
-.muted { color: var(--text-muted); font-size: 13px; }
+.player-login {
+  min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1.5rem;
+}
+.login-card { width: 100%; max-width: 22rem; text-align: center; padding: 2rem 1.5rem; }
+.medallion-sm { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.login-card h1 { font-size: 1.4rem; color: var(--accent); margin-bottom: 0.5rem; }
+.login-hint { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem; }
+.login-card form { display: flex; flex-direction: column; gap: 0.75rem; }
+.login-card input { padding: 0.65rem 0.75rem; font-size: 1rem; text-align: center; }
+.login-error { color: var(--danger); font-size: 0.85rem; }
+.login-card button { padding: 0.65rem; font-size: 1rem; }
+
+@media (max-width: 640px) { html { font-size: 13px; } }

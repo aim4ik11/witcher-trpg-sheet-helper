@@ -15,6 +15,7 @@ function createWindow() {
   win = new electron.BrowserWindow({
     width: 1100,
     height: 740,
+    frame: false,
     backgroundColor: "#14131a",
     webPreferences: {
       preload: path.join(__dirname, "../preload/index.js"),
