@@ -1,5 +1,6 @@
 :root { color-scheme: dark; font-family: system-ui, sans-serif; }
-body { margin: 0; background: #14131a; color: #ece9f5; }
+body { margin: 0; background: #14131a; color: #ece9f5; -webkit-app-region: drag; user-select: none; }
+button, input, a, [role="button"] { -webkit-app-region: no-drag; user-select: auto; }
 .wrap { max-width: 880px; margin: 0 auto; padding: 32px 24px; }
 h1 { font-weight: 650; letter-spacing: -0.01em; }
 .card { background: #1e1c28; border: 1px solid #322e44; border-radius: 14px; padding: 20px; margin: 16px 0; }
