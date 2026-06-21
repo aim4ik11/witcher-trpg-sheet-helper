@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { SessionConfig, ServerInfo, Player } from '@wilmak/shared';
-import './styles.css';
+import './styles.scss';
 
 type Mode = 'local' | 'remote' | null;
 
