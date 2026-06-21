@@ -2,12 +2,17 @@
   "name": "desktop",
   "private": true,
   "version": "0.1.0",
-  "main": "electron/main.js",
+  "description": "Менеджер сесій рольової гри (гейммайстер)",
+  "main": "./out/main/index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:server": "esbuild ../server/src/index.js --bundle --platform=node --format=cjs --outfile=../server/dist/server.cjs",
-    "electron": "cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "build:server": "esbuild ../server/src/index.ts --bundle --platform=node --format=cjs --outfile=../server/dist/server.cjs",
+    "watch:server": "npm run build:server -- --watch",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json",
     "pack": "electron-builder"
   },
   "dependencies": {
@@ -16,52 +21,30 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/node": "^22.5.0",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "cross-env": "^7.0.3",
+    "@wilmak/shared": "*",
     "electron": "31.7.7",
     "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
     "esbuild": "^0.23.1",
+    "typescript": "^5.5.4",
     "vite": "^5.4.0"
   },
   "build": {
-    "appId": "com.wilmak.gm",
-    "productName": "Вільмак",
-    "directories": {
-      "output": "../../dist"
-    },
-    "files": [
-      "renderer/**",
-      "electron/**"
-    ],
+    "appId": "trpg.witcher.gm",
+    "electronVersion": "31.7.7",
+    "directories": { "output": "../../dist" },
+    "files": ["out/**"],
     "extraResources": [
-      {
-        "from": "../server/dist/server.cjs",
-        "to": "server/server.cjs"
-      },
-      {
-        "from": "../player-web/dist",
-        "to": "player-web"
-      }
+      { "from": "../server/dist/server.cjs", "to": "server/server.cjs" },
+      { "from": "../player-web/dist", "to": "player-web" }
     ],
-    "win": {
-      "target": [
-        "nsis"
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true
-    },
-    "mac": {
-      "target": [
-        "dmg"
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage"
-      ]
-    }
+    "win": { "target": ["nsis"] },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true },
+    "mac": { "target": ["dmg", "zip"], "category": "public.app-category.role-playing-games" },
+    "linux": { "target": ["AppImage", "deb"], "category": "Game" }
   }
 }

@@ -4,10 +4,18 @@
   "type": "module",
   "version": "0.1.0",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node dist/server.cjs",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@wilmak/shared": "*",
     "express": "^4.19.2",
     "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
   }
 }
