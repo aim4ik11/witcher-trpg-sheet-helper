@@ -1,5 +1,6 @@
 node_modules/
 apps/desktop/renderer/
+apps/desktop/out/
 apps/player-web/dist/
 apps/server/dist/
 dist/

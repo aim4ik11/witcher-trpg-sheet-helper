@@ -24,8 +24,12 @@ function createWindow() {
       sandbox: false
     }
   });
-  if (isDev) void win.loadURL(process.env.ELECTRON_RENDERER_URL);
-  else void win.loadFile(path.join(__dirname, "../renderer/index.html"));
+  if (isDev) {
+    void win.loadURL(process.env.ELECTRON_RENDERER_URL);
+    win.webContents.openDevTools();
+  } else {
+    void win.loadFile(path.join(__dirname, "../renderer/index.html"));
+  }
 }
 function startServer(config) {
   return new Promise((resolve, reject) => {
