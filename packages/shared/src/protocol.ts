@@ -151,13 +151,22 @@ export type HostToServer =
   | { type: 'start'; config: SessionConfig }
   | { type: 'gm:kick'; socketId: string }
   | { type: 'gm:broadcast'; payload: unknown }
-  | { type: 'stop' };
+  | { type: 'stop' }
+  | { type: 'characters:getAll'; requestId: string }
+  | { type: 'characters:get'; requestId: string; id: string }
+  | { type: 'characters:create'; requestId: string; data: Partial<Character> }
+  | { type: 'characters:update'; requestId: string; id: string; character: Character }
+  | { type: 'characters:delete'; requestId: string; id: string };
 
 /** server -> Electron main. */
 export type ServerToHost =
   | { type: 'ready'; port: number; urls: string[] }
   | { type: 'players'; players: Player[] }
-  | { type: 'error'; message: string };
+  | { type: 'error'; message: string }
+  | { type: 'characters:result'; requestId: string; data: unknown }
+  | { type: 'characters:error'; requestId: string; message: string }
+  | { type: 'characters:changed' }
+  | { type: 'character:updated'; character: Character };
 
 // ─── Socket.IO ────────────────────────────────────────────────────────────
 
@@ -190,4 +199,13 @@ export interface Api {
   kickPlayer(socketId: string): Promise<void>;
   broadcast(payload: unknown): Promise<void>;
   onPlayersUpdate(cb: (players: Player[]) => void): () => void;
+  characters: {
+    getAll(): Promise<Character[]>;
+    get(id: string): Promise<Character>;
+    create(data: Partial<Character>): Promise<Character>;
+    update(id: string, character: Character): Promise<Character>;
+    delete(id: string): Promise<void>;
+  };
+  onCharactersChanged(cb: () => void): () => void;
+  onCharacterUpdated(cb: (character: Character) => void): () => void;
 }
