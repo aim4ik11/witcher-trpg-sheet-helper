@@ -69,4 +69,5 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
       </div>
     </div>
   );
+
 }
