@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Character } from '@wilmak/shared';
 import { api } from '../../api';
-import { useSocket } from '../../useSocket';
 import { useAppStore } from '../../store';
 import CreateCharacterModal from '../../components/CreateCharacterModal';
 import QrConnectModal from '../../components/QrConnectModal';
@@ -11,7 +10,6 @@ import './DMDashboard.css';
 export default function DMDashboardScreen() {
   const navigate = useNavigate();
   const server = useAppStore((s) => s.server);
-  const socket = useSocket(server?.port);
 
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,19 +22,16 @@ export default function DMDashboardScreen() {
   }, [server]);
 
   const load = useCallback(async () => {
-    if (!server?.port) return;
     const chars = await api.getCharacters();
     setCharacters(chars);
     setLoading(false);
-  }, [server?.port]);
+  }, []);
 
   useEffect(() => { void load(); }, [load]);
 
   useEffect(() => {
-    if (!socket) return;
-    socket.on('characters-changed', () => void load());
-    return () => { socket.off('characters-changed'); };
-  }, [socket, load]);
+    return window.api.onCharactersChanged(() => void load());
+  }, [load]);
 
   async function handleCreate(data: Partial<Character>) {
     await api.createCharacter(data);
