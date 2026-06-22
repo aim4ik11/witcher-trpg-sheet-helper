@@ -10,26 +10,31 @@ export function registerSocketHandlers(io: Io): void {
       const allowed = state.config.players.find(
         (p) => p.nickname === nickname && String(p.code) === String(code),
       );
-      if (!allowed) return ack({ ok: false, error: 'Невірний нікнейм або код' });
-      if ([...state.connected.values()].some((v) => v.nickname === nickname)) {
+      if (!allowed) {
+        return ack({ ok: false, error: 'Невірний нікнейм або код' });
+      }
+      const isConntected = [...state.connected.values()].some((v) => v.nickname === nickname);
+      if (isConntected) {
         return ack({ ok: false, error: 'Цей нікнейм уже в лобі' });
       }
       const token = randomUUID();
       state.connected.set(socket.id, { nickname });
       socket.data.nickname = nickname;
-      socket.data.token    = token;
+      socket.data.token = token;
       state.playerTokens.set(token, nickname);
       ack({ ok: true, nickname, token });
       pushRoster();
     });
-
+    
     socket.on('join-character', ({ characterId }) => {
       void socket.join(`character:${characterId}`);
     });
 
     socket.on('update-character', ({ characterId, character }) => {
       const existing = state.characters.get(characterId);
-      if (!existing) return;
+      if (!existing) {
+        return;
+      }
       const updated: Character = { ...existing, ...character, id: characterId };
       state.characters.set(characterId, updated);
       socket.to(`character:${characterId}`).emit('character-updated', updated);
@@ -37,13 +42,25 @@ export function registerSocketHandlers(io: Io): void {
     });
 
     socket.on('player:action', (payload) => {
-      if (!socket.data.nickname) return;
+      if (!socket.data.nickname) {
+        return;
+      }
       io.emit('game:event', { from: socket.data.nickname, payload });
     });
 
     socket.on('disconnect', () => {
-      if (state.connected.delete(socket.id)) pushRoster();
-      if (socket.data.token) state.playerTokens.delete(socket.data.token);
+      if (state.connected.delete(socket.id)) {
+        pushRoster();
+      }
+      if (socket.data.token) {
+        state.playerTokens.delete(socket.data.token);
+      } else if (socket.data.nickname) {
+        const socketEntries = [...state.playerTokens.entries()];
+        const playerSocket = socketEntries.find(([token, nickname]) => nickname === nickname);
+        if (playerSocket) {
+          state.playerTokens.delete(playerSocket[0]);
+        }
+      }
     });
   });
 }
