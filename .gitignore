@@ -5,3 +5,4 @@ apps/server/dist/
 dist/
 .DS_Store
 *.log
+data/
