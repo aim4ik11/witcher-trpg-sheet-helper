@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+</style>
+</helmet>
+
+<div style="width:max-content; min-width:100%; min-height:100vh; box-sizing:border-box; padding:48px; background:#e7e5df; font-family:'Hanken Grotesk',sans-serif;">
+
+  <div style="margin-bottom:40px; max-width:760px;">
+    <div style="font-family:'Spectral',serif; font-size:30px; font-weight:600; color:#2a2620; letter-spacing:.3px;">Wilmak — Design System</div>
+    <div style="font-size:15px; color:#6b655c; margin-top:8px; line-height:1.5;">Three directions for the Witcher TRPG session manager. All share a warm dark base with a gold accent; they differ in surface treatment, shape language, density, and type voice. Pick one and we'll build it out into the full system + an example screen.</div>
+  </div>
+
+  <div style="display:flex; gap:48px; align-items:flex-start;">
+
+    <!-- ============ DIRECTION A — FIELD MANUAL ============ -->
+    <div style="flex:none; width:460px;">
+      <div style="margin-bottom:14px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3a342b;">A · Field Manual</div>
+        <div style="font-size:13px; color:#7a7468; margin-top:3px;">Flat, tactical. Hairline gold rules, sharp corners, mono labels, dense.</div>
+      </div>
+      <div style="--bg:#16130f; --panel:#1f1b16; --raise:#262017; --gold:#c8a04e; --text:#e8e1d4; --muted:#9a9082; --hair:rgba(200,160,78,.16); --radius:2px; --serif:'Spectral',serif; --sans:'IBM Plex Sans',sans-serif; --mono:'IBM Plex Mono',monospace; background:var(--bg); border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.18); padding:28px; color:var(--text);">
+
+        <div style="display:flex; flex-direction:column; gap:5px; margin-bottom:24px;">
+          <div style="font-family:var(--serif); font-size:34px; font-weight:600; color:var(--gold); letter-spacing:.5px; line-height:1;">Wilmak</div>
+          <div style="font-family:var(--mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:2.5px;">Game Master · Witcher TRPG</div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;">
+          <button style="font-family:var(--sans); font-size:12.5px; font-weight:600; padding:9px 15px; border:none; border-radius:var(--radius); background:var(--gold); color:#191309; cursor:pointer; letter-spacing:.3px;">Start session</button>
+          <button style="font-family:var(--sans); font-size:12.5px; font-weight:500; padding:9px 15px; border:1px solid rgba(200,160,78,.4); border-radius:var(--radius); background:transparent; color:var(--text); cursor:pointer;">Load file</button>
+          <button style="font-family:var(--sans); font-size:12.5px; font-weight:500; padding:9px 13px; border:none; border-radius:var(--radius); background:transparent; color:var(--muted); cursor:pointer;">Back</button>
+          <button style="font-family:var(--sans); font-size:12.5px; font-weight:500; padding:9px 13px; border:1px solid rgba(192,89,76,.45); border-radius:var(--radius); background:transparent; color:#c8675a; cursor:pointer;">Kick</button>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); margin-bottom:18px; overflow:hidden;">
+          <div style="padding:11px 15px; border-bottom:1px solid var(--hair); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:var(--mono); font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:2px; color:#cdab5f;">Player invites</span>
+            <span style="font-family:var(--mono); font-size:11px; color:var(--muted);">3</span>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:10px; padding:11px 15px; border-bottom:1px solid rgba(255,255,255,.04);">
+              <span style="font-family:var(--sans); font-size:13.5px; flex:1;">geralt</span>
+              <span style="display:inline-flex; align-items:center; gap:5px; font-family:var(--sans); font-size:11px; color:#9bc08f; background:rgba(110,150,90,.14); border:1px solid rgba(110,150,90,.28); padding:2px 8px; border-radius:2px;"><span style="width:5px;height:5px;border-radius:50%;background:#7fb06f;"></span>online</span>
+              <span style="font-family:var(--mono); font-size:13px; letter-spacing:1.5px; color:var(--gold);">4821</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; padding:11px 15px;">
+              <span style="font-family:var(--sans); font-size:13.5px; flex:1;">yennefer</span>
+              <span style="display:inline-flex; align-items:center; gap:5px; font-family:var(--sans); font-size:11px; color:var(--muted); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); padding:2px 8px; border-radius:2px;"><span style="width:5px;height:5px;border-radius:50%;background:#6b655c;"></span>offline</span>
+              <span style="font-family:var(--mono); font-size:13px; letter-spacing:1.5px; color:var(--gold);">7390</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); padding:15px; margin-bottom:18px;">
+          <div style="font-family:var(--mono); font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:2px; color:#cdab5f; margin-bottom:13px;">Attributes</div>
+          <div style="display:flex; gap:8px; margin-bottom:14px;">
+            <div style="flex:1; border:1px solid var(--hair); border-radius:var(--radius); padding:9px 10px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 250);"></span><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">INT</span></div>
+              <div style="font-family:var(--serif); font-size:24px; font-weight:600; color:var(--text);">7</div>
+            </div>
+            <div style="flex:1; border:1px solid var(--hair); border-radius:var(--radius); padding:9px 10px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 200);"></span><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">REF</span></div>
+              <div style="font-family:var(--serif); font-size:24px; font-weight:600; color:var(--text);">6</div>
+            </div>
+            <div style="flex:1; border:1px solid var(--hair); border-radius:var(--radius); padding:9px 10px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 150);"></span><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">DEX</span></div>
+              <div style="font-family:var(--serif); font-size:24px; font-weight:600; color:var(--text);">8</div>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-family:var(--sans); font-size:12.5px; padding:5px 2px; border-top:1px solid rgba(255,255,255,.04);">
+            <span style="color:var(--text);">Awareness <span style="color:var(--muted);">· 3</span></span>
+            <span style="font-family:var(--mono); color:var(--gold);">10</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); padding:12px 15px; margin-bottom:18px;">
+          <span style="font-family:var(--sans); font-size:12px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted);">HP</span>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <button style="width:26px;height:26px;border:1px solid rgba(200,160,78,.4);background:transparent;color:var(--gold);border-radius:var(--radius);cursor:pointer;font-size:15px;line-height:1;">−</button>
+            <span style="font-family:var(--mono); font-size:16px;"><span style="color:var(--gold);">32</span><span style="color:var(--muted);"> / 40</span></span>
+            <button style="width:26px;height:26px;border:1px solid rgba(200,160,78,.4);background:transparent;color:var(--gold);border-radius:var(--radius);cursor:pointer;font-size:15px;line-height:1;">+</button>
+          </div>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); padding:15px;">
+          <div style="font-family:var(--serif); font-size:19px; font-weight:600; color:var(--text); margin-bottom:2px;">Geralt of Rivia</div>
+          <div style="font-family:var(--sans); font-size:12.5px; color:var(--muted); margin-bottom:13px;">Witcher · Witcher</div>
+          <div style="display:flex; gap:8px;">
+            <button style="font-family:var(--sans); font-size:12px; font-weight:500; padding:7px 13px; border:1px solid rgba(200,160,78,.4); border-radius:var(--radius); background:transparent; color:var(--text); cursor:pointer;">Open sheet</button>
+            <button style="font-family:var(--sans); font-size:12px; font-weight:500; padding:7px 11px; border:none; border-radius:var(--radius); background:transparent; color:#c8675a; cursor:pointer;">Delete</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============ DIRECTION B — WORN CODEX ============ -->
+    <div style="flex:none; width:460px;">
+      <div style="margin-bottom:14px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3a342b;">B · Worn Codex</div>
+        <div style="font-size:13px; color:#7a7468; margin-top:3px;">Bookish, warm. Layered panels, serif titles with gold rules, roomier.</div>
+      </div>
+      <div style="--bg:#1a1613; --panel:#221c17; --raise:#2b241b; --gold:#c8a04e; --text:#ece4d6; --muted:#a89a82; --hair:rgba(168,140,90,.2); --radius:3px; --serif:'EB Garamond',serif; --sans:'Source Sans 3',sans-serif; --mono:'JetBrains Mono',monospace; background:var(--bg); border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.18); padding:30px; color:var(--text);">
+
+        <div style="display:flex; flex-direction:column; gap:5px; margin-bottom:26px; padding-bottom:18px; border-bottom:1px solid var(--hair);">
+          <div style="font-family:var(--serif); font-size:38px; font-weight:600; color:var(--gold); letter-spacing:.5px; line-height:1;">Wilmak</div>
+          <div style="font-family:var(--sans); font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:2px;">Game Master · Witcher TRPG</div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-bottom:26px;">
+          <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:10px 17px; border:none; border-radius:var(--radius); background:var(--gold); color:#1a1308; cursor:pointer;">Start session</button>
+          <button style="font-family:var(--sans); font-size:13px; font-weight:500; padding:10px 17px; border:1px solid rgba(200,160,78,.45); border-radius:var(--radius); background:rgba(200,160,78,.05); color:var(--text); cursor:pointer;">Load file</button>
+          <button style="font-family:var(--sans); font-size:13px; font-weight:500; padding:10px 14px; border:none; border-radius:var(--radius); background:transparent; color:var(--muted); cursor:pointer;">Back</button>
+          <button style="font-family:var(--sans); font-size:13px; font-weight:500; padding:10px 14px; border:1px solid rgba(192,89,76,.45); border-radius:var(--radius); background:transparent; color:#cd6e60; cursor:pointer;">Kick</button>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); box-shadow:0 2px 0 rgba(0,0,0,.22); margin-bottom:20px; overflow:hidden;">
+          <div style="padding:13px 17px 11px; display:flex; justify-content:space-between; align-items:baseline;">
+            <span style="font-family:var(--serif); font-size:19px; font-weight:600; color:var(--gold); border-bottom:2px solid rgba(200,160,78,.35); padding-bottom:3px;">Player invites</span>
+            <span style="font-family:var(--mono); font-size:12px; color:var(--muted);">3</span>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:10px; padding:12px 17px; border-top:1px solid rgba(255,255,255,.04);">
+              <span style="font-family:var(--sans); font-size:14px; flex:1;">geralt</span>
+              <span style="display:inline-flex; align-items:center; gap:5px; font-family:var(--sans); font-size:11.5px; color:#a3c898; background:rgba(110,150,90,.13); padding:3px 9px; border-radius:99px;"><span style="width:5px;height:5px;border-radius:50%;background:#82b372;"></span>online</span>
+              <span style="font-family:var(--mono); font-size:13px; letter-spacing:1.5px; color:var(--gold);">4821</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; padding:12px 17px; border-top:1px solid rgba(255,255,255,.04);">
+              <span style="font-family:var(--sans); font-size:14px; flex:1;">yennefer</span>
+              <span style="display:inline-flex; align-items:center; gap:5px; font-family:var(--sans); font-size:11.5px; color:var(--muted); background:rgba(255,255,255,.04); padding:3px 9px; border-radius:99px;"><span style="width:5px;height:5px;border-radius:50%;background:#6b655c;"></span>offline</span>
+              <span style="font-family:var(--mono); font-size:13px; letter-spacing:1.5px; color:var(--gold);">7390</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); box-shadow:0 2px 0 rgba(0,0,0,.22); padding:17px; margin-bottom:20px;">
+          <div style="font-family:var(--serif); font-size:19px; font-weight:600; color:var(--gold); border-bottom:2px solid rgba(200,160,78,.35); padding-bottom:3px; display:inline-block; margin-bottom:15px;">Attributes</div>
+          <div style="display:flex; gap:9px; margin-bottom:15px;">
+            <div style="flex:1; background:var(--raise); border-radius:var(--radius); padding:10px 11px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 250);"></span><span style="font-family:var(--sans); font-size:11.5px; letter-spacing:1px; color:var(--muted);">INT</span></div>
+              <div style="font-family:var(--serif); font-size:27px; font-weight:600; color:var(--text); line-height:1;">7</div>
+            </div>
+            <div style="flex:1; background:var(--raise); border-radius:var(--radius); padding:10px 11px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 200);"></span><span style="font-family:var(--sans); font-size:11.5px; letter-spacing:1px; color:var(--muted);">REF</span></div>
+              <div style="font-family:var(--serif); font-size:27px; font-weight:600; color:var(--text); line-height:1;">6</div>
+            </div>
+            <div style="flex:1; background:var(--raise); border-radius:var(--radius); padding:10px 11px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 150);"></span><span style="font-family:var(--sans); font-size:11.5px; letter-spacing:1px; color:var(--muted);">DEX</span></div>
+              <div style="font-family:var(--serif); font-size:27px; font-weight:600; color:var(--text); line-height:1;">8</div>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-family:var(--sans); font-size:13px; padding:6px 2px 0;">
+            <span style="color:var(--text);">Awareness <span style="color:var(--muted);">· 3</span></span>
+            <span style="font-family:var(--mono); color:var(--gold);">10</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); padding:13px 17px; margin-bottom:20px;">
+          <span style="font-family:var(--sans); font-size:12.5px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted);">HP</span>
+          <div style="display:flex; align-items:center; gap:11px;">
+            <button style="width:28px;height:28px;border:1px solid rgba(200,160,78,.4);background:transparent;color:var(--gold);border-radius:var(--radius);cursor:pointer;font-size:16px;line-height:1;">−</button>
+            <span style="font-family:var(--mono); font-size:17px;"><span style="color:var(--gold);">32</span><span style="color:var(--muted);"> / 40</span></span>
+            <button style="width:28px;height:28px;border:1px solid rgba(200,160,78,.4);background:transparent;color:var(--gold);border-radius:var(--radius);cursor:pointer;font-size:16px;line-height:1;">+</button>
+          </div>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); box-shadow:0 2px 0 rgba(0,0,0,.22); padding:17px;">
+          <div style="font-family:var(--serif); font-size:23px; font-weight:600; color:var(--text); margin-bottom:2px; line-height:1.1;">Geralt of Rivia</div>
+          <div style="font-family:var(--sans); font-size:13px; color:var(--muted); margin-bottom:15px;">Witcher · Witcher</div>
+          <div style="display:flex; gap:9px;">
+            <button style="font-family:var(--sans); font-size:12.5px; font-weight:500; padding:8px 15px; border:1px solid rgba(200,160,78,.45); border-radius:var(--radius); background:rgba(200,160,78,.05); color:var(--text); cursor:pointer;">Open sheet</button>
+            <button style="font-family:var(--sans); font-size:12.5px; font-weight:500; padding:8px 12px; border:none; border-radius:var(--radius); background:transparent; color:#cd6e60; cursor:pointer;">Delete</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============ DIRECTION C — CONSOLE SLATE ============ -->
+    <div style="flex:none; width:460px;">
+      <div style="margin-bottom:14px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3a342b;">C · Console Slate</div>
+        <div style="font-size:13px; color:#7a7468; margin-top:3px;">Modern app. Soft elevation, rounded cards, neutral borders, clean sans.</div>
+      </div>
+      <div style="--bg:#181512; --panel:#211d18; --raise:#2a251f; --gold:#c8a04e; --text:#eae3d6; --muted:#9d9486; --hair:rgba(255,255,255,.07); --radius:8px; --serif:'Spectral',serif; --sans:'Hanken Grotesk',sans-serif; --mono:'IBM Plex Mono',monospace; background:var(--bg); border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.18); padding:28px; color:var(--text);">
+
+        <div style="display:flex; flex-direction:column; gap:5px; margin-bottom:24px;">
+          <div style="font-family:var(--serif); font-size:34px; font-weight:600; color:var(--gold); letter-spacing:.3px; line-height:1;">Wilmak</div>
+          <div style="font-family:var(--sans); font-size:12.5px; font-weight:500; color:var(--muted);">Game Master · Witcher TRPG</div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:9px; margin-bottom:24px;">
+          <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:10px 17px; border:none; border-radius:5px; background:var(--gold); color:#191309; cursor:pointer; box-shadow:0 2px 8px rgba(200,160,78,.18);">Start session</button>
+          <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:10px 17px; border:1px solid rgba(255,255,255,.16); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Load file</button>
+          <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:10px 14px; border:none; border-radius:5px; background:transparent; color:var(--muted); cursor:pointer;">Back</button>
+          <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:10px 14px; border:1px solid rgba(192,89,76,.4); border-radius:5px; background:transparent; color:#cd6e60; cursor:pointer;">Kick</button>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); box-shadow:0 6px 18px rgba(0,0,0,.3); margin-bottom:18px; overflow:hidden;">
+          <div style="padding:13px 16px; border-bottom:1px solid var(--hair); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:var(--sans); font-size:14px; font-weight:600; color:var(--text);">Player invites</span>
+            <span style="font-family:var(--mono); font-size:12px; color:var(--muted); background:var(--raise); padding:2px 8px; border-radius:99px;">3</span>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.04);">
+              <span style="font-family:var(--sans); font-size:14px; font-weight:500; flex:1;">geralt</span>
+              <span style="display:inline-flex; align-items:center; gap:5px; font-family:var(--sans); font-size:11.5px; font-weight:600; color:#a3c898; background:rgba(110,150,90,.14); padding:3px 9px; border-radius:99px;"><span style="width:6px;height:6px;border-radius:50%;background:#82b372;"></span>online</span>
+              <span style="font-family:var(--mono); font-size:13px; letter-spacing:1.5px; color:var(--gold);">4821</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; padding:12px 16px;">
+              <span style="font-family:var(--sans); font-size:14px; font-weight:500; flex:1;">yennefer</span>
+              <span style="display:inline-flex; align-items:center; gap:5px; font-family:var(--sans); font-size:11.5px; font-weight:600; color:var(--muted); background:rgba(255,255,255,.05); padding:3px 9px; border-radius:99px;"><span style="width:6px;height:6px;border-radius:50%;background:#6b655c;"></span>offline</span>
+              <span style="font-family:var(--mono); font-size:13px; letter-spacing:1.5px; color:var(--gold);">7390</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); box-shadow:0 6px 18px rgba(0,0,0,.3); padding:16px; margin-bottom:18px;">
+          <div style="font-family:var(--sans); font-size:14px; font-weight:600; color:var(--text); margin-bottom:13px;">Attributes</div>
+          <div style="display:flex; gap:9px; margin-bottom:14px;">
+            <div style="flex:1; background:var(--raise); border:1px solid var(--hair); border-radius:6px; padding:10px 11px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:5px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 250);"></span><span style="font-family:var(--sans); font-size:11.5px; font-weight:600; color:var(--muted);">INT</span></div>
+              <div style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--text); line-height:1;">7</div>
+            </div>
+            <div style="flex:1; background:var(--raise); border:1px solid var(--hair); border-radius:6px; padding:10px 11px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:5px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 200);"></span><span style="font-family:var(--sans); font-size:11.5px; font-weight:600; color:var(--muted);">REF</span></div>
+              <div style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--text); line-height:1;">6</div>
+            </div>
+            <div style="flex:1; background:var(--raise); border:1px solid var(--hair); border-radius:6px; padding:10px 11px;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:5px;"><span style="width:7px;height:7px;border-radius:50%;background:oklch(0.72 0.09 150);"></span><span style="font-family:var(--sans); font-size:11.5px; font-weight:600; color:var(--muted);">DEX</span></div>
+              <div style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--text); line-height:1;">8</div>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-family:var(--sans); font-size:13px; padding:8px 2px 0; border-top:1px solid rgba(255,255,255,.04);">
+            <span style="color:var(--text); font-weight:500;">Awareness <span style="color:var(--muted); font-weight:400;">· 3</span></span>
+            <span style="font-family:var(--mono); color:var(--gold);">10</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); box-shadow:0 6px 18px rgba(0,0,0,.3); padding:13px 16px; margin-bottom:18px;">
+          <span style="font-family:var(--sans); font-size:12.5px; font-weight:600; color:var(--muted);">HP</span>
+          <div style="display:flex; align-items:center; gap:11px;">
+            <button style="width:28px;height:28px;border:1px solid rgba(255,255,255,.16);background:var(--raise);color:var(--gold);border-radius:6px;cursor:pointer;font-size:16px;line-height:1;">−</button>
+            <span style="font-family:var(--mono); font-size:17px;"><span style="color:var(--gold);">32</span><span style="color:var(--muted);"> / 40</span></span>
+            <button style="width:28px;height:28px;border:1px solid rgba(255,255,255,.16);background:var(--raise);color:var(--gold);border-radius:6px;cursor:pointer;font-size:16px;line-height:1;">+</button>
+          </div>
+        </div>
+
+        <div style="background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); box-shadow:0 6px 18px rgba(0,0,0,.3); padding:16px;">
+          <div style="font-family:var(--serif); font-size:21px; font-weight:600; color:var(--text); margin-bottom:2px; line-height:1.1;">Geralt of Rivia</div>
+          <div style="font-family:var(--sans); font-size:13px; color:var(--muted); margin-bottom:14px;">Witcher · Witcher</div>
+          <div style="display:flex; gap:9px;">
+            <button style="font-family:var(--sans); font-size:12.5px; font-weight:600; padding:8px 15px; border:1px solid rgba(255,255,255,.16); border-radius:6px; background:var(--raise); color:var(--text); cursor:pointer;">Open sheet</button>
+            <button style="font-family:var(--sans); font-size:12.5px; font-weight:600; padding:8px 12px; border:none; border-radius:6px; background:transparent; color:#cd6e60; cursor:pointer;">Delete</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #141210; }
+</style>
+</helmet>
+
+<div data-screen-label="DM Console" style="--bg:#181512; --panel:#211d18; --raise:#2a251f; --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.16); --gold:#c8a04e; --goldsoft:rgba(200,160,78,.14); --text:#eae3d6; --muted:#9d9486; --faint:#6f685d; --danger:#cd6e60; --green:#a3c898; --serif:'Spectral',serif; --sans:'Hanken Grotesk',sans-serif; --mono:'IBM Plex Mono',monospace; background:#181512; min-height:100vh; color:var(--text); font-family:var(--sans);">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div style="position:sticky; top:0; z-index:10; background:rgba(20,18,16,.86); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);">
+    <div style="max-width:1200px; margin:0 auto; padding:14px 40px; display:flex; align-items:center; gap:18px;">
+      <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:8px 14px; border:none; border-radius:5px; background:transparent; color:var(--muted); cursor:pointer;">← Local Session</button>
+      <div style="font-family:var(--serif); font-size:21px; font-weight:600; flex:1;">DM Console</div>
+      <span style="display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600; color:var(--green); background:rgba(110,150,90,.13); padding:5px 12px; border-radius:99px;"><span style="width:7px;height:7px;border-radius:50%;background:#82b372;"></span>Server running</span>
+      <span style="font-size:13px; color:var(--muted);">Session <span style="color:var(--text); font-weight:600;">Blood &amp; Wine</span></span>
+    </div>
+  </div>
+
+  <div style="max-width:1200px; margin:0 auto; padding:40px;">
+
+    <!-- ===================== PLAYER CONNECTION ===================== -->
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+      <div style="font-family:var(--serif); font-size:24px; font-weight:600;">Player connection</div>
+      <span style="font-size:12.5px; color:var(--faint);">same WiFi</span>
+      <div style="flex:1;"></div>
+      <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:9px 16px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">QR Code</button>
+    </div>
+    <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.28); padding:8px; margin-bottom:48px;">
+      <div style="display:flex; align-items:center; gap:14px; padding:13px 14px; border-bottom:1px solid rgba(255,255,255,.04);">
+        <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.6px; color:var(--faint); width:60px;">Wi-Fi</span>
+        <span style="font-family:var(--mono); font-size:14px; color:var(--gold); flex:1; letter-spacing:.5px;">http://192.168.1.7:7777</span>
+        <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:6px 13px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Copy</button>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px; padding:13px 14px;">
+        <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.6px; color:var(--faint); width:60px;">Ethernet</span>
+        <span style="font-family:var(--mono); font-size:14px; color:var(--gold); flex:1; letter-spacing:.5px;">http://10.0.0.4:7777</span>
+        <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:6px 13px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Copy</button>
+      </div>
+    </div>
+
+    <!-- ===================== PLAYER INVITES ===================== -->
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+      <div style="font-family:var(--serif); font-size:24px; font-weight:600;">Player invites</div>
+      <span style="font-family:var(--mono); font-size:13px; color:var(--muted); background:var(--raise); padding:2px 9px; border-radius:99px;">3</span>
+      <div style="flex:1;"></div>
+      <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:9px 16px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">+ Add invite</button>
+    </div>
+    <div style="font-size:13px; color:var(--faint); margin-bottom:18px;">Players log in from a browser with their nickname and 4-digit code.</div>
+    <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.28); overflow:hidden; margin-bottom:48px;">
+      <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid rgba(255,255,255,.04);">
+        <span style="font-size:14px; font-weight:500; flex:1;">geralt</span>
+        <span style="display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--green); background:rgba(110,150,90,.14); padding:3px 9px; border-radius:99px;"><span style="width:6px;height:6px;border-radius:50%;background:#82b372;"></span>online</span>
+        <span style="font-family:var(--mono); font-size:14px; letter-spacing:1.5px; color:var(--gold); width:54px; text-align:right;">4821</span>
+        <span style="font-size:12px; color:var(--faint); cursor:pointer;">copy</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid rgba(255,255,255,.04);">
+        <span style="font-size:14px; font-weight:500; flex:1;">yennefer</span>
+        <span style="display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--muted); background:rgba(255,255,255,.05); padding:3px 9px; border-radius:99px;"><span style="width:6px;height:6px;border-radius:50%;background:#6f685d;"></span>offline</span>
+        <span style="font-family:var(--mono); font-size:14px; letter-spacing:1.5px; color:var(--gold); width:54px; text-align:right;">7390</span>
+        <span style="font-size:12px; color:var(--faint); cursor:pointer;">copy</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px; padding:14px 18px;">
+        <span style="font-size:14px; font-weight:500; flex:1;">jaskier</span>
+        <span style="display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--green); background:rgba(110,150,90,.14); padding:3px 9px; border-radius:99px;"><span style="width:6px;height:6px;border-radius:50%;background:#82b372;"></span>online</span>
+        <span style="font-family:var(--mono); font-size:14px; letter-spacing:1.5px; color:var(--gold); width:54px; text-align:right;">2055</span>
+        <span style="font-size:12px; color:var(--faint); cursor:pointer;">copy</span>
+      </div>
+    </div>
+
+    <!-- ===================== PLAYER CHARACTERS ===================== -->
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+      <div style="font-family:var(--serif); font-size:24px; font-weight:600;">Player characters</div>
+      <span style="font-family:var(--mono); font-size:13px; color:var(--muted); background:var(--raise); padding:2px 9px; border-radius:99px;">3</span>
+      <div style="flex:1;"></div>
+      <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:9px 16px; border:none; border-radius:5px; background:var(--gold); color:#191309; cursor:pointer; box-shadow:0 2px 8px rgba(200,160,78,.18);">+ New Player</button>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; margin-bottom:48px;">
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.28); padding:18px;">
+        <div style="font-family:var(--serif); font-size:21px; font-weight:600; line-height:1.1;">Geralt of Rivia</div>
+        <div style="font-size:13px; color:var(--muted); margin:3px 0 14px;">Witcher · Witcher</div>
+        <div style="display:flex; gap:16px; font-size:12.5px; color:var(--muted); margin-bottom:16px;">
+          <span>nick <span style="font-family:var(--mono); color:var(--text);">geralt</span></span>
+          <span>code <span style="font-family:var(--mono); color:var(--gold); letter-spacing:1.5px;">4821</span></span>
+        </div>
+        <div style="display:flex; gap:9px;">
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 14px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Open sheet</button>
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 12px; border:none; border-radius:5px; background:transparent; color:var(--danger); cursor:pointer;">Delete</button>
+        </div>
+      </div>
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.28); padding:18px;">
+        <div style="font-family:var(--serif); font-size:21px; font-weight:600; line-height:1.1;">Yennefer</div>
+        <div style="font-size:13px; color:var(--muted); margin:3px 0 14px;">Human · Mage</div>
+        <div style="display:flex; gap:16px; font-size:12.5px; color:var(--muted); margin-bottom:16px;">
+          <span>nick <span style="font-family:var(--mono); color:var(--text);">yennefer</span></span>
+          <span>code <span style="font-family:var(--mono); color:var(--gold); letter-spacing:1.5px;">7390</span></span>
+        </div>
+        <div style="display:flex; gap:9px;">
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 14px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Open sheet</button>
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 12px; border:none; border-radius:5px; background:transparent; color:var(--danger); cursor:pointer;">Delete</button>
+        </div>
+      </div>
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.28); padding:18px;">
+        <div style="font-family:var(--serif); font-size:21px; font-weight:600; line-height:1.1;">Jaskier</div>
+        <div style="font-size:13px; color:var(--muted); margin:3px 0 14px;">Human · Bard</div>
+        <div style="display:flex; gap:16px; font-size:12.5px; color:var(--muted); margin-bottom:16px;">
+          <span>nick <span style="font-family:var(--mono); color:var(--text);">jaskier</span></span>
+          <span>code <span style="font-family:var(--mono); color:var(--gold); letter-spacing:1.5px;">2055</span></span>
+        </div>
+        <div style="display:flex; gap:9px;">
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 14px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Open sheet</button>
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 12px; border:none; border-radius:5px; background:transparent; color:var(--danger); cursor:pointer;">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== ENEMIES & NPCS ===================== -->
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+      <div style="font-family:var(--serif); font-size:24px; font-weight:600;">Enemies &amp; NPCs</div>
+      <span style="font-family:var(--mono); font-size:13px; color:var(--muted); background:var(--raise); padding:2px 9px; border-radius:99px;">4</span>
+      <div style="flex:1;"></div>
+      <button style="font-family:var(--sans); font-size:13px; font-weight:600; padding:9px 16px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">+ New Enemy</button>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;">
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.28); padding:18px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
+          <div>
+            <div style="font-family:var(--serif); font-size:21px; font-weight:600; line-height:1.1;">Drowner</div>
+            <div style="font-size:13px; color:var(--muted); margin-top:3px;">Necrophage</div>
+          </div>
+          <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; color:var(--gold); background:var(--goldsoft); border:1px solid rgba(200,160,78,.3); padding:3px 9px; border-radius:5px; white-space:nowrap;">Easy</span>
+        </div>
+        <div style="display:flex; gap:9px; margin-top:16px;">
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 14px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Open sheet</button>
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 12px; border:none; border-radius:5px; background:transparent; color:var(--danger); cursor:pointer;">Delete</button>
+        </div>
+      </div>
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.28); padding:18px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
+          <div>
+            <div style="font-family:var(--serif); font-size:21px; font-weight:600; line-height:1.1;">Griffin</div>
+            <div style="font-size:13px; color:var(--muted); margin-top:3px;">Hybrid</div>
+          </div>
+          <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; color:var(--danger); background:rgba(192,89,76,.12); border:1px solid rgba(192,89,76,.3); padding:3px 9px; border-radius:5px; white-space:nowrap;">Deadly</span>
+        </div>
+        <div style="display:flex; gap:9px; margin-top:16px;">
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 14px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Open sheet</button>
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 12px; border:none; border-radius:5px; background:transparent; color:var(--danger); cursor:pointer;">Delete</button>
+        </div>
+      </div>
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.28); padding:18px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
+          <div>
+            <div style="font-family:var(--serif); font-size:21px; font-weight:600; line-height:1.1;">Bandit Captain</div>
+            <div style="font-size:13px; color:var(--muted); margin-top:3px;">Human · Man at Arms</div>
+          </div>
+          <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); background:var(--raise); border:1px solid var(--line2); padding:3px 9px; border-radius:5px; white-space:nowrap;">NPC</span>
+        </div>
+        <div style="display:flex; gap:9px; margin-top:16px;">
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 14px; border:1px solid var(--line2); border-radius:5px; background:var(--raise); color:var(--text); cursor:pointer;">Open sheet</button>
+          <button style="font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 12px; border:none; border-radius:5px; background:transparent; color:var(--danger); cursor:pointer;">Delete</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
