@@ -3,10 +3,15 @@ export interface PlayerCredential {
   code: string;
 }
 
+export function normalizeNickname(nickname: string): string {
+  return nickname.trim().toLowerCase().replace(/\s/g, '');
+}
+
 export interface SessionConfig {
   sessionName: string;
   port: number;
   players: PlayerCredential[];
+  characters?: Character[];
   playerWebDir?: string | null;
 }
 
@@ -29,6 +34,12 @@ export interface JoinAck {
   ok: boolean;
   nickname?: string;
   token?: string;
+  error?: string;
+}
+
+export interface ResumeAck {
+  ok: boolean;
+  nickname?: string;
   error?: string;
 }
 
@@ -156,12 +167,15 @@ export type HostToServer =
   | { type: 'characters:get'; requestId: string; id: string }
   | { type: 'characters:create'; requestId: string; data: Partial<Character> }
   | { type: 'characters:update'; requestId: string; id: string; character: Character }
-  | { type: 'characters:delete'; requestId: string; id: string };
+  | { type: 'characters:delete'; requestId: string; id: string }
+  | { type: 'credentials:getAll'; requestId: string }
+  | { type: 'credentials:add'; requestId: string; nickname: string; code?: string };
 
 /** server -> Electron main. */
 export type ServerToHost =
   | { type: 'ready'; port: number; urls: string[] }
   | { type: 'players'; players: Player[] }
+  | { type: 'credentials'; credentials: PlayerCredential[] }
   | { type: 'error'; message: string }
   | { type: 'characters:result'; requestId: string; data: unknown }
   | { type: 'characters:error'; requestId: string; message: string }
@@ -181,6 +195,7 @@ export interface ServerToClientEvents {
 /** Socket.io: client -> server. */
 export interface ClientToServerEvents {
   join: (data: PlayerCredential, ack: (res: JoinAck) => void) => void;
+  resume: (data: { token: string }, ack: (res: ResumeAck) => void) => void;
   'player:action': (payload: unknown) => void;
   'join-character': (data: { characterId: string; isDM?: boolean }) => void;
   'update-character': (data: { characterId: string; character: Character }) => void;
@@ -194,11 +209,17 @@ export interface SocketData {
 
 /** The preload bridge exposed to the GM renderer as window.api. */
 export interface Api {
+  loadLastSession(): Promise<SessionConfig | null>;
+  saveLastSession(config: SessionConfig): Promise<void>;
   pickConfig(): Promise<SessionConfig | null>;
   startSession(config: SessionConfig): Promise<ServerInfo>;
+  stopSession(): Promise<void>;
   kickPlayer(socketId: string): Promise<void>;
   broadcast(payload: unknown): Promise<void>;
   onPlayersUpdate(cb: (players: Player[]) => void): () => void;
+  getCredentials(): Promise<PlayerCredential[]>;
+  addCredential(nickname: string, code?: string): Promise<PlayerCredential>;
+  onCredentialsUpdate(cb: (credentials: PlayerCredential[]) => void): () => void;
   characters: {
     getAll(): Promise<Character[]>;
     get(id: string): Promise<Character>;
