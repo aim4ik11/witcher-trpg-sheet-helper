@@ -24,13 +24,6 @@ body {
   color: var(--text);
   min-height: 100vh;
   line-height: 1.4;
-  -webkit-app-region: drag;
-  user-select: none;
-}
-
-button, input, a, select, textarea, [role="button"] {
-  -webkit-app-region: no-drag;
-  user-select: auto;
 }
 
 #root { min-height: 100vh; }
