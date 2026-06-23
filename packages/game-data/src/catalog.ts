@@ -1,6 +1,6 @@
-import weaponsCatalog from './data/weapons.json';
-import armorCatalog from './data/armor.json';
-import magicCatalog from './data/magic.json';
+import weaponsCatalog from "./data/weapons.json";
+import armorCatalog from "./data/armor.json";
+import magicCatalog from "./data/magic.json";
 
 export interface CatalogWeapon {
   id: string;
@@ -51,19 +51,33 @@ export interface CatalogMagic {
 export type CatalogItem = CatalogWeapon | CatalogArmor | CatalogMagic;
 
 export const WEAPONS_CATALOG: CatalogWeapon[] = weaponsCatalog as CatalogWeapon[];
-export const ARMOR_CATALOG:   CatalogArmor[]  = armorCatalog   as CatalogArmor[];
-export const MAGIC_CATALOG:   CatalogMagic[]  = magicCatalog   as CatalogMagic[];
+export const ARMOR_CATALOG: CatalogArmor[] = armorCatalog as CatalogArmor[];
+export const MAGIC_CATALOG: CatalogMagic[] = magicCatalog as CatalogMagic[];
 
 function searchText(item: CatalogItem): string {
   const w = item as CatalogWeapon & CatalogArmor & CatalogMagic;
   return [
-    item.id, item.name, w.effect, w.type, w.slot, w.category,
-    w.dmg, w.hand, w.rng, w.range, w.duration, w.defense,
-    w.element, w.tier, w.staCostText, w.danger, w.components,
+    item.id,
+    item.name,
+    w.effect,
+    w.type,
+    w.slot,
+    w.category,
+    w.dmg,
+    w.hand,
+    w.rng,
+    w.range,
+    w.duration,
+    w.defense,
+    w.element,
+    w.tier,
+    w.staCostText,
+    w.danger,
+    w.components,
     ...(item.tags ?? []),
   ]
     .filter(Boolean)
-    .join(' ')
+    .join(" ")
     .toLowerCase();
 }
 
@@ -77,15 +91,15 @@ export function catalogToWeapon(item: CatalogWeapon) {
   return {
     id: crypto.randomUUID(),
     name: item.name,
-    type: item.type ?? '',
+    type: item.type ?? "",
     wa: item.wa ?? 0,
-    dmg: item.dmg ?? '',
-    rel: item.rel ?? '',
-    hand: item.hand ?? '',
-    rng: item.rng ?? '',
-    effect: item.effect ?? '',
-    conc: item.conc ?? '',
-    enhancements: item.enhancements ?? '',
+    dmg: item.dmg ?? "",
+    rel: item.rel ?? "",
+    hand: item.hand ?? "",
+    rng: item.rng ?? "",
+    effect: item.effect ?? "",
+    conc: item.conc ?? "",
+    enhancements: item.enhancements ?? "",
     weight: item.weight ?? 0,
     catalogId: item.id,
   };
@@ -97,7 +111,7 @@ export function catalogToArmorPiece(item: CatalogArmor, slot?: string) {
     name: item.name,
     sp: item.sp ?? 0,
     damage: 0,
-    effects: item.effects ?? '',
+    effects: item.effects ?? "",
     weight: item.weight ?? 0,
     catalogId: item.id,
   };
@@ -105,24 +119,24 @@ export function catalogToArmorPiece(item: CatalogArmor, slot?: string) {
 
 export function catalogToSpell(item: CatalogMagic, category?: string) {
   const staCost = item.staCost ?? 0;
-  const staCostText = item.staCostText || (staCost > 0 ? String(staCost) : '');
+  const staCostText = item.staCostText || (staCost > 0 ? String(staCost) : "");
   return {
     id: crypto.randomUUID(),
     category: category ?? item.category,
     name: item.name,
     staCost,
     staCostText,
-    range: item.range ?? '',
-    duration: item.duration ?? '',
-    effect: item.effect ?? '',
-    defense: item.defense ?? '',
+    range: item.range ?? "",
+    duration: item.duration ?? "",
+    effect: item.effect ?? "",
+    defense: item.defense ?? "",
     catalogId: item.id,
   };
 }
 
 export function getArmorForSlot(slot: string): CatalogArmor[] {
-  if (slot === 'rLeg' || slot === 'lLeg') {
-    return ARMOR_CATALOG.filter((a) => a.slot === 'rLeg' || a.slot === 'lLeg');
+  if (slot === "rLeg" || slot === "lLeg") {
+    return ARMOR_CATALOG.filter((a) => a.slot === "rLeg" || a.slot === "lLeg");
   }
   return ARMOR_CATALOG.filter((a) => a.slot === slot);
 }

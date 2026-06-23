@@ -1,4 +1,8 @@
-import { normalizeNickname, type PlayerCredential, type SessionConfig } from '@wilmak/shared';
+import {
+  normalizeNickname,
+  type PlayerCredential,
+  type SessionConfig,
+} from "@wilmak/shared";
 
 export { normalizeNickname };
 
@@ -9,6 +13,9 @@ export function normalizePlayers(players: PlayerCredential[]): PlayerCredential[
   }));
 }
 
-export function withPlayers(config: SessionConfig, players: PlayerCredential[]): SessionConfig {
+export function withPlayers(
+  config: SessionConfig,
+  players: PlayerCredential[],
+): SessionConfig {
   return { ...config, players: normalizePlayers(players) };
 }

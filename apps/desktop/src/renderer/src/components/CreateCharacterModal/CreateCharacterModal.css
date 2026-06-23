@@ -20,7 +20,9 @@
   overflow: hidden;
 }
 
-.create-modal--wide { max-width: 460px; }
+.create-modal--wide {
+  max-width: 460px;
+}
 
 .create-modal-header {
   padding: 18px 20px;
@@ -96,8 +98,13 @@
   letter-spacing: 0.08em;
 }
 
-.required { color: var(--danger); }
-.create-modal-error { color: var(--danger); font-size: 13px; }
+.required {
+  color: var(--danger);
+}
+.create-modal-error {
+  color: var(--danger);
+  font-size: 13px;
+}
 
 .create-modal-actions {
   display: flex;

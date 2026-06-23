@@ -1,4 +1,6 @@
-.invite-list { list-style: none; }
+.invite-list {
+  list-style: none;
+}
 
 .invite-row {
   display: flex;
@@ -8,7 +10,9 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.invite-row:last-child { border-bottom: none; }
+.invite-row:last-child {
+  border-bottom: none;
+}
 
 .invite-nick {
   font-size: 14px;
@@ -45,7 +49,9 @@
   text-transform: lowercase;
 }
 
-.invite-copy:hover { color: var(--text-muted); }
+.invite-copy:hover {
+  color: var(--text-muted);
+}
 
 .invite-empty {
   padding: 18px;

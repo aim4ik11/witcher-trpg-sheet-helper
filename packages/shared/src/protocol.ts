@@ -4,7 +4,7 @@ export interface PlayerCredential {
 }
 
 export function normalizeNickname(nickname: string): string {
-  return nickname.trim().toLowerCase().replace(/\s/g, '');
+  return nickname.trim().toLowerCase().replace(/\s/g, "");
 }
 
 export interface SessionConfig {
@@ -45,9 +45,9 @@ export interface ResumeAck {
 
 // ─── Character model ───────────────────────────────────────────────────────
 
-export type CharacterType = 'player' | 'enemy';
+export type CharacterType = "player" | "enemy";
 
-export type EnemyKind = 'npc' | 'monster';
+export type EnemyKind = "npc" | "monster";
 
 export interface MonsterProfile {
   catalogId: string;
@@ -186,46 +186,46 @@ export interface Character {
 
 /** Electron main -> server (utilityProcess parentPort). */
 export type HostToServer =
-  | { type: 'start'; config: SessionConfig }
-  | { type: 'gm:kick'; socketId: string }
-  | { type: 'gm:broadcast'; payload: unknown }
-  | { type: 'stop' }
-  | { type: 'characters:getAll'; requestId: string }
-  | { type: 'characters:get'; requestId: string; id: string }
-  | { type: 'characters:create'; requestId: string; data: Partial<Character> }
-  | { type: 'characters:update'; requestId: string; id: string; character: Character }
-  | { type: 'characters:delete'; requestId: string; id: string }
-  | { type: 'credentials:getAll'; requestId: string }
-  | { type: 'credentials:add'; requestId: string; nickname: string; code?: string };
+  | { type: "start"; config: SessionConfig }
+  | { type: "gm:kick"; socketId: string }
+  | { type: "gm:broadcast"; payload: unknown }
+  | { type: "stop" }
+  | { type: "characters:getAll"; requestId: string }
+  | { type: "characters:get"; requestId: string; id: string }
+  | { type: "characters:create"; requestId: string; data: Partial<Character> }
+  | { type: "characters:update"; requestId: string; id: string; character: Character }
+  | { type: "characters:delete"; requestId: string; id: string }
+  | { type: "credentials:getAll"; requestId: string }
+  | { type: "credentials:add"; requestId: string; nickname: string; code?: string };
 
 /** server -> Electron main. */
 export type ServerToHost =
-  | { type: 'ready'; port: number; urls: string[] }
-  | { type: 'players'; players: Player[] }
-  | { type: 'credentials'; credentials: PlayerCredential[] }
-  | { type: 'error'; message: string }
-  | { type: 'characters:result'; requestId: string; data: unknown }
-  | { type: 'characters:error'; requestId: string; message: string }
-  | { type: 'characters:changed' }
-  | { type: 'character:updated'; character: Character };
+  | { type: "ready"; port: number; urls: string[] }
+  | { type: "players"; players: Player[] }
+  | { type: "credentials"; credentials: PlayerCredential[] }
+  | { type: "error"; message: string }
+  | { type: "characters:result"; requestId: string; data: unknown }
+  | { type: "characters:error"; requestId: string; message: string }
+  | { type: "characters:changed" }
+  | { type: "character:updated"; character: Character };
 
 // ─── Socket.IO ────────────────────────────────────────────────────────────
 
 /** Socket.io: server -> client. */
 export interface ServerToClientEvents {
-  'players:update': (players: Player[]) => void;
-  'game:event': (event: GameEvent) => void;
-  'character-updated': (character: Character) => void;
-  'characters-changed': () => void;
+  "players:update": (players: Player[]) => void;
+  "game:event": (event: GameEvent) => void;
+  "character-updated": (character: Character) => void;
+  "characters-changed": () => void;
 }
 
 /** Socket.io: client -> server. */
 export interface ClientToServerEvents {
   join: (data: PlayerCredential, ack: (res: JoinAck) => void) => void;
   resume: (data: { token: string }, ack: (res: ResumeAck) => void) => void;
-  'player:action': (payload: unknown) => void;
-  'join-character': (data: { characterId: string; isDM?: boolean }) => void;
-  'update-character': (data: { characterId: string; character: Character }) => void;
+  "player:action": (payload: unknown) => void;
+  "join-character": (data: { characterId: string; isDM?: boolean }) => void;
+  "update-character": (data: { characterId: string; character: Character }) => void;
 }
 
 /** Per-socket data stored server-side. */

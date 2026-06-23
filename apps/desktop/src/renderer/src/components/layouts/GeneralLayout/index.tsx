@@ -1,9 +1,7 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 
-const GeneralLayout = ({ children, }: PropsWithChildren) => {
-  return (
-    <>{children}</>
-  );
-}
+const GeneralLayout = ({ children }: PropsWithChildren) => {
+  return <>{children}</>;
+};
 
 export default GeneralLayout;

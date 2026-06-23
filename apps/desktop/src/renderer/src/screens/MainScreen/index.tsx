@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MainScreen = () => {
   const navigate = useNavigate();
@@ -11,7 +11,9 @@ const MainScreen = () => {
         <div className="card">
           <h3>Локальна сесія</h3>
           <p className="muted">Сервер у вашій WiFi-мережі.</p>
-          <button className="primary" onClick={() => navigate('/local')}>Обрати</button>
+          <button className="primary" onClick={() => navigate("/local")}>
+            Обрати
+          </button>
         </div>
         <div className="card">
           <h3>Віддалена сесія</h3>
@@ -21,6 +23,6 @@ const MainScreen = () => {
       </div>
     </div>
   );
-}
+};
 
 export default MainScreen;

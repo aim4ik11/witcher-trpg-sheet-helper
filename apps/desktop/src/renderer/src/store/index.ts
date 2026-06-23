@@ -1,5 +1,10 @@
-import { create } from 'zustand';
-import type { SessionConfig, ServerInfo, Player, PlayerCredential } from '@wilmak/shared';
+import { create } from "zustand";
+import type {
+  SessionConfig,
+  ServerInfo,
+  Player,
+  PlayerCredential,
+} from "@wilmak/shared";
 
 interface AppState {
   config: SessionConfig | null;

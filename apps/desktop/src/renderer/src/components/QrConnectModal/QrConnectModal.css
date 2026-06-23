@@ -10,7 +10,14 @@
   animation: qr-fade-in 0.15s ease;
 }
 
-@keyframes qr-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes qr-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .qr-modal {
   position: relative;
@@ -76,7 +83,11 @@
   border: 1px solid var(--line2);
 }
 
-.qr-modal-actions { display: flex; justify-content: center; gap: 10px; }
+.qr-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
 
 .qr-modal-alt {
   margin-top: 16px;
@@ -84,4 +95,7 @@
   color: var(--text-faint);
 }
 
-.qr-modal-empty { color: var(--text-muted); font-size: 13px; }
+.qr-modal-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+}

@@ -1,18 +1,18 @@
-import { app } from 'electron';
-import path from 'node:path';
-import fs from 'node:fs';
-import { normalizeNickname, type Character, type SessionConfig } from '@wilmak/shared';
-import { normalizeCharacter } from '@wilmak/game-data';
+import { app } from "electron";
+import path from "node:path";
+import fs from "node:fs";
+import { normalizeNickname, type Character, type SessionConfig } from "@wilmak/shared";
+import { normalizeCharacter } from "@wilmak/game-data";
 
-const EXAMPLE_SESSION = 'example-session.json';
+const EXAMPLE_SESSION = "example-session.json";
 const isDev = !!process.env.ELECTRON_RENDERER_URL;
 
 let activeSessionFile: string | null = null;
 
 export function sessionsDir(): string {
   const dir = isDev
-    ? path.join(__dirname, '../../../../sessions')
-    : path.join(app.getPath('userData'), 'sessions');
+    ? path.join(__dirname, "../../../../sessions")
+    : path.join(app.getPath("userData"), "sessions");
   fs.mkdirSync(dir, { recursive: true });
   return dir;
 }
@@ -22,11 +22,13 @@ export function getActiveSessionFile(): string | null {
 }
 
 function isValidCharacter(value: unknown): value is Character {
-  if (typeof value !== 'object' || value === null) return false;
+  if (typeof value !== "object" || value === null) return false;
   const c = value as Character;
-  return typeof c.id === 'string'
-    && (c.type === 'player' || c.type === 'enemy')
-    && typeof c.name === 'string';
+  return (
+    typeof c.id === "string" &&
+    (c.type === "player" || c.type === "enemy") &&
+    typeof c.name === "string"
+  );
 }
 
 function normalizeCharacters(characters: unknown): Character[] {
@@ -37,13 +39,16 @@ function normalizeCharacters(characters: unknown): Character[] {
 export function normalizeSessionConfig(config: Partial<SessionConfig>): SessionConfig {
   const players = Array.isArray(config.players)
     ? config.players
-      .filter((p) => typeof p?.nickname === 'string' && typeof p?.code === 'string')
-      .map((p) => ({ ...p, nickname: normalizeNickname(p.nickname) }))
+        .filter((p) => typeof p?.nickname === "string" && typeof p?.code === "string")
+        .map((p) => ({ ...p, nickname: normalizeNickname(p.nickname) }))
     : [];
 
   const normalized: SessionConfig = {
-    sessionName: typeof config.sessionName === 'string' ? config.sessionName : '',
-    port: typeof config.port === 'number' && Number.isFinite(config.port) ? config.port : 4317,
+    sessionName: typeof config.sessionName === "string" ? config.sessionName : "",
+    port:
+      typeof config.port === "number" && Number.isFinite(config.port)
+        ? config.port
+        : 4317,
     players,
   };
 
@@ -58,10 +63,10 @@ function slugifySessionName(name: string): string {
   return name
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9\u0400-\u04FF-]+/gi, '')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '')
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\u0400-\u04FF-]+/gi, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
     .slice(0, 60);
 }
 
@@ -79,7 +84,7 @@ export function sessionFilePath(config: SessionConfig): string {
 
   try {
     const existing = normalizeSessionConfig(
-      JSON.parse(fs.readFileSync(defaultPath, 'utf-8')) as Partial<SessionConfig>,
+      JSON.parse(fs.readFileSync(defaultPath, "utf-8")) as Partial<SessionConfig>,
     );
     if (existing.sessionName === config.sessionName && existing.port === config.port) {
       return defaultPath;
@@ -94,7 +99,7 @@ export function sessionFilePath(config: SessionConfig): string {
 function readRawSessionFile(filePath: string): Partial<SessionConfig> | null {
   if (!fs.existsSync(filePath)) return null;
   try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf-8')) as Partial<SessionConfig>;
+    return JSON.parse(fs.readFileSync(filePath, "utf-8")) as Partial<SessionConfig>;
   } catch {
     return null;
   }
@@ -112,8 +117,9 @@ export function readSessionFromFile(filePath: string): SessionConfig | null {
 
 function listSessionFiles(): string[] {
   const dir = sessionsDir();
-  return fs.readdirSync(dir)
-    .filter((name) => name.endsWith('.json') && name !== EXAMPLE_SESSION)
+  return fs
+    .readdirSync(dir)
+    .filter((name) => name.endsWith(".json") && name !== EXAMPLE_SESSION)
     .map((name) => path.join(dir, name))
     .filter((filePath) => {
       try {
@@ -153,18 +159,18 @@ export function saveSession(config: SessionConfig): SessionConfig {
   fs.writeFileSync(
     target,
     JSON.stringify({ sessionName, port, players, characters }, null, 2),
-    'utf-8',
+    "utf-8",
   );
   activeSessionFile = target;
   return toSave;
 }
 
 export function migrateLegacyLastSession(): void {
-  const legacy = path.join(app.getPath('userData'), 'last-session.json');
+  const legacy = path.join(app.getPath("userData"), "last-session.json");
   if (!fs.existsSync(legacy)) return;
 
   try {
-    const raw = JSON.parse(fs.readFileSync(legacy, 'utf-8')) as Partial<SessionConfig>;
+    const raw = JSON.parse(fs.readFileSync(legacy, "utf-8")) as Partial<SessionConfig>;
     saveSession(normalizeSessionConfig(raw));
     fs.unlinkSync(legacy);
   } catch {

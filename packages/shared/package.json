@@ -4,6 +4,10 @@
   "private": true,
   "types": "./src/protocol.ts",
   "main": "./src/protocol.ts",
-  "exports": { ".": "./src/protocol.ts" },
-  "scripts": { "typecheck": "tsc --noEmit" }
+  "exports": {
+    ".": "./src/protocol.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
 }

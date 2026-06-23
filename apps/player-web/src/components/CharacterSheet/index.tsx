@@ -1,11 +1,19 @@
-import { useState, useMemo } from 'react';
-import type { Character } from '@wilmak/shared';
+import { useState, useMemo } from "react";
+import type { Character } from "@wilmak/shared";
 import {
-  ATTRIBUTES, ATTRIBUTE_SKILLS, ARMOR_LABELS, calcVitalMaxes, calcDerivedStats, skillBase,
-  isSpellcastingOccupation, getMagicSections, spellsForCategory,
-  raceLabel, occupationLabel,
-} from '@wilmak/game-data';
-import './CharacterSheet.css';
+  ATTRIBUTES,
+  ATTRIBUTE_SKILLS,
+  ARMOR_LABELS,
+  calcVitalMaxes,
+  calcDerivedStats,
+  skillBase,
+  isSpellcastingOccupation,
+  getMagicSections,
+  spellsForCategory,
+  raceLabel,
+  occupationLabel,
+} from "@wilmak/game-data";
+import "./CharacterSheet.css";
 
 function VitalCard({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -23,39 +31,41 @@ interface Props {
   backLabel: string;
 }
 
-const BASE_TABS = ['Stats', 'Combat', 'Inventory'];
+const BASE_TABS = ["Stats", "Combat", "Inventory"];
 
 export default function CharacterSheet({ character, onBack, backLabel }: Props) {
-  const [tab, setTab] = useState('Stats');
+  const [tab, setTab] = useState("Stats");
 
   const { hpStaMax, resolveMax } = calcVitalMaxes(character);
   const derived = useMemo(() => calcDerivedStats(character), [character]);
-  const occupation = character.occupation || '';
+  const occupation = character.occupation || "";
   const showMagic = isSpellcastingOccupation(occupation);
   const magicSections = useMemo(() => getMagicSections(occupation), [occupation]);
 
   const tabs = useMemo(() => {
     const list = [...BASE_TABS];
-    if (showMagic) list.push('Magic');
-    list.push('Other');
+    if (showMagic) list.push("Magic");
+    list.push("Other");
     return list;
   }, [showMagic]);
 
   const metaParts = [
-    character.race ? raceLabel(character.race) : '',
-    occupation ? occupationLabel(occupation) : '',
+    character.race ? raceLabel(character.race) : "",
+    occupation ? occupationLabel(occupation) : "",
   ].filter(Boolean);
 
   return (
     <div className="sheet sheet-readonly">
       <header className="sheet-header">
-        <button type="button" className="back-btn" onClick={onBack}>{backLabel}</button>
+        <button type="button" className="back-btn" onClick={onBack}>
+          {backLabel}
+        </button>
       </header>
 
       <div className="sheet-hero">
         <h1 className="sheet-name-display">{character.name}</h1>
         {metaParts.length > 0 && (
-          <div className="sheet-meta-display">{metaParts.join(' · ')}</div>
+          <div className="sheet-meta-display">{metaParts.join(" · ")}</div>
         )}
       </div>
 
@@ -64,28 +74,46 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
       <div className="sheet-tabs-wrap">
         <div className="tab-bar">
           {tabs.map((t) => (
-            <button key={t} type="button" className={tab === t ? 'active' : ''} onClick={() => setTab(t)}>{t}</button>
+            <button
+              key={t}
+              type="button"
+              className={tab === t ? "active" : ""}
+              onClick={() => setTab(t)}
+            >
+              {t}
+            </button>
           ))}
         </div>
       </div>
 
       <div className="sheet-body">
-        {tab === 'Stats' && (
+        {tab === "Stats" && (
           <>
             <section className="vitals-panel">
               <div className="section-label">Vitals</div>
               <div className="vitals-grid">
                 <VitalCard label="HP">
-                  <span className="counter-readonly">{character.vitals.hp.current} <span className="max">/ {hpStaMax}</span></span>
+                  <span className="counter-readonly">
+                    {character.vitals.hp.current}{" "}
+                    <span className="max">/ {hpStaMax}</span>
+                  </span>
                 </VitalCard>
                 <VitalCard label="STA">
-                  <span className="counter-readonly">{character.vitals.sta.current} <span className="max">/ {hpStaMax}</span></span>
+                  <span className="counter-readonly">
+                    {character.vitals.sta.current}{" "}
+                    <span className="max">/ {hpStaMax}</span>
+                  </span>
                 </VitalCard>
                 <VitalCard label="Resolve">
-                  <span className="counter-readonly">{character.vitals.resolve.current} <span className="max">/ {resolveMax}</span></span>
+                  <span className="counter-readonly">
+                    {character.vitals.resolve.current}{" "}
+                    <span className="max">/ {resolveMax}</span>
+                  </span>
                 </VitalCard>
                 <VitalCard label="Wound">
-                  <div className="vital-card-value">{character.vitals.woundThreshold}</div>
+                  <div className="vital-card-value">
+                    {character.vitals.woundThreshold}
+                  </div>
                 </VitalCard>
               </div>
             </section>
@@ -100,14 +128,24 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
                         <span className="attr-short">{attr.short}</span>
                         <span className="attr-full">{attr.label}</span>
                       </div>
-                      <span className="readonly-value attr-value-input">{character.attributes[key] ?? 0}</span>
+                      <span className="readonly-value attr-value-input">
+                        {character.attributes[key] ?? 0}
+                      </span>
                     </div>
                     {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => {
                       const level = character.skills[key]?.[skill.key]?.level ?? 0;
                       return (
-                        <div key={skill.key} className={`skill-row${skill.special ? ' special' : ''}`}>
-                          <span className="name">{skill.label}<span className="skill-lvl"> · {level}</span></span>
-                          <span className="base">{skillBase(character, key, skill.key)}</span>
+                        <div
+                          key={skill.key}
+                          className={`skill-row${skill.special ? " special" : ""}`}
+                        >
+                          <span className="name">
+                            {skill.label}
+                            <span className="skill-lvl"> · {level}</span>
+                          </span>
+                          <span className="base">
+                            {skillBase(character, key, skill.key)}
+                          </span>
                         </div>
                       );
                     })}
@@ -120,17 +158,21 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
               <div className="section-label">Movement & recovery</div>
               <div className="derived-grid">
                 {[
-                  ['Run', derived.run], ['Leap', derived.leap],
-                  ['Stun', derived.stun], ['Rec', derived.rec],
+                  ["Run", derived.run],
+                  ["Leap", derived.leap],
+                  ["Stun", derived.stun],
+                  ["Rec", derived.rec],
                 ].map(([l, v]) => (
-                  <label key={l as string}>{l as string} <span className="readonly-value">{v as number}</span></label>
+                  <label key={l as string}>
+                    {l as string} <span className="readonly-value">{v as number}</span>
+                  </label>
                 ))}
               </div>
             </section>
           </>
         )}
 
-        {tab === 'Combat' && (
+        {tab === "Combat" && (
           <>
             <section className="panel">
               <div className="panel-title">Weapons</div>
@@ -141,7 +183,12 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
                   <table className="dynamic-table">
                     <thead>
                       <tr>
-                        <th>Name</th><th>Type</th><th>WA</th><th>DMG</th><th>Rel</th><th>Hand</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>WA</th>
+                        <th>DMG</th>
+                        <th>Rel</th>
+                        <th>Hand</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -163,8 +210,18 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
             <section className="panel bonus-melee">
               <div className="panel-title">Bonus melee</div>
               <div className="derived-grid">
-                <label>Punch <span className="readonly-value">{character.bonusMelee?.punch || '—'}</span></label>
-                <label>Kick <span className="readonly-value">{character.bonusMelee?.kick || '—'}</span></label>
+                <label>
+                  Punch{" "}
+                  <span className="readonly-value">
+                    {character.bonusMelee?.punch || "—"}
+                  </span>
+                </label>
+                <label>
+                  Kick{" "}
+                  <span className="readonly-value">
+                    {character.bonusMelee?.kick || "—"}
+                  </span>
+                </label>
               </div>
             </section>
             <section className="panel">
@@ -172,28 +229,37 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
               <div className="dynamic-table-wrap">
                 <table className="dynamic-table">
                   <thead>
-                    <tr><th>Location</th><th>Piece</th><th>SP</th><th>Dam</th><th>Effects</th><th>Wt</th></tr>
+                    <tr>
+                      <th>Location</th>
+                      <th>Piece</th>
+                      <th>SP</th>
+                      <th>Dam</th>
+                      <th>Effects</th>
+                      <th>Wt</th>
+                    </tr>
                   </thead>
                   <tbody>
                     {(character.armor ?? []).map((piece) => (
                       <tr key={piece.slot}>
                         <td>{ARMOR_LABELS[piece.slot] ?? piece.slot}</td>
-                        <td>{piece.name || '—'}</td>
+                        <td>{piece.name || "—"}</td>
                         <td>{piece.sp}</td>
                         <td>{piece.damage}</td>
-                        <td>{piece.effects || '—'}</td>
+                        <td>{piece.effects || "—"}</td>
                         <td>{piece.weight}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              {character.armorNotes && <p className="readonly-notes">{character.armorNotes}</p>}
+              {character.armorNotes && (
+                <p className="readonly-notes">{character.armorNotes}</p>
+              )}
             </section>
           </>
         )}
 
-        {tab === 'Inventory' && (
+        {tab === "Inventory" && (
           <section className="panel">
             <div className="panel-title">Consumables</div>
             {(character.consumables ?? []).length === 0 ? (
@@ -201,11 +267,21 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
             ) : (
               <div className="dynamic-table-wrap">
                 <table className="dynamic-table">
-                  <thead><tr><th>Qty</th><th>Name</th><th>Effect</th><th>Wt</th></tr></thead>
+                  <thead>
+                    <tr>
+                      <th>Qty</th>
+                      <th>Name</th>
+                      <th>Effect</th>
+                      <th>Wt</th>
+                    </tr>
+                  </thead>
                   <tbody>
                     {(character.consumables ?? []).map((c) => (
                       <tr key={c.id ?? c.name}>
-                        <td>{c.qty}</td><td>{c.name}</td><td>{c.effect}</td><td>{c.weight}</td>
+                        <td>{c.qty}</td>
+                        <td>{c.name}</td>
+                        <td>{c.effect}</td>
+                        <td>{c.weight}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -215,33 +291,48 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
           </section>
         )}
 
-        {tab === 'Magic' && showMagic && magicSections.map((section) => {
-          const rows = spellsForCategory(character.spells, section.key);
-          return (
-            <section key={section.key} className="panel magic-section">
-              <div className="panel-title">{section.label}</div>
-              {rows.length === 0 ? (
-                <p className="readonly-empty">None</p>
-              ) : (
-                <div className="dynamic-table-wrap">
-                  <table className="dynamic-table">
-                    <thead><tr><th>Name</th><th>STA</th><th>Defense</th><th>Range</th><th>Duration</th><th>Effect</th></tr></thead>
-                    <tbody>
-                      {rows.map((s) => (
-                        <tr key={s.id ?? s.name}>
-                          <td>{s.name}</td><td>{s.staCost}</td><td>{s.defense ?? '—'}</td>
-                          <td>{s.range}</td><td>{s.duration}</td><td>{s.effect}</td>
+        {tab === "Magic" &&
+          showMagic &&
+          magicSections.map((section) => {
+            const rows = spellsForCategory(character.spells, section.key);
+            return (
+              <section key={section.key} className="panel magic-section">
+                <div className="panel-title">{section.label}</div>
+                {rows.length === 0 ? (
+                  <p className="readonly-empty">None</p>
+                ) : (
+                  <div className="dynamic-table-wrap">
+                    <table className="dynamic-table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>STA</th>
+                          <th>Defense</th>
+                          <th>Range</th>
+                          <th>Duration</th>
+                          <th>Effect</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </section>
-          );
-        })}
+                      </thead>
+                      <tbody>
+                        {rows.map((s) => (
+                          <tr key={s.id ?? s.name}>
+                            <td>{s.name}</td>
+                            <td>{s.staCost}</td>
+                            <td>{s.defense ?? "—"}</td>
+                            <td>{s.range}</td>
+                            <td>{s.duration}</td>
+                            <td>{s.effect}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </section>
+            );
+          })}
 
-        {tab === 'Other' && (
+        {tab === "Other" && (
           <>
             <section className="panel">
               <div className="panel-title">Profession abilities</div>
@@ -250,11 +341,21 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
               ) : (
                 <div className="dynamic-table-wrap">
                   <table className="dynamic-table">
-                    <thead><tr><th>Name</th><th>Stat</th><th>Lvl</th><th>Base</th></tr></thead>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Stat</th>
+                        <th>Lvl</th>
+                        <th>Base</th>
+                      </tr>
+                    </thead>
                     <tbody>
                       {(character.professionAbilities ?? []).map((a) => (
                         <tr key={a.id ?? a.name}>
-                          <td>{a.name}</td><td>{a.stat}</td><td>{a.level}</td><td>{a.base}</td>
+                          <td>{a.name}</td>
+                          <td>{a.stat}</td>
+                          <td>{a.level}</td>
+                          <td>{a.base}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -269,11 +370,19 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
               ) : (
                 <div className="dynamic-table-wrap">
                   <table className="dynamic-table">
-                    <thead><tr><th>Description</th><th>S/T</th><th>Days</th></tr></thead>
+                    <thead>
+                      <tr>
+                        <th>Description</th>
+                        <th>S/T</th>
+                        <th>Days</th>
+                      </tr>
+                    </thead>
                     <tbody>
                       {(character.wounds ?? []).map((w) => (
                         <tr key={w.id ?? w.description}>
-                          <td>{w.description}</td><td>{w.severity}</td><td>{w.days}</td>
+                          <td>{w.description}</td>
+                          <td>{w.severity}</td>
+                          <td>{w.days}</td>
                         </tr>
                       ))}
                     </tbody>

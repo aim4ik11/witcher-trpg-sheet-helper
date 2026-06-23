@@ -1,4 +1,4 @@
-import type { Api } from '@wilmak/shared';
+import type { Api } from "@wilmak/shared";
 
 declare global {
   interface Window {

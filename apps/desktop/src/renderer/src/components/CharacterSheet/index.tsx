@@ -1,36 +1,75 @@
-import { useState, useEffect, useMemo } from 'react';
-import type { Character, Weapon, ArmorPiece, Spell } from '@wilmak/shared';
+import { useState, useEffect, useMemo } from "react";
+import type { Character, Weapon, ArmorPiece, Spell } from "@wilmak/shared";
 import {
-  ATTRIBUTES, ATTRIBUTE_SKILLS, ARMOR_LABELS,
-  calcVitalMaxes, calcDerivedStats, skillBase, normalizeCharacter,
-} from '@wilmak/game-data';
+  ATTRIBUTES,
+  ATTRIBUTE_SKILLS,
+  ARMOR_LABELS,
+  calcVitalMaxes,
+  calcDerivedStats,
+  skillBase,
+  normalizeCharacter,
+} from "@wilmak/game-data";
 import {
-  isSpellcastingOccupation, getMagicSections, spellsForCategory, MAGIC_ROW_EMPTY,
-} from '@wilmak/game-data';
+  isSpellcastingOccupation,
+  getMagicSections,
+  spellsForCategory,
+  MAGIC_ROW_EMPTY,
+} from "@wilmak/game-data";
 import {
-  WEAPONS_CATALOG, catalogToWeapon, catalogToArmorPiece, catalogToSpell,
-  getArmorForSlot, getMagicForCategory,
-} from '@wilmak/game-data';
-import type { CatalogItem } from '@wilmak/game-data';
-import { RaceSelect, OccupationSelect, RaceOccupationDisplay, occupationAfterRaceChange } from '../RaceOccupationSelect';
-import CatalogPickerModal from '../CatalogPickerModal';
-import './CharacterSheet.css';
-import '../CatalogPickerModal/CatalogPickerModal.css';
-import '../RaceOccupationSelect/RaceOccupationSelect.css';
+  WEAPONS_CATALOG,
+  catalogToWeapon,
+  catalogToArmorPiece,
+  catalogToSpell,
+  getArmorForSlot,
+  getMagicForCategory,
+} from "@wilmak/game-data";
+import type { CatalogItem } from "@wilmak/game-data";
+import {
+  RaceSelect,
+  OccupationSelect,
+  RaceOccupationDisplay,
+  occupationAfterRaceChange,
+} from "../RaceOccupationSelect";
+import CatalogPickerModal from "../CatalogPickerModal";
+import "./CharacterSheet.css";
+import "../CatalogPickerModal/CatalogPickerModal.css";
+import "../RaceOccupationSelect/RaceOccupationSelect.css";
 
-const BASE_TABS = ['Stats', 'Combat', 'Inventory'];
+const BASE_TABS = ["Stats", "Combat", "Inventory"];
 
 const WEAPON_EMPTY: Partial<Weapon> = {
-  name: '', type: '', wa: 0, dmg: '', rel: '', hand: '', rng: '', effect: '', conc: '', enhancements: '', weight: 0,
+  name: "",
+  type: "",
+  wa: 0,
+  dmg: "",
+  rel: "",
+  hand: "",
+  rng: "",
+  effect: "",
+  conc: "",
+  enhancements: "",
+  weight: 0,
 };
 
 function trainedSkills(character: Character) {
-  const rows: { attrKey: string; skillKey: string; label: string; level: number; base: number }[] = [];
+  const rows: {
+    attrKey: string;
+    skillKey: string;
+    label: string;
+    level: number;
+    base: number;
+  }[] = [];
   for (const [attrKey, skills] of Object.entries(ATTRIBUTE_SKILLS)) {
     for (const skill of skills) {
       const level = character.skills[attrKey]?.[skill.key]?.level ?? 0;
       if (level > 0) {
-        rows.push({ attrKey, skillKey: skill.key, label: skill.label, level, base: skillBase(character, attrKey, skill.key) });
+        rows.push({
+          attrKey,
+          skillKey: skill.key,
+          label: skill.label,
+          level,
+          base: skillBase(character, attrKey, skill.key),
+        });
       }
     }
   }
@@ -38,23 +77,39 @@ function trainedSkills(character: Character) {
 }
 
 interface CounterProps {
-  current: number; max: number; label: string; readOnly?: boolean;
+  current: number;
+  max: number;
+  label: string;
+  readOnly?: boolean;
   onChange: (v: number) => void;
-  layout?: 'row' | 'card';
+  layout?: "row" | "card";
 }
-function Counter({ current, max, label, readOnly, onChange, layout = 'row' }: CounterProps) {
+function Counter({
+  current,
+  max,
+  label,
+  readOnly,
+  onChange,
+  layout = "row",
+}: CounterProps) {
   const body = readOnly ? (
-    <span className="counter-readonly">{current} <span className="max">/ {max}</span></span>
+    <span className="counter-readonly">
+      {current} <span className="max">/ {max}</span>
+    </span>
   ) : (
     <div className="counter">
-      <button type="button" onClick={() => onChange(Math.max(0, current - 1))}>−</button>
+      <button type="button" onClick={() => onChange(Math.max(0, current - 1))}>
+        −
+      </button>
       <span className="value">{current}</span>
       <span className="max">/ {max}</span>
-      <button type="button" onClick={() => onChange(Math.min(max, current + 1))}>+</button>
+      <button type="button" onClick={() => onChange(Math.min(max, current + 1))}>
+        +
+      </button>
     </div>
   );
 
-  if (layout === 'card') {
+  if (layout === "card") {
     return (
       <div className="vital-card">
         <div className="vital-card-label">{label}</div>
@@ -71,25 +126,44 @@ function Counter({ current, max, label, readOnly, onChange, layout = 'row' }: Co
   );
 }
 
-interface NumInputProps { value?: number; onChange: (v: number) => void; className?: string; readOnly?: boolean; }
-function NumInput({ value, onChange, className = '', readOnly }: NumInputProps) {
-  if (readOnly) return <span className={`readonly-value ${className}`}>{value ?? 0}</span>;
+interface NumInputProps {
+  value?: number;
+  onChange: (v: number) => void;
+  className?: string;
+  readOnly?: boolean;
+}
+function NumInput({ value, onChange, className = "", readOnly }: NumInputProps) {
+  if (readOnly)
+    return <span className={`readonly-value ${className}`}>{value ?? 0}</span>;
   return (
-    <input type="number" className={className} value={value ?? 0}
-      onChange={(e) => onChange(parseInt(e.target.value, 10) || 0)} />
+    <input
+      type="number"
+      className={className}
+      value={value ?? 0}
+      onChange={(e) => onChange(parseInt(e.target.value, 10) || 0)}
+    />
   );
 }
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  value?: string; onChange?: React.ChangeEventHandler<HTMLInputElement>; readOnly?: boolean;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  readOnly?: boolean;
 }
 function TextInput({ value, onChange, readOnly, ...props }: TextInputProps) {
-  if (readOnly) return <span className="readonly-value">{value || '—'}</span>;
-  return <input value={value ?? ''} onChange={onChange} {...props} />;
+  if (readOnly) return <span className="readonly-value">{value || "—"}</span>;
+  return <input value={value ?? ""} onChange={onChange} {...props} />;
 }
 
-interface ColDef { key: string; label: string; type?: string; }
-interface DynRow { id?: string; [key: string]: unknown; }
+interface ColDef {
+  key: string;
+  label: string;
+  type?: string;
+}
+interface DynRow {
+  id?: string;
+  [key: string]: unknown;
+}
 
 interface DynamicTableProps {
   columns: ColDef[];
@@ -101,14 +175,25 @@ interface DynamicTableProps {
   readOnly?: boolean;
   renderAddActions?: () => React.ReactNode;
 }
-function DynamicTable({ columns, rows, onChange, onAdd, onRemove, emptyRow, readOnly, renderAddActions }: DynamicTableProps) {
+function DynamicTable({
+  columns,
+  rows,
+  onChange,
+  onAdd,
+  onRemove,
+  emptyRow,
+  readOnly,
+  renderAddActions,
+}: DynamicTableProps) {
   if (readOnly && rows.length === 0) return <p className="readonly-empty">None</p>;
   return (
     <div className="dynamic-table-wrap">
       <table className="dynamic-table">
         <thead>
           <tr>
-            {columns.map((col) => <th key={col.key}>{col.label}</th>)}
+            {columns.map((col) => (
+              <th key={col.key}>{col.label}</th>
+            ))}
             {!readOnly && <th></th>}
           </tr>
         </thead>
@@ -118,15 +203,22 @@ function DynamicTable({ columns, rows, onChange, onAdd, onRemove, emptyRow, read
               {columns.map((col) => (
                 <td key={col.key}>
                   {readOnly ? (
-                    <span>{(row[col.key] as string | number) ?? (col.type === 'number' ? 0 : '—')}</span>
+                    <span>
+                      {(row[col.key] as string | number) ??
+                        (col.type === "number" ? 0 : "—")}
+                    </span>
                   ) : (
                     <input
-                      type={col.type === 'number' ? 'number' : 'text'}
-                      value={(row[col.key] as string | number) ?? (col.type === 'number' ? 0 : '')}
+                      type={col.type === "number" ? "number" : "text"}
+                      value={
+                        (row[col.key] as string | number) ??
+                        (col.type === "number" ? 0 : "")
+                      }
                       onChange={(e) => {
-                        const val = col.type === 'number'
-                          ? (parseInt(e.target.value, 10) || 0)
-                          : e.target.value;
+                        const val =
+                          col.type === "number"
+                            ? parseInt(e.target.value, 10) || 0
+                            : e.target.value;
                         const updated = [...rows];
                         updated[i] = { ...updated[i], [col.key]: val };
                         onChange(updated);
@@ -136,25 +228,30 @@ function DynamicTable({ columns, rows, onChange, onAdd, onRemove, emptyRow, read
                 </td>
               ))}
               {!readOnly && (
-                <td><button type="button" className="danger" onClick={() => onRemove(i)}>×</button></td>
+                <td>
+                  <button type="button" className="danger" onClick={() => onRemove(i)}>
+                    ×
+                  </button>
+                </td>
               )}
             </tr>
           ))}
         </tbody>
       </table>
-      {!readOnly && (
-        renderAddActions ? (
+      {!readOnly &&
+        (renderAddActions ? (
           <div className="add-actions">{renderAddActions()}</div>
         ) : (
-          <button type="button" className="add-row-btn" onClick={() => onAdd(emptyRow)}>+ Add row</button>
-        )
-      )}
+          <button type="button" className="add-row-btn" onClick={() => onAdd(emptyRow)}>
+            + Add row
+          </button>
+        ))}
     </div>
   );
 }
 
 interface PickerState {
-  kind: 'weapon' | 'armor' | 'magic';
+  kind: "weapon" | "armor" | "magic";
   slotIndex?: number;
   slot?: string;
   category?: string;
@@ -169,15 +266,21 @@ interface Props {
   backLabel: string;
 }
 
-export default function CharacterSheet({ character, onChange, isDM, onBack, backLabel }: Props) {
-  const [tab, setTab] = useState('Stats');
+export default function CharacterSheet({
+  character,
+  onChange,
+  isDM,
+  onBack,
+  backLabel,
+}: Props) {
+  const [tab, setTab] = useState("Stats");
   const [picker, setPicker] = useState<PickerState | null>(null);
   const readOnly = !isDM;
   const profile = character.monsterProfile;
   const isBestiary = !!character.bestiaryId;
-  const isMonster = character.enemyKind === 'monster';
-  const isEnemyStatblock = character.type === 'enemy' && !!profile;
-  const isNpcStatblock = isEnemyStatblock && character.enemyKind === 'npc';
+  const isMonster = character.enemyKind === "monster";
+  const isEnemyStatblock = character.type === "enemy" && !!profile;
+  const isNpcStatblock = isEnemyStatblock && character.enemyKind === "npc";
   const skillRows = useMemo(() => trainedSkills(character), [character]);
 
   const { hpStaMax, resolveMax } = calcVitalMaxes(character);
@@ -189,8 +292,8 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
         stun: character.recovery?.stun ?? 0,
         rec: character.recovery?.rec ?? 0,
         luckMax: character.luck?.max ?? character.attributes?.luck ?? 0,
-        punch: character.bonusMelee?.punch ?? '—',
-        kick: character.bonusMelee?.kick ?? '—',
+        punch: character.bonusMelee?.punch ?? "—",
+        kick: character.bonusMelee?.kick ?? "—",
       };
     }
     return calcDerivedStats(character);
@@ -198,19 +301,19 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
   const hpMax = isBestiary ? character.vitals.hp.max : hpStaMax;
   const staMax = isBestiary ? character.vitals.sta.max : hpStaMax;
   const resolveDisplayMax = isBestiary ? character.vitals.resolve.max : resolveMax;
-  const occupation = character.occupation || '';
+  const occupation = character.occupation || "";
   const showMagic = isSpellcastingOccupation(occupation);
   const magicSections = useMemo(() => getMagicSections(occupation), [occupation]);
 
   const tabs = useMemo(() => {
     const list = [...BASE_TABS];
-    if (showMagic) list.push('Magic');
-    list.push('Other');
+    if (showMagic) list.push("Magic");
+    list.push("Other");
     return list;
   }, [showMagic]);
 
   useEffect(() => {
-    if (tab === 'Magic' && !showMagic) setTab('Stats');
+    if (tab === "Magic" && !showMagic) setTab("Stats");
   }, [tab, showMagic]);
 
   function update(patch: Partial<Character>) {
@@ -229,17 +332,25 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
   }
 
   function updateSpellsForCategory(category: string, categoryRows: Spell[]) {
-    const others = (character.spells ?? []).filter((s) => (s.category || 'spell') !== category);
+    const others = (character.spells ?? []).filter(
+      (s) => (s.category || "spell") !== category,
+    );
     const normalized = categoryRows.map((row) => ({
-      ...row, id: row.id ?? crypto.randomUUID(), category,
+      ...row,
+      id: row.id ?? crypto.randomUUID(),
+      category,
     }));
     update({ spells: [...others, ...normalized] });
   }
 
   return (
-    <div className={`sheet${readOnly ? ' sheet-readonly' : ''}${isEnemyStatblock ? ' sheet--enemy-statblock' : ''}`}>
+    <div
+      className={`sheet${readOnly ? " sheet-readonly" : ""}${isEnemyStatblock ? " sheet--enemy-statblock" : ""}`}
+    >
       <header className="sheet-header">
-        <button type="button" className="back-btn" onClick={onBack}>{backLabel}</button>
+        <button type="button" className="back-btn" onClick={onBack}>
+          {backLabel}
+        </button>
         {!readOnly && <span className="sheet-save-hint">Saved automatically</span>}
       </header>
 
@@ -253,12 +364,18 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
               ) : (
                 <RaceOccupationDisplay race={character.race} occupation={occupation} />
               )}
-              {profile?.threat && <span className="sheet-threat">{profile.threat}</span>}
+              {profile?.threat && (
+                <span className="sheet-threat">{profile.threat}</span>
+              )}
             </div>
           </>
         ) : (
           <>
-            <input className="sheet-name" value={character.name} onChange={(e) => update({ name: e.target.value })} />
+            <input
+              className="sheet-name"
+              value={character.name}
+              onChange={(e) => update({ name: e.target.value })}
+            />
             <div className="sheet-meta">
               {isMonster ? (
                 profile?.monsterType && (
@@ -270,27 +387,37 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
                 <>
                   <div className="sheet-meta-chip">
                     <span className="chip-label">Race</span>
-                    <RaceSelect value={character.race ?? ''} onChange={(v) => {
-                      const occ = occupationAfterRaceChange(v, character.occupation ?? '');
-                      update({ race: v, occupation: occ });
-                    }} />
+                    <RaceSelect
+                      value={character.race ?? ""}
+                      onChange={(v) => {
+                        const occ = occupationAfterRaceChange(
+                          v,
+                          character.occupation ?? "",
+                        );
+                        update({ race: v, occupation: occ });
+                      }}
+                    />
                   </div>
                   <div className="sheet-meta-chip">
                     <span className="chip-label">Occupation</span>
                     <OccupationSelect
-                      race={character.race ?? ''}
+                      race={character.race ?? ""}
                       value={occupation}
                       onChange={(v) => update({ occupation: v })}
                     />
                   </div>
                 </>
               )}
-              {character.type === 'player' && (
+              {character.type === "player" && (
                 <div className="sheet-meta-chip">
                   <span className="chip-label">Nickname</span>
                   <input
-                    value={character.nickname ?? ''}
-                    onChange={(e) => update({ nickname: e.target.value.toLowerCase().replace(/\s/g, '') })}
+                    value={character.nickname ?? ""}
+                    onChange={(e) =>
+                      update({
+                        nickname: e.target.value.toLowerCase().replace(/\s/g, ""),
+                      })
+                    }
                   />
                 </div>
               )}
@@ -299,48 +426,146 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
         )}
       </div>
 
-      {readOnly && !isEnemyStatblock && <p className="readonly-banner">View only — your DM updates this sheet.</p>}
+      {readOnly && !isEnemyStatblock && (
+        <p className="readonly-banner">View only — your DM updates this sheet.</p>
+      )}
 
       {!isEnemyStatblock && (
         <div className="sheet-tabs-wrap">
           <div className="tab-bar">
             {tabs.map((t) => (
-              <button key={t} type="button" className={tab === t ? 'active' : ''} onClick={() => setTab(t)}>{t}</button>
+              <button
+                key={t}
+                type="button"
+                className={tab === t ? "active" : ""}
+                onClick={() => setTab(t)}
+              >
+                {t}
+              </button>
             ))}
           </div>
         </div>
       )}
 
-      <div className={`sheet-body${isEnemyStatblock ? ' sheet-body--enemy-statblock' : ''}`}>
+      <div
+        className={`sheet-body${isEnemyStatblock ? " sheet-body--enemy-statblock" : ""}`}
+      >
         {isEnemyStatblock ? (
           <div className="enemy-statblock-grid">
             <section className="panel enemy-combat-panel">
               <div className="panel-title">Combat</div>
-              <Counter readOnly={readOnly} label="HP" current={character.vitals.hp.current} max={hpMax} onChange={(v) => updateNested(['vitals', 'hp', 'current'], v)} />
-              <Counter readOnly={readOnly} label="STA" current={character.vitals.sta.current} max={staMax} onChange={(v) => updateNested(['vitals', 'sta', 'current'], v)} />
+              <Counter
+                readOnly={readOnly}
+                label="HP"
+                current={character.vitals.hp.current}
+                max={hpMax}
+                onChange={(v) => updateNested(["vitals", "hp", "current"], v)}
+              />
+              <Counter
+                readOnly={readOnly}
+                label="STA"
+                current={character.vitals.sta.current}
+                max={staMax}
+                onChange={(v) => updateNested(["vitals", "sta", "current"], v)}
+              />
               <div className="enemy-derived-grid">
-                <label>RUN <NumInput readOnly={readOnly} value={derived.run} onChange={(v) => updateNested(['movement', 'run'], v)} /></label>
-                <label>LEAP <NumInput readOnly={readOnly} value={derived.leap} onChange={(v) => updateNested(['movement', 'leap'], v)} /></label>
-                <label>STUN <NumInput readOnly={readOnly} value={derived.stun} onChange={(v) => updateNested(['recovery', 'stun'], v)} /></label>
-                <label>REC <NumInput readOnly={readOnly} value={derived.rec} onChange={(v) => updateNested(['recovery', 'rec'], v)} /></label>
+                <label>
+                  RUN{" "}
+                  <NumInput
+                    readOnly={readOnly}
+                    value={derived.run}
+                    onChange={(v) => updateNested(["movement", "run"], v)}
+                  />
+                </label>
+                <label>
+                  LEAP{" "}
+                  <NumInput
+                    readOnly={readOnly}
+                    value={derived.leap}
+                    onChange={(v) => updateNested(["movement", "leap"], v)}
+                  />
+                </label>
+                <label>
+                  STUN{" "}
+                  <NumInput
+                    readOnly={readOnly}
+                    value={derived.stun}
+                    onChange={(v) => updateNested(["recovery", "stun"], v)}
+                  />
+                </label>
+                <label>
+                  REC{" "}
+                  <NumInput
+                    readOnly={readOnly}
+                    value={derived.rec}
+                    onChange={(v) => updateNested(["recovery", "rec"], v)}
+                  />
+                </label>
                 {profile?.vigor != null && profile.vigor > 0 && (
-                  <label>VIGOR <span className="readonly-value">{profile.vigor}</span></label>
+                  <label>
+                    VIGOR <span className="readonly-value">{profile.vigor}</span>
+                  </label>
                 )}
               </div>
             </section>
 
             <section className="panel enemy-info-panel">
-              <div className="panel-title">{isMonster ? 'Monster' : 'NPC'}</div>
+              <div className="panel-title">{isMonster ? "Monster" : "NPC"}</div>
               <dl className="monster-profile-grid">
-                {profile?.threat && <><dt>Threat</dt><dd>{profile.threat}</dd></>}
-                {profile?.bounty != null && profile.bounty > 0 && <><dt>Bounty</dt><dd>{profile.bounty}</dd></>}
-                {profile?.naturalArmor != null && <><dt>Armor</dt><dd>{profile.naturalArmor} SP</dd></>}
-                {profile?.height && <><dt>Height</dt><dd>{profile.height}</dd></>}
-                {profile?.weight && <><dt>Weight</dt><dd>{profile.weight}</dd></>}
-                {profile?.environment && <><dt>Environment</dt><dd>{profile.environment}</dd></>}
-                {profile?.intelligence && <><dt>Intelligence</dt><dd>{profile.intelligence}</dd></>}
-                {profile?.organization && <><dt>Organization</dt><dd>{profile.organization}</dd></>}
-                {profile?.encumbrance != null && <><dt>ENC</dt><dd>{profile.encumbrance}</dd></>}
+                {profile?.threat && (
+                  <>
+                    <dt>Threat</dt>
+                    <dd>{profile.threat}</dd>
+                  </>
+                )}
+                {profile?.bounty != null && profile.bounty > 0 && (
+                  <>
+                    <dt>Bounty</dt>
+                    <dd>{profile.bounty}</dd>
+                  </>
+                )}
+                {profile?.naturalArmor != null && (
+                  <>
+                    <dt>Armor</dt>
+                    <dd>{profile.naturalArmor} SP</dd>
+                  </>
+                )}
+                {profile?.height && (
+                  <>
+                    <dt>Height</dt>
+                    <dd>{profile.height}</dd>
+                  </>
+                )}
+                {profile?.weight && (
+                  <>
+                    <dt>Weight</dt>
+                    <dd>{profile.weight}</dd>
+                  </>
+                )}
+                {profile?.environment && (
+                  <>
+                    <dt>Environment</dt>
+                    <dd>{profile.environment}</dd>
+                  </>
+                )}
+                {profile?.intelligence && (
+                  <>
+                    <dt>Intelligence</dt>
+                    <dd>{profile.intelligence}</dd>
+                  </>
+                )}
+                {profile?.organization && (
+                  <>
+                    <dt>Organization</dt>
+                    <dd>{profile.organization}</dd>
+                  </>
+                )}
+                {profile?.encumbrance != null && (
+                  <>
+                    <dt>ENC</dt>
+                    <dd>{profile.encumbrance}</dd>
+                  </>
+                )}
               </dl>
             </section>
 
@@ -348,11 +573,17 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
               <div className="panel-title">Attributes</div>
               <div className="enemy-attr-grid">
                 {Object.entries(ATTRIBUTES).map(([key, attr]) => (
-                  <label key={key} className={`enemy-attr-pill enemy-attr-pill--${key}`}>
+                  <label
+                    key={key}
+                    className={`enemy-attr-pill enemy-attr-pill--${key}`}
+                  >
                     <span className="enemy-attr-short">{attr.short}</span>
-                    <NumInput readOnly={readOnly} className="enemy-attr-value"
+                    <NumInput
+                      readOnly={readOnly}
+                      className="enemy-attr-value"
                       value={character.attributes[key]}
-                      onChange={(v) => updateNested(['attributes', key], v)} />
+                      onChange={(v) => updateNested(["attributes", key], v)}
+                    />
                   </label>
                 ))}
               </div>
@@ -363,15 +594,27 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
                 <div className="panel-title">Skills</div>
                 <table className="enemy-skills-table">
                   <thead>
-                    <tr><th>Skill</th><th>Lvl</th><th>Base</th></tr>
+                    <tr>
+                      <th>Skill</th>
+                      <th>Lvl</th>
+                      <th>Base</th>
+                    </tr>
                   </thead>
                   <tbody>
                     {skillRows.map((row) => (
                       <tr key={`${row.attrKey}-${row.skillKey}`}>
                         <td>{row.label}</td>
                         <td>
-                          <NumInput readOnly={readOnly} value={row.level}
-                            onChange={(v) => updateNested(['skills', row.attrKey, row.skillKey, 'level'], v)} />
+                          <NumInput
+                            readOnly={readOnly}
+                            value={row.level}
+                            onChange={(v) =>
+                              updateNested(
+                                ["skills", row.attrKey, row.skillKey, "level"],
+                                v,
+                              )
+                            }
+                          />
                         </td>
                         <td className="skill-base">{row.base}</td>
                       </tr>
@@ -386,46 +629,102 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
                 <div className="panel-title">Attacks</div>
                 <table className="enemy-weapons-table">
                   <thead>
-                    <tr><th>Name</th><th>DMG</th><th>Effect</th><th>RNG</th><th>ROF</th></tr>
+                    <tr>
+                      <th>Name</th>
+                      <th>DMG</th>
+                      <th>Effect</th>
+                      <th>RNG</th>
+                      <th>ROF</th>
+                    </tr>
                   </thead>
                   <tbody>
                     {(character.weapons ?? []).map((w, i) => (
                       <tr key={w.id ?? i}>
-                        <td>{readOnly ? w.name : (
-                          <input value={w.name} onChange={(e) => {
-                            const weapons = [...(character.weapons ?? [])];
-                            weapons[i] = { ...weapons[i], name: e.target.value };
-                            update({ weapons });
-                          }} />
-                        )}</td>
-                        <td>{readOnly ? w.dmg : (
-                          <input value={w.dmg} onChange={(e) => {
-                            const weapons = [...(character.weapons ?? [])];
-                            weapons[i] = { ...weapons[i], dmg: e.target.value };
-                            update({ weapons });
-                          }} />
-                        )}</td>
-                        <td>{readOnly ? (w.effect || '—') : (
-                          <input value={w.effect} onChange={(e) => {
-                            const weapons = [...(character.weapons ?? [])];
-                            weapons[i] = { ...weapons[i], effect: e.target.value };
-                            update({ weapons });
-                          }} />
-                        )}</td>
-                        <td>{readOnly ? (w.rng || '—') : (
-                          <input value={w.rng} onChange={(e) => {
-                            const weapons = [...(character.weapons ?? [])];
-                            weapons[i] = { ...weapons[i], rng: e.target.value };
-                            update({ weapons });
-                          }} />
-                        )}</td>
-                        <td>{readOnly ? (w.rel || '—') : (
-                          <input value={w.rel} onChange={(e) => {
-                            const weapons = [...(character.weapons ?? [])];
-                            weapons[i] = { ...weapons[i], rel: e.target.value };
-                            update({ weapons });
-                          }} />
-                        )}</td>
+                        <td>
+                          {readOnly ? (
+                            w.name
+                          ) : (
+                            <input
+                              value={w.name}
+                              onChange={(e) => {
+                                const weapons = [...(character.weapons ?? [])];
+                                weapons[i] = {
+                                  ...weapons[i],
+                                  name: e.target.value,
+                                };
+                                update({ weapons });
+                              }}
+                            />
+                          )}
+                        </td>
+                        <td>
+                          {readOnly ? (
+                            w.dmg
+                          ) : (
+                            <input
+                              value={w.dmg}
+                              onChange={(e) => {
+                                const weapons = [...(character.weapons ?? [])];
+                                weapons[i] = {
+                                  ...weapons[i],
+                                  dmg: e.target.value,
+                                };
+                                update({ weapons });
+                              }}
+                            />
+                          )}
+                        </td>
+                        <td>
+                          {readOnly ? (
+                            w.effect || "—"
+                          ) : (
+                            <input
+                              value={w.effect}
+                              onChange={(e) => {
+                                const weapons = [...(character.weapons ?? [])];
+                                weapons[i] = {
+                                  ...weapons[i],
+                                  effect: e.target.value,
+                                };
+                                update({ weapons });
+                              }}
+                            />
+                          )}
+                        </td>
+                        <td>
+                          {readOnly ? (
+                            w.rng || "—"
+                          ) : (
+                            <input
+                              value={w.rng}
+                              onChange={(e) => {
+                                const weapons = [...(character.weapons ?? [])];
+                                weapons[i] = {
+                                  ...weapons[i],
+                                  rng: e.target.value,
+                                };
+                                update({ weapons });
+                              }}
+                            />
+                          )}
+                        </td>
+                        <td>
+                          {readOnly ? (
+                            w.rel || "—"
+                          ) : (
+                            <input
+                              value={w.rel}
+                              onChange={(e) => {
+                                const weapons = [...(character.weapons ?? [])];
+                                weapons[i] = {
+                                  ...weapons[i],
+                                  rel: e.target.value,
+                                };
+                                update({ weapons });
+                              }}
+                            />
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -459,29 +758,60 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
                 <div className="panel-title">Worn armor</div>
                 <table className="enemy-armor-table">
                   <thead>
-                    <tr><th>Slot</th><th>Piece</th><th>SP</th></tr>
+                    <tr>
+                      <th>Slot</th>
+                      <th>Piece</th>
+                      <th>SP</th>
+                    </tr>
                   </thead>
                   <tbody>
                     {(character.armor ?? []).map((piece) => {
-                      const slotIndex = (character.armor ?? []).findIndex((a) => a.slot === piece.slot);
+                      const slotIndex = (character.armor ?? []).findIndex(
+                        (a) => a.slot === piece.slot,
+                      );
                       return (
                         <tr key={piece.slot}>
                           <td>{ARMOR_LABELS[piece.slot] ?? piece.slot}</td>
                           <td>
                             <div className="armor-name-cell">
-                              {piece.name ? <span>{piece.name}</span> : <span className="readonly-value">—</span>}
+                              {piece.name ? (
+                                <span>{piece.name}</span>
+                              ) : (
+                                <span className="readonly-value">—</span>
+                              )}
                               {!readOnly && (
-                                <button type="button" className="armor-pick-btn"
-                                  onClick={() => setPicker({ kind: 'armor', slotIndex, slot: piece.slot })}>
-                                  {piece.name ? 'Change' : 'Pick'}
+                                <button
+                                  type="button"
+                                  className="armor-pick-btn"
+                                  onClick={() =>
+                                    setPicker({
+                                      kind: "armor",
+                                      slotIndex,
+                                      slot: piece.slot,
+                                    })
+                                  }
+                                >
+                                  {piece.name ? "Change" : "Pick"}
                                 </button>
                               )}
                             </div>
                           </td>
-                          <td><NumInput readOnly={readOnly} value={piece.sp} onChange={(v) => {
-                            const armor = [...(character.armor ?? [])];
-                            if (slotIndex >= 0) { armor[slotIndex] = { ...armor[slotIndex], sp: v }; update({ armor }); }
-                          }} /></td>
+                          <td>
+                            <NumInput
+                              readOnly={readOnly}
+                              value={piece.sp}
+                              onChange={(v) => {
+                                const armor = [...(character.armor ?? [])];
+                                if (slotIndex >= 0) {
+                                  armor[slotIndex] = {
+                                    ...armor[slotIndex],
+                                    sp: v,
+                                  };
+                                  update({ armor });
+                                }
+                              }}
+                            />
+                          </td>
                         </tr>
                       );
                     })}
@@ -495,361 +825,828 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
               <div className="enemy-notes-grid">
                 <div>
                   <div className="monster-profile-label">Wounds</div>
-                  <DynamicTable readOnly={readOnly}
-                    columns={[{ key: 'description', label: 'Wound' }, { key: 'severity', label: 'S/T' }, { key: 'days', label: 'Days', type: 'number' }]}
+                  <DynamicTable
+                    readOnly={readOnly}
+                    columns={[
+                      { key: "description", label: "Wound" },
+                      { key: "severity", label: "S/T" },
+                      { key: "days", label: "Days", type: "number" },
+                    ]}
                     rows={(character.wounds ?? []) as unknown as DynRow[]}
-                    onChange={(rows) => update({ wounds: rows as unknown as Character['wounds'] })}
-                    onAdd={(empty) => update({ wounds: [...(character.wounds ?? []), { ...empty, id: crypto.randomUUID() } as NonNullable<Character['wounds']>[number]] })}
-                    onRemove={(i) => update({ wounds: character.wounds!.filter((_, idx) => idx !== i) })}
-                    emptyRow={{ description: '', severity: '', days: 0 }} />
+                    onChange={(rows) =>
+                      update({ wounds: rows as unknown as Character["wounds"] })
+                    }
+                    onAdd={(empty) =>
+                      update({
+                        wounds: [
+                          ...(character.wounds ?? []),
+                          { ...empty, id: crypto.randomUUID() } as NonNullable<
+                            Character["wounds"]
+                          >[number],
+                        ],
+                      })
+                    }
+                    onRemove={(i) =>
+                      update({
+                        wounds: character.wounds!.filter((_, idx) => idx !== i),
+                      })
+                    }
+                    emptyRow={{ description: "", severity: "", days: 0 }}
+                  />
                 </div>
                 <div>
                   <div className="monster-profile-label">Status effects</div>
-                  <DynamicTable readOnly={readOnly}
-                    columns={[{ key: 'description', label: 'Effect' }]}
+                  <DynamicTable
+                    readOnly={readOnly}
+                    columns={[{ key: "description", label: "Effect" }]}
                     rows={(character.statusEffects ?? []) as unknown as DynRow[]}
-                    onChange={(rows) => update({ statusEffects: rows as unknown as Character['statusEffects'] })}
-                    onAdd={(empty) => update({ statusEffects: [...(character.statusEffects ?? []), { ...empty, id: crypto.randomUUID() } as NonNullable<Character['statusEffects']>[number]] })}
-                    onRemove={(i) => update({ statusEffects: character.statusEffects!.filter((_, idx) => idx !== i) })}
-                    emptyRow={{ description: '' }} />
+                    onChange={(rows) =>
+                      update({
+                        statusEffects: rows as unknown as Character["statusEffects"],
+                      })
+                    }
+                    onAdd={(empty) =>
+                      update({
+                        statusEffects: [
+                          ...(character.statusEffects ?? []),
+                          { ...empty, id: crypto.randomUUID() } as NonNullable<
+                            Character["statusEffects"]
+                          >[number],
+                        ],
+                      })
+                    }
+                    onRemove={(i) =>
+                      update({
+                        statusEffects: character.statusEffects!.filter(
+                          (_, idx) => idx !== i,
+                        ),
+                      })
+                    }
+                    emptyRow={{ description: "" }}
+                  />
                 </div>
               </div>
             </section>
           </div>
         ) : (
-        <>
-        {tab === 'Stats' && (
           <>
-            {profile && !isEnemyStatblock && (
-              <section className="panel monster-profile-panel">
-                <div className="panel-title">{isMonster ? 'Monster' : 'NPC'} — {profile.monsterType}</div>
-                <dl className="monster-profile-grid">
-                  {profile.threat && <><dt>Threat</dt><dd>{profile.threat}</dd></>}
-                  {profile.bounty != null && profile.bounty > 0 && <><dt>Bounty</dt><dd>{profile.bounty}</dd></>}
-                  {profile.naturalArmor != null && <><dt>Natural armor</dt><dd>{profile.naturalArmor} SP</dd></>}
-                  {profile.height && <><dt>Height</dt><dd>{profile.height}</dd></>}
-                  {profile.weight && <><dt>Weight</dt><dd>{profile.weight}</dd></>}
-                  {profile.environment && <><dt>Environment</dt><dd>{profile.environment}</dd></>}
-                  {profile.intelligence && <><dt>Intelligence</dt><dd>{profile.intelligence}</dd></>}
-                  {profile.organization && <><dt>Organization</dt><dd>{profile.organization}</dd></>}
-                  {profile.vigor != null && <><dt>Vigor</dt><dd>{profile.vigor}</dd></>}
-                  {profile.encumbrance != null && <><dt>Encumbrance</dt><dd>{profile.encumbrance}</dd></>}
-                </dl>
-                {profile.vulnerabilities && (
-                  <div className="monster-profile-block">
-                    <div className="monster-profile-label">Vulnerabilities</div>
-                    <p className="monster-profile-text">{profile.vulnerabilities}</p>
-                  </div>
+            {tab === "Stats" && (
+              <>
+                {profile && !isEnemyStatblock && (
+                  <section className="panel monster-profile-panel">
+                    <div className="panel-title">
+                      {isMonster ? "Monster" : "NPC"} — {profile.monsterType}
+                    </div>
+                    <dl className="monster-profile-grid">
+                      {profile.threat && (
+                        <>
+                          <dt>Threat</dt>
+                          <dd>{profile.threat}</dd>
+                        </>
+                      )}
+                      {profile.bounty != null && profile.bounty > 0 && (
+                        <>
+                          <dt>Bounty</dt>
+                          <dd>{profile.bounty}</dd>
+                        </>
+                      )}
+                      {profile.naturalArmor != null && (
+                        <>
+                          <dt>Natural armor</dt>
+                          <dd>{profile.naturalArmor} SP</dd>
+                        </>
+                      )}
+                      {profile.height && (
+                        <>
+                          <dt>Height</dt>
+                          <dd>{profile.height}</dd>
+                        </>
+                      )}
+                      {profile.weight && (
+                        <>
+                          <dt>Weight</dt>
+                          <dd>{profile.weight}</dd>
+                        </>
+                      )}
+                      {profile.environment && (
+                        <>
+                          <dt>Environment</dt>
+                          <dd>{profile.environment}</dd>
+                        </>
+                      )}
+                      {profile.intelligence && (
+                        <>
+                          <dt>Intelligence</dt>
+                          <dd>{profile.intelligence}</dd>
+                        </>
+                      )}
+                      {profile.organization && (
+                        <>
+                          <dt>Organization</dt>
+                          <dd>{profile.organization}</dd>
+                        </>
+                      )}
+                      {profile.vigor != null && (
+                        <>
+                          <dt>Vigor</dt>
+                          <dd>{profile.vigor}</dd>
+                        </>
+                      )}
+                      {profile.encumbrance != null && (
+                        <>
+                          <dt>Encumbrance</dt>
+                          <dd>{profile.encumbrance}</dd>
+                        </>
+                      )}
+                    </dl>
+                    {profile.vulnerabilities && (
+                      <div className="monster-profile-block">
+                        <div className="monster-profile-label">Vulnerabilities</div>
+                        <p className="monster-profile-text">
+                          {profile.vulnerabilities}
+                        </p>
+                      </div>
+                    )}
+                    {profile.abilities && (
+                      <div className="monster-profile-block">
+                        <div className="monster-profile-label">Abilities</div>
+                        <p className="monster-profile-text">{profile.abilities}</p>
+                      </div>
+                    )}
+                    {profile.loot && (
+                      <div className="monster-profile-block">
+                        <div className="monster-profile-label">Loot</div>
+                        <p className="monster-profile-text">{profile.loot}</p>
+                      </div>
+                    )}
+                  </section>
                 )}
-                {profile.abilities && (
-                  <div className="monster-profile-block">
-                    <div className="monster-profile-label">Abilities</div>
-                    <p className="monster-profile-text">{profile.abilities}</p>
+
+                <section className="vitals-panel">
+                  <div className="section-label">Vitals</div>
+                  <div className="vitals-grid">
+                    <Counter
+                      layout="card"
+                      readOnly={readOnly}
+                      label="HP"
+                      current={character.vitals.hp.current}
+                      max={hpMax}
+                      onChange={(v) => updateNested(["vitals", "hp", "current"], v)}
+                    />
+                    <Counter
+                      layout="card"
+                      readOnly={readOnly}
+                      label="STA"
+                      current={character.vitals.sta.current}
+                      max={staMax}
+                      onChange={(v) => updateNested(["vitals", "sta", "current"], v)}
+                    />
+                    <Counter
+                      layout="card"
+                      readOnly={readOnly}
+                      label="Resolve"
+                      current={character.vitals.resolve.current}
+                      max={resolveDisplayMax}
+                      onChange={(v) =>
+                        updateNested(["vitals", "resolve", "current"], v)
+                      }
+                    />
+                    <div className="vital-card">
+                      <div className="vital-card-label">Wound threshold</div>
+                      {readOnly ? (
+                        <div className="vital-card-value">
+                          {character.vitals.woundThreshold}
+                        </div>
+                      ) : (
+                        <NumInput
+                          className="vital-card-value"
+                          readOnly={readOnly}
+                          value={character.vitals.woundThreshold}
+                          onChange={(v) =>
+                            updateNested(["vitals", "woundThreshold"], v)
+                          }
+                        />
+                      )}
+                    </div>
                   </div>
-                )}
-                {profile.loot && (
-                  <div className="monster-profile-block">
-                    <div className="monster-profile-label">Loot</div>
-                    <p className="monster-profile-text">{profile.loot}</p>
+                  <p className="formula-hint">
+                    {isBestiary
+                      ? "Stats from rulebook bestiary — HP/STA/RUN/LEAP/STUN/REC as printed."
+                      : "HP & STA derived from (BODY + WILL) × 5; Resolve from WILL × 5."}
+                  </p>
+                </section>
+
+                <section>
+                  <div className="section-label">Attributes & skills</div>
+                  <div className="attr-grid">
+                    {Object.entries(ATTRIBUTES).map(([key, attr]) => (
+                      <div key={key} className="attr-block">
+                        <div className={`attr-header attr-header--${key}`}>
+                          <div className="attr-header-text">
+                            <span className="attr-short">{attr.short}</span>
+                            <span className="attr-full">{attr.label}</span>
+                          </div>
+                          <NumInput
+                            readOnly={readOnly}
+                            className="attr-value-input"
+                            value={character.attributes[key]}
+                            onChange={(v) => updateNested(["attributes", key], v)}
+                          />
+                        </div>
+                        {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => {
+                          const level = character.skills[key]?.[skill.key]?.level ?? 0;
+                          return (
+                            <div
+                              key={skill.key}
+                              className={`skill-row${skill.special ? " special" : ""}`}
+                            >
+                              <span className="name">
+                                {skill.label}
+                                {readOnly ? (
+                                  <span className="skill-lvl"> · {level}</span>
+                                ) : (
+                                  <>
+                                    {" · "}
+                                    <NumInput
+                                      readOnly={readOnly}
+                                      className="skill-lvl-input"
+                                      value={level}
+                                      onChange={(v) =>
+                                        updateNested(
+                                          ["skills", key, skill.key, "level"],
+                                          v,
+                                        )
+                                      }
+                                    />
+                                  </>
+                                )}
+                              </span>
+                              <span className="base">
+                                {skillBase(character, key, skill.key)}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
                   </div>
-                )}
+                </section>
+
+                <section className="misc-stats">
+                  <div className="section-label">Movement, recovery & progression</div>
+                  <div className="attr-block luck-block">
+                    <div className="attr-header attr-header--luck">
+                      <div className="attr-header-text">
+                        <span className="attr-short">LUCK</span>
+                        <span className="attr-full">Luck</span>
+                      </div>
+                      <span className="readonly-value attr-value-input">
+                        {character.attributes.luck ?? 0}
+                      </span>
+                    </div>
+                    <div className="luck-row">
+                      <span className="luck-spent-label">spent</span>
+                      <div className="luck-bar">
+                        {Array.from({
+                          length: derived.luckMax || character.luck?.max || 0,
+                        }).map((_, i) =>
+                          readOnly ? (
+                            <span
+                              key={i}
+                              className={`luck-pip luck-pip-static${i < (character.luck?.used ?? 0) ? " used" : ""}`}
+                            />
+                          ) : (
+                            <button
+                              key={i}
+                              type="button"
+                              className={`luck-pip${i < (character.luck?.used ?? 0) ? " used" : ""}`}
+                              onClick={() => {
+                                const used =
+                                  i < (character.luck?.used ?? 0) ? i : i + 1;
+                                updateNested(["luck", "used"], used);
+                              }}
+                            />
+                          ),
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="derived-grid">
+                    <label>
+                      RUN{" "}
+                      <NumInput
+                        readOnly={readOnly}
+                        value={derived.run}
+                        onChange={(v) => updateNested(["movement", "run"], v)}
+                      />
+                    </label>
+                    <label>
+                      LEAP{" "}
+                      <NumInput
+                        readOnly={readOnly}
+                        value={derived.leap}
+                        onChange={(v) => updateNested(["movement", "leap"], v)}
+                      />
+                    </label>
+                    <label>
+                      STUN{" "}
+                      <NumInput
+                        readOnly={readOnly}
+                        value={derived.stun}
+                        onChange={(v) => updateNested(["recovery", "stun"], v)}
+                      />
+                    </label>
+                    <label>
+                      REC{" "}
+                      <NumInput
+                        readOnly={readOnly}
+                        value={derived.rec}
+                        onChange={(v) => updateNested(["recovery", "rec"], v)}
+                      />
+                    </label>
+                    <label>
+                      Adrenaline{" "}
+                      <NumInput
+                        readOnly={readOnly}
+                        value={character.adrenaline}
+                        onChange={(v) => update({ adrenaline: v })}
+                      />
+                    </label>
+                    <label>
+                      I.P.{" "}
+                      <NumInput
+                        readOnly={readOnly}
+                        value={character.improvementPoints?.ip}
+                        onChange={(v) => updateNested(["improvementPoints", "ip"], v)}
+                      />
+                    </label>
+                    <label>
+                      Training I.P.{" "}
+                      <NumInput
+                        readOnly={readOnly}
+                        value={character.improvementPoints?.trainingIp}
+                        onChange={(v) =>
+                          updateNested(["improvementPoints", "trainingIp"], v)
+                        }
+                      />
+                    </label>
+                    <label>
+                      Punch <span className="readonly-value">{derived.punch}</span>
+                    </label>
+                    <label>
+                      Kick <span className="readonly-value">{derived.kick}</span>
+                    </label>
+                  </div>
+                </section>
+              </>
+            )}
+
+            {tab === "Combat" && (
+              <>
+                <section className="panel">
+                  <div className="panel-title">Weapons</div>
+                  <DynamicTable
+                    readOnly={readOnly}
+                    columns={[
+                      { key: "name", label: "Name" },
+                      { key: "type", label: "T" },
+                      { key: "wa", label: "WA", type: "number" },
+                      { key: "dmg", label: "DMG" },
+                      { key: "rel", label: "Rel" },
+                      { key: "hand", label: "Hand" },
+                      { key: "rng", label: "RNG" },
+                      { key: "effect", label: "Effect" },
+                      { key: "conc", label: "Conc." },
+                      { key: "enhancements", label: "EN" },
+                      { key: "weight", label: "Wt", type: "number" },
+                    ]}
+                    rows={(character.weapons ?? []) as unknown as DynRow[]}
+                    onChange={(rows) =>
+                      update({ weapons: rows as unknown as Weapon[] })
+                    }
+                    onAdd={() => {}}
+                    onRemove={(i) =>
+                      update({
+                        weapons: character.weapons!.filter((_, idx) => idx !== i),
+                      })
+                    }
+                    emptyRow={WEAPON_EMPTY as DynRow}
+                    renderAddActions={() => (
+                      <button
+                        type="button"
+                        className="primary"
+                        onClick={() => setPicker({ kind: "weapon" })}
+                      >
+                        + Add from catalog
+                      </button>
+                    )}
+                  />
+                </section>
+
+                <section className="panel bonus-melee">
+                  <div className="panel-title">Bonus Melee</div>
+                  <div className="stat-grid">
+                    <label>
+                      Punch{" "}
+                      <TextInput
+                        readOnly={readOnly}
+                        value={character.bonusMelee?.punch ?? ""}
+                        onChange={(e) =>
+                          updateNested(["bonusMelee", "punch"], e.target.value)
+                        }
+                      />
+                    </label>
+                    <label>
+                      Kick{" "}
+                      <TextInput
+                        readOnly={readOnly}
+                        value={character.bonusMelee?.kick ?? ""}
+                        onChange={(e) =>
+                          updateNested(["bonusMelee", "kick"], e.target.value)
+                        }
+                      />
+                    </label>
+                  </div>
+                </section>
+
+                <section className="panel">
+                  <div className="panel-title">Armor</div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Location</th>
+                        <th>Piece</th>
+                        <th>SP</th>
+                        <th>Dam</th>
+                        <th>Effects</th>
+                        <th>Wt</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(character.armor ?? []).map((piece, i) => (
+                        <tr key={piece.slot}>
+                          <td>{ARMOR_LABELS[piece.slot] ?? piece.slot}</td>
+                          <td>
+                            <div className="armor-name-cell">
+                              {piece.name && (
+                                <span className="armor-piece-name">{piece.name}</span>
+                              )}
+                              {!readOnly && (
+                                <button
+                                  type="button"
+                                  className="armor-pick-btn"
+                                  onClick={() =>
+                                    setPicker({
+                                      kind: "armor",
+                                      slotIndex: i,
+                                      slot: piece.slot,
+                                    })
+                                  }
+                                >
+                                  {piece.name ? "Change" : "Pick armor"}
+                                </button>
+                              )}
+                              {readOnly && !piece.name && (
+                                <span className="readonly-value">—</span>
+                              )}
+                            </div>
+                          </td>
+                          <td>
+                            <NumInput
+                              readOnly={readOnly}
+                              value={piece.sp}
+                              onChange={(v) => {
+                                const a = [...character.armor!];
+                                a[i] = { ...a[i], sp: v };
+                                update({ armor: a });
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <NumInput
+                              readOnly={readOnly}
+                              value={piece.damage}
+                              onChange={(v) => {
+                                const a = [...character.armor!];
+                                a[i] = { ...a[i], damage: v };
+                                update({ armor: a });
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <TextInput
+                              readOnly={readOnly}
+                              value={piece.effects ?? ""}
+                              onChange={(e) => {
+                                const a = [...character.armor!];
+                                a[i] = { ...a[i], effects: e.target.value };
+                                update({ armor: a });
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <NumInput
+                              readOnly={readOnly}
+                              value={piece.weight}
+                              onChange={(v) => {
+                                const a = [...character.armor!];
+                                a[i] = { ...a[i], weight: v };
+                                update({ armor: a });
+                              }}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {readOnly ? (
+                    character.armorNotes ? (
+                      <p className="readonly-notes">{character.armorNotes}</p>
+                    ) : null
+                  ) : (
+                    <textarea
+                      className="armor-notes"
+                      placeholder="Armor notes..."
+                      value={character.armorNotes ?? ""}
+                      onChange={(e) => update({ armorNotes: e.target.value })}
+                      rows={2}
+                    />
+                  )}
+                </section>
+              </>
+            )}
+
+            {tab === "Inventory" && (
+              <section className="panel">
+                <div className="panel-title">Ammo, Bombs, Potions, Traps</div>
+                <DynamicTable
+                  readOnly={readOnly}
+                  columns={[
+                    { key: "qty", label: "#", type: "number" },
+                    { key: "name", label: "Name" },
+                    { key: "effect", label: "Effect" },
+                    { key: "weight", label: "Wt", type: "number" },
+                  ]}
+                  rows={(character.consumables ?? []) as unknown as DynRow[]}
+                  onChange={(rows) =>
+                    update({
+                      consumables: rows as unknown as Character["consumables"],
+                    })
+                  }
+                  onAdd={(empty) =>
+                    update({
+                      consumables: [
+                        ...(character.consumables ?? []),
+                        { ...empty, id: crypto.randomUUID() } as NonNullable<
+                          Character["consumables"]
+                        >[number],
+                      ],
+                    })
+                  }
+                  onRemove={(i) =>
+                    update({
+                      consumables: character.consumables!.filter((_, idx) => idx !== i),
+                    })
+                  }
+                  emptyRow={{ qty: 0, name: "", effect: "", weight: 0 }}
+                />
               </section>
             )}
 
-            <section className="vitals-panel">
-              <div className="section-label">Vitals</div>
-              <div className="vitals-grid">
-                <Counter layout="card" readOnly={readOnly} label="HP" current={character.vitals.hp.current} max={hpMax} onChange={(v) => updateNested(['vitals', 'hp', 'current'], v)} />
-                <Counter layout="card" readOnly={readOnly} label="STA" current={character.vitals.sta.current} max={staMax} onChange={(v) => updateNested(['vitals', 'sta', 'current'], v)} />
-                <Counter layout="card" readOnly={readOnly} label="Resolve" current={character.vitals.resolve.current} max={resolveDisplayMax} onChange={(v) => updateNested(['vitals', 'resolve', 'current'], v)} />
-                <div className="vital-card">
-                  <div className="vital-card-label">Wound threshold</div>
-                  {readOnly ? (
-                    <div className="vital-card-value">{character.vitals.woundThreshold}</div>
-                  ) : (
-                    <NumInput className="vital-card-value" readOnly={readOnly} value={character.vitals.woundThreshold} onChange={(v) => updateNested(['vitals', 'woundThreshold'], v)} />
-                  )}
-                </div>
-              </div>
-              <p className="formula-hint">
-                {isBestiary
-                  ? 'Stats from rulebook bestiary — HP/STA/RUN/LEAP/STUN/REC as printed.'
-                  : 'HP & STA derived from (BODY + WILL) × 5; Resolve from WILL × 5.'}
-              </p>
-            </section>
-
-            <section>
-              <div className="section-label">Attributes & skills</div>
-              <div className="attr-grid">
-                {Object.entries(ATTRIBUTES).map(([key, attr]) => (
-                  <div key={key} className="attr-block">
-                    <div className={`attr-header attr-header--${key}`}>
-                      <div className="attr-header-text">
-                        <span className="attr-short">{attr.short}</span>
-                        <span className="attr-full">{attr.label}</span>
-                      </div>
-                      <NumInput readOnly={readOnly} className="attr-value-input"
-                        value={character.attributes[key]}
-                        onChange={(v) => updateNested(['attributes', key], v)} />
-                    </div>
-                    {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => {
-                      const level = character.skills[key]?.[skill.key]?.level ?? 0;
-                      return (
-                        <div key={skill.key} className={`skill-row${skill.special ? ' special' : ''}`}>
-                          <span className="name">
-                            {skill.label}
-                            {readOnly ? (
-                              <span className="skill-lvl"> · {level}</span>
-                            ) : (
-                              <>
-                                {' · '}
-                                <NumInput readOnly={readOnly} className="skill-lvl-input"
-                                  value={level}
-                                  onChange={(v) => updateNested(['skills', key, skill.key, 'level'], v)} />
-                              </>
-                            )}
-                          </span>
-                          <span className="base">{skillBase(character, key, skill.key)}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
+            {tab === "Magic" && showMagic && (
+              <>
+                {magicSections.map((section) => (
+                  <section key={section.key} className="panel magic-section">
+                    <div className="panel-title">{section.label}</div>
+                    <DynamicTable
+                      readOnly={readOnly}
+                      columns={[
+                        { key: "name", label: "Name" },
+                        { key: "staCostText", label: "STA" },
+                        { key: "defense", label: "Defense" },
+                        { key: "range", label: "Range" },
+                        { key: "duration", label: "Duration" },
+                        { key: "effect", label: "Effect" },
+                      ]}
+                      rows={
+                        spellsForCategory(
+                          character.spells,
+                          section.key,
+                        ) as unknown as DynRow[]
+                      }
+                      onChange={(rows) =>
+                        updateSpellsForCategory(section.key, rows as unknown as Spell[])
+                      }
+                      onAdd={() => {}}
+                      onRemove={(i) => {
+                        const rows = spellsForCategory(character.spells, section.key);
+                        updateSpellsForCategory(
+                          section.key,
+                          rows.filter((_, idx) => idx !== i),
+                        );
+                      }}
+                      emptyRow={{ ...MAGIC_ROW_EMPTY }}
+                      renderAddActions={() => (
+                        <button
+                          type="button"
+                          className="primary"
+                          onClick={() =>
+                            setPicker({
+                              kind: "magic",
+                              category: section.key,
+                              label: section.label,
+                            })
+                          }
+                        >
+                          + Add from catalog
+                        </button>
+                      )}
+                    />
+                  </section>
                 ))}
-              </div>
-            </section>
+              </>
+            )}
 
-            <section className="misc-stats">
-              <div className="section-label">Movement, recovery & progression</div>
-              <div className="attr-block luck-block">
-                <div className="attr-header attr-header--luck">
-                  <div className="attr-header-text">
-                    <span className="attr-short">LUCK</span>
-                    <span className="attr-full">Luck</span>
-                  </div>
-                  <span className="readonly-value attr-value-input">{character.attributes.luck ?? 0}</span>
-                </div>
-                <div className="luck-row">
-                  <span className="luck-spent-label">spent</span>
-                  <div className="luck-bar">
-                    {Array.from({ length: derived.luckMax || character.luck?.max || 0 }).map((_, i) =>
-                      readOnly ? (
-                        <span key={i} className={`luck-pip luck-pip-static${i < (character.luck?.used ?? 0) ? ' used' : ''}`} />
-                      ) : (
-                        <button key={i} type="button"
-                          className={`luck-pip${i < (character.luck?.used ?? 0) ? ' used' : ''}`}
-                          onClick={() => { const used = i < (character.luck?.used ?? 0) ? i : i + 1; updateNested(['luck', 'used'], used); }} />
-                      )
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="derived-grid">
-                <label>RUN <NumInput readOnly={readOnly} value={derived.run} onChange={(v) => updateNested(['movement', 'run'], v)} /></label>
-                <label>LEAP <NumInput readOnly={readOnly} value={derived.leap} onChange={(v) => updateNested(['movement', 'leap'], v)} /></label>
-                <label>STUN <NumInput readOnly={readOnly} value={derived.stun} onChange={(v) => updateNested(['recovery', 'stun'], v)} /></label>
-                <label>REC <NumInput readOnly={readOnly} value={derived.rec} onChange={(v) => updateNested(['recovery', 'rec'], v)} /></label>
-                <label>Adrenaline <NumInput readOnly={readOnly} value={character.adrenaline} onChange={(v) => update({ adrenaline: v })} /></label>
-                <label>I.P. <NumInput readOnly={readOnly} value={character.improvementPoints?.ip} onChange={(v) => updateNested(['improvementPoints', 'ip'], v)} /></label>
-                <label>Training I.P. <NumInput readOnly={readOnly} value={character.improvementPoints?.trainingIp} onChange={(v) => updateNested(['improvementPoints', 'trainingIp'], v)} /></label>
-                <label>Punch <span className="readonly-value">{derived.punch}</span></label>
-                <label>Kick <span className="readonly-value">{derived.kick}</span></label>
-              </div>
-            </section>
+            {tab === "Other" && (
+              <>
+                <section className="panel">
+                  <div className="panel-title">Profession Abilities</div>
+                  <DynamicTable
+                    readOnly={readOnly}
+                    columns={[
+                      { key: "name", label: "Name" },
+                      { key: "stat", label: "Stat" },
+                      { key: "level", label: "Lvl", type: "number" },
+                      { key: "base", label: "Base", type: "number" },
+                    ]}
+                    rows={(character.professionAbilities ?? []) as unknown as DynRow[]}
+                    onChange={(rows) =>
+                      update({
+                        professionAbilities:
+                          rows as unknown as Character["professionAbilities"],
+                      })
+                    }
+                    onAdd={(empty) =>
+                      update({
+                        professionAbilities: [
+                          ...(character.professionAbilities ?? []),
+                          { ...empty, id: crypto.randomUUID() } as NonNullable<
+                            Character["professionAbilities"]
+                          >[number],
+                        ],
+                      })
+                    }
+                    onRemove={(i) =>
+                      update({
+                        professionAbilities: character.professionAbilities!.filter(
+                          (_, idx) => idx !== i,
+                        ),
+                      })
+                    }
+                    emptyRow={{ name: "", stat: "", level: 0, base: 0 }}
+                  />
+                </section>
+                <section className="panel">
+                  <div className="panel-title">Wounds</div>
+                  <DynamicTable
+                    readOnly={readOnly}
+                    columns={[
+                      { key: "description", label: "Wound" },
+                      { key: "severity", label: "S/T" },
+                      { key: "days", label: "Days", type: "number" },
+                    ]}
+                    rows={(character.wounds ?? []) as unknown as DynRow[]}
+                    onChange={(rows) =>
+                      update({ wounds: rows as unknown as Character["wounds"] })
+                    }
+                    onAdd={(empty) =>
+                      update({
+                        wounds: [
+                          ...(character.wounds ?? []),
+                          { ...empty, id: crypto.randomUUID() } as NonNullable<
+                            Character["wounds"]
+                          >[number],
+                        ],
+                      })
+                    }
+                    onRemove={(i) =>
+                      update({
+                        wounds: character.wounds!.filter((_, idx) => idx !== i),
+                      })
+                    }
+                    emptyRow={{ description: "", severity: "", days: 0 }}
+                  />
+                </section>
+                <section className="panel">
+                  <div className="panel-title">Status Effects</div>
+                  <DynamicTable
+                    readOnly={readOnly}
+                    columns={[{ key: "description", label: "Effect" }]}
+                    rows={(character.statusEffects ?? []) as unknown as DynRow[]}
+                    onChange={(rows) =>
+                      update({
+                        statusEffects: rows as unknown as Character["statusEffects"],
+                      })
+                    }
+                    onAdd={(empty) =>
+                      update({
+                        statusEffects: [
+                          ...(character.statusEffects ?? []),
+                          { ...empty, id: crypto.randomUUID() } as NonNullable<
+                            Character["statusEffects"]
+                          >[number],
+                        ],
+                      })
+                    }
+                    onRemove={(i) =>
+                      update({
+                        statusEffects: character.statusEffects!.filter(
+                          (_, idx) => idx !== i,
+                        ),
+                      })
+                    }
+                    emptyRow={{ description: "" }}
+                  />
+                </section>
+              </>
+            )}
           </>
-        )}
-
-        {tab === 'Combat' && (
-          <>
-            <section className="panel">
-              <div className="panel-title">Weapons</div>
-              <DynamicTable readOnly={readOnly}
-                columns={[
-                  { key: 'name', label: 'Name' }, { key: 'type', label: 'T' },
-                  { key: 'wa', label: 'WA', type: 'number' }, { key: 'dmg', label: 'DMG' },
-                  { key: 'rel', label: 'Rel' }, { key: 'hand', label: 'Hand' },
-                  { key: 'rng', label: 'RNG' }, { key: 'effect', label: 'Effect' },
-                  { key: 'conc', label: 'Conc.' }, { key: 'enhancements', label: 'EN' },
-                  { key: 'weight', label: 'Wt', type: 'number' },
-                ]}
-                rows={(character.weapons ?? []) as unknown as DynRow[]}
-                onChange={(rows) => update({ weapons: rows as unknown as Weapon[] })}
-                onAdd={() => {}}
-                onRemove={(i) => update({ weapons: character.weapons!.filter((_, idx) => idx !== i) })}
-                emptyRow={WEAPON_EMPTY as DynRow}
-                renderAddActions={() => (
-                  <button type="button" className="primary" onClick={() => setPicker({ kind: 'weapon' })}>
-                    + Add from catalog
-                  </button>
-                )}
-              />
-            </section>
-
-            <section className="panel bonus-melee">
-              <div className="panel-title">Bonus Melee</div>
-              <div className="stat-grid">
-                <label>Punch <TextInput readOnly={readOnly} value={character.bonusMelee?.punch ?? ''} onChange={(e) => updateNested(['bonusMelee', 'punch'], e.target.value)} /></label>
-                <label>Kick <TextInput readOnly={readOnly} value={character.bonusMelee?.kick ?? ''} onChange={(e) => updateNested(['bonusMelee', 'kick'], e.target.value)} /></label>
-              </div>
-            </section>
-
-            <section className="panel">
-              <div className="panel-title">Armor</div>
-              <table>
-                <thead>
-                  <tr><th>Location</th><th>Piece</th><th>SP</th><th>Dam</th><th>Effects</th><th>Wt</th></tr>
-                </thead>
-                <tbody>
-                  {(character.armor ?? []).map((piece, i) => (
-                    <tr key={piece.slot}>
-                      <td>{ARMOR_LABELS[piece.slot] ?? piece.slot}</td>
-                      <td>
-                        <div className="armor-name-cell">
-                          {piece.name && <span className="armor-piece-name">{piece.name}</span>}
-                          {!readOnly && (
-                            <button type="button" className="armor-pick-btn"
-                              onClick={() => setPicker({ kind: 'armor', slotIndex: i, slot: piece.slot })}>
-                              {piece.name ? 'Change' : 'Pick armor'}
-                            </button>
-                          )}
-                          {readOnly && !piece.name && <span className="readonly-value">—</span>}
-                        </div>
-                      </td>
-                      <td><NumInput readOnly={readOnly} value={piece.sp} onChange={(v) => { const a = [...character.armor!]; a[i] = { ...a[i], sp: v }; update({ armor: a }); }} /></td>
-                      <td><NumInput readOnly={readOnly} value={piece.damage} onChange={(v) => { const a = [...character.armor!]; a[i] = { ...a[i], damage: v }; update({ armor: a }); }} /></td>
-                      <td><TextInput readOnly={readOnly} value={piece.effects ?? ''} onChange={(e) => { const a = [...character.armor!]; a[i] = { ...a[i], effects: e.target.value }; update({ armor: a }); }} /></td>
-                      <td><NumInput readOnly={readOnly} value={piece.weight} onChange={(v) => { const a = [...character.armor!]; a[i] = { ...a[i], weight: v }; update({ armor: a }); }} /></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {readOnly
-                ? character.armorNotes ? <p className="readonly-notes">{character.armorNotes}</p> : null
-                : <textarea className="armor-notes" placeholder="Armor notes..." value={character.armorNotes ?? ''} onChange={(e) => update({ armorNotes: e.target.value })} rows={2} />
-              }
-            </section>
-          </>
-        )}
-
-        {tab === 'Inventory' && (
-          <section className="panel">
-            <div className="panel-title">Ammo, Bombs, Potions, Traps</div>
-            <DynamicTable readOnly={readOnly}
-              columns={[{ key: 'qty', label: '#', type: 'number' }, { key: 'name', label: 'Name' }, { key: 'effect', label: 'Effect' }, { key: 'weight', label: 'Wt', type: 'number' }]}
-              rows={(character.consumables ?? []) as unknown as DynRow[]}
-              onChange={(rows) => update({ consumables: rows as unknown as Character['consumables'] })}
-              onAdd={(empty) => update({ consumables: [...(character.consumables ?? []), { ...empty, id: crypto.randomUUID() } as NonNullable<Character['consumables']>[number]] })}
-              onRemove={(i) => update({ consumables: character.consumables!.filter((_, idx) => idx !== i) })}
-              emptyRow={{ qty: 0, name: '', effect: '', weight: 0 }} />
-          </section>
-        )}
-
-        {tab === 'Magic' && showMagic && (
-          <>
-            {magicSections.map((section) => (
-              <section key={section.key} className="panel magic-section">
-                <div className="panel-title">{section.label}</div>
-                <DynamicTable readOnly={readOnly}
-                  columns={[
-                    { key: 'name', label: 'Name' },
-                    { key: 'staCostText', label: 'STA' },
-                    { key: 'defense', label: 'Defense' },
-                    { key: 'range', label: 'Range' },
-                    { key: 'duration', label: 'Duration' },
-                    { key: 'effect', label: 'Effect' },
-                  ]}
-                  rows={spellsForCategory(character.spells, section.key) as unknown as DynRow[]}
-                  onChange={(rows) => updateSpellsForCategory(section.key, rows as unknown as Spell[])}
-                  onAdd={() => {}}
-                  onRemove={(i) => {
-                    const rows = spellsForCategory(character.spells, section.key);
-                    updateSpellsForCategory(section.key, rows.filter((_, idx) => idx !== i));
-                  }}
-                  emptyRow={{ ...MAGIC_ROW_EMPTY }}
-                  renderAddActions={() => (
-                    <button type="button" className="primary"
-                      onClick={() => setPicker({ kind: 'magic', category: section.key, label: section.label })}>
-                      + Add from catalog
-                    </button>
-                  )}
-                />
-              </section>
-            ))}
-          </>
-        )}
-
-        {tab === 'Other' && (
-          <>
-            <section className="panel">
-              <div className="panel-title">Profession Abilities</div>
-              <DynamicTable readOnly={readOnly}
-                columns={[{ key: 'name', label: 'Name' }, { key: 'stat', label: 'Stat' }, { key: 'level', label: 'Lvl', type: 'number' }, { key: 'base', label: 'Base', type: 'number' }]}
-                rows={(character.professionAbilities ?? []) as unknown as DynRow[]}
-                onChange={(rows) => update({ professionAbilities: rows as unknown as Character['professionAbilities'] })}
-                onAdd={(empty) => update({ professionAbilities: [...(character.professionAbilities ?? []), { ...empty, id: crypto.randomUUID() } as NonNullable<Character['professionAbilities']>[number]] })}
-                onRemove={(i) => update({ professionAbilities: character.professionAbilities!.filter((_, idx) => idx !== i) })}
-                emptyRow={{ name: '', stat: '', level: 0, base: 0 }} />
-            </section>
-            <section className="panel">
-              <div className="panel-title">Wounds</div>
-              <DynamicTable readOnly={readOnly}
-                columns={[{ key: 'description', label: 'Wound' }, { key: 'severity', label: 'S/T' }, { key: 'days', label: 'Days', type: 'number' }]}
-                rows={(character.wounds ?? []) as unknown as DynRow[]}
-                onChange={(rows) => update({ wounds: rows as unknown as Character['wounds'] })}
-                onAdd={(empty) => update({ wounds: [...(character.wounds ?? []), { ...empty, id: crypto.randomUUID() } as NonNullable<Character['wounds']>[number]] })}
-                onRemove={(i) => update({ wounds: character.wounds!.filter((_, idx) => idx !== i) })}
-                emptyRow={{ description: '', severity: '', days: 0 }} />
-            </section>
-            <section className="panel">
-              <div className="panel-title">Status Effects</div>
-              <DynamicTable readOnly={readOnly}
-                columns={[{ key: 'description', label: 'Effect' }]}
-                rows={(character.statusEffects ?? []) as unknown as DynRow[]}
-                onChange={(rows) => update({ statusEffects: rows as unknown as Character['statusEffects'] })}
-                onAdd={(empty) => update({ statusEffects: [...(character.statusEffects ?? []), { ...empty, id: crypto.randomUUID() } as NonNullable<Character['statusEffects']>[number]] })}
-                onRemove={(i) => update({ statusEffects: character.statusEffects!.filter((_, idx) => idx !== i) })}
-                emptyRow={{ description: '' }} />
-            </section>
-          </>
-        )}
-        </>
         )}
       </div>
 
-      {picker?.kind === 'weapon' && (
-        <CatalogPickerModal title="Add Weapon" items={WEAPONS_CATALOG}
-          onSelect={(item) => { update({ weapons: [...(character.weapons ?? []), catalogToWeapon(item as Parameters<typeof catalogToWeapon>[0])] }); setPicker(null); }}
-          onCustom={() => { update({ weapons: [...(character.weapons ?? []), { ...WEAPON_EMPTY, id: crypto.randomUUID() } as Weapon] }); setPicker(null); }}
-          onClose={() => setPicker(null)} />
+      {picker?.kind === "weapon" && (
+        <CatalogPickerModal
+          title="Add Weapon"
+          items={WEAPONS_CATALOG}
+          onSelect={(item) => {
+            update({
+              weapons: [
+                ...(character.weapons ?? []),
+                catalogToWeapon(item as Parameters<typeof catalogToWeapon>[0]),
+              ],
+            });
+            setPicker(null);
+          }}
+          onCustom={() => {
+            update({
+              weapons: [
+                ...(character.weapons ?? []),
+                { ...WEAPON_EMPTY, id: crypto.randomUUID() } as Weapon,
+              ],
+            });
+            setPicker(null);
+          }}
+          onClose={() => setPicker(null)}
+        />
       )}
 
-      {picker?.kind === 'magic' && (
-        <CatalogPickerModal title={`Add ${picker.label}`} items={getMagicForCategory(picker.category!)}
+      {picker?.kind === "magic" && (
+        <CatalogPickerModal
+          title={`Add ${picker.label}`}
+          items={getMagicForCategory(picker.category!)}
           onSelect={(item) => {
             updateSpellsForCategory(picker.category!, [
               ...spellsForCategory(character.spells, picker.category!),
-              catalogToSpell(item as Parameters<typeof catalogToSpell>[0], picker.category!),
+              catalogToSpell(
+                item as Parameters<typeof catalogToSpell>[0],
+                picker.category!,
+              ),
             ]);
             setPicker(null);
           }}
           onCustom={() => {
             updateSpellsForCategory(picker.category!, [
               ...spellsForCategory(character.spells, picker.category!),
-              { ...MAGIC_ROW_EMPTY, id: crypto.randomUUID(), category: picker.category! } as Spell,
+              {
+                ...MAGIC_ROW_EMPTY,
+                id: crypto.randomUUID(),
+                category: picker.category!,
+              } as Spell,
             ]);
             setPicker(null);
           }}
-          onClose={() => setPicker(null)} />
+          onClose={() => setPicker(null)}
+        />
       )}
 
-      {picker?.kind === 'armor' && (
-        <CatalogPickerModal title={`Armor — ${ARMOR_LABELS[picker.slot!] ?? picker.slot}`} items={getArmorForSlot(picker.slot!)}
+      {picker?.kind === "armor" && (
+        <CatalogPickerModal
+          title={`Armor — ${ARMOR_LABELS[picker.slot!] ?? picker.slot}`}
+          items={getArmorForSlot(picker.slot!)}
           onSelect={(item) => {
             const armor = [...(character.armor ?? [])] as ArmorPiece[];
-            armor[picker.slotIndex!] = { ...armor[picker.slotIndex!], ...catalogToArmorPiece(item as Parameters<typeof catalogToArmorPiece>[0], picker.slot) };
+            armor[picker.slotIndex!] = {
+              ...armor[picker.slotIndex!],
+              ...catalogToArmorPiece(
+                item as Parameters<typeof catalogToArmorPiece>[0],
+                picker.slot,
+              ),
+            };
             update({ armor });
             setPicker(null);
           }}
-          onClose={() => setPicker(null)} />
+          onClose={() => setPicker(null)}
+        />
       )}
     </div>
   );

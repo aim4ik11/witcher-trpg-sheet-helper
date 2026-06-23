@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import type { Character } from '@wilmak/shared';
-import { api } from '../../api';
-import CharacterSheet from '../../components/CharacterSheet';
+import { useState, useEffect, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import type { Character } from "@wilmak/shared";
+import { api } from "../../api";
+import CharacterSheet from "../../components/CharacterSheet";
 
 export default function CharacterViewScreen() {
   const { id } = useParams<{ id: string }>();
@@ -15,11 +15,13 @@ export default function CharacterViewScreen() {
       const char = await api.getCharacter(id);
       setCharacter(char);
     } catch {
-      navigate('/session');
+      navigate("/session");
     }
   }, [id, navigate]);
 
-  useEffect(() => { void load(); }, [load]);
+  useEffect(() => {
+    void load();
+  }, [load]);
 
   useEffect(() => {
     if (!id) return;
@@ -40,7 +42,7 @@ export default function CharacterViewScreen() {
       character={character}
       onChange={handleChange}
       isDM
-      onBack={() => navigate('/session')}
+      onBack={() => navigate("/session")}
       backLabel="← DM Console"
     />
   );

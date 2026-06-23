@@ -1,4 +1,4 @@
-import monstersCatalog from './data/monsters.json';
+import monstersCatalog from "./data/monsters.json";
 
 export interface CatalogMonsterSkill {
   attr: string;
@@ -18,7 +18,7 @@ export interface CatalogMonsterWeapon {
 export interface CatalogMonster {
   id: string;
   name: string;
-  kind: 'npc' | 'monster';
+  kind: "npc" | "monster";
   monsterType: string;
   defaultRace?: string;
   threat?: string;
@@ -45,17 +45,23 @@ export function getMonsterById(id: string): CatalogMonster | undefined {
 }
 
 export function monsterCatalogGroups(): { label: string; entries: CatalogMonster[] }[] {
-  const npcs = MONSTERS_CATALOG.filter((m) => m.kind === 'npc');
-  const monsters = MONSTERS_CATALOG.filter((m) => m.kind === 'monster' && m.monsterType !== 'Beast');
-  const beasts = MONSTERS_CATALOG.filter((m) => m.kind === 'monster' && m.monsterType === 'Beast');
+  const npcs = MONSTERS_CATALOG.filter((m) => m.kind === "npc");
+  const monsters = MONSTERS_CATALOG.filter(
+    (m) => m.kind === "monster" && m.monsterType !== "Beast",
+  );
+  const beasts = MONSTERS_CATALOG.filter(
+    (m) => m.kind === "monster" && m.monsterType === "Beast",
+  );
   return [
-    { label: 'Humanoid NPCs', entries: npcs },
-    { label: 'Monsters', entries: monsters },
-    { label: 'Beasts & Animals', entries: beasts },
+    { label: "Humanoid NPCs", entries: npcs },
+    { label: "Monsters", entries: monsters },
+    { label: "Beasts & Animals", entries: beasts },
   ];
 }
 
-function buildSkills(template: CatalogMonster): Record<string, Record<string, { level: number }>> {
+function buildSkills(
+  template: CatalogMonster,
+): Record<string, Record<string, { level: number }>> {
   const skills: Record<string, Record<string, { level: number }>> = {};
   for (const s of template.skills) {
     if (!skills[s.attr]) skills[s.attr] = {};
@@ -68,15 +74,15 @@ function buildWeapons(template: CatalogMonster) {
   return template.weapons.map((w) => ({
     id: crypto.randomUUID(),
     name: w.name,
-    type: '',
+    type: "",
     wa: 0,
     dmg: w.dmg,
-    rel: w.rof === '1' ? '1' : '',
-    hand: '',
-    rng: w.rng ?? (w.effect.startsWith('RNG:') ? w.effect : ''),
-    effect: w.effect.startsWith('RNG:') ? '' : w.effect,
-    conc: '',
-    enhancements: '',
+    rel: w.rof === "1" ? "1" : "",
+    hand: "",
+    rng: w.rng ?? (w.effect.startsWith("RNG:") ? w.effect : ""),
+    effect: w.effect.startsWith("RNG:") ? "" : w.effect,
+    conc: "",
+    enhancements: "",
     weight: 0,
   }));
 }
@@ -89,12 +95,12 @@ export function catalogToEnemy(name: string, template: CatalogMonster) {
   const resolveMax = Math.floor(((attrs.int + attrs.will) / 2) * 5);
 
   return {
-    type: 'enemy' as const,
+    type: "enemy" as const,
     name,
     enemyKind: template.kind,
     bestiaryId: template.id,
-    race: template.defaultRace ?? '',
-    occupation: template.kind === 'npc' ? '' : undefined,
+    race: template.defaultRace ?? "",
+    occupation: template.kind === "npc" ? "" : undefined,
     attributes: attrs,
     skills: buildSkills(template),
     vitals: {

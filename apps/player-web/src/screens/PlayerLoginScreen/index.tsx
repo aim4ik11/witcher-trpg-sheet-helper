@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { setToken } from '../../api';
-import { joinSession } from '../../socket';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { setToken } from "../../api";
+import { joinSession } from "../../socket";
 
 export default function PlayerLoginScreen() {
-  const [nickname, setNickname] = useState('');
-  const [code, setCode] = useState('');
-  const [error, setError] = useState('');
+  const [nickname, setNickname] = useState("");
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
     try {
       const ack = await joinSession({
@@ -21,12 +21,12 @@ export default function PlayerLoginScreen() {
       });
       if (ack.ok && ack.token) {
         setToken(ack.token);
-        navigate('/sheet');
+        navigate("/sheet");
       } else {
-        setError(ack.error ?? 'Помилка входу');
+        setError(ack.error ?? "Помилка входу");
       }
     } catch {
-      setError('Не вдалося підключитися до сервера');
+      setError("Не вдалося підключитися до сервера");
     } finally {
       setLoading(false);
     }
@@ -40,18 +40,29 @@ export default function PlayerLoginScreen() {
         <p className="login-hint">Введіть нікнейм та код, які дав вам DM.</p>
         <form onSubmit={(e) => void handleSubmit(e)}>
           <input
-            type="text" placeholder="Нікнейм" value={nickname}
+            type="text"
+            placeholder="Нікнейм"
+            value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-            autoFocus autoComplete="off" autoCapitalize="off"
+            autoFocus
+            autoComplete="off"
+            autoCapitalize="off"
           />
           <input
-            type="text" placeholder="Код" value={code}
+            type="text"
+            placeholder="Код"
+            value={code}
             onChange={(e) => setCode(e.target.value)}
-            autoComplete="off" inputMode="numeric"
+            autoComplete="off"
+            inputMode="numeric"
           />
           {error && <p className="login-error">{error}</p>}
-          <button type="submit" className="primary" disabled={loading || !nickname.trim() || !code.trim()}>
-            {loading ? 'Підключення...' : 'Відкрити мій аркуш'}
+          <button
+            type="submit"
+            className="primary"
+            disabled={loading || !nickname.trim() || !code.trim()}
+          >
+            {loading ? "Підключення..." : "Відкрити мій аркуш"}
           </button>
         </form>
       </div>

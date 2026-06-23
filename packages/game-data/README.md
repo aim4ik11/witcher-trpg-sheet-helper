@@ -14,9 +14,9 @@ This writes `src/data/weapons.json`, `armor.json`, and `magic.json`.
 
 ## Modules
 
-| File | Contents |
-|------|----------|
+| File               | Contents                                                            |
+| ------------------ | ------------------------------------------------------------------- |
 | `characterData.ts` | 9 stats, skills, physical/hand-to-hand tables, derived stat helpers |
-| `gameOptions.ts` | Races (4), occupations (9), magic categories |
-| `professions.ts` | Profession skill packages |
-| `catalog.ts` | Weapon/armor/magic pickers |
+| `gameOptions.ts`   | Races (4), occupations (9), magic categories                        |
+| `professions.ts`   | Profession skill packages                                           |
+| `catalog.ts`       | Weapon/armor/magic pickers                                          |

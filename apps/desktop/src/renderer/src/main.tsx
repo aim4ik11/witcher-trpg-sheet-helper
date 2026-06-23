@@ -1,7 +1,7 @@
-import { HashRouter } from 'react-router-dom';
-import { createRoot } from 'react-dom/client';
-import React from 'react';
-import App from './App';
+import { HashRouter } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import React from "react";
+import App from "./App";
 
 function Main() {
   return (
@@ -13,4 +13,4 @@ function Main() {
   );
 }
 
-createRoot(document.getElementById('root')!).render(<Main />);
+createRoot(document.getElementById("root")!).render(<Main />);

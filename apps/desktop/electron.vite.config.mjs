@@ -1,5 +1,5 @@
-import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig, externalizeDepsPlugin } from "electron-vite";
+import react from "@vitejs/plugin-react";
 
 // electron-vite builds three parts to out/{main,preload,renderer}.
 // Defaults: main = src/main/index.js, preload = src/preload/index.js,

@@ -1,8 +1,13 @@
 import {
-  RACES, raceLabel, occupationLabel, occupationsForRace,
-  normalizeRace, normalizeOccupation, reconcileOccupation,
-} from '@wilmak/game-data';
-import './RaceOccupationSelect.css';
+  RACES,
+  raceLabel,
+  occupationLabel,
+  occupationsForRace,
+  normalizeRace,
+  normalizeOccupation,
+  reconcileOccupation,
+} from "@wilmak/game-data";
+import "./RaceOccupationSelect.css";
 
 interface SelectProps {
   value: string;
@@ -14,9 +19,16 @@ interface SelectProps {
 export function RaceSelect({ value, onChange, id, required }: SelectProps) {
   const normalized = normalizeRace(value);
   return (
-    <select id={id} value={normalized} onChange={(e) => onChange(e.target.value)} required={required}>
+    <select
+      id={id}
+      value={normalized}
+      onChange={(e) => onChange(e.target.value)}
+      required={required}
+    >
       {RACES.map((race) => (
-        <option key={race.value || 'empty'} value={race.value}>{race.label}</option>
+        <option key={race.value || "empty"} value={race.value}>
+          {race.label}
+        </option>
       ))}
     </select>
   );
@@ -26,28 +38,42 @@ interface OccupationSelectProps extends SelectProps {
   race?: string;
 }
 
-export function OccupationSelect({ value, onChange, race = '', id, required }: OccupationSelectProps) {
+export function OccupationSelect({
+  value,
+  onChange,
+  race = "",
+  id,
+  required,
+}: OccupationSelectProps) {
   const normalizedRace = normalizeRace(race);
   const options = occupationsForRace(normalizedRace);
-  const normalizedValue = reconcileOccupation(normalizedRace, value) || value || '';
+  const normalizedValue = reconcileOccupation(normalizedRace, value) || value || "";
 
   return (
     <select
       id={id}
-      value={options.some((o) => o.value === normalizedValue) ? normalizedValue : ''}
+      value={options.some((o) => o.value === normalizedValue) ? normalizedValue : ""}
       onChange={(e) => onChange(e.target.value)}
       required={required}
     >
       {options.map((occ) => (
-        <option key={occ.value || 'empty'} value={occ.value}>{occ.label}</option>
+        <option key={occ.value || "empty"} value={occ.value}>
+          {occ.label}
+        </option>
       ))}
     </select>
   );
 }
 
-export function RaceOccupationDisplay({ race, occupation }: { race?: string; occupation?: string }) {
+export function RaceOccupationDisplay({
+  race,
+  occupation,
+}: {
+  race?: string;
+  occupation?: string;
+}) {
   const r = normalizeRace(race);
-  const o = reconcileOccupation(r, occupation) || normalizeOccupation(occupation ?? '');
+  const o = reconcileOccupation(r, occupation) || normalizeOccupation(occupation ?? "");
   return (
     <>
       {r && <span>{raceLabel(r)}</span>}

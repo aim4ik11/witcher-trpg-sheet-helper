@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { QRCodeSVG } from 'qrcode.react';
-import { useAppStore } from '../../store';
-import { setApiBase } from '../../api';
-import PlayerInvitesList from '../../components/PlayerInvitesList';
-import '../../components/PlayerInvitesList/PlayerInvitesList.css';
-import { useCredentialsSync } from '../../hooks/useCredentialsSync';
-import { normalizePlayers } from '../../utils/session';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { QRCodeSVG } from "qrcode.react";
+import { useAppStore } from "../../store";
+import { setApiBase } from "../../api";
+import PlayerInvitesList from "../../components/PlayerInvitesList";
+import "../../components/PlayerInvitesList/PlayerInvitesList.css";
+import { useCredentialsSync } from "../../hooks/useCredentialsSync";
+import { normalizePlayers } from "../../utils/session";
 
 const LocalScreen = () => {
   const navigate = useNavigate();
   const {
-    config, server, players, credentials,
-    setConfig, setServer, setPlayers, setCredentials,
+    config,
+    server,
+    players,
+    credentials,
+    setConfig,
+    setServer,
+    setPlayers,
+    setCredentials,
   } = useAppStore();
 
   const [starting, setStarting] = useState(false);
-  const [startError, setStartError] = useState('');
+  const [startError, setStartError] = useState("");
   const syncCredentials = useCredentialsSync();
 
   useEffect(() => {
@@ -28,12 +34,16 @@ const LocalScreen = () => {
   }, [setPlayers]);
 
   useEffect(() => {
-    return window.api.onCredentialsUpdate((creds) => { void syncCredentials(creds); });
+    return window.api.onCredentialsUpdate((creds) => {
+      void syncCredentials(creds);
+    });
   }, [syncCredentials]);
 
   useEffect(() => {
     if (!server) return;
-    void window.api.getCredentials().then((creds) => { void syncCredentials(creds); });
+    void window.api.getCredentials().then((creds) => {
+      void syncCredentials(creds);
+    });
   }, [server, syncCredentials]);
 
   useEffect(() => {
@@ -57,13 +67,13 @@ const LocalScreen = () => {
   const startSession = async () => {
     if (!config || starting) return;
     setStarting(true);
-    setStartError('');
+    setStartError("");
     try {
       const info = await window.api.startSession(config);
       setServer(info);
       setApiBase(info.port);
     } catch (err) {
-      setStartError(err instanceof Error ? err.message : 'Не вдалося підняти сервер');
+      setStartError(err instanceof Error ? err.message : "Не вдалося підняти сервер");
     } finally {
       setStarting(false);
     }
@@ -75,8 +85,8 @@ const LocalScreen = () => {
     setServer(null);
     setPlayers([]);
     setCredentials([]);
-    setStartError('');
-    navigate('/');
+    setStartError("");
+    navigate("/");
   };
 
   const copyCode = (code: string) => {
@@ -85,29 +95,55 @@ const LocalScreen = () => {
 
   return (
     <div className="wrap">
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          marginBottom: 8,
+        }}
+      >
         <h1 style={{ margin: 0 }}>Локальна сесія</h1>
-        <button className="ghost" onClick={handleBack}>← Назад</button>
+        <button className="ghost" onClick={handleBack}>
+          ← Назад
+        </button>
       </div>
 
       {!server && (
         <div className="card">
           <p>1. Завантажте файл налаштувань сесії.</p>
-          <button className="ghost" onClick={pickConfig}>Завантажити файл сесії…</button>
+          <button className="ghost" onClick={pickConfig}>
+            Завантажити файл сесії…
+          </button>
           {config && (
             <p className="muted">
-              {config.sessionName
-                ? <>Завантажено: <b>{config.sessionName}</b> · гравців: {config.players.length}</>
-                : <>Остання сесія · гравців: {config.players.length}</>}
+              {config.sessionName ? (
+                <>
+                  Завантажено: <b>{config.sessionName}</b> · гравців:{" "}
+                  {config.players.length}
+                </>
+              ) : (
+                <>Остання сесія · гравців: {config.players.length}</>
+              )}
             </p>
           )}
           {!config && (
-            <p className="muted">Немає збереженої сесії. Завантажте файл або створіть нову після старту.</p>
+            <p className="muted">
+              Немає збереженої сесії. Завантажте файл або створіть нову після старту.
+            </p>
           )}
           <p style={{ marginTop: 20 }}>2. Підняти сервер.</p>
-          {startError && <p className="muted" style={{ color: 'var(--danger)' }}>{startError}</p>}
-          <button className="primary" onClick={() => void startSession()} disabled={!config || starting}>
-            {starting ? 'Запуск…' : 'Підняти сесію'}
+          {startError && (
+            <p className="muted" style={{ color: "var(--danger)" }}>
+              {startError}
+            </p>
+          )}
+          <button
+            className="primary"
+            onClick={() => void startSession()}
+            disabled={!config || starting}
+          >
+            {starting ? "Запуск…" : "Підняти сесію"}
           </button>
         </div>
       )}
@@ -116,33 +152,50 @@ const LocalScreen = () => {
         <>
           <div className="card">
             <h3>Сервер працює</h3>
-            <p className="muted">Гравці у вашій мережі відкривають цю адресу або сканують QR:</p>
+            <p className="muted">
+              Гравці у вашій мережі відкривають цю адресу або сканують QR:
+            </p>
             {server.urls.map((u) => (
               <div key={u} className="row">
                 <span className="url">{u}</span>
                 <QRCodeSVG value={u} size={88} bgColor="#141210" fgColor="#eae3d6" />
               </div>
             ))}
-            <button className="primary" style={{ marginTop: 16 }} onClick={() => navigate('/session')}>
+            <button
+              className="primary"
+              style={{ marginTop: 16 }}
+              onClick={() => navigate("/session")}
+            >
               Відкрити DM Console →
             </button>
           </div>
 
           <div className="card">
             <h3>Запрошені гравці ({credentials.length})</h3>
-            <p className="muted">Нікнейм і код для входу в браузері. «Онлайн» — уже підключились.</p>
+            <p className="muted">
+              Нікнейм і код для входу в браузері. «Онлайн» — уже підключились.
+            </p>
             <div className="invite-panel">
-              <PlayerInvitesList credentials={credentials} connected={players} onCopyCode={copyCode} />
+              <PlayerInvitesList
+                credentials={credentials}
+                connected={players}
+                onCopyCode={copyCode}
+              />
             </div>
           </div>
 
           <div className="card">
             <h3>Зараз у лобі ({players.length})</h3>
-            {players.length === 0 && <p className="muted">Поки нікого не увійшло. Чекаємо підключень…</p>}
+            {players.length === 0 && (
+              <p className="muted">Поки нікого не увійшло. Чекаємо підключень…</p>
+            )}
             {players.map((p) => (
               <div key={p.socketId} className="row">
                 <span>{p.nickname}</span>
-                <button className="ghost" onClick={() => window.api.kickPlayer(p.socketId)}>
+                <button
+                  className="ghost"
+                  onClick={() => window.api.kickPlayer(p.socketId)}
+                >
                   Виключити
                 </button>
               </div>

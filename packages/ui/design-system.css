@@ -1,5 +1,5 @@
 /* Wilmak — Direction C · Console Slate */
-@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 :root {
   --bg: #181512;
@@ -17,9 +17,9 @@
   --danger: #cd6e60;
   --success: #a3c898;
   --online: #82b372;
-  --font-serif: 'Spectral', Georgia, serif;
-  --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif: "Spectral", Georgia, serif;
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --radius-sm: 5px;
   --radius-md: 6px;
   --radius-lg: 8px;
@@ -115,5 +115,9 @@
   flex-shrink: 0;
 }
 
-.status-pill--online .status-pill__dot { background: var(--online); }
-.status-pill--offline .status-pill__dot { background: var(--text-faint); }
+.status-pill--online .status-pill__dot {
+  background: var(--online);
+}
+.status-pill--offline .status-pill__dot {
+  background: var(--text-faint);
+}

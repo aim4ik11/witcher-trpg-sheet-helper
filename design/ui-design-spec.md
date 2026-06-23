@@ -6,13 +6,13 @@ Design reference for the **Witcher TRPG session manager**: a GM desktop app plus
 
 ## 1. Product summary
 
-| Aspect | Description |
-|--------|-------------|
-| **Product name** | Вільмак (Ukrainian) / Wilmak — Witcher-themed TRPG sheet helper |
-| **Primary user** | Game Master (GM) on desktop |
-| **Secondary user** | Players on phones/laptops via browser |
-| **Core loop** | GM starts local session → players join with nickname + code → GM creates/edits character sheets → players view their sheet read-only in real time |
-| **Game system** | The Witcher Pen & Paper RPG (core rulebook stats, skills, magic, bestiary) |
+| Aspect             | Description                                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Product name**   | Вільмак (Ukrainian) / Wilmak — Witcher-themed TRPG sheet helper                                                                                   |
+| **Primary user**   | Game Master (GM) on desktop                                                                                                                       |
+| **Secondary user** | Players on phones/laptops via browser                                                                                                             |
+| **Core loop**      | GM starts local session → players join with nickname + code → GM creates/edits character sheets → players view their sheet read-only in real time |
+| **Game system**    | The Witcher Pen & Paper RPG (core rulebook stats, skills, magic, bestiary)                                                                        |
 
 ### User roles
 
@@ -35,21 +35,21 @@ Suggested mood — designer may interpret freely:
 
 ### UI building blocks
 
-| Block | Purpose |
-|-------|---------|
-| **Page** | Full-screen view with optional back navigation |
-| **Card** | Grouped content on home/setup flows |
-| **Panel** | Bordered section with a titled header |
-| **Primary action** | Main CTA (start session, create, copy link) |
-| **Secondary action** | Default bordered button |
-| **Ghost action** | Low-emphasis (back, cancel) |
-| **Danger action** | Delete, kick |
-| **Modal** | Focused overlay; dismiss via close control, backdrop click, or Escape |
-| **Tab bar** | Horizontal section switcher (player sheets only) |
-| **List row / card row** | Repeated items (invites, characters, catalog entries) |
-| **Counter** | Current / max numeric control (e.g. HP) |
-| **Table** | Skills, weapons, armor, magic |
-| **Status pill** | Online / offline on invite rows |
+| Block                   | Purpose                                                               |
+| ----------------------- | --------------------------------------------------------------------- |
+| **Page**                | Full-screen view with optional back navigation                        |
+| **Card**                | Grouped content on home/setup flows                                   |
+| **Panel**               | Bordered section with a titled header                                 |
+| **Primary action**      | Main CTA (start session, create, copy link)                           |
+| **Secondary action**    | Default bordered button                                               |
+| **Ghost action**        | Low-emphasis (back, cancel)                                           |
+| **Danger action**       | Delete, kick                                                          |
+| **Modal**               | Focused overlay; dismiss via close control, backdrop click, or Escape |
+| **Tab bar**             | Horizontal section switcher (player sheets only)                      |
+| **List row / card row** | Repeated items (invites, characters, catalog entries)                 |
+| **Counter**             | Current / max numeric control (e.g. HP)                               |
+| **Table**               | Skills, weapons, armor, magic                                         |
+| **Status pill**         | Online / offline on invite rows                                       |
 
 ---
 
@@ -78,12 +78,12 @@ PLAYER WEB (browser, same WiFi)
 
 **Contains:**
 
-| Element | Content / behavior |
-|---------|-------------------|
-| App title | «Вільмак — Гейммайстер» |
-| Subtitle | «Оберіть тип сесії.» |
-| Option A — Local session | Title, short description (WiFi server), **Обрати** → Local Session screen |
-| Option B — Remote session | Title, short description, **Скоро** button (disabled, future feature) |
+| Element                   | Content / behavior                                                        |
+| ------------------------- | ------------------------------------------------------------------------- |
+| App title                 | «Вільмак — Гейммайстер»                                                   |
+| Subtitle                  | «Оберіть тип сесії.»                                                      |
+| Option A — Local session  | Title, short description (WiFi server), **Обрати** → Local Session screen |
+| Option B — Remote session | Title, short description, **Скоро** button (disabled, future feature)     |
 
 **Layout intent:** Two parallel choices; stack on small windows, side by side on wide.
 
@@ -99,39 +99,39 @@ PLAYER WEB (browser, same WiFi)
 
 **Setup card:**
 
-| Step | Content |
-|------|---------|
-| 1 | Instruction to load session config file + **Завантажити файл сесії…** (opens file picker) |
-| 1b | If loaded: show session name and player count |
-| 1c | If nothing loaded: hint that a new session can be created after start |
-| 2 | Instruction to start server + **Підняти сесію** (disabled until config exists; shows loading label while starting) |
-| Error | Shown if start fails |
+| Step  | Content                                                                                                            |
+| ----- | ------------------------------------------------------------------------------------------------------------------ |
+| 1     | Instruction to load session config file + **Завантажити файл сесії…** (opens file picker)                          |
+| 1b    | If loaded: show session name and player count                                                                      |
+| 1c    | If nothing loaded: hint that a new session can be created after start                                              |
+| 2     | Instruction to start server + **Підняти сесію** (disabled until config exists; shows loading label while starting) |
+| Error | Shown if start fails                                                                                               |
 
 #### When server is running
 
 **Server active card:**
 
-| Element | Content |
-|---------|---------|
-| Title | «Сервер працює» |
-| Hint | Players use URL or QR on same network |
-| Per network address | Readable URL + scannable QR code |
-| CTA | **Відкрити DM Console →** |
+| Element             | Content                               |
+| ------------------- | ------------------------------------- |
+| Title               | «Сервер працює»                       |
+| Hint                | Players use URL or QR on same network |
+| Per network address | Readable URL + scannable QR code      |
+| CTA                 | **Відкрити DM Console →**             |
 
 **Invited players card:**
 
-| Element | Content |
-|---------|---------|
-| Title | «Запрошені гравці» + count |
-| Hint | Nickname and code needed for browser login |
-| List | See **Player Invites List** (section 5.5) |
+| Element | Content                                    |
+| ------- | ------------------------------------------ |
+| Title   | «Запрошені гравці» + count                 |
+| Hint    | Nickname and code needed for browser login |
+| List    | See **Player Invites List** (section 5.5)  |
 
 **Lobby card:**
 
-| Element | Content |
-|---------|---------|
-| Title | «Зараз у лобі» + count |
-| Empty state | Waiting message |
+| Element               | Content                         |
+| --------------------- | ------------------------------- |
+| Title                 | «Зараз у лобі» + count          |
+| Empty state           | Waiting message                 |
 | Each connected player | Nickname + **Виключити** (kick) |
 
 ---
@@ -144,55 +144,55 @@ PLAYER WEB (browser, same WiFi)
 
 #### Section: Player Connection
 
-| Element | Content |
-|---------|---------|
-| Section title | Player connection (same WiFi) |
-| Action | **QR Code** — opens QR modal |
-| URL list | Each join URL with **Copy** |
+| Element       | Content                               |
+| ------------- | ------------------------------------- |
+| Section title | Player connection (same WiFi)         |
+| Action        | **QR Code** — opens QR modal          |
+| URL list      | Each join URL with **Copy**           |
 | Empty / error | Warning when no network URL available |
 
 #### Section: Player invites
 
-| Element | Content |
-|---------|---------|
-| Header | «Player invites» + count + **+ Add invite** |
-| Hint | Explain nickname + code for login |
-| List | Player Invites List |
+| Element | Content                                     |
+| ------- | ------------------------------------------- |
+| Header  | «Player invites» + count + **+ Add invite** |
+| Hint    | Explain nickname + code for login           |
+| List    | Player Invites List                         |
 
 #### Section: Player characters
 
-| Element | Content |
-|---------|---------|
-| Header | «Player characters» + count + **+ New Player** (primary) |
-| Empty | Loading or “no sheets yet” message |
-| List | Character card per player (see below) |
+| Element | Content                                                  |
+| ------- | -------------------------------------------------------- |
+| Header  | «Player characters» + count + **+ New Player** (primary) |
+| Empty   | Loading or “no sheets yet” message                       |
+| List    | Character card per player (see below)                    |
 
 **Player character card:**
 
-| Part | Content |
-|------|---------|
-| Name | Tappable — opens sheet |
-| Race, occupation | Secondary labels when set |
-| Login info | Nickname and 4-digit code for player login |
-| Actions | **Open Sheet**, **Delete** (with confirmation) |
+| Part             | Content                                        |
+| ---------------- | ---------------------------------------------- |
+| Name             | Tappable — opens sheet                         |
+| Race, occupation | Secondary labels when set                      |
+| Login info       | Nickname and 4-digit code for player login     |
+| Actions          | **Open Sheet**, **Delete** (with confirmation) |
 
 #### Section: Enemies & NPCs
 
-| Element | Content |
-|---------|---------|
-| Header | «Enemies & NPCs» + count + **+ New Enemy** |
-| Empty | “No enemies yet” |
-| List | Character card per enemy (see below) |
+| Element | Content                                    |
+| ------- | ------------------------------------------ |
+| Header  | «Enemies & NPCs» + count + **+ New Enemy** |
+| Empty   | “No enemies yet”                           |
+| List    | Character card per enemy (see below)       |
 
 **Enemy character card:**
 
-| Part | Content |
-|------|---------|
-| Name | Tappable — opens sheet |
-| Monster type | For bestiary monsters (e.g. Necrophage, Beast) |
-| Race / occupation | For humanoid NPCs only |
-| Threat level | When from bestiary (e.g. Easy / Simple) |
-| Actions | **Open Sheet**, **Delete** |
+| Part              | Content                                        |
+| ----------------- | ---------------------------------------------- |
+| Name              | Tappable — opens sheet                         |
+| Monster type      | For bestiary monsters (e.g. Necrophage, Beast) |
+| Race / occupation | For humanoid NPCs only                         |
+| Threat level      | When from bestiary (e.g. Easy / Simple)        |
+| Actions           | **Open Sheet**, **Delete**                     |
 
 ---
 
@@ -202,9 +202,9 @@ PLAYER WEB (browser, same WiFi)
 
 **Chrome:**
 
-| Element | Behavior |
-|---------|----------|
-| Back | **← DM Console** |
+| Element | Behavior                                    |
+| ------- | ------------------------------------------- |
+| Back    | **← DM Console**                            |
 | Loading | Centered loading message until data arrives |
 
 Sheet content depends on character type — see **Section 6**.
@@ -221,12 +221,12 @@ Opened from **+ New Player** or **+ New Enemy**.
 
 #### New Player Character
 
-| Field | Required | Notes |
-|-------|----------|-------|
-| Name | yes | Character display name |
-| Race | no | Human, Elf, Dwarf, Witcher |
-| Occupation | no | Filtered by race; 9 professions |
-| Player nickname | yes | Login identifier (lowercase, no spaces); creates invite if new |
+| Field           | Required | Notes                                                          |
+| --------------- | -------- | -------------------------------------------------------------- |
+| Name            | yes      | Character display name                                         |
+| Race            | no       | Human, Elf, Dwarf, Witcher                                     |
+| Occupation      | no       | Filtered by race; 9 professions                                |
+| Player nickname | yes      | Login identifier (lowercase, no spaces); creates invite if new |
 
 #### New Enemy
 
@@ -234,18 +234,18 @@ Opened from **+ New Player** or **+ New Enemy**.
 
 **Bestiary mode:**
 
-| Field | Required | Notes |
-|-------|----------|-------|
-| Creature | yes | Dropdown grouped: Humanoid NPCs, Monsters, Beasts & Animals (~30 rulebook entries); optional threat shown in label |
-| Name | yes | Pre-filled from selection, editable |
+| Field    | Required | Notes                                                                                                              |
+| -------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| Creature | yes      | Dropdown grouped: Humanoid NPCs, Monsters, Beasts & Animals (~30 rulebook entries); optional threat shown in label |
+| Name     | yes      | Pre-filled from selection, editable                                                                                |
 
 **Custom NPC mode:**
 
-| Field | Required |
-|-------|----------|
-| Name | yes |
-| Race | no |
-| Occupation | no |
+| Field      | Required |
+| ---------- | -------- |
+| Name       | yes      |
+| Race       | no       |
+| Occupation | no       |
 
 Creates a blank NPC without pre-filled stats.
 
@@ -253,10 +253,10 @@ Creates a blank NPC without pre-filled stats.
 
 ### 5.2 Add Invite Modal
 
-| Field | Required | Notes |
-|-------|----------|-------|
-| Nickname | yes | Login name |
-| Info text | — | Code is generated automatically |
+| Field     | Required | Notes                           |
+| --------- | -------- | ------------------------------- |
+| Nickname  | yes      | Login name                      |
+| Info text | —        | Code is generated automatically |
 
 Actions: Cancel, **Add invite**.
 
@@ -264,13 +264,13 @@ Actions: Cancel, **Add invite**.
 
 ### 5.3 QR Connect Modal
 
-| Element | Content |
-|---------|---------|
-| Title | Scan to join |
-| Hint | Same WiFi required |
-| QR code | Encodes primary join URL |
-| URL | Shown as text |
-| **Copy link** | Primary action |
+| Element        | Content                                  |
+| -------------- | ---------------------------------------- |
+| Title          | Scan to join                             |
+| Hint           | Same WiFi required                       |
+| QR code        | Encodes primary join URL                 |
+| URL            | Shown as text                            |
+| **Copy link**  | Primary action                           |
 | Alternate URLs | Listed if machine has multiple addresses |
 
 ---
@@ -279,12 +279,12 @@ Actions: Cancel, **Add invite**.
 
 Opened when GM adds weapons, armor, or magic from rulebook catalogs on a player sheet.
 
-| Element | Content |
-|---------|---------|
-| Title | Contextual (weapon, armor slot, magic category) |
-| Search | Filter list |
-| Results | Scrollable — item name, short stats, effect text for magic |
-| Optional footer | Add blank custom row |
+| Element         | Content                                                    |
+| --------------- | ---------------------------------------------------------- |
+| Title           | Contextual (weapon, armor slot, magic category)            |
+| Search          | Filter list                                                |
+| Results         | Scrollable — item name, short stats, effect text for magic |
+| Optional footer | Add blank custom row                                       |
 
 Catalogs: weapons, armor, magic (signs, spells, invocations, hexes, rituals).
 
@@ -296,12 +296,12 @@ Used on Local Session and DM Console.
 
 **Each row:**
 
-| Part | Content |
-|------|---------|
-| Nickname | Player login name |
-| Status | Online or offline |
-| Code | 4-digit login code |
-| Copy | Optional copy action |
+| Part     | Content              |
+| -------- | -------------------- |
+| Nickname | Player login name    |
+| Status   | Online or offline    |
+| Code     | 4-digit login code   |
+| Copy     | Optional copy action |
 
 **Empty:** Message that no invites exist yet.
 
@@ -311,27 +311,27 @@ Used on Local Session and DM Console.
 
 Three variants:
 
-| Variant | When | Tabs | GM can edit |
-|---------|------|------|-------------|
-| **A. Player / custom enemy** | Player character, or enemy not from bestiary | Yes | GM yes; player read-only |
-| **B. Bestiary stat block** | Enemy from rulebook catalog | No — single page | GM yes |
-| **C. Player web** | Player’s own character in browser | Yes | Never (read-only) |
+| Variant                      | When                                         | Tabs             | GM can edit              |
+| ---------------------------- | -------------------------------------------- | ---------------- | ------------------------ |
+| **A. Player / custom enemy** | Player character, or enemy not from bestiary | Yes              | GM yes; player read-only |
+| **B. Bestiary stat block**   | Enemy from rulebook catalog                  | No — single page | GM yes                   |
+| **C. Player web**            | Player’s own character in browser            | Yes              | Never (read-only)        |
 
 ### 6.1 Sheet header (all variants)
 
-| Element | GM | Player |
-|---------|-----|--------|
-| Back | Returns to DM Console | **Logout** |
-| Character name | Editable | Display only |
-| Identity line | Race + occupation selectors, or monster type + threat | Race and occupation as text |
-| Player only | Nickname field in header | — |
-| Read-only banner | Hidden for bestiary enemies | “View only — your DM updates this sheet” |
+| Element          | GM                                                    | Player                                   |
+| ---------------- | ----------------------------------------------------- | ---------------------------------------- |
+| Back             | Returns to DM Console                                 | **Logout**                               |
+| Character name   | Editable                                              | Display only                             |
+| Identity line    | Race + occupation selectors, or monster type + threat | Race and occupation as text              |
+| Player only      | Nickname field in header                              | —                                        |
+| Read-only banner | Hidden for bestiary enemies                           | “View only — your DM updates this sheet” |
 
 ---
 
 ### 6.2 Variant A & C — Tabbed player sheet
 
-**Tabs:** Stats · Combat · Inventory · Magic* · Other
+**Tabs:** Stats · Combat · Inventory · Magic\* · Other
 
 \*Magic only for Mage, Priest, Witcher.
 
@@ -339,13 +339,13 @@ Three variants:
 
 **Vitals**
 
-| Field | Interaction |
-|-------|-------------|
-| HP | Current / max counter |
-| STA | Current / max counter |
-| Resolve | Current / max counter |
-| Wound threshold | Number |
-| Formula hint | Optional muted explanation of how maxes are derived |
+| Field           | Interaction                                         |
+| --------------- | --------------------------------------------------- |
+| HP              | Current / max counter                               |
+| STA             | Current / max counter                               |
+| Resolve         | Current / max counter                               |
+| Wound threshold | Number                                              |
+| Formula hint    | Optional muted explanation of how maxes are derived |
 
 **Attributes & skills**
 
@@ -359,12 +359,12 @@ Per attribute:
 
 **Luck & derived stats**
 
-| Field | Notes |
-|-------|-------|
-| Luck | Visual pips for max; GM marks used |
-| RUN, LEAP, STUN, REC | Movement and recovery |
-| Adrenaline, Improvement points, Training points | Progression tracking |
-| Punch, Kick | Unarmed damage strings |
+| Field                                           | Notes                              |
+| ----------------------------------------------- | ---------------------------------- |
+| Luck                                            | Visual pips for max; GM marks used |
+| RUN, LEAP, STUN, REC                            | Movement and recovery              |
+| Adrenaline, Improvement points, Training points | Progression tracking               |
+| Punch, Kick                                     | Unarmed damage strings             |
 
 #### Tab: Combat
 
@@ -378,9 +378,9 @@ GM can add from weapon catalog or blank row.
 
 **Armor** — six body slots:
 
-| Slot | Label |
-|------|-------|
-| Head, Torso, Right arm, Left arm, Right leg, Left leg | |
+| Slot                                                  | Label |
+| ----------------------------------------------------- | ----- |
+| Head, Torso, Right arm, Left arm, Right leg, Left leg |       |
 
 Per slot: piece name (from catalog or custom), stopping power, damage state, effects, weight.
 
@@ -394,21 +394,21 @@ Free-text armor notes below table.
 
 Panels depend on occupation:
 
-| Occupation | Magic sections |
-|------------|----------------|
-| Witcher | Signs, Hexes |
-| Mage | Spells, Hexes, Rituals |
-| Priest | Invocations, Hexes, Rituals |
+| Occupation | Magic sections              |
+| ---------- | --------------------------- |
+| Witcher    | Signs, Hexes                |
+| Mage       | Spells, Hexes, Rituals      |
+| Priest     | Invocations, Hexes, Rituals |
 
 Per section: name, STA cost, defense, range, duration, effect. Add from magic catalog (GM only).
 
 #### Tab: Other
 
-| Panel | Fields |
-|-------|--------|
-| Profession abilities | Name, stat, level, base |
-| Wounds | Description, severity, duration |
-| Status effects | Description |
+| Panel                | Fields                          |
+| -------------------- | ------------------------------- |
+| Profession abilities | Name, stat, level, base         |
+| Wounds               | Description, severity, duration |
+| Status effects       | Description                     |
 
 ---
 
@@ -420,21 +420,21 @@ Per section: name, STA cost, defense, range, duration, effect. Add from magic ca
 
 **Combat block**
 
-| Field | Notes |
-|-------|-------|
-| HP, STA | Counters |
-| RUN, LEAP, STUN, REC | Numeric |
-| VIGOR | Shown when relevant |
+| Field                | Notes               |
+| -------------------- | ------------------- |
+| HP, STA              | Counters            |
+| RUN, LEAP, STUN, REC | Numeric             |
+| VIGOR                | Shown when relevant |
 
 **Creature info block**
 
-| Field | Examples |
-|-------|----------|
-| Threat | Easy / Simple |
-| Bounty | Crown value |
-| Natural armor | SP value |
+| Field                                                   | Examples      |
+| ------------------------------------------------------- | ------------- |
+| Threat                                                  | Easy / Simple |
+| Bounty                                                  | Crown value   |
+| Natural armor                                           | SP value      |
 | Height, weight, environment, intelligence, organization | Rulebook text |
-| Encumbrance | When listed |
+| Encumbrance                                             | When listed   |
 
 **Attributes** — all nine stats in compact form.
 
@@ -464,15 +464,15 @@ Per section: name, STA cost, defense, range, duration, effect. Add from magic ca
 
 **Contains:**
 
-| Element | Content |
-|---------|---------|
-| Brand mark | Wolf motif (placeholder) |
-| Title | Player Login |
-| Hint (UA) | Enter nickname and code from DM |
-| Nickname field | Text input |
-| Code field | Short numeric code |
-| Error message | On failed login |
-| Submit | Open my sheet / loading state |
+| Element        | Content                         |
+| -------------- | ------------------------------- |
+| Brand mark     | Wolf motif (placeholder)        |
+| Title          | Player Login                    |
+| Hint (UA)      | Enter nickname and code from DM |
+| Nickname field | Text input                      |
+| Code field     | Short numeric code              |
+| Error message  | On failed login                 |
+| Submit         | Open my sheet / loading state   |
 
 Success → Player Sheet.
 
@@ -480,12 +480,12 @@ Success → Player Sheet.
 
 Shown when login works but GM has not linked a character to this nickname.
 
-| Element | Content |
-|---------|---------|
-| Title | Logged in |
-| Message | Ask DM to create sheet with matching nickname |
-| **Check again** | Retry |
-| **Logout** | Return to login |
+| Element         | Content                                       |
+| --------------- | --------------------------------------------- |
+| Title           | Logged in                                     |
+| Message         | Ask DM to create sheet with matching nickname |
+| **Check again** | Retry                                         |
+| **Logout**      | Return to login                               |
 
 ### 7.3 Player Sheet
 
@@ -499,27 +499,27 @@ Players only see player characters, not enemy sheets.
 
 ### Character
 
-| Group | What the user sees |
-|-------|-------------------|
-| Identity | Name, player vs enemy, race, occupation, login nickname |
-| Enemy extras | Monster vs NPC, bestiary creature type, threat, bounty, natural armor, lore fields |
-| Attributes | Nine core stats |
-| Skills | Per-skill level and computed base |
-| Vitals | HP, stamina, resolve, wound threshold |
-| Movement / recovery | Run, leap, stun, recovery |
-| Luck | Maximum and spent |
-| Weapons & armor | Gear lists |
-| Consumables | Ammo, potions, bombs, traps |
-| Magic | Spells/signs/etc. by category |
-| Notes | Wounds, status effects, profession abilities |
+| Group               | What the user sees                                                                 |
+| ------------------- | ---------------------------------------------------------------------------------- |
+| Identity            | Name, player vs enemy, race, occupation, login nickname                            |
+| Enemy extras        | Monster vs NPC, bestiary creature type, threat, bounty, natural armor, lore fields |
+| Attributes          | Nine core stats                                                                    |
+| Skills              | Per-skill level and computed base                                                  |
+| Vitals              | HP, stamina, resolve, wound threshold                                              |
+| Movement / recovery | Run, leap, stun, recovery                                                          |
+| Luck                | Maximum and spent                                                                  |
+| Weapons & armor     | Gear lists                                                                         |
+| Consumables         | Ammo, potions, bombs, traps                                                        |
+| Magic               | Spells/signs/etc. by category                                                      |
+| Notes               | Wounds, status effects, profession abilities                                       |
 
 ### Session
 
-| Entity | What the user sees |
-|--------|-------------------|
-| Session | Name, port (internal), list of invites |
-| Invite | Nickname + 4-digit code |
-| Connected player | Nickname in lobby |
+| Entity           | What the user sees                     |
+| ---------------- | -------------------------------------- |
+| Session          | Name, port (internal), list of invites |
+| Invite           | Nickname + 4-digit code                |
+| Connected player | Nickname in lobby                      |
 
 ---
 
@@ -557,11 +557,11 @@ GM: Local lobby → kick player
 
 Mixed Ukrainian and English in current copy:
 
-| Area | Language |
-|------|----------|
-| Main, Local session | Ukrainian |
-| DM Console, modals, enemy sheets | English |
-| Player login | Ukrainian + some English |
+| Area                             | Language                 |
+| -------------------------------- | ------------------------ |
+| Main, Local session              | Ukrainian                |
+| DM Console, modals, enemy sheets | English                  |
+| Player login                     | Ukrainian + some English |
 
 Design may unify or localize later.
 
@@ -569,12 +569,12 @@ Design may unify or localize later.
 
 ## 12. Layout & responsiveness (intent only)
 
-| Context | Intent |
-|---------|--------|
-| GM desktop | Comfortable reading width; multi-column where it helps (sheet stats, enemy stat block) |
-| Player phone | Single column; login centered; tabs scroll horizontally if needed |
-| Modals | Focused, scrollable content when lists are long |
-| Tables | May scroll horizontally on narrow screens |
+| Context      | Intent                                                                                 |
+| ------------ | -------------------------------------------------------------------------------------- |
+| GM desktop   | Comfortable reading width; multi-column where it helps (sheet stats, enemy stat block) |
+| Player phone | Single column; login centered; tabs scroll horizontally if needed                      |
+| Modals       | Focused, scrollable content when lists are long                                        |
+| Tables       | May scroll horizontally on narrow screens                                              |
 
 No fixed measurements prescribed — designer decides spacing, type scale, and breakpoints.
 
@@ -582,15 +582,15 @@ No fixed measurements prescribed — designer decides spacing, type scale, and b
 
 ## 13. States & feedback
 
-| State | Expected feedback |
-|-------|-------------------|
-| Loading | Clear loading message |
-| Empty section | Short placeholder explaining what goes there |
-| Error | Visible error text near the action that failed |
-| Online / offline | Distinguishable on invite rows |
-| Delete / kick | Confirmation before destructive action |
-| Read-only sheet | No editable controls; values as text |
-| Disabled | Visually distinct unavailable actions (coming soon, no server, submitting) |
+| State            | Expected feedback                                                          |
+| ---------------- | -------------------------------------------------------------------------- |
+| Loading          | Clear loading message                                                      |
+| Empty section    | Short placeholder explaining what goes there                               |
+| Error            | Visible error text near the action that failed                             |
+| Online / offline | Distinguishable on invite rows                                             |
+| Delete / kick    | Confirmation before destructive action                                     |
+| Read-only sheet  | No editable controls; values as text                                       |
+| Disabled         | Visually distinct unavailable actions (coming soon, no server, submitting) |
 
 ---
 
@@ -605,4 +605,4 @@ No fixed measurements prescribed — designer decides spacing, type scale, and b
 
 ---
 
-*Content-focused spec for UI/design generation. Describes structure and behavior, not implementation.*
+_Content-focused spec for UI/design generation. Describes structure and behavior, not implementation._
