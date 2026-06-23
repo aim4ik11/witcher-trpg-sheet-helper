@@ -11,6 +11,7 @@
     "dev:gm": "npm run dev -w desktop",
     "dev:player": "npm run dev -w player-web",
     "build:player": "npm run build -w player-web",
+    "sync:game-data": "python3 scripts/sync-game-data.py",
     "dist": "npm run build -w desktop && npm run build:server -w desktop && npm run build -w player-web && npm run pack -w desktop",
     "typecheck": "npm run typecheck --workspaces --if-present"
   },

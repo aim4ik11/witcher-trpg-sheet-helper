@@ -1,242 +1,1891 @@
 [
   {
-    "id": "aard",
-    "category": "sign",
-    "name": "Aard",
-    "staCost": 2,
-    "range": "8m",
-    "duration": "Instant",
-    "effect": "Telekinetic blast. Target must defend or be knocked back 2m and suffer 1d6 bludgeoning damage.",
-    "tags": ["witcher", "air", "push"]
+    "id": "hex-the-devil-s-luck",
+    "name": "The Devil’s Luck",
+    "category": "hex",
+    "staCost": 8,
+    "range": "",
+    "duration": "",
+    "effect": "The Devil’s Luck plagues the subject with bouts of bad fortune. In situations of high stress such as combat or when performing any task with a deadline or a DC higher than 15, the subject rolls a fumble on a natural 1 or 2.",
+    "defense": "",
+    "tags": [],
+    "danger": "Medium",
+    "requirement": "The subject must hammer a silver nail into their door frame and hang 2 units of wolvesbane, tied with a lock of virgin’s hair, from it. Finally the subject must stand under the silver nail, set fire to the bundle of wolvesbane and virgin hair, and breath deeply."
   },
   {
-    "id": "igni",
-    "category": "sign",
-    "name": "Igni",
-    "staCost": 2,
-    "range": "8m",
-    "duration": "Instant",
-    "effect": "Cone of flame. 2d6 fire damage; target may catch fire on failed defense.",
-    "tags": ["witcher", "fire"]
+    "id": "hex-the-eternal-itch",
+    "name": "The Eternal Itch",
+    "category": "hex",
+    "staCost": 4,
+    "range": "",
+    "duration": "",
+    "effect": "The Eternal Itch causes enflamed, itchy pustules to grow on the subjects genitals. The itch does no damage but is a constant annoyance, causing a -1 to all tasks. As well as this -1 the target takes a -5 to Seduction once ‘in the bedroom. ’",
+    "defense": "",
+    "tags": [],
+    "danger": "Low",
+    "requirement": "The subject must gather a unit of scleroderm, fool’s parsely, and bryonia. The subject must light a campfire and bundle up the herbs. With everything prepared the subject must light the herbs and crumble the burning ashes onto the afflicted area while reciting a series of magic words."
   },
   {
-    "id": "yrden",
-    "category": "sign",
-    "name": "Yrden",
-    "staCost": 2,
-    "range": "Self (2m radius)",
-    "duration": "5 rounds",
-    "effect": "Magic trap slows enemies in area; forces spectral foes corporeal.",
-    "tags": ["witcher", "trap", "control"]
+    "id": "hex-the-hex-of-shadows",
+    "name": "The Hex of Shadows",
+    "category": "hex",
+    "staCost": 4,
+    "range": "",
+    "duration": "",
+    "effect": "The Hex of Shadows creates whispers in the shadows, and silhouettes around corners. The subject must make random Awareness checks with an unspecified DC, always almost catching a glimpse of something or someone. The awareness checks are never a real threat, just visions.",
+    "defense": "",
+    "tags": [],
+    "danger": "Low",
+    "requirement": "The subject must bring a bowl of clear water, a branch from a white myrtle bush, and a bottle of ink to a clearing under a crescent moon. When the moon is at its highest the subject must pour the ink into the water, dip the branch in the mixture, and shake droplets in a circle around themselves while holding their breath."
   },
   {
-    "id": "quen",
-    "category": "sign",
-    "name": "Quen",
-    "staCost": 2,
-    "range": "Self",
-    "duration": "Until broken",
-    "effect": "Absorbs damage from one attack before dissipating.",
-    "tags": ["witcher", "shield", "defense"]
+    "id": "hex-the-hex-of-the-beast",
+    "name": "The Hex of the Beast",
+    "category": "hex",
+    "staCost": 12,
+    "range": "",
+    "duration": "",
+    "effect": "The Hex of the Beast makes the target anathema to animals and beasts. Any time the target comes within 10m of an animal that animal will react poorly to the subject, giving them a -3 to Wilderness Survival for handling animals. Each time they come within 10m of an animal there is a 50% chance the animal will attack.",
+    "defense": "",
+    "tags": [],
+    "danger": "High",
+    "requirement": "The subject must gather a small live animal of some sort, 2 units of mistletoe, 1 unit of phosphorus, 2 units of crow’s eye, 3 units of mandrake root. Under a full moon the subject must cut the throat of the animal and consume its blood. Then the animal’s body must be wrapped in bundles of mistletoe, crow’s eye, and mandrake root and placed in an open fire. As the scales or fur of the animal start to burn away, the phosphorus must be thrown into the fire. When the fire has burned out the subject must remove the bones of the animal and wear them on their person for a full day."
   },
   {
-    "id": "axii",
-    "category": "sign",
-    "name": "Axii",
-    "staCost": 2,
-    "range": "8m",
-    "duration": "1 round",
-    "effect": "Stuns target on failed defense; usable in social encounters to influence.",
-    "tags": ["witcher", "mind", "control"]
+    "id": "hex-the-nightmare",
+    "name": "The Nightmare",
+    "category": "hex",
+    "staCost": 8,
+    "range": "",
+    "duration": "",
+    "effect": "The Nightmare forces the subject to relive the same horrifying nightmare. Every night the subject must make a Resist Coercion check at a DC equal to the Hex Weaving roll the caster made to hex them. If they succeed they manage to get a full, though restless, night’s sleep. If they fail, they barely sleep and do not recover STA or HP during the night. If they fail 3 nights in a row they halve their Stamina and take a -2 to all actions until they can get a full night’s rest.",
+    "defense": "",
+    "tags": [],
+    "danger": "Medium",
+    "requirement": "The subject must gather 5 candles, 5 units of beast bones, and 1 unit of glowing ore. The night of the ceremony the subject must arrange the candles in a circle around them, linked by bones, and place the glowing ore under their head. If the subject is able to sleep through the night they will be freed of the hex."
   },
   {
-    "id": "zephyr",
-    "category": "spell",
-    "name": "Zephyr",
+    "id": "hex-the-pesta-s-kiss",
+    "name": "The Pesta’s Kiss",
+    "category": "hex",
+    "staCost": 12,
+    "range": "",
+    "duration": "",
+    "effect": "The Pesta’s Kiss breaks down the subject’s ability to fight illness and resist nausea. Anytime the subject comes in contact with a diseased person they have a 75% chance of catching the illness. Any time they smell something even slightly nauseating they must succeed at a DC:16 Endurance check or be nauseated.",
+    "defense": "",
+    "tags": [],
+    "danger": "High",
+    "requirement": "The subject must gather 3 units of river clay, 1 unit of coal, 3 units of resin, and 1 unit of infused dust. First the subject must craft a totem from the clay mixed with infused dust and coated in resin, with the coal forming its eyes. This takes a DC:14 Fine Arts roll. Then the subject must repeat a series of magic words, infusing the totem with power. Immediately after, the totem must be smashed and the coal eyes must be powdered and consumed by the subject."
+  },
+  {
+    "id": "invocation-blessing-of-death",
+    "name": "Blessing of Death",
+    "category": "invocation",
+    "staCost": 16,
+    "range": "10m",
+    "duration": "Immediate",
+    "effect": "Summoning the power of the Lion-Headed Spider, you cut the ties of life holding a target to this world. The target must roll Resist Magic or be thrust into Death state as if by taking normal damage. However if they are treated with a successful First Aid or Healing Hands roll at a DC of 16, they immediately recover their previous number of Health Points.",
+    "defense": "Resist Magic or Magical Shield",
+    "tags": [
+      "arch-priest",
+      "preacher"
+    ],
+    "tier": "arch-priest"
+  },
+  {
+    "id": "invocation-eternal-judgement",
+    "name": "Eternal Judgement",
+    "category": "invocation",
+    "staCost": 16,
+    "range": "10m",
+    "duration": "Until Put Out",
+    "effect": "Using the power granted to you by the Eternal Fire, you cause a target to burst into a bright white fire, tinged with red. The fire does double the nor - mal fire damage and cannot be extinguished except by magic, or by completely submerging underwater for 3 rounds. Anything that touches this magical fire ignites with normal fire and can be put out in one full round.",
+    "defense": "Resist Magic or Magical Shield",
+    "tags": [
+      "arch-priest",
+      "preacher"
+    ],
+    "tier": "arch-priest"
+  },
+  {
+    "id": "invocation-freya-s-bravery",
+    "name": "Freya’s Bravery",
+    "category": "invocation",
+    "staCost": 16,
+    "range": "20m Radius",
+    "duration": "20 Rounds",
+    "effect": "Calling upon the power of the goddess Freya, you summon her spirit into your body, creating a glow around yourself which emanates 20m in all directions. Every person within that area is emboldened by Modron Freya’s love and guidance. They become immune to fear and gain 25 Health Points for the duration of the spell. If they leave the area of the invocation, its effects last for 1d6 rounds. These rounds renew if the person re-enters the area of the invocation and leaves again. This invocation affects those who don’t believe in Freya, but the power can be withheld from anyone the caster chooses.",
+    "defense": "None",
+    "tags": [
+      "arch-priest",
+      "preacher"
+    ],
+    "tier": "arch-priest"
+  },
+  {
+    "id": "invocation-healing-rest",
+    "name": "Healing Rest",
+    "category": "invocation",
+    "staCost": 16,
+    "range": "5m",
+    "duration": "1 Day",
+    "effect": "With the power granted to you by Melitele, the mother goddess, you can place a number of people equal to the value of your Spell Casting skill into a deep coma in which their bodies heal themselves. They cannot act for the entirety of the rest and are unaware of their surroundings even if touched, moved, or attacked. At the end of the rest, targets revive at full health, and their critical wounds have been healed.",
+    "defense": "None",
+    "tags": [
+      "arch-priest",
+      "preacher"
+    ],
+    "tier": "arch-priest"
+  },
+  {
+    "id": "invocation-luck-of-the-father",
+    "name": "Luck of the Father",
+    "category": "invocation",
+    "staCost": 16,
+    "range": "Self//10m",
+    "duration": "1 Hour",
+    "effect": "With power granted to you by Kreve, the All-Father, you gather divine providence to you. For the duration of the spell you can spend a number of LUCK points equal to your Spell Casting skill value times 3. Y ou can augment any rolls you make, but can also impose penalties or grant bonuses to the roll of anyone within 10m.",
+    "defense": "None",
+    "tags": [
+      "arch-priest",
+      "preacher"
+    ],
+    "tier": "arch-priest"
+  },
+  {
+    "id": "invocation-white-flame",
+    "name": "White Flame",
+    "category": "invocation",
+    "staCost": 16,
+    "range": "10m Radius",
+    "duration": "1 Hour",
+    "effect": "Summoning the power of the Great Sun, you create a bright aura of White Fire which lights the surrounding area to the level of bright light. This aura of fire doesn’t burn anyone who touches it but does thaw anyone in the spell’s area, and dispels water-based spells in the area. Water-based spells can only be cast in the area of the spell if the caster’s Spell Casting check beats that of the Priest of the Great Sun. On top of this, any monster in the area that is vulnerable to sunlight takes double the normal penalties.",
+    "defense": "Resist Magic or Magical Shield",
+    "tags": [
+      "arch-priest",
+      "preacher"
+    ],
+    "tier": "arch-priest"
+  },
+  {
+    "id": "invocation-blessing-of-healing",
+    "name": "Blessing of Healing",
+    "category": "invocation",
     "staCost": 5,
     "range": "2m",
-    "duration": "Instant",
-    "effect": "Burst of wind blasts targets within 2m back 6m for 1d6 damage; ramming damage on impact.",
-    "tags": ["air", "mage", "basic"]
+    "duration": "Active (3 STA)",
+    "effect": "Blessing of Healing jumpstarts a target’s healing, allowing them to heal at 3 points per round. This blessing can be used multiple times to heal a critical wound.",
+    "defense": "None",
+    "tags": [
+      "journeyman",
+      "druid"
+    ],
+    "tier": "journeyman"
   },
   {
-    "id": "magic-healing",
-    "category": "spell",
-    "name": "Magic Healing",
-    "staCost": 5,
-    "range": "Touch",
-    "duration": "1 turn",
-    "effect": "Heals 3 HP per turn while maintained.",
-    "tags": ["water", "mage", "healing"]
-  },
-  {
-    "id": "dispel",
-    "category": "spell",
-    "name": "Dispel",
+    "id": "invocation-cleansing-fire",
+    "name": "Cleansing Fire",
+    "category": "invocation",
     "staCost": 6,
     "range": "10m",
-    "duration": "Instant",
-    "effect": "Ends an active spell or blocks a magical attack (may be used as defensive action).",
-    "tags": ["neutral", "mage", "counter"]
+    "duration": "Until Put Out",
+    "effect": "Cleansing Fire ignites one target, doing 3d6 damage and setting them on fire.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "journeyman",
+      "preacher"
+    ],
+    "tier": "journeyman"
   },
   {
-    "id": "cadfans-grasp",
-    "category": "spell",
-    "name": "Cadfan's Grasp",
-    "staCost": 8,
-    "range": "10m",
-    "duration": "Instant",
-    "effect": "Super-heats metal item: holder drops it or takes 2d6 limb damage; or heats weapon for +2d6 and 50% ignite.",
-    "tags": ["fire", "mage", "intermediate"]
-  },
-  {
-    "id": "carys-hail",
-    "category": "spell",
-    "name": "Carys' Hail",
-    "staCost": 10,
-    "range": "20m",
-    "duration": "Instant",
-    "effect": "Hail of ice shards strikes a 2m area for 2d6 cold damage per target.",
-    "tags": ["water", "mage", "intermediate"]
-  },
-  {
-    "id": "melgars-fire",
-    "category": "spell",
-    "name": "Melgar's Fire",
-    "staCost": 12,
-    "range": "20m",
-    "duration": "Instant",
-    "effect": "Calls fire from the sky on a target for 4d6 fire damage.",
-    "tags": ["fire", "mage", "advanced"]
-  },
-  {
-    "id": "rhwystr-graig",
-    "category": "spell",
-    "name": "Rhwystr Graig",
-    "staCost": 10,
-    "range": "20m",
-    "duration": "5 rounds",
-    "effect": "Creates a stone wall up to 3m × 2m within range.",
-    "tags": ["earth", "mage", "intermediate"]
-  },
-  {
-    "id": "teleportation",
-    "category": "spell",
-    "name": "Teleportation",
-    "staCost": 15,
-    "range": "Self",
-    "duration": "Instant",
-    "effect": "Instantly move to a known location within line of sight or memory.",
-    "tags": ["neutral", "mage", "advanced"]
-  },
-  {
-    "id": "dormyn",
+    "id": "invocation-holy-fortification",
+    "name": "Holy Fortification",
     "category": "invocation",
-    "name": "Dormyn's Blessing",
     "staCost": 5,
-    "range": "Touch",
-    "duration": "1 hour",
-    "effect": "Blessed target gains +2 to Courage and Resist Coercion.",
-    "tags": ["priest", "blessing"]
+    "range": "10m",
+    "duration": "Immediate",
+    "effect": "Holy Fortification bolsters a target’s willpower and allows the target to make a new check against the effects of any spell that is cur - rently affecting them.",
+    "defense": "None",
+    "tags": [
+      "journeyman",
+      "preacher"
+    ],
+    "tier": "journeyman"
   },
   {
-    "id": "divine-wisdom",
+    "id": "invocation-light-of-truth",
+    "name": "Light of Truth",
     "category": "invocation",
+    "staCost": 4,
+    "range": "5m",
+    "duration": "Active (2 STA)",
+    "effect": "The Light of Truth allows you to create a bright white light that forces one target to speak truthfully. Every round the target must make another check. If they fail, they must answer any question truthfully.",
+    "defense": "Resist Magic",
+    "tags": [
+      "journeyman",
+      "preacher"
+    ],
+    "tier": "journeyman"
+  },
+  {
+    "id": "invocation-primal-reservoir",
+    "name": "Primal Reservoir",
+    "category": "invocation",
+    "staCost": 6,
+    "range": "5m",
+    "duration": "2d6 Rounds",
+    "effect": "Primal Reservoir allows you to tap into the primal power of a target and awaken it. It grants them a +2 to Melee Damage, but a -2 to INT for the duration of the spell.",
+    "defense": "Resist Magic",
+    "tags": [
+      "journeyman",
+      "druid"
+    ],
+    "tier": "journeyman"
+  },
+  {
+    "id": "invocation-threads-of-life",
+    "name": "Threads of Life",
+    "category": "invocation",
+    "staCost": 4,
+    "range": "10m",
+    "duration": "Active (2 STA)",
+    "effect": "Threads of Life allows you to see the life energy binding every target within the radius of the spell, which tells you their cur - rent Health Points and any critical wounds they have suffered.",
+    "defense": "None",
+    "tags": [
+      "journeyman",
+      "druid"
+    ],
+    "tier": "journeyman"
+  },
+  {
+    "id": "invocation-divine-portal",
+    "name": "Divine Portal",
+    "category": "invocation",
+    "staCost": 12,
+    "range": "N/A",
+    "duration": "1 Round",
+    "effect": "Divine Portal creates a standing portal for a brief instant. The portal lasts for just one round and allows you to transport yourself or others anywhere you can recall. This portal otherwise functions like the mage spell, Standing Portal.",
+    "defense": "None",
+    "tags": [
+      "master",
+      "preacher"
+    ],
+    "tier": "master"
+  },
+  {
+    "id": "invocation-divine-wisdom",
     "name": "Divine Wisdom",
-    "staCost": 6,
-    "range": "Self",
-    "duration": "10 minutes",
-    "effect": "+3 to Education, Awareness, and Social Etiquette rolls.",
-    "tags": ["priest", "blessing", "utility"]
-  },
-  {
-    "id": "afans-mirror",
     "category": "invocation",
-    "name": "Afan's Mirror",
-    "staCost": 8,
-    "range": "10m",
-    "duration": "5 rounds",
-    "effect": "Creates illusory duplicates; controlled copies cannot leave spell range.",
-    "tags": ["priest", "illusion"]
-  },
-  {
-    "id": "odi-bywyd",
-    "category": "invocation",
-    "name": "Odi Bywyd",
     "staCost": 10,
-    "range": "Touch",
-    "duration": "Instant",
-    "effect": "Restores a dying target to 1 HP and stabilizes wounds.",
-    "tags": ["priest", "healing", "emergency"]
+    "range": "50m",
+    "duration": "Active (5 STA)",
+    "effect": "Divine Wisdom searchs with a powerful augury for the answer to a question. This answer cannot predict the future. The GM sets your DC based on the secrecy of the information.",
+    "defense": "None",
+    "tags": [
+      "master",
+      "preacher"
+    ],
+    "tier": "master"
   },
   {
-    "id": "curse-of-pain",
-    "category": "hex",
-    "name": "Curse of Pain",
-    "staCost": 6,
+    "id": "invocation-shape-nature",
+    "name": "Shape Nature",
+    "category": "invocation",
+    "staCost": 12,
     "range": "10m",
-    "duration": "1 hour",
-    "effect": "Target suffers −2 to all actions until hex is removed.",
-    "tags": ["hex", "curse", "debuff"]
+    "duration": "1d10 Rounds",
+    "effect": "Shape Nature allows you to create a golem from a small nearby tree. The golem serves you for the duration of the spell and will turn back into a tree when the duration ends. If killed, the golem only yields 2d10 units of timber. In all other ways, the tree acts as a normal golem.",
+    "defense": "None",
+    "tags": [
+      "master",
+      "druid"
+    ],
+    "tier": "master"
   },
   {
-    "id": "hex-of-binding",
-    "category": "hex",
-    "name": "Hex of Binding",
-    "staCost": 8,
+    "id": "invocation-song-of-the-sky",
+    "name": "Song of the Sky",
+    "category": "invocation",
+    "staCost": 10,
+    "range": "50m",
+    "duration": "Active (5 STA)",
+    "effect": "The Song of the Sky changes the weather in the area directly around you. Y ou can change the weather to: clear sky (no modifiers), cloudy (little sunlight), rainstorm (puts out fires), wind storm (-2 to DEX for ranged attacks), or lightning storm (25% chance of being struck by lightning, equivalent to the Lightning Storm spell).",
+    "defense": "None",
+    "tags": [
+      "master",
+      "druid"
+    ],
+    "tier": "master"
+  },
+  {
+    "id": "invocation-blessing-of-fortune",
+    "name": "Blessing of Fortune",
+    "category": "invocation",
+    "staCost": 1,
     "range": "10m",
-    "duration": "5 rounds",
-    "effect": "Target's legs bind; movement halved and cannot run.",
-    "tags": ["hex", "curse", "control"]
+    "duration": "Until Expended",
+    "effect": "The Blessing of Fortune gives the target LUCK points equal to half the value you rolled over the DC (max 5).",
+    "defense": "DC: 12",
+    "tags": [
+      "novice",
+      "preacher"
+    ],
+    "tier": "novice"
   },
   {
-    "id": "stammelford",
+    "id": "invocation-blessing-of-love",
+    "name": "Blessing of Love",
+    "category": "invocation",
+    "staCost": 2,
+    "range": "5m",
+    "duration": "1d10 Rounds",
+    "effect": "The Blessing of Love gives the caster a +3 to Charisma and Seduction for the duration of the invocation.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "preacher"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-boiling-blood",
+    "name": "Boiling Blood",
+    "category": "invocation",
+    "staCost": 3,
+    "range": "8m",
+    "duration": "1d10 Rounds",
+    "effect": "Boiling Blood causes an animal or non-sentient monster within range to become enraged at a target. The creature will try to attack the chosen target until the duration ends.",
+    "defense": "Creature’s WILLx3",
+    "tags": [
+      "novice",
+      "druid"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-cursed-illness",
+    "name": "Cursed Illness",
+    "category": "invocation",
+    "staCost": 0,
+    "range": "8m",
+    "duration": "Endurance Roll Ends",
+    "effect": "Cursed Illness causes one target to fall ill. The illness manifests differently based on how many Stamina points are spent. 2 points causes the target to double over coughing and staggers them. 4 points causes the target to become violently ill, stunning them. 6 points causes the target to become ill with a ravaging disease which is treated as a poison . The invocation ends when the target makes an Endurance roll at a DC equal to the casting roll.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "novice",
+      "druid"
+    ],
+    "staCostText": "Variable",
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-friend-to-wild-kind",
+    "name": "Friend to Wild Kind",
+    "category": "invocation",
+    "staCost": 1,
+    "range": "Self or 5m",
+    "duration": "1d6 Hours",
+    "effect": "Friend to Wild Kind grants the caster a +3 to Wilderness Sur - vival for handling animals. Alter - nately it can calm one animal if the Spell Casting roll exceeds the animal’s WILLx3.",
+    "defense": "Creature’s WILLx3",
+    "tags": [
+      "novice",
+      "druid"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-holy-light",
+    "name": "Holy Light",
+    "category": "invocation",
+    "staCost": 1,
+    "range": "Self",
+    "duration": "3d10 Rounds",
+    "effect": "Holy Light lights up an area as though the caster was carrying a torch. The light gives off no heat and cannot be used to ignite other objects like a torch can.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "preacher"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-nature-s-gift",
+    "name": "Nature’s Gift",
+    "category": "invocation",
+    "staCost": 0,
+    "range": "2m",
+    "duration": "Immediate",
+    "effect": "Nature’s Gift grows a small cluster of edible plants in soil of any kind. These plants are enough to sustain a number of people equal to the number of STA points spent for 1 day.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "druid"
+    ],
+    "staCostText": "Variable",
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-nature-s-sight",
+    "name": "Nature’s Sight",
+    "category": "invocation",
+    "staCost": 2,
+    "range": "Self",
+    "duration": "Active (1 STA)",
+    "effect": "Nature’s Sight allows you to see creatures that are not natural to this realm. This allows you to see monsters within 50m, even through obstacles. Monsters seen in this view appears as glowing versions of themselves.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "druid"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-sigil-of-the-hidden",
+    "name": "Sigil of the Hidden",
+    "category": "invocation",
+    "staCost": 2,
+    "range": "Self",
+    "duration": "Until Dispelled",
+    "effect": "Drawing the Sigil of the Hidden covers a 3m area in branches, foliage, and other natural elements to provide complete visual cover. This grants you a +5 to Stealth, but immobilizes those inside and must be cast again to uncover yourself. Y ou can cut away the brush by doing 10 points of damage to it.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "druid"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-vaults-of-knowledge",
+    "name": "Vaults of Knowledge",
+    "category": "invocation",
+    "staCost": 3,
+    "range": "Self",
+    "duration": "Immediate",
+    "effect": "Vaults of Knowledge allows you to reach back into your mind and access any knowledge or memory that you’ve ever known as if you were just experiencing it.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "preacher"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-waters-of-clearance",
+    "name": "Waters of Clearance",
+    "category": "invocation",
+    "staCost": 1,
+    "range": "5m",
+    "duration": "Immediate",
+    "effect": "Waters of Clearance sobers the target immediately. This incantation counteracts alcohol and alchemical solutions that cause intoxication.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "novice",
+      "preacher"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "invocation-web-of-lies",
+    "name": "Web of Lies",
+    "category": "invocation",
+    "staCost": 3,
+    "range": "8m",
+    "duration": "INT roll ends",
+    "effect": "Web of Lies allows you to scramble the information in a tar - get’s head, making them question every piece of information and memory. This stuns the target until they can roll under their INT.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "novice",
+      "preacher"
+    ],
+    "tier": "novice"
+  },
+  {
+    "id": "ritual-artifact-compression",
+    "name": "Artifact Compression",
     "category": "ritual",
-    "name": "Stammelford's Arcane Seal",
+    "staCost": 16,
+    "range": "",
+    "duration": "Until Reversed",
+    "effect": "Artifact Compression converts a target creature within 10m to 1/10th original scale and encases them in jade. While in the statuette this target is unconscious. The process of transformation is excruciatingly painful for the target and the target must make a DC:15 Endurance check or take 6d6 damage to their torso. A target can be kept in a state of Artifact Compression for an indefinite amount of time and their body is held in suspension so they don’t age. While in condensed form, a target has 1/5th (rounded up) their normal Health Points. If these points are expended the tar - get dies. If a limb is broken off, either with a DC:14 Physique check or 5 points of damage, the target is treated as if that limb was dismembered. If the head is snapped off, the target dies. Gluing pieces back onto a compressed figurine doesn’t reattach the limb. After a target is uncompressed they are stunned until they make a successful Stun save.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "10 Rounds",
+    "difficultyCheck": "18",
+    "components": "Perfect Gemstone (x1), Fifth Essence (x5), Infused Dust (x2), River Clay (x4)"
+  },
+  {
+    "id": "ritual-consecrate",
+    "name": "Consecrate",
+    "category": "ritual",
+    "staCost": 12,
+    "range": "",
+    "duration": "Until Dispelled",
+    "effect": "Consecrate creates a magic circle which temporarily repels monsters. This circle can be up to 10m in radius and forces any monster that tries to enter the area to roll a Resist Magic check at a DC equal to the Ritual Crafting check used to create the circle. Spell effects generated by monsters cannot enter the circle, but non-magical projectiles thrown by monsters ignore it. A monster that makes a successful roll to enter the circle can remain in it, but must make another roll to exit the circle. If you are using the traditional rules for monster vulnerabilities, you must use silver for monsters vulnerable to silver and meteorite for monsters vulnerable to meteorite.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "10 Rounds",
+    "difficultyCheck": "18",
+    "components": "Fifth Essence (x5), Infused Dust (x2), Chalk (x4), Silver or Meteorite (x5)"
+  },
+  {
+    "id": "ritual-golem-crafting",
+    "name": "Golem Crafting",
+    "category": "ritual",
     "staCost": 15,
-    "range": "Touch",
+    "range": "",
     "duration": "Permanent",
-    "effect": "Inscribes a ward on a doorway or object; triggers chosen effect when disturbed.",
-    "tags": ["ritual", "ward", "long-cast"]
+    "effect": "Golem Crafting creates a golem that serves the caster until it dies. The process creates a simple golem that is bound to your will. It will do anything that you ask it to, but it cannot think and can’t perform finesse tasks that require fingers or grabbing small things. A golem will execute the last order it was given. If it fails, it will try again endlessly until it succeeds or you order it to stop. If the order is ongoing (“fetch some water”) the golem will continue to perform that order until it dies or you order it to stop.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "10 Rounds",
+    "difficultyCheck": "20",
+    "components": "Chalk (x2), A Per - fect Gemstone (x1), Hardened Timber (x10), Stone (x10), Infused Dust (x5), Fifth Essence (x2)"
   },
   {
-    "id": "ritual-of-scrying",
+    "id": "ritual-hydromancy",
+    "name": "Hydromancy",
     "category": "ritual",
-    "name": "Ritual of Scrying",
+    "staCost": 5,
+    "range": "",
+    "duration": "Active (2 Vigor)",
+    "effect": "Hydromancy allows you to stare into a small body of water and glimpse an event that happened within the last two days or that is currently happening. Watching an event in the past uses the base DC. If you are trying to glimpse an event that is currently happening, increase the DC by 3 points. If you are viewing a current event, a magician present at that event can sense the augury with a Magic Training roll that beats your Ritual Crafting roll.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "5 Rounds",
+    "difficultyCheck": "15 (18)",
+    "components": "A Small Body of Water or a Bowl of Water, Fifth Essence (x2), White Myrtle Petals (x2), Pearl (x2), Lunar Shards (x1), Berbercane Fruit (x1)"
+  },
+  {
+    "id": "ritual-interactive-illusion",
+    "name": "Interactive Illusion",
+    "category": "ritual",
     "staCost": 12,
-    "range": "Unlimited",
-    "duration": "10 minutes",
-    "effect": "Observe a person or place you have seen before; requires focus object.",
-    "tags": ["ritual", "divination", "long-cast"]
+    "range": "",
+    "duration": "Until Dispelled",
+    "effect": "Interactive Illusion creates an illusion with sight, sound, smell, and tangible feelings. Nothing about the illusion is real but it all feels real to anyone who enters its area. The illusion covers a 20m radius and its caster actively controls and shapes it. If they create a danger within the illusion to battle intruders, each intruder may make a Magic Resistance or Endurance check at DC:12. If they succeed, they realize that nothing is actually happening to them and take no damage. If they fail they think that the damage is real, and must roll a Stun save. The damage cannot kill but it can stun.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "10 Rounds",
+    "difficultyCheck": "18",
+    "components": "Perfect Gemstone (x1), Fifth Essence (x5), Infused Shard (x1), Glass, (x2), Ducal Water (x3) Master Rituals Y ou should never underestimate a golem’s work ethic. They never tire, never rebel, and never get bored. If you order your golem to kill a target, it will chase that target to the ends of the earth, continuing to search even after the target has escaped. If you told your golem to dig straight down, it would dig non-stop until it reached the planet’s core and melted. It wouldn’t even stop as it started to melt. Golem Work Ethic If a compressed target is beheaded or is knocked down to zero health while they are compressed they die. Y ou cannot attempt to stabilize a compressed target. If the target is dismembered while compressed they take all of the appropriate effects and damage when they are uncompressed. Dying As An Artifact"
   },
   {
-    "id": "druid-commune",
+    "id": "ritual-magic-barrier",
+    "name": "Magic Barrier",
     "category": "ritual",
-    "name": "Commune with Nature",
     "staCost": 10,
-    "range": "Self",
-    "duration": "30 minutes",
-    "effect": "Learn about flora, fauna, and weather in the surrounding region.",
-    "tags": ["ritual", "druid", "utility"]
+    "range": "",
+    "duration": "Active (2 STA)",
+    "effect": "Magic Barrier creates a circular barrier of pure force that is 10m in diameter. This barrier takes 50 Health Points before it is destroyed. On your turn you can spend an additional STA point on top of the active cost to regenerate Health Points in the shield at a rate of 5 Health per STA point. This shield is solid and impassible to any solid object. Once the shield has been erected, nothing can enter. Air is replenished within the shield, so those within can breathe. If a mage wishes, they can stop this replenishment, leaving only 20 rounds of air. For every extra person in the shield the rounds of air are reduced by 1. Ethereal creatures can pass through this shield, and you can teleport in or out.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "10 Rounds",
+    "difficultyCheck": "18",
+    "components": "Fifth Essence (x5), Infused Dust (x2), Chalk (x4)"
   },
   {
-    "id": "druid-growth",
-    "category": "spell",
-    "name": "Entangling Growth",
+    "id": "ritual-magical-message",
+    "name": "Magical Message",
+    "category": "ritual",
+    "staCost": 3,
+    "range": "",
+    "duration": "Permanent",
+    "effect": "Magical Message records a message of up to 5 minutes into a gemstone or piece of glass etched with a magical sigil. Y ou can set up to 3 specific triggers that activate the message. Once played, the message goes dormant until another trigger occurs. When triggered, an illusion of the caster appears and gives the message. When crafted with a perfect gemstone, the message appears as clear as if the ritual crafter were truly there.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "5 Rounds",
+    "difficultyCheck": "12",
+    "components": "Glass (x1), Fifth Essence (x1), Quicksilver Solution (x1) Alternate Components: Perfect Gemstone (x1)"
+  },
+  {
+    "id": "ritual-oneiromancy",
+    "name": "Oneiromancy",
+    "category": "ritual",
     "staCost": 8,
-    "range": "15m",
-    "duration": "5 rounds",
-    "effect": "Vegetation restrains targets in a 3m area; REF defense to avoid.",
-    "tags": ["earth", "druid", "control"]
+    "range": "",
+    "duration": "1d10 Rounds",
+    "effect": "Oneiromancy grants the caster a dream which unveils secrets and events of the past and present. A caster can perform the ritual alone, much like Hydromancy. It also requires a Ritual Casting check to witness events that have occurred previously and a more difficult DC to witness events that are occurring at the moment. Oneiromancy can be detected like Hydromancy. However the Oneiromancer can also guide a number of people equal to their Ritual Crafting skill value to share their enlightening dream. To do this, the oneiromancer must make a bond with the people they want to enlighten. This requires the participants to answer a series of personal questions, as truthfully as possible. The dream lasts for the duration of the ritual.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "10 Rounds",
+    "difficultyCheck": "15 (18)",
+    "components": "A Place to Sleep Any specter summoned by a Spirit Seance can possess a target by making a Spell Casting check greater than the target’s Resist Magic roll. The target gets a save against the original Spell Casting check every 1d6 rounds. Until they make this check the specter completely controls their body. The possessed person gets a +5 to their Resist Magic roll if the specter makes them do something they would never do, and a +10 if the specter makes them do something suicidal. Spirit Possession Oneiromancy seems to be mostly a gift rather than a study. It is so rare that even charlatan oneiromantics are rare. They are supposed to be able to dream of past, present, or future events, which I suppose would be handy if we ever learned from past events. The only legitimate onieromancers I’ve heard of belong to the Tilly family so perhaps it is a question of genetics. –Brandon of Oxenfurt Oneiromancy 119"
   },
   {
-    "id": "druid-storm",
+    "id": "ritual-pyromancy",
+    "name": "Pyromancy",
+    "category": "ritual",
+    "staCost": 5,
+    "range": "",
+    "duration": "Active (4 Vigor)",
+    "effect": "Pyromancy allows you to stare into a burning fire and witness events that are currently happening. Pyromancy is more dangerous than Hydromancy, making it harder to maintain and impossible to peer backwards. However, it is easier to view events that are currently happening. Similarly to Hydromancy, a mage you view can sense the augury with a Magic Training roll that beats your Ritual Crafting roll.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "5 Rounds",
+    "difficultyCheck": "15",
+    "components": "A Small Fire, Fifth Essence (x2), Ashes (x2), Calcium Equum (x5), Crow’s Eye (x2), Wax (x2)"
+  },
+  {
+    "id": "ritual-spell-jar",
+    "name": "Spell Jar",
+    "category": "ritual",
+    "staCost": 5,
+    "range": "",
+    "duration": "1d6 Days",
+    "effect": "Spell Jar creates a magical vortex inside a sealed clay jar. This magical vortex lasts for 1d6 days and activates when the jar is broken. When broken, the magical vortex opens and a random spell from the list below occurs. Roll 1d10/2: 1. Talfryn’s Prison 2. Zephyr 3. Tanio Ilchar 4. Dormyn’s Fog 5. Static Storm",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "5 Rounds",
+    "difficultyCheck": "15",
+    "components": "River Clay (x5), Fifth Essence (x1), Thread (x2), Chalk (x1), Wax (x1), Han Fiber (x2), Infused Dust (x1)"
+  },
+  {
+    "id": "ritual-spirit-seance",
+    "name": "Spirit Seance",
+    "category": "ritual",
+    "staCost": 5,
+    "range": "",
+    "duration": "Permanent",
+    "effect": "Spirit Seance contacts the spirit of a dead person. The seance brings the soul back as a specter with the sentience of the original person. The specter retains all memories, including the memory of their death, and can be spoken with at its burial site. The specter cannot be sent back to the realm of the dead except at its own choice, or by killling it. The Seance will summon the spirits of anyone of the same bloodline within 20m so using this spell in family crypts is not advised.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "5 Rounds",
+    "difficultyCheck": "12",
+    "components": "Some Blood of the Deceased or a Relative, Mandrake Root (x1), Sewant Mushrooms (x2), Wolfsbane (x2), Sulfur (x2)"
+  },
+  {
+    "id": "ritual-telecommunication",
+    "name": "Telecommunication",
+    "category": "ritual",
+    "staCost": 3,
+    "range": "",
+    "duration": "1 Hour",
+    "effect": "A Telecommunicator allows you to communicate with another person with a Telecommunicator. The ritual is simple but requires both participants to have a telecommunicator and perform the ritual. However it allows you to communicate across tremendous distances, allowing communication between all parts of the known Continent.",
+    "defense": "",
+    "tags": [
+      "master"
+    ],
+    "tier": "master",
+    "preparationTime": "5 Rounds",
+    "difficultyCheck": "None",
+    "components": "A Telecommunicator Journeyman Rituals"
+  },
+  {
+    "id": "sign-aard",
+    "name": "Aard",
+    "category": "sign",
+    "staCost": 0,
+    "range": "2m Cone",
+    "duration": "Immediate",
+    "effect": "Aard shoots a wave of telekinetic force, staggering creatures with a 10% chance of those affected being knocked prone. The per - centage rises by 10% for each point of STA spent.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "air",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "air"
+  },
+  {
+    "id": "sign-aard-sweep",
+    "name": "Aard Sweep",
+    "category": "sign",
+    "staCost": 0,
+    "range": "4m Radius",
+    "duration": "Immediate",
+    "effect": "Aard now shoots a burst of telekinetic force around you. For each STA point spent, everything caught in the burst has a 10% chance of being knocked to the ground and staggered. The burst travels out in all directions as a sphere. Flying creatures struck with Aard Sweep are knocked out of the air as well as being knocked down.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "air",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "air"
+  },
+  {
+    "id": "sign-active-shield",
+    "name": "Active Shield",
+    "category": "sign",
+    "staCost": 0,
+    "range": "Self",
+    "duration": "Active (1/2 Initial STA)",
+    "effect": "Quen now creates a glowing shield around you. The shield has 10 HP for every Stamina point spent. Every round you must spend 1/2 the initial STA cost to the keep the shield up. Active Shield only covers you, but you can fit one other person into it if you are pressed together. When it is expended or dropped, anything in melee range of you is pushed back 2m and takes 1d6 damage to the torso. This includes objects, furniture, and allies. Anything rooted to the ground or heavier than 226kg is not pushed back but still takes damage.",
+    "defense": "Magical Shield",
+    "tags": [
+      "earth",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "earth"
+  },
+  {
+    "id": "sign-axii",
+    "name": "Axii",
+    "category": "sign",
+    "staCost": 0,
+    "range": "8m",
+    "duration": "Until Shaken Off",
+    "effect": "Axii stuns an opponent until they can make Stun save at -1. For every 2 points of additional STA you spend past 1, the Stun save becomes harder by 1 point.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "water",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "water"
+  },
+  {
+    "id": "sign-fire-stream",
+    "name": "Fire Stream",
+    "category": "sign",
+    "staCost": 0,
+    "range": "3m",
+    "duration": "Active (1/2 Initial STA)",
+    "effect": "Igni now throws out a constant stream of fire and sparks from your hand which does 1d6 damage per STA point spent, and has a 75% chance of lighting the opponent on fire. Fire Stream must be maintained every round with a number of STA points equal to 1/2 the number of STA points spent to cast the sign. Y ou can switch targets on your turn.",
+    "defense": "Dodge, Block, or",
+    "tags": [
+      "fire",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "fire"
+  },
+  {
+    "id": "sign-igni",
+    "name": "Igni",
+    "category": "sign",
+    "staCost": 0,
+    "range": "2m Cone",
+    "duration": "Immediate",
+    "effect": "Igni throws out a wave of sparks and fire which does 1d6 damage per STA point spent and has a 50% chance of lighting anything it hits on fire.",
+    "defense": "Dodge, Block, or",
+    "tags": [
+      "fire",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "fire"
+  },
+  {
+    "id": "sign-magic-trap",
+    "name": "Magic Trap",
+    "category": "sign",
+    "staCost": 0,
+    "range": "3m Radius",
+    "duration": "1 Round per STA point",
+    "effect": "Yrden now creates a magical trap that takes one round to prepare. This trap attacks using your Spell Casting & WILL and does 3d6 damage. The trap will make one attack against the closest target each round.",
+    "defense": "Dodge, Block, or Magical Shield",
+    "tags": [
+      "mixed",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "mixed"
+  },
+  {
+    "id": "sign-puppet",
+    "name": "Puppet",
+    "category": "sign",
+    "staCost": 0,
+    "range": "8m",
+    "duration": "Until Shaken Off or STA",
+    "effect": "Axii now controls an opponent’s mind, making them your ally for a number of rounds equal to the number of STA points you spent on the spell. Each round, the target can make a Resist Magic roll against your Spell Casting roll to try and free themselves.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "water",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "water"
+  },
+  {
+    "id": "sign-quen",
+    "name": "Quen",
+    "category": "sign",
+    "staCost": 0,
+    "range": "Self",
+    "duration": "Until exhausted",
+    "effect": "Quen creates a shield that blocks one attack that you fail to dodge or block for every point of Stamina spent. This shield can block multiple attacks in the same round.",
+    "defense": "None",
+    "tags": [
+      "earth",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "earth"
+  },
+  {
+    "id": "sign-yrden",
+    "name": "Yrden",
+    "category": "sign",
+    "staCost": 0,
+    "range": "3m Radius",
+    "duration": "5 rounds",
+    "effect": "Yrden creates a large magic circle on the ground around you. Anything that steps into that circle takes a negative to SPD and REF (equal to the number of STA you spent) until they exit the circle. Any incorporeal creatures that enter the circle become corporeal.",
+    "defense": "None",
+    "tags": [
+      "mixed",
+      "witcher"
+    ],
+    "staCostText": "Variable",
+    "element": "mixed"
+  },
+  {
+    "id": "spell-alzur-s-thunder",
+    "name": "Alzur’s Thunder",
     "category": "spell",
-    "name": "Call Storm",
+    "staCost": 15,
+    "range": "25m",
+    "duration": "Immediate",
+    "effect": "Alzur’s Thunder allows you to shoot a powerful lightning bolt at a target which does 8d6 damage and has a 75% chance of setting the target on fire. Alzur’s Thunder can travel in a straight line through targets. For every target it passes through the damage to the next target decreases by 1d6.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "journeyman",
+      "air"
+    ],
+    "element": "air",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-anialwch",
+    "name": "Anialwch",
+    "category": "spell",
+    "staCost": 8,
+    "range": "10m",
+    "duration": "Immediate",
+    "effect": "Anialwch allows you to suck some of the liquid from a target’s body, damaging and exhausting them. The spell does 4d6 damage which cannot be blocked by armor or shields. The extreme dehydration creates a fatigue which lowers the target’s current STA by 4d6 as well.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "journeyman",
+      "water"
+    ],
+    "element": "water",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-demetia-s-crest-surge",
+    "name": "Demetia’s Crest Surge",
+    "category": "spell",
     "staCost": 12,
-    "range": "Sight",
-    "duration": "10 minutes",
-    "effect": "Summons rain and wind; ranged attacks penalized in area.",
-    "tags": ["air", "druid", "advanced"]
+    "range": "10m",
+    "duration": "Active (4 STA)",
+    "effect": "Demetia’s Crest Surge allows you to create a shield of pure fire magic around you that blocks a number of water spells equal to 2 times your Spell Casting skill value. Projectiles that enter the shield are destroyed, and living creatures cannot enter the area of the shield.",
+    "defense": "None",
+    "tags": [
+      "journeyman",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-dervish",
+    "name": "Dervish",
+    "category": "spell",
+    "staCost": 22,
+    "range": "2m Radius",
+    "duration": "Active (6 STA)",
+    "effect": "Created by a mysterious Ofieri magician, Dervish allows you to create a 2m tornado around yourself. This tornado immediately redirects ranged attacks as per Gwynt Troelli and acts a Zephyr spell against anyone within 2m of you. You cannot run while within this tornado, or make attacks out of it. But if you move within 2m of a target they are effected by Zephyr.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "journeyman",
+      "air"
+    ],
+    "element": "air",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-flaming-vortex",
+    "name": "Flaming Vortex",
+    "category": "spell",
+    "staCost": 15,
+    "range": "10m Radius",
+    "duration": "Active (4 STA)",
+    "effect": "Flaming Vortex creates a flaming tornado 2m wide. Y ou can direct the tornado to move a number of meters equal to your Spell Casting skill value per turn. If it runs over or into a target, make a Spell Casting roll versus their Dodge/Escape roll. If they fail, they take 5d6 damage and have a 50% chance of being set on fire. The vortex will not travel beyond the spell’s range.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "journeyman",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-gwynt-troelli",
+    "name": "Gwynt Troelli",
+    "category": "spell",
+    "staCost": 12,
+    "range": "10m Radius",
+    "duration": "Active (4 STA)",
+    "effect": "Gwynt Troelli creates a barrier of wind around you that blocks ranged attacks and projectiles. Any projectile attack must beat your Spell Casting roll. If they fail, the barrier knocks the projectile 8m away in a random direction.",
+    "defense": "None",
+    "tags": [
+      "journeyman",
+      "air"
+    ],
+    "element": "air",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-lightning-storm",
+    "name": "Lightning Storm",
+    "category": "spell",
+    "staCost": 25,
+    "range": "40m Radius",
+    "duration": "2d6 Rounds",
+    "effect": "Lightning Storm allows you to create a lightning storm. Lightning strikes randomly around the area. Anyone (except you) in the area has a 35% chance of being struck by lightning. If they miss this roll, they must make a Dodge/ Escape check or take 8d6 damage to the torso and have a 75% chance to be ignited. Duration: Active (6 STA) Defense: Dodge or Magical Shield Master Spells Trapped In Animal Form By attaching dimeritium to a mage who has polymorphed into something else you can trap the mage in that form, unable to use magic or do anything that said animal wouldn’t be able to do. Shaking Off Commands Targets who wish to can attempt another Resist Magic check every 1d6 rounds to throw off the mental command. If they succeed they are able to stop the compulsion. 108 Fire Fire From the Sky STA Cost: 25 Effect: This spell is well known for sowing chaos on the fields of the Pontar Valley. Fire From the Sky allows you to rain balls of fire from the sky over a huge area. Anyone (except you) in the area has a 75% chance of being struck by a ball of fire. If they miss this roll, they must defend at a DC equal to your Spell Casting check or take 4d6 damage to a random location and have a 75% chance of being ignited.",
+    "defense": "Dodge, Block, or Magical Shield",
+    "tags": [
+      "journeyman",
+      "air"
+    ],
+    "element": "air",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-mental-command",
+    "name": "Mental Command",
+    "category": "spell",
+    "staCost": 25,
+    "range": "10m",
+    "duration": "Until Task is Done",
+    "effect": "Mental Command allows you to plant an order in the mind of a target. This command must be executed to the letter by the target. If the command is something the target would never do, they get a +5 to their Resist Magic check.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "journeyman",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-merigold-s-hailstorm",
+    "name": "Merigold’s Hailstorm",
+    "category": "spell",
+    "staCost": 15,
+    "range": "30m Radius",
+    "duration": "Active (4 STA)",
+    "effect": "Named for its creator Triss Merigold, ex-advisor of King Foltest of Temeria, Merigold’s Hailstorm creates a hailstorm encompassing the area of the spell. Everyone within the storm must make a Dodge/Escape check at a DC equal to your Spell Casting check each round or take 2d6 damage to a body part.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "journeyman",
+      "water"
+    ],
+    "element": "water",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-mirror-effect",
+    "name": "Mirror Effect",
+    "category": "spell",
+    "staCost": 25,
+    "range": "20m",
+    "duration": "2d6 Rounds",
+    "effect": "Mirror Effect creates a blinding beam of light which does 10d6 damage. This laser can be dodged and blocked (destroying whatever blocks it) but it cannot be displaced by wind and can only be parried by a reflective surface, which still takes damage. The reflected laser goes off in a random direction. This spell uses the rays of the sun and cannot be used where the sun’s rays can’t penetrate. By the light of the moon or on overcast days, it does half damage.",
+    "defense": "Dodge, Block, or Magical Shield",
+    "tags": [
+      "journeyman",
+      "air"
+    ],
+    "element": "air",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-part-water",
+    "name": "Part Water",
+    "category": "spell",
+    "staCost": 25,
+    "range": "10m Radius",
+    "duration": "Active (6 STA)",
+    "effect": "Part Water allows you to create an open area in a body of water, up to 10m by 100m by 10m. Fish, monsters, and other creatures in the water are swept back with the water. Y ou can pass in and out of the wall as easily as stepping in or out of a body of water without disturbing the walls. If used while in the water the the effect pushes the caster aside as well. The area can be summoned in any orientation, even vertical.",
+    "defense": "None",
+    "tags": [
+      "journeyman",
+      "water"
+    ],
+    "element": "water",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-polymorphism",
+    "name": "Polymorphism",
+    "category": "spell",
+    "staCost": 22,
+    "range": "Self",
+    "duration": "Until Re-Cast",
+    "effect": "Polymorphism allows you to take the shape of a serpent, a cat, a bird, or a dog. While in this form, you have the physical statistics of that animal (See Bestiary, pg.310). Any items on your person transform with you. You must cast the spell again to change back to your human form.",
+    "defense": "None",
+    "tags": [
+      "journeyman",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-seirff-haul",
+    "name": "Seirff Haul",
+    "category": "spell",
+    "staCost": 10,
+    "range": "10m",
+    "duration": "2d10",
+    "effect": "Seirff Haul creates a number of serpents from fire magic that swarm over a target. The tar - get is grappled and on fire until they make a Dodge/Escape check vs. your Spell Casting roll. Every round that the target fails the Dodge/Escape check, the DC rises by 1 point as the serpents tighten.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "journeyman",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-standing-portal",
+    "name": "Standing Portal",
+    "category": "spell",
+    "staCost": 22,
+    "range": "N/A",
+    "duration": "Active (6 STA)",
+    "effect": "Standing Portal creates a 1m by 2m floating portal up to 10m from you. Stepping through this portal teleports you anywhere you can recall. The portal can transport anything that fits through it. If you end the portal while something is partially through, the portal slices the object (or creature) in two. The person is counted as being dismembered, as per the Critical Wound. Y ou can create a portal to a location you don’t know as per Teleportation.",
+    "defense": "None",
+    "tags": [
+      "journeyman",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-suffocate",
+    "name": "Suffocate",
+    "category": "spell",
+    "staCost": 14,
+    "range": "10m",
+    "duration": "Active (4 STA)",
+    "effect": "Suffocates a target for 1d10 damage per turn. The suffocation ends if the caster is struck with a weapon or stops focusing on the spell. While suffocating, a target is treated as staggered.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "journeyman",
+      "air"
+    ],
+    "element": "air",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-transmutation",
+    "name": "Transmutation",
+    "category": "spell",
+    "staCost": 25,
+    "range": "2m",
+    "duration": "Permanent",
+    "effect": "Transmutation allows you to change the properties of a mineral or metal. You can change one unit of metal into any other metal, or change an imperfect gem into a perfect gem suitable for magic. Dimeritium or other metals in contact with dimeritium cannot be created or changed by this spell.",
+    "defense": "Magical Shield",
+    "tags": [
+      "journeyman",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-tryferi-gaeaf",
+    "name": "Tryferi Gaeaf",
+    "category": "spell",
+    "staCost": 22,
+    "range": "20m",
+    "duration": "1d10 Rounds",
+    "effect": "Tryferi Gaeaf allows you to shoot a number of 2m spikes of ice equal to half your Spell Casting skill value at as many targets as you like. These spikes do 5d6 points of damage and, if they do damage through armor, freeze the opponent and do 2 point of damage each round until they are broken off with a DC:20 Physique check or by doing 20 points of damage to them. Otherwise, these spikes last for the duration of the spell. Each attack resolves separately.",
+    "defense": "Block or Magical Shield",
+    "tags": [
+      "journeyman",
+      "water"
+    ],
+    "element": "water",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-waves-of-the-naglfar",
+    "name": "Waves of the Naglfar",
+    "category": "spell",
+    "staCost": 10,
+    "range": "3m Radius",
+    "duration": "Immediate",
+    "effect": "Created by a mage who claimed to have witnessed the ride of the Wild Hunt, this spell creates a wave of ice magic that spreads out 3m from you in all directions. Anyone who doesn’t dodge or block the spell is frozen and takes 4d6 damage.",
+    "defense": "Dodge, Block, or Magical",
+    "tags": [
+      "journeyman",
+      "water"
+    ],
+    "element": "water",
+    "tier": "journeyman"
+  },
+  {
+    "id": "spell-adenydd",
+    "name": "Adenydd",
+    "category": "spell",
+    "staCost": 4,
+    "range": "Self",
+    "duration": "Active (2 STA)",
+    "effect": "Adenydd allows you to lighten yourself slightly and create a simple glide path when falling. This means for each 2m you fall you travel 2m in a direction. If you make it to the ground within the duration of the spell you take no damage.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "air"
+    ],
+    "element": "air",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-aenye",
+    "name": "Aenye",
+    "category": "spell",
+    "staCost": 5,
+    "range": "12m",
+    "duration": "Immediate",
+    "effect": "Aenye allows you to throw a ball of pure fire at an opponent within the range of the spell. This ball of fire does 4d6 damage and has a 75% chance of lighting the target on fire.",
+    "defense": "Dodge, Block, or Magical Shield",
+    "tags": [
+      "novice",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-afan-s-mirror",
+    "name": "Afan’s Mirror",
+    "category": "spell",
+    "staCost": 3,
+    "range": "10m",
+    "duration": "Active (2 STA)",
+    "effect": "Created by the talented Aedirnian mage Afan of Gulet, Afan’s mirror creates 1d10 illusory copies of the caster. These copies are intangible, but indistinguishable from the caster and controlled by the caster’s mind. They cannot leave the spell’s range.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-aine-verseos",
+    "name": "Aine Verseos",
+    "category": "spell",
+    "staCost": 1,
+    "range": "4m Radius",
+    "duration": "Active (2 STA)",
+    "effect": "Aine Verseos creates an area of bright light in a 4m radius centred on you.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-air-pocket",
+    "name": "Air Pocket",
+    "category": "spell",
+    "staCost": 3,
+    "range": "12m",
+    "duration": "2d10 Rounds",
+    "effect": "Air Pocket allows you to create a pocket of fresh air under - water or in an area where there normally wouldn’t be fresh air. The pocket has a 1m radius for the duration of the spell.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "air"
+    ],
+    "element": "air",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-blinding-dust",
+    "name": "Blinding Dust",
+    "category": "spell",
+    "staCost": 3,
+    "range": "4m",
+    "duration": "1d10 Rounds",
+    "effect": "Blinding Dust allows you to shoot a magical dust into the eyes of a target that blinds them for the duration of the spell.",
+    "defense": "Dodge or Block",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-brand-of-fire",
+    "name": "Brand of Fire",
+    "category": "spell",
+    "staCost": 4,
+    "range": "8m",
+    "duration": "Immediate",
+    "effect": "Brand of Fire allows you to brand a target with a simple symbol or word anywhere on their exposed body. This does 1d6 damage to the target and leaves a large, permanent scar.",
+    "defense": "Magical Shield",
+    "tags": [
+      "novice",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-bronwyn-s-gust",
+    "name": "Bronwyn’s Gust",
+    "category": "spell",
+    "staCost": 2,
+    "range": "2m",
+    "duration": "Immediate",
+    "effect": "Bronwyn’s Gust is named after the Skellige mage and raider, Bronwyn Deadeye. The spell allows you to knock a target back a number of meters equal to the number of points you rolled over the opponent’s defense. This attack only does 1d6 damage, but if your opponent strikes something they take ramming damage.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "novice",
+      "air"
+    ],
+    "element": "air",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-cadfan-s-grasp",
+    "name": "Cadfan’s Grasp",
+    "category": "spell",
+    "staCost": 4,
+    "range": "8m",
+    "duration": "1d6 Rounds",
+    "effect": "Cadfan’s Grasp, named for the magician and smith Cadfan of Ebbing, allows you to super-heat a metal item, making it impossible to hold. The spell can also heat weapons to give +2d6 damage and a 50% chance to ignite a target.",
+    "defense": "Magical Shield",
+    "tags": [
+      "novice",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-carys-hail",
+    "name": "Carys’ Hail",
+    "category": "spell",
+    "staCost": 3,
+    "range": "5m",
+    "duration": "Immediate",
+    "effect": "Named for its creator Carys of Cintra, this spell hurls pellets of ice at high speeds at 1 opponent. For every 1 point you roll over your opponent’s Dodge/ Block (maximum 5), you deal 1d6 damage and have a 25% chance to freeze your opponent. Each roll counts as its own separate attack when determining location and dealing damage.",
+    "defense": "Dodge, Block, or Magical Shield",
+    "tags": [
+      "novice",
+      "water"
+    ],
+    "element": "water",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-cenlly-graig",
+    "name": "Cenlly Graig",
+    "category": "spell",
+    "staCost": 3,
+    "range": "5m",
+    "duration": "Immediate",
+    "effect": "Cenlly Graig hurls sharp stones at your opponent. For every point you roll above your opponent’s defense (maximum 10) you deal 1d6 damage. Each roll counts as its own attack.",
+    "defense": "Dodge or Block",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-codi-bywyd",
+    "name": "Codi Bywyd",
+    "category": "spell",
+    "staCost": 2,
+    "range": "4m",
+    "duration": "Immediate",
+    "effect": "Codi Bywyd can grow a small plant from seed to maturity in one turn. This allows you to grow herbs and alchemical plants, but not larger plants such as trees.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-control-water",
+    "name": "Control Water",
+    "category": "spell",
+    "staCost": 5,
+    "range": "10m",
+    "duration": "Active (2 STA)",
+    "effect": "Control Water allows you to control the speed at which a body of water is moving and in what direction it’s moving for the duration of the spell. This can be used to slow swimming targets by half, speed up ships by half, or slow or halt river currents.",
+    "defense": "DC set by the GM",
+    "tags": [
+      "novice",
+      "water"
+    ],
+    "element": "water",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-curse-of-sedna",
+    "name": "Curse of Sedna",
+    "category": "spell",
+    "staCost": 5,
+    "range": "12m",
+    "duration": "Active (2 STA)",
+    "effect": "Named after the tumultuous Sedna Abyss, which is considered a suicidal destination for ships, Curse of Sedna creates a powerful whirlpool in a 4 meter area. Anyone within 5m must make a Swimming check equal to your Spell Casting check or be dragged underwater. They must make a check each round or remain underwater, where they will start suffocating.",
+    "defense": "Athletics",
+    "tags": [
+      "novice",
+      "water"
+    ],
+    "element": "water",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-diagnostic-spell",
+    "name": "Diagnostic Spell",
+    "category": "spell",
+    "staCost": 3,
+    "range": "5m",
+    "duration": "Immediate",
+    "effect": "Diagnostic Spell allows you to quickly assess a person’s health and determine how many Health Points they have, what critical wounds they have, and if they are sick or poisoned.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-dispel",
+    "name": "Dispel",
+    "category": "spell",
+    "staCost": 0,
+    "range": "10m",
+    "duration": "Immediate",
+    "effect": "Dispel allows you to end a spell/ritual/hex within the range of this spell. This spell can cancel magic with a duration and block magic attacks with or without physical components. To cancel a magical effect you must spend half as many vigor points as the caster spent to cast the magic and make a Spell Casting roll that beats their casting roll.",
+    "defense": "Spell Casting",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "staCostText": "Variable",
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-dormyn-s-fog",
+    "name": "Dormyn’s Fog",
+    "category": "spell",
+    "staCost": 3,
+    "range": "10m Radius",
+    "duration": "Active (2 STA)",
+    "effect": "Created by Dormyn of Gemmera, Dormyn’s Fog creates an area with a 10m radius, centred on you, of thick fog which puts anyone in it at a -3 to Awareness and limits vision range to 4m.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "water"
+    ],
+    "element": "water",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-downpour",
+    "name": "Downpour",
+    "category": "spell",
+    "staCost": 2,
+    "range": "8m",
+    "duration": "Active (2 STA)",
+    "effect": "Downpour creates a 10m radius area of rain that puts out any fire it hits. This spell counter - acts fire effects.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "water"
+    ],
+    "element": "water",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-earthen-spike",
+    "name": "Earthen Spike",
+    "category": "spell",
+    "staCost": 5,
+    "range": "6m",
+    "duration": "Immediate",
+    "effect": "Earthen Spike creates an angled stalagmite to stab up into the target. This spike does 5d6 damage and remains until destroyed. It can be destroyed by doing 20 points of damage to it.",
+    "defense": "Dodge or Block",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-eilhart-s-technique",
+    "name": "Eilhart’s Technique",
+    "category": "spell",
+    "staCost": 12,
+    "range": "3m",
+    "duration": "Immediate",
+    "effect": "Named for its creator Phillipa Eilhart, this gruesome spell allows you to dig into a target’s mind and tear out information. If you succeed on your Spell Casting roll you gain one piece of information from the target. If the tar - get fumbles their defense, their INT is reduced by 1 permanently.",
+    "defense": "Resist Magic or Magical",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-elgan-s-theory",
+    "name": "Elgan’s Theory",
+    "category": "spell",
+    "staCost": 10,
+    "range": "8m",
+    "duration": "2d10 Rounds",
+    "effect": "Elgan’s Theory was discovered by Elgan of Verden who travelled to the heart of Mahakam and worked for years studying earth magic. The spell allows you to magnetize a metal object within 8m. Anything metal within 2m is drawn and sticks to the magnet. It takes a DC:18 Physique check to pry an object off. All metal that sticks to someone’s weapons or armor counts against their ENC.",
+    "defense": "Magical Shield",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-freshen-air",
+    "name": "Freshen Air",
+    "category": "spell",
+    "staCost": 2,
+    "range": "4m Radius",
+    "duration": "Active (2 STA)",
+    "effect": "Freshen Air allows you to clear a 4m radius area (centered around you) of any smoke, poison, or any other tainted air for the duration of the spell.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "air"
+    ],
+    "element": "air",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-glamour",
+    "name": "Glamour",
+    "category": "spell",
+    "staCost": 5,
+    "range": "Self",
+    "duration": "1d6 Hours",
+    "effect": "Glamour allows you to cast an illusion around yourself that makes you look stunning. This spell grants you +3 to Seduction, Charisma, and Leadership.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-ice-slick",
+    "name": "Ice Slick",
+    "category": "spell",
+    "staCost": 2,
+    "range": "10m",
+    "duration": "2d10 Rounds",
+    "effect": "Ice Slick allows you to create a 2m square area of ice. Anyone who crosses that area must make an Athletics check at a DC equal to your Spell Casting check or trip on the ice.",
+    "defense": "Athletics",
+    "tags": [
+      "novice",
+      "water"
+    ],
+    "element": "water",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-illusion",
+    "name": "Illusion",
+    "category": "spell",
+    "staCost": 8,
+    "range": "20m",
+    "duration": "Active (4 STA)",
+    "effect": "Illusion allows you to create any visual illusion you want within 20m of yourself. Anyone who fails the resistance check sees the illusion and believes it. The illusion cannot be touched, smelled, or heard, however.",
+    "defense": "Resist Magic",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-korath-s-breath",
+    "name": "Korath’s Breath",
+    "category": "spell",
+    "staCost": 2,
+    "range": "3m Cone",
+    "duration": "Immediate",
+    "effect": "Korath’s Breath breaks down a nearby stone or earth sur - face and sprays burning sand in a 3m cone in front of you. Opponents in that area that fail their defense are blinded for 1d6 rounds.",
+    "defense": "Dodge or Block",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-luthien-s-quill",
+    "name": "Luthien’s Quill",
+    "category": "spell",
+    "staCost": 2,
+    "range": "1m",
+    "duration": "Immediate",
+    "effect": "Named for its inventor, Luthien of Ebbing, Luthien’s Quill can etch writing or drawings into any solid surface. It cannot be used on living creatures.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-magic-compass",
+    "name": "Magic Compass",
+    "category": "spell",
+    "staCost": 3,
+    "range": "Self",
+    "duration": "1d6 Hours",
+    "effect": "Magic Compass allows you to instantly determine the direction to a place you have been before. Alternately, the spell tells which direction is north.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-magic-flare",
+    "name": "Magic Flare",
+    "category": "spell",
+    "staCost": 2,
+    "range": "8m Radius",
+    "duration": "Immediate",
+    "effect": "Magic Flare creates a bright flash above you. Everyone within an 8m radius must make a resistance check or be blinded for 1d6 rounds. This flare can be seen for 10 kilometers.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "novice",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-magic-healing",
+    "name": "Magic Healing",
+    "category": "spell",
+    "staCost": 5,
+    "range": "2m",
+    "duration": "1d10 Rounds",
+    "effect": "Magic Healing stimulates the natural healing of a target to heal them at a rate of 5 points of damage per turn. This lasts for the duration of the spell. Alternatively, this spell can be used repeatedly to heal a critical wound.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-mind-manipulation",
+    "name": "Mind Manipulation",
+    "category": "spell",
+    "staCost": 3,
+    "range": "5m",
+    "duration": "1d10 Rounds",
+    "effect": "Mind Manipulation allows you to force one target to feel one of the following emotions for the duration of the spell: hatred, love, depression, or euphoria.",
+    "defense": "Resist Magic",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-puro-dwr",
+    "name": "Puro Dwr",
+    "category": "spell",
+    "staCost": 2,
+    "range": "4m",
+    "duration": "1d10 Rounds",
+    "effect": "Puro Dwr allows you to purify 1 cubic meter of water. This negates poison and disease, but will not force living creatures out of it. If cast on a small part of a larger body of polluted water, the water will begin to pollute again after the duration of the spell ends.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "water"
+    ],
+    "element": "water",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-raise-flame",
+    "name": "Raise Flame",
+    "category": "spell",
+    "staCost": 3,
+    "range": "10m",
+    "duration": "Active (2 STA)",
+    "effect": "Raise Flame allows you to spread an existing fire at a speed of 2m per round in any direction, dull down a fire to a weak blaze (lowering the fire damage by 1), or intensify the fire (raising the fire damage by 1).",
+    "defense": "Magical Shield",
+    "tags": [
+      "novice",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-rhewi",
+    "name": "Rhewi",
+    "category": "spell",
+    "staCost": 2,
+    "range": "8m",
+    "duration": "1d10 Rounds",
+    "effect": "Rhewi creates a thick layer of ice around a target for the duration of the spell. The target is treated as frozen. If used on a non-living target, the target cannot to be manipulated or moved.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "novice",
+      "water"
+    ],
+    "element": "water",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-rhwystr-graig",
+    "name": "Rhwystr Graig",
+    "category": "spell",
+    "staCost": 15,
+    "range": "20m",
+    "duration": "Until Destroyed",
+    "effect": "Rhwystr Graig allows you to create a 2m by 3m rock wall with 30 points of SP anywhere within 10m with any facing. This wall remains until destroyed.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-stammelford-s-earthquake",
+    "name": "Stammelford’s Earthquake",
+    "category": "spell",
+    "staCost": 12,
+    "range": "30m",
+    "duration": "1d10 Rounds",
+    "effect": "Stammelford’s Earthquake al - lows you to disrupt the ground in a 10m area and create a jagged, crumbling terrain which puts everyone in the area at a -2 to Reflex and a -3 to SPD. Small structures on the shattered ground have a 10% chance of collapsing. Each round, a creature in the spell’s area must make an Athletics roll or sink into the crumbling ground, which causes them to suffocate until they make a successful Athletics check to climb out. After the duration of the spell ends, the ground stops churning but it will remain shattered.",
+    "defense": "Athletics",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-static-storm",
+    "name": "Static Storm",
+    "category": "spell",
+    "staCost": 5,
+    "range": "5m Radius",
+    "duration": "2d6 Rounds",
+    "effect": "Static Storm allows you to infuse a 5m radius centred around you with electricity. Anyone within this area (excluding you) who is wearing metal armor or carrying metal weapons takes 2 points of damage per round.",
+    "defense": "Magical Shield",
+    "tags": [
+      "novice",
+      "air"
+    ],
+    "element": "air",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-summon-staff",
+    "name": "Summon Staff",
+    "category": "spell",
+    "staCost": 2,
+    "range": "N/A",
+    "duration": "Immediate",
+    "effect": "Summon Staff allows you dematerialize your staff and transport it to a place you have been within the last day. Y ou can cast the spell again to summon the staff back to you.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-talfryn-s-prison",
+    "name": "Talfryn’s Prison",
+    "category": "spell",
+    "staCost": 3,
+    "range": "10m",
+    "duration": "Until Destroyed",
+    "effect": "Talfryn’s Prison is named for Talfryn of Nazair, a treacher - ous knight who was trapped for three days in the garden of the magician Drystan. The spell allows you to bind a target in roots. The roots take 15 points of damage to break. Otherwise a Dodge/Escape check must be made at a DC equal to your original Spell Casting roll to escape.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "novice",
+      "earth"
+    ],
+    "element": "earth",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-tanio-ilchar",
+    "name": "Tanio Ilchar",
+    "category": "spell",
+    "staCost": 3,
+    "range": "8m",
+    "duration": "Immediate",
+    "effect": "Tanio Ilchar creates a burst of fire in a 2m by 2m area. This has a 100% chance of lighting a target in the area on fire.",
+    "defense": "Dodge or Magical Shield",
+    "tags": [
+      "novice",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-telekinesis",
+    "name": "Telekinesis",
+    "category": "spell",
+    "staCost": 3,
+    "range": "5m",
+    "duration": "Active (2 STA)",
+    "effect": "Telekinesis allows you to lift and manipulate an object (up to 5 ENC per 1 point of Spell Casting) as though you were holding it.",
+    "defense": "Magical Shield",
+    "tags": [
+      "novice",
+      "air"
+    ],
+    "element": "air",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-telepathy",
+    "name": "Telepathy",
+    "category": "spell",
+    "staCost": 2,
+    "range": "10m",
+    "duration": "Active (1 STA)",
+    "effect": "Telepathy allows you to communicate telepathically with one subject for the duration of the spell. Telepathy crosses language barriers.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-teleportation",
+    "name": "Teleportation",
+    "category": "spell",
+    "staCost": 10,
+    "range": "N/A",
+    "duration": "Immediate",
+    "effect": "Teleportation allows you to teleport to a known location instantaneously. Y ou cannot take anyone with you and can only transport the items on your person or in your hands. Attempting to teleport with a person simply teleports you and leaves them behind. Teleporting require a DC: 15 Spell Casting roll. If you fail the roll, you wind up in a random location 1d6 miles away.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "mixed"
+    ],
+    "element": "mixed",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-urien-s-shelter",
+    "name": "Urien’s Shelter",
+    "category": "spell",
+    "staCost": 3,
+    "range": "8m Radius",
+    "duration": "1d6 Hours",
+    "effect": "Urien’s Shelter, created by the nautical air magician Urien of Cidaris, allows you to negate hostile weather effects in an 8m radius centered on you. This negates extreme heat, extreme cold, rain, and snow.",
+    "defense": "None",
+    "tags": [
+      "novice",
+      "air"
+    ],
+    "element": "air",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-wave-of-fire",
+    "name": "Wave of Fire",
+    "category": "spell",
+    "staCost": 4,
+    "range": "3m Cone",
+    "duration": "Immediate",
+    "effect": "Wave of Fire shoots a 3m cone of fire in one direction that does 2d6 damage to anyone who isn’t able to dodge or block, and has a 50% chance of igniting a target.",
+    "defense": "Dodge, Block, or Magical Shield",
+    "tags": [
+      "novice",
+      "fire"
+    ],
+    "element": "fire",
+    "tier": "novice"
+  },
+  {
+    "id": "spell-zephyr",
+    "name": "Zephyr",
+    "category": "spell",
+    "staCost": 5,
+    "range": "2m Radius",
+    "duration": "Immediate",
+    "effect": "Zephyr allows you to shoot out a burst of wind that blasts anyone within 2m of you back a number of meters equal to the number of points you rolled over their defense. This attack does only 1d6 damage, but if your opponent hits something they suffer ramming damage.",
+    "defense": "Magical Shield",
+    "tags": [
+      "novice",
+      "air"
+    ],
+    "element": "air",
+    "tier": "novice"
   }
 ]

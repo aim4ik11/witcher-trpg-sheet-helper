@@ -33,9 +33,18 @@ export interface CatalogMagic {
   name: string;
   category: string;
   staCost?: number;
+  staCostText?: string;
   range?: string;
   duration?: string;
   effect?: string;
+  defense?: string;
+  element?: string;
+  tier?: string;
+  danger?: string;
+  requirement?: string;
+  preparationTime?: string;
+  difficultyCheck?: string;
+  components?: string;
   tags?: string[];
 }
 
@@ -49,7 +58,8 @@ function searchText(item: CatalogItem): string {
   const w = item as CatalogWeapon & CatalogArmor & CatalogMagic;
   return [
     item.id, item.name, w.effect, w.type, w.slot, w.category,
-    w.dmg, w.hand, w.rng, w.range, w.duration,
+    w.dmg, w.hand, w.rng, w.range, w.duration, w.defense,
+    w.element, w.tier, w.staCostText, w.danger, w.components,
     ...(item.tags ?? []),
   ]
     .filter(Boolean)
@@ -94,19 +104,26 @@ export function catalogToArmorPiece(item: CatalogArmor, slot?: string) {
 }
 
 export function catalogToSpell(item: CatalogMagic, category?: string) {
+  const staCost = item.staCost ?? 0;
+  const staCostText = item.staCostText || (staCost > 0 ? String(staCost) : '');
   return {
     id: crypto.randomUUID(),
     category: category ?? item.category,
     name: item.name,
-    staCost: item.staCost ?? 0,
+    staCost,
+    staCostText,
     range: item.range ?? '',
     duration: item.duration ?? '',
     effect: item.effect ?? '',
+    defense: item.defense ?? '',
     catalogId: item.id,
   };
 }
 
 export function getArmorForSlot(slot: string): CatalogArmor[] {
+  if (slot === 'rLeg' || slot === 'lLeg') {
+    return ARMOR_CATALOG.filter((a) => a.slot === 'rLeg' || a.slot === 'lLeg');
+  }
   return ARMOR_CATALOG.filter((a) => a.slot === slot);
 }
 

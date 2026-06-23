@@ -1,347 +1,651 @@
 [
   {
-    "id": "knife",
-    "name": "Knife",
-    "type": "P",
+    "id": "iron-long-sword",
+    "name": "Iron Long Sword",
+    "type": "S/P",
     "wa": 0,
-    "dmg": "1d6",
+    "dmg": "2d6+2",
     "rel": "10",
-    "hand": "1H",
-    "rng": "—",
+    "hand": "2",
+    "rng": "L",
     "effect": "",
-    "conc": "T",
+    "conc": "",
     "enhancements": "",
-    "weight": 0.5,
-    "tags": ["blade", "melee", "concealable", "backup"]
-  },
-  {
-    "id": "dagger",
-    "name": "Dagger",
-    "type": "P",
-    "wa": 0,
-    "dmg": "1d6+2",
-    "rel": "15",
-    "hand": "1H",
-    "rng": "—",
-    "effect": "",
-    "conc": "T",
-    "enhancements": "",
-    "weight": 0.5,
-    "tags": ["blade", "melee", "concealable"]
-  },
-  {
-    "id": "throwing-knife",
-    "name": "Throwing Knife",
-    "type": "P",
-    "wa": -2,
-    "dmg": "1d6",
-    "rel": "5",
-    "hand": "1H",
-    "rng": "10m",
-    "effect": "Thrown",
-    "conc": "T",
-    "enhancements": "",
-    "weight": 0.25,
-    "tags": ["blade", "thrown", "ranged"]
-  },
-  {
-    "id": "short-sword",
-    "name": "Short Sword",
-    "type": "SL",
-    "wa": 0,
-    "dmg": "2d6",
-    "rel": "25",
-    "hand": "1H",
-    "rng": "—",
-    "effect": "",
-    "conc": "H",
-    "enhancements": "",
-    "weight": 1,
-    "tags": ["sword", "melee", "one-handed"]
+    "weight": 1.5,
+    "tags": [
+      "e"
+    ]
   },
   {
     "id": "arming-sword",
     "name": "Arming Sword",
-    "type": "SL",
-    "wa": 0,
-    "dmg": "2d6+2",
-    "rel": "40",
-    "hand": "1H",
-    "rng": "—",
-    "effect": "",
-    "conc": "H",
-    "enhancements": "",
-    "weight": 1.5,
-    "tags": ["sword", "melee", "one-handed"]
-  },
-  {
-    "id": "long-sword",
-    "name": "Long Sword",
-    "type": "SL",
-    "wa": 0,
-    "dmg": "3d6",
-    "rel": "35",
-    "hand": "2H",
-    "rng": "—",
-    "effect": "",
-    "conc": "L",
-    "enhancements": "",
-    "weight": 2.5,
-    "tags": ["sword", "melee", "two-handed"]
-  },
-  {
-    "id": "gwent-sword",
-    "name": "Gwent Sword",
-    "type": "SL",
+    "type": "S/P",
     "wa": 0,
     "dmg": "2d6+4",
-    "rel": "45",
-    "hand": "1H",
-    "rng": "—",
+    "rel": "15",
+    "hand": "1",
+    "rng": "L",
     "effect": "",
-    "conc": "H",
-    "enhancements": "",
-    "weight": 1.5,
-    "tags": ["sword", "melee", "temerian"]
-  },
-  {
-    "id": "witcher-steel-sword",
-    "name": "Witcher Steel Sword",
-    "type": "SL",
-    "wa": 0,
-    "dmg": "3d6+2",
-    "rel": "50",
-    "hand": "2H",
-    "rng": "—",
-    "effect": "Reliable",
-    "conc": "L",
+    "conc": "",
     "enhancements": "",
     "weight": 2.5,
-    "tags": ["sword", "witcher", "steel", "two-handed"]
+    "tags": [
+      "c"
+    ]
   },
   {
-    "id": "witcher-silver-sword",
-    "name": "Witcher Silver Sword",
-    "type": "SL",
+    "id": "gleddyf",
+    "name": "Gleddyf",
+    "type": "S/P",
     "wa": 0,
-    "dmg": "2d6+2",
-    "rel": "40",
-    "hand": "2H",
-    "rng": "—",
-    "effect": "Silver, Monstrous",
-    "conc": "L",
+    "dmg": "3d6+2",
+    "rel": "5",
+    "hand": "2",
+    "rng": "L",
+    "effect": "",
+    "conc": "",
     "enhancements": "",
-    "weight": 2,
-    "tags": ["sword", "witcher", "silver", "monsters"]
+    "weight": 3.0,
+    "tags": [
+      "c"
+    ]
+  },
+  {
+    "id": "hunter-s-falchion",
+    "name": "Hunter’s Falchion",
+    "type": "S/P",
+    "wa": 0,
+    "dmg": "3d6",
+    "rel": "15",
+    "hand": "1",
+    "rng": "L",
+    "effect": "",
+    "conc": "",
+    "enhancements": "",
+    "weight": 2.0,
+    "tags": [
+      "c"
+    ]
+  },
+  {
+    "id": "krigsverd",
+    "name": "Krigsverd",
+    "type": "S/P",
+    "wa": 2,
+    "dmg": "4d6+4",
+    "rel": "10",
+    "hand": "1",
+    "rng": "L",
+    "effect": "",
+    "conc": "",
+    "enhancements": "",
+    "weight": 2.0,
+    "tags": [
+      "c"
+    ]
+  },
+  {
+    "id": "esboda",
+    "name": "Esboda",
+    "type": "S/P",
+    "wa": 1,
+    "dmg": "5d6",
+    "rel": "10",
+    "hand": "1",
+    "rng": "",
+    "effect": "",
+    "conc": "",
+    "enhancements": "",
+    "weight": 1.0,
+    "tags": [
+      "p"
+    ]
+  },
+  {
+    "id": "kord",
+    "name": "Kord",
+    "type": "S/P",
+    "wa": 0,
+    "dmg": "5d6",
+    "rel": "15",
+    "hand": "1",
+    "rng": "Bleeding",
+    "effect": "(25%)",
+    "conc": "N/A",
+    "enhancements": "1",
+    "weight": 1.5,
+    "tags": [
+      "r"
+    ]
+  },
+  {
+    "id": "vicovarian-blade",
+    "name": "Vicovarian Blade",
+    "type": "S/P",
+    "wa": 0,
+    "dmg": "5d6+4",
+    "rel": "15",
+    "hand": "2",
+    "rng": "Balanced",
+    "effect": "",
+    "conc": "N/A",
+    "enhancements": "1",
+    "weight": 1.5,
+    "tags": [
+      "r"
+    ]
+  },
+  {
+    "id": "torr-wr",
+    "name": "Torr wr",
+    "type": "S/P",
+    "wa": 0,
+    "dmg": "6d6",
+    "rel": "15",
+    "hand": "2",
+    "rng": "Bleeding",
+    "effect": "(50%)",
+    "conc": "N/A",
+    "enhancements": "2",
+    "weight": 2.0,
+    "tags": [
+      "r"
+    ]
+  },
+  {
+    "id": "dagger",
+    "name": "Dagger",
+    "type": "S/P",
+    "wa": 0,
+    "dmg": "1d6+2",
+    "rel": "10",
+    "hand": "1",
+    "rng": "S",
+    "effect": "",
+    "conc": "",
+    "enhancements": "",
+    "weight": 0.5,
+    "tags": [
+      "e"
+    ]
+  },
+  {
+    "id": "stiletto",
+    "name": "Stiletto",
+    "type": "S/P",
+    "wa": 2,
+    "dmg": "1d6",
+    "rel": "5",
+    "hand": "1",
+    "rng": "Concealment",
+    "effect": "",
+    "conc": "T",
+    "enhancements": "1",
+    "weight": 0.5,
+    "tags": [
+      "c"
+    ]
+  },
+  {
+    "id": "poniard",
+    "name": "Poniard",
+    "type": "S/P",
+    "wa": 1,
+    "dmg": "2d6+2",
+    "rel": "10",
+    "hand": "1",
+    "rng": "Bleed",
+    "effect": "(25%)",
+    "conc": "S",
+    "enhancements": "0",
+    "weight": 1.0,
+    "tags": [
+      "p"
+    ]
+  },
+  {
+    "id": "jambiya",
+    "name": "Jambiya",
+    "type": "S/P",
+    "wa": 2,
+    "dmg": "2d6",
+    "rel": "10",
+    "hand": "1",
+    "rng": "Bleed",
+    "effect": "(25%)",
+    "conc": "",
+    "enhancements": "",
+    "weight": 0.0,
+    "tags": [
+      "r"
+    ]
   },
   {
     "id": "hand-axe",
     "name": "Hand Axe",
-    "type": "A",
+    "type": "S",
     "wa": 0,
-    "dmg": "2d6",
-    "rel": "20",
-    "hand": "1H",
-    "rng": "—",
+    "dmg": "2d6+1",
+    "rel": "10",
+    "hand": "1",
+    "rng": "S",
     "effect": "",
-    "conc": "H",
+    "conc": "",
     "enhancements": "",
-    "weight": 1,
-    "tags": ["axe", "melee", "one-handed"]
+    "weight": 1.0,
+    "tags": [
+      "e"
+    ]
   },
   {
     "id": "battle-axe",
     "name": "Battle Axe",
-    "type": "A",
+    "type": "S",
     "wa": 0,
-    "dmg": "3d6+2",
-    "rel": "25",
-    "hand": "2H",
-    "rng": "—",
+    "dmg": "5d6",
+    "rel": "15",
+    "hand": "1",
+    "rng": "L",
     "effect": "",
-    "conc": "L",
+    "conc": "",
     "enhancements": "",
-    "weight": 3,
-    "tags": ["axe", "melee", "two-handed"]
+    "weight": 2.0,
+    "tags": [
+      "c"
+    ]
+  },
+  {
+    "id": "berserker-s-axe",
+    "name": "Berserker’s Axe",
+    "type": "S",
+    "wa": 0,
+    "dmg": "6d6",
+    "rel": "15",
+    "hand": "2",
+    "rng": "Ablating",
+    "effect": "",
+    "conc": "",
+    "enhancements": "",
+    "weight": 0.0,
+    "tags": [
+      "p"
+    ]
+  },
+  {
+    "id": "brass-knuckles",
+    "name": "Brass Knuckles",
+    "type": "B",
+    "wa": 1,
+    "dmg": "1d6",
+    "rel": "15",
+    "hand": "1",
+    "rng": "Adds",
+    "effect": "to Punch",
+    "conc": "T",
+    "enhancements": "1",
+    "weight": 0.5,
+    "tags": [
+      "e"
+    ]
   },
   {
     "id": "mace",
     "name": "Mace",
     "type": "B",
     "wa": 0,
-    "dmg": "2d6+2",
-    "rel": "30",
-    "hand": "1H",
-    "rng": "—",
-    "effect": "Bludgeoning",
-    "conc": "H",
-    "enhancements": "",
-    "weight": 2,
-    "tags": ["bludgeon", "melee", "one-handed"]
-  },
-  {
-    "id": "war-hammer",
-    "name": "War Hammer",
-    "type": "B",
-    "wa": 0,
-    "dmg": "3d6",
-    "rel": "35",
-    "hand": "2H",
-    "rng": "—",
-    "effect": "Bludgeoning",
-    "conc": "L",
-    "enhancements": "",
-    "weight": 3.5,
-    "tags": ["bludgeon", "melee", "two-handed"]
-  },
-  {
-    "id": "club",
-    "name": "Club",
-    "type": "B",
-    "wa": 0,
-    "dmg": "1d6+2",
-    "rel": "10",
-    "hand": "1H",
-    "rng": "—",
-    "effect": "",
-    "conc": "H",
-    "enhancements": "",
-    "weight": 1,
-    "tags": ["bludgeon", "simple", "improvised"]
-  },
-  {
-    "id": "quarterstaff",
-    "name": "Quarterstaff",
-    "type": "B",
-    "wa": 0,
-    "dmg": "1d6",
+    "dmg": "5d6",
     "rel": "15",
-    "hand": "2H",
-    "rng": "—",
+    "hand": "1",
+    "rng": "L",
     "effect": "",
-    "conc": "L",
+    "conc": "",
     "enhancements": "",
-    "weight": 1.5,
-    "tags": ["staff", "bludgeon", "two-handed"]
+    "weight": 2.0,
+    "tags": [
+      "c"
+    ]
+  },
+  {
+    "id": "highland-mauler",
+    "name": "Highland Mauler",
+    "type": "B",
+    "wa": 0,
+    "dmg": "6d6+2",
+    "rel": "20",
+    "hand": "2",
+    "rng": "Stun",
+    "effect": "(-2)",
+    "conc": "",
+    "enhancements": "",
+    "weight": 0.0,
+    "tags": [
+      "r"
+    ]
   },
   {
     "id": "spear",
     "name": "Spear",
-    "type": "PL",
+    "type": "P/B",
     "wa": 0,
-    "dmg": "2d6",
-    "rel": "20",
-    "hand": "2H",
-    "rng": "—",
+    "dmg": "3d6",
+    "rel": "10",
+    "hand": "2",
+    "rng": "x2m",
+    "effect": "Long Reach",
+    "conc": "N/A",
+    "enhancements": "1",
+    "weight": 3.5,
+    "tags": [
+      "e"
+    ]
+  },
+  {
+    "id": "pole-axe",
+    "name": "Pole Axe",
+    "type": "S/P/B",
+    "wa": 0,
+    "dmg": "4d6+2",
+    "rel": "10",
+    "hand": "2",
+    "rng": "Long",
     "effect": "Reach",
+    "conc": "N/A",
+    "enhancements": "0",
+    "weight": 3.0,
+    "tags": [
+      "p"
+    ]
+  },
+  {
+    "id": "red-halberd",
+    "name": "Red Halberd",
+    "type": "S/P/B",
+    "wa": 0,
+    "dmg": "6d6+3",
+    "rel": "10",
+    "hand": "2",
+    "rng": "Long",
+    "effect": "Reach",
+    "conc": "N/A",
+    "enhancements": "1",
+    "weight": 4.0,
+    "tags": [
+      "p"
+    ]
+  },
+  {
+    "id": "blunt",
+    "name": "Blunt",
+    "type": "B",
+    "wa": 0,
+    "dmg": "",
+    "rel": "10",
+    "hand": "",
+    "rng": "",
+    "effect": "Non-Lethal",
     "conc": "L",
     "enhancements": "",
-    "weight": 2,
-    "tags": ["polearm", "spear", "reach"]
+    "weight": 0.1,
+    "tags": [
+      "ammunition",
+      "c"
+    ]
   },
   {
-    "id": "halberd",
-    "name": "Halberd",
-    "type": "PL",
+    "id": "broadhead",
+    "name": "Broadhead",
+    "type": "P",
     "wa": 0,
-    "dmg": "3d6+2",
-    "rel": "25",
-    "hand": "2H",
-    "rng": "—",
-    "effect": "Reach",
-    "conc": "XL",
+    "dmg": "",
+    "rel": "10",
+    "hand": "",
+    "rng": "",
+    "effect": "Bleeding (100%)",
+    "conc": "L",
     "enhancements": "",
-    "weight": 4,
-    "tags": ["polearm", "reach", "two-handed"]
+    "weight": 0.1,
+    "tags": [
+      "ammunition",
+      "c"
+    ]
   },
   {
-    "id": "pike",
-    "name": "Pike",
-    "type": "PL",
+    "id": "bodkin",
+    "name": "Bodkin",
+    "type": "P",
     "wa": 0,
-    "dmg": "2d6+4",
-    "rel": "15",
-    "hand": "2H",
-    "rng": "—",
-    "effect": "Reach",
-    "conc": "XL",
+    "dmg": "",
+    "rel": "10",
+    "hand": "",
+    "rng": "",
+    "effect": "Armor Piercing",
+    "conc": "L",
     "enhancements": "",
-    "weight": 4.5,
-    "tags": ["polearm", "reach", "military"]
+    "weight": 0.1,
+    "tags": [
+      "ammunition",
+      "c"
+    ]
   },
   {
-    "id": "javelin",
-    "name": "Javelin",
-    "type": "PL",
-    "wa": -1,
+    "id": "staff",
+    "name": "Staff",
+    "type": "B",
+    "wa": 0,
+    "dmg": "1d6+2",
+    "rel": "10",
+    "hand": "2",
+    "rng": "Long",
+    "effect": "Reach",
+    "conc": "",
+    "enhancements": "",
+    "weight": 0.0,
+    "tags": [
+      "c"
+    ]
+  },
+  {
+    "id": "hooked-staff",
+    "name": "Hooked Staff",
+    "type": "P/B",
+    "wa": 0,
     "dmg": "2d6",
     "rel": "10",
-    "hand": "1H",
-    "rng": "15m",
-    "effect": "Thrown",
-    "conc": "L",
+    "hand": "2",
+    "rng": "",
+    "effect": "",
+    "conc": "",
     "enhancements": "",
-    "weight": 1.5,
-    "tags": ["polearm", "thrown", "ranged"]
+    "weight": 0.0,
+    "tags": [
+      "p"
+    ]
+  },
+  {
+    "id": "iron-staff",
+    "name": "Iron Staff",
+    "type": "B",
+    "wa": 0,
+    "dmg": "3d6",
+    "rel": "15",
+    "hand": "2",
+    "rng": "Long",
+    "effect": "Reach",
+    "conc": "",
+    "enhancements": "",
+    "weight": 0.0,
+    "tags": [
+      "p"
+    ]
+  },
+  {
+    "id": "crystal-staff",
+    "name": "Crystal Staff",
+    "type": "B",
+    "wa": 0,
+    "dmg": "2d6+2",
+    "rel": "5",
+    "hand": "2",
+    "rng": "",
+    "effect": "",
+    "conc": "",
+    "enhancements": "",
+    "weight": 0.0,
+    "tags": [
+      "r"
+    ]
+  },
+  {
+    "id": "throwing-knife",
+    "name": "Throwing Knife",
+    "type": "P",
+    "wa": 0,
+    "dmg": "1d6",
+    "rel": "5",
+    "hand": "1",
+    "rng": "x4m",
+    "effect": "",
+    "conc": "T",
+    "enhancements": "0",
+    "weight": 0.5,
+    "tags": [
+      "e"
+    ]
+  },
+  {
+    "id": "throwing-axe",
+    "name": "Throwing Axe",
+    "type": "S",
+    "wa": 0,
+    "dmg": "2d6",
+    "rel": "10",
+    "hand": "1",
+    "rng": "x2m",
+    "effect": "",
+    "conc": "S",
+    "enhancements": "0",
+    "weight": 1.0,
+    "tags": [
+      "e"
+    ]
+  },
+  {
+    "id": "orion",
+    "name": "Orion",
+    "type": "S",
+    "wa": 0,
+    "dmg": "1d6",
+    "rel": "5",
+    "hand": "1",
+    "rng": "x4m",
+    "effect": "",
+    "conc": "T",
+    "enhancements": "0",
+    "weight": 0.5,
+    "tags": [
+      "p"
+    ]
   },
   {
     "id": "short-bow",
     "name": "Short Bow",
-    "type": "BOW",
+    "type": "P",
     "wa": 0,
-    "dmg": "2d6",
-    "rel": "15",
-    "hand": "2H",
-    "rng": "50m",
+    "dmg": "3d6+3",
+    "rel": "10",
+    "hand": "2",
+    "rng": "L",
     "effect": "",
-    "conc": "L",
+    "conc": "",
     "enhancements": "",
-    "weight": 1,
-    "tags": ["bow", "ranged"]
+    "weight": 1.0,
+    "tags": [
+      "e"
+    ]
   },
   {
     "id": "long-bow",
     "name": "Long Bow",
-    "type": "BOW",
+    "type": "P",
     "wa": 0,
-    "dmg": "3d6",
-    "rel": "20",
-    "hand": "2H",
-    "rng": "100m",
-    "effect": "",
-    "conc": "XL",
-    "enhancements": "",
-    "weight": 1.5,
-    "tags": ["bow", "ranged"]
-  },
-  {
-    "id": "light-crossbow",
-    "name": "Light Crossbow",
-    "type": "XB",
-    "wa": 0,
-    "dmg": "2d6+2",
-    "rel": "25",
-    "hand": "2H",
-    "rng": "60m",
-    "effect": "Reload 1 turn",
-    "conc": "L",
-    "enhancements": "",
-    "weight": 3,
-    "tags": ["crossbow", "ranged"]
-  },
-  {
-    "id": "heavy-crossbow",
-    "name": "Heavy Crossbow",
-    "type": "XB",
-    "wa": -1,
     "dmg": "4d6",
-    "rel": "30",
-    "hand": "2H",
-    "rng": "80m",
-    "effect": "Reload 2 turns",
-    "conc": "XL",
+    "rel": "10",
+    "hand": "2",
+    "rng": "",
+    "effect": "",
+    "conc": "",
     "enhancements": "",
-    "weight": 5,
-    "tags": ["crossbow", "ranged", "heavy"]
+    "weight": 1.0,
+    "tags": [
+      "e"
+    ]
+  },
+  {
+    "id": "war-b-ow",
+    "name": "War B ow",
+    "type": "P",
+    "wa": 0,
+    "dmg": "6d6",
+    "rel": "15",
+    "hand": "2",
+    "rng": "",
+    "effect": "",
+    "conc": "",
+    "enhancements": "",
+    "weight": 1.0,
+    "tags": [
+      "c"
+    ]
+  },
+  {
+    "id": "hand-crossbow",
+    "name": "Hand Crossbow",
+    "type": "P",
+    "wa": 1,
+    "dmg": "2d6+2",
+    "rel": "5",
+    "hand": "1",
+    "rng": "Slow",
+    "effect": "Reload",
+    "conc": "L",
+    "enhancements": "1",
+    "weight": 0.5,
+    "tags": [
+      "e"
+    ]
+  },
+  {
+    "id": "crossbow",
+    "name": "Crossbow",
+    "type": "P",
+    "wa": 1,
+    "dmg": "4d6+2",
+    "rel": "5",
+    "hand": "2",
+    "rng": "Slow",
+    "effect": "Reload",
+    "conc": "N/A",
+    "enhancements": "1",
+    "weight": 3.0,
+    "tags": [
+      "e"
+    ]
+  },
+  {
+    "id": "crossbow-37",
+    "name": "Crossbow",
+    "type": "P",
+    "wa": 1,
+    "dmg": "6d6",
+    "rel": "15",
+    "hand": "2",
+    "rng": "Slow",
+    "effect": "Reload",
+    "conc": "",
+    "enhancements": "",
+    "weight": 0.0,
+    "tags": [
+      "r"
+    ]
   }
 ]
