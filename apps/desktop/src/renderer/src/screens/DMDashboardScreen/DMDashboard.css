@@ -2,7 +2,6 @@
 
 .dm-header {
   display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
-  -webkit-app-region: no-drag;
 }
 .dm-header h1 { font-size: 1.5rem; color: var(--accent); }
 .back-btn-sm { font-size: 0.85rem; }
@@ -24,6 +23,7 @@
 .section-header h2 { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
 .muted-text { color: var(--text-muted); font-style: italic; }
+.invite-hint { margin-bottom: 0.75rem; font-style: normal; font-size: 0.85rem; }
 .char-list { display: flex; flex-direction: column; gap: 0.5rem; }
 .char-card {
   display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;

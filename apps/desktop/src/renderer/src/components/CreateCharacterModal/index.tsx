@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Character } from '@wilmak/shared';
+import { normalizeNickname } from '../../utils/session';
 import { RaceSelect, OccupationSelect } from '../RaceOccupationSelect';
 import './CreateCharacterModal.css';
 
@@ -29,7 +30,7 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
     const n = name.trim();
     if (!n) { setError('Name is required.'); return; }
     if (isPlayer) {
-      const nick = nickname.trim().toLowerCase().replace(/\s/g, '');
+      const nick = normalizeNickname(nickname);
       if (!nick) { setError('Nickname is required so the player can log in.'); return; }
       onSubmit({ name: n, race, occupation, nickname: nick, type: 'player' });
     } else {
@@ -54,7 +55,7 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
               Player nickname <span className="required">*</span>
               <input
                 value={nickname}
-                onChange={(e) => { setNickname(e.target.value.toLowerCase().replace(/\s/g, '')); setError(''); }}
+                onChange={(e) => { setNickname(normalizeNickname(e.target.value)); setError(''); }}
                 placeholder="e.g. geralt — used to log in"
                 autoComplete="off"
               />
