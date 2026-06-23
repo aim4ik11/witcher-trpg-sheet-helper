@@ -1,7 +1,15 @@
 import os from 'node:os';
 import { randomUUID } from 'node:crypto';
-import type { Character, Player, ServerToHost } from '@wilmak/shared';
+import {
+  normalizeNickname,
+  type Character,
+  type Player,
+  type PlayerCredential,
+  type ServerToHost,
+} from '@wilmak/shared';
 import { state } from './store';
+
+export { normalizeNickname };
 
 export function lanUrls(port: number): string[] {
   const out: string[] = [];
@@ -24,6 +32,32 @@ export function pushRoster(): void {
   }));
   notifyHost({ type: 'players', players });
   state.io?.emit('players:update', players);
+}
+
+export function generateCode(): string {
+  return String(Math.floor(1000 + Math.random() * 9000));
+}
+
+function generateUniqueCode(): string {
+  for (let attempt = 0; attempt < 50; attempt += 1) {
+    const code = generateCode();
+    if (!state.config.players.some((p) => p.code === code)) return code;
+  }
+  return randomUUID().slice(0, 6);
+}
+
+export function ensureCredential(nickname: string, code?: string): PlayerCredential {
+  const nick = normalizeNickname(nickname);
+  const existing = state.config.players.find((p) => p.nickname === nick);
+  if (existing) return existing;
+  const cred: PlayerCredential = { nickname: nick, code: code ?? generateUniqueCode() };
+  state.config.players.push(cred);
+  pushCredentials();
+  return cred;
+}
+
+export function pushCredentials(): void {
+  notifyHost({ type: 'credentials', credentials: [...state.config.players] });
 }
 
 export function makeCharacter(
