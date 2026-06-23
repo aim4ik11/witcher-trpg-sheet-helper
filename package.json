@@ -13,11 +13,14 @@
     "build:player": "npm run build -w player-web",
     "sync:game-data": "python3 scripts/sync-game-data.py",
     "dist": "npm run build -w desktop && npm run build:server -w desktop && npm run build -w player-web && npm run pack -w desktop",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "concurrently": "^9.0.1",
+    "prettier": "^3.6.2",
     "typescript": "^5.5.4",
     "wait-on": "^8.0.1"
   }

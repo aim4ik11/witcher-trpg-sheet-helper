@@ -1,0 +1,12 @@
+node_modules
+dist
+out
+apps/desktop/out
+apps/desktop/renderer
+apps/player-web/dist
+apps/server/dist
+package-lock.json
+design/*.html
+data
+sessions
+*.min.js
