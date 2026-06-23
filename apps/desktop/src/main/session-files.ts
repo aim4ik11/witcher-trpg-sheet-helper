@@ -2,6 +2,7 @@ import { app } from 'electron';
 import path from 'node:path';
 import fs from 'node:fs';
 import { normalizeNickname, type Character, type SessionConfig } from '@wilmak/shared';
+import { normalizeCharacter } from '@wilmak/game-data';
 
 const EXAMPLE_SESSION = 'example-session.json';
 const isDev = !!process.env.ELECTRON_RENDERER_URL;
@@ -30,7 +31,7 @@ function isValidCharacter(value: unknown): value is Character {
 
 function normalizeCharacters(characters: unknown): Character[] {
   if (!Array.isArray(characters)) return [];
-  return characters.filter(isValidCharacter);
+  return characters.filter(isValidCharacter).map((c) => normalizeCharacter(c));
 }
 
 export function normalizeSessionConfig(config: Partial<SessionConfig>): SessionConfig {

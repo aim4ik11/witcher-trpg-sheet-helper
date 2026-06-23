@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@wilmak/game-data": "*",
     "@wilmak/shared": "*",
     "express": "^4.19.2",
     "socket.io": "^4.7.5"

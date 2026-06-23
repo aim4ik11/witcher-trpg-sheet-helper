@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Character } from '@wilmak/shared';
 import { normalizeNickname } from '../../utils/session';
-import { RaceSelect, OccupationSelect } from '../RaceOccupationSelect';
+import { RaceSelect, OccupationSelect, occupationAfterRaceChange } from '../RaceOccupationSelect';
 import './CreateCharacterModal.css';
 
 interface Props {
@@ -24,6 +24,10 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
     document.body.style.overflow = 'hidden';
     return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
   }, [onClose]);
+
+  useEffect(() => {
+    setOccupation((prev) => occupationAfterRaceChange(race, prev));
+  }, [race]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -49,7 +53,7 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
             <input value={name} onChange={(e) => { setName(e.target.value); setError(''); }} placeholder="e.g. Geralt of Rivia" autoFocus />
           </label>
           <label>Race <RaceSelect value={race} onChange={setRace} /></label>
-          <label>Occupation <OccupationSelect value={occupation} onChange={setOccupation} /></label>
+          <label>Occupation <OccupationSelect race={race} value={occupation} onChange={setOccupation} /></label>
           {isPlayer && (
             <label>
               Player nickname <span className="required">*</span>

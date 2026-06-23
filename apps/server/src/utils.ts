@@ -7,6 +7,7 @@ import {
   type PlayerCredential,
   type ServerToHost,
 } from '@wilmak/shared';
+import { normalizeCharacter } from '@wilmak/game-data';
 import { state } from './store';
 
 export { normalizeNickname };
@@ -71,7 +72,7 @@ export function makeCharacter(
     race:              '',
     occupation:        '',
     nickname:          '',
-    attributes:        { ref: 1, emp: 1, int: 1, dex: 1, will: 1, cra: 1, body: 1 },
+    attributes:        { int: 1, ref: 1, dex: 1, body: 1, spd: 1, emp: 1, cra: 1, will: 1, luck: 1 },
     skills:            {},
     vitals: {
       hp:      { current: 0, max: 0 },
@@ -79,7 +80,7 @@ export function makeCharacter(
       resolve: { current: 0, max: 0 },
       woundThreshold: 0,
     },
-    luck:               { max: 5, used: 0 },
+    luck:               { max: 1, used: 0 },
     speed:              0,
     adrenaline:         0,
     movement:           { run: 0, leap: 0 },
@@ -102,5 +103,6 @@ export function makeCharacter(
     wounds:              [],
     statusEffects:       [],
   };
-  return { ...defaults, ...init, id };
+  const merged = { ...defaults, ...init, id };
+  return normalizeCharacter(merged);
 }

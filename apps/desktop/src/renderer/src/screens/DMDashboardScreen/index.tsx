@@ -10,6 +10,7 @@ import PlayerInvitesList from '../../components/PlayerInvitesList';
 import '../../components/PlayerInvitesList/PlayerInvitesList.css';
 import { useCredentialsSync } from '../../hooks/useCredentialsSync';
 import { normalizeNickname } from '../../utils/session';
+import { raceLabel, occupationLabel } from '@wilmak/game-data';
 import './DMDashboard.css';
 
 export default function DMDashboardScreen() {
@@ -186,8 +187,8 @@ function CharCard({
     <div className="char-card">
       <div className="char-card-info">
         <button className="char-name-btn" onClick={onOpen}>{character.name}</button>
-        {character.race && <span className="char-race">{character.race}</span>}
-        {character.occupation && <span className="char-prof">{character.occupation}</span>}
+        {character.race && <span className="char-race">{raceLabel(character.race)}</span>}
+        {character.occupation && <span className="char-prof">{occupationLabel(character.occupation)}</span>}
         {character.type === 'player' && (
           <span className="char-nick">
             Login: <strong>{character.nickname || '(not set)'}</strong>

@@ -5,6 +5,7 @@ import { Server as SocketServer } from 'socket.io';
 import type { SessionConfig } from '@wilmak/shared';
 import { state } from './store';
 import { lanUrls, notifyHost, pushCredentials, normalizeNickname } from './utils';
+import { normalizeCharacter } from '@wilmak/game-data';
 import charactersRouter from './routes/characters';
 import playerRouter from './routes/player';
 import { registerSocketHandlers } from './socket/handlers';
@@ -22,7 +23,7 @@ export function start(cfg: Partial<SessionConfig>): void {
   state.characters.clear();
   for (const char of rawCharacters ?? []) {
     if (char?.id && char.type && char.name) {
-      state.characters.set(char.id, char);
+      state.characters.set(char.id, normalizeCharacter(char));
     }
   }
 

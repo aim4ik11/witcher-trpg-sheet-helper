@@ -1,6 +1,7 @@
 import type { Character, HostToServer } from '@wilmak/shared';
 import { state } from '../store';
 import { notifyHost, makeCharacter, ensureCredential, normalizeNickname } from '../utils';
+import { normalizeCharacter } from '@wilmak/game-data';
 import { revokePlayer } from '../socket/handlers';
 import { start } from '../server';
 
@@ -19,16 +20,24 @@ export function handleGmMessage(msg: HostToServer): void {
       state.httpServer?.close();
       process.exit(0);
 
-    case 'characters:getAll':
-      notifyHost({ type: 'characters:result', requestId: msg.requestId, data: [...state.characters.values()] });
+    case 'characters:getAll': {
+      const all = [...state.characters.values()].map((c) => {
+        const normalized = normalizeCharacter(c);
+        state.characters.set(c.id, normalized);
+        return normalized;
+      });
+      notifyHost({ type: 'characters:result', requestId: msg.requestId, data: all });
       break;
+    }
     case 'characters:get': {
       const char = state.characters.get(msg.id);
       if (!char) {
         notifyHost({ type: 'characters:error', requestId: msg.requestId, message: 'Not found' });
-      } else {
-        notifyHost({ type: 'characters:result', requestId: msg.requestId, data: char });
+        break;
       }
+      const normalized = normalizeCharacter(char);
+      state.characters.set(msg.id, normalized);
+      notifyHost({ type: 'characters:result', requestId: msg.requestId, data: normalized });
       break;
     }
     case 'characters:create': {
@@ -49,7 +58,7 @@ export function handleGmMessage(msg: HostToServer): void {
         notifyHost({ type: 'characters:error', requestId: msg.requestId, message: 'Not found' });
         break;
       }
-      const updated: Character = { ...existing, ...msg.character, id: msg.id };
+      const updated: Character = normalizeCharacter({ ...existing, ...msg.character, id: msg.id });
       if (updated.type === 'player' && updated.nickname) {
         updated.nickname = normalizeNickname(updated.nickname);
         ensureCredential(updated.nickname);
