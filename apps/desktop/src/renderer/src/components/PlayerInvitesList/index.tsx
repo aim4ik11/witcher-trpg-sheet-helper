@@ -8,31 +8,33 @@ interface Props {
 
 export default function PlayerInvitesList({ credentials, connected, onCopyCode }: Props) {
   if (credentials.length === 0) {
-    return <p className="muted-text">No player invites yet. Add a player character or invite in DM Console.</p>;
+    return <p className="invite-empty">No player invites yet. Add a player character or invite in DM Console.</p>;
   }
 
   const online = new Set(connected.map((p) => p.nickname));
 
   return (
     <ul className="invite-list">
-      {credentials.map((c) => (
-        <li key={c.nickname} className="invite-row">
-          <div className="invite-info">
+      {credentials.map((c) => {
+        const isOnline = online.has(c.nickname);
+        return (
+          <li key={c.nickname} className="invite-row">
             <span className="invite-nick">{c.nickname}</span>
-            <span className={`invite-status ${online.has(c.nickname) ? 'online' : 'offline'}`}>
-              {online.has(c.nickname) ? 'online' : 'offline'}
+            <span className={`status-pill ${isOnline ? 'status-pill--online' : 'status-pill--offline'}`}>
+              <span className="status-pill__dot" />
+              {isOnline ? 'online' : 'offline'}
             </span>
-          </div>
-          <div className="invite-code-wrap">
-            <code className="invite-code">{c.code}</code>
-            {onCopyCode && (
-              <button type="button" className="copy-btn" onClick={() => onCopyCode(c.code)}>
-                Copy
-              </button>
-            )}
-          </div>
-        </li>
-      ))}
+            <div className="invite-code-wrap">
+              <code className="invite-code">{c.code}</code>
+              {onCopyCode && (
+                <button type="button" className="invite-copy" onClick={() => onCopyCode(c.code)}>
+                  copy
+                </button>
+              )}
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 }

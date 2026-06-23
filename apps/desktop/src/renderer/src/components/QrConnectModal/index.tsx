@@ -19,14 +19,14 @@ export default function QrConnectModal({ playUrls, onClose }: Props) {
 
   return (
     <div className="qr-modal-backdrop" onClick={onClose} role="presentation">
-      <div className="qr-modal panel" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+      <div className="qr-modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
         <button type="button" className="qr-modal-close" onClick={onClose} aria-label="Close">×</button>
         <h2 className="qr-modal-title">Scan to Join</h2>
         <p className="qr-modal-hint">Players scan with their phone camera (same WiFi required)</p>
         {primaryUrl ? (
           <>
             <div className="qr-code-wrap">
-              <QRCodeSVG value={primaryUrl} size={240} level="M" includeMargin bgColor="#2a2218" fgColor="#e8dcc8" />
+              <QRCodeSVG value={primaryUrl} size={240} level="M" includeMargin bgColor="#141210" fgColor="#eae3d6" />
             </div>
             <code className="qr-modal-url">{primaryUrl}</code>
             <div className="qr-modal-actions">

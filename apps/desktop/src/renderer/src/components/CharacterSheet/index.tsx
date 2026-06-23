@@ -13,7 +13,6 @@ import {
 } from '@wilmak/game-data';
 import type { CatalogItem } from '@wilmak/game-data';
 import { RaceSelect, OccupationSelect, RaceOccupationDisplay, occupationAfterRaceChange } from '../RaceOccupationSelect';
-import { ATTRIBUTE_ICONS } from '../AttributeIcons';
 import CatalogPickerModal from '../CatalogPickerModal';
 import './CharacterSheet.css';
 import '../CatalogPickerModal/CatalogPickerModal.css';
@@ -41,21 +40,33 @@ function trainedSkills(character: Character) {
 interface CounterProps {
   current: number; max: number; label: string; readOnly?: boolean;
   onChange: (v: number) => void;
+  layout?: 'row' | 'card';
 }
-function Counter({ current, max, label, readOnly, onChange }: CounterProps) {
+function Counter({ current, max, label, readOnly, onChange, layout = 'row' }: CounterProps) {
+  const body = readOnly ? (
+    <span className="counter-readonly">{current} <span className="max">/ {max}</span></span>
+  ) : (
+    <div className="counter">
+      <button type="button" onClick={() => onChange(Math.max(0, current - 1))}>−</button>
+      <span className="value">{current}</span>
+      <span className="max">/ {max}</span>
+      <button type="button" onClick={() => onChange(Math.min(max, current + 1))}>+</button>
+    </div>
+  );
+
+  if (layout === 'card') {
+    return (
+      <div className="vital-card">
+        <div className="vital-card-label">{label}</div>
+        {body}
+      </div>
+    );
+  }
+
   return (
     <div className="vital-row">
       <span className="vital-label">{label}</span>
-      {readOnly ? (
-        <span className="counter-readonly">{current} <span className="max">/ {max}</span></span>
-      ) : (
-        <div className="counter">
-          <button type="button" onClick={() => onChange(Math.max(0, current - 1))}>−</button>
-          <span className="value">{current}</span>
-          <span className="max">/ {max}</span>
-          <button type="button" onClick={() => onChange(Math.min(max, current + 1))}>+</button>
-        </div>
-      )}
+      {body}
     </div>
   );
 }
@@ -229,62 +240,74 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
     <div className={`sheet${readOnly ? ' sheet-readonly' : ''}${isEnemyStatblock ? ' sheet--enemy-statblock' : ''}`}>
       <header className="sheet-header">
         <button type="button" className="back-btn" onClick={onBack}>{backLabel}</button>
-        <div className="sheet-identity">
-          {readOnly ? (
-            <>
-              <h1 className="sheet-name-display">{character.name}</h1>
-              <div className="sheet-meta-display">
-                {isMonster && profile?.monsterType ? (
+        {!readOnly && <span className="sheet-save-hint">Saved automatically</span>}
+      </header>
+
+      <div className="sheet-hero">
+        {readOnly ? (
+          <>
+            <h1 className="sheet-name-display">{character.name}</h1>
+            <div className="sheet-meta-display">
+              {isMonster && profile?.monsterType ? (
+                <span className="sheet-monster-type">{profile.monsterType}</span>
+              ) : (
+                <RaceOccupationDisplay race={character.race} occupation={occupation} />
+              )}
+              {profile?.threat && <span className="sheet-threat">{profile.threat}</span>}
+            </div>
+          </>
+        ) : (
+          <>
+            <input className="sheet-name" value={character.name} onChange={(e) => update({ name: e.target.value })} />
+            <div className="sheet-meta">
+              {isMonster ? (
+                profile?.monsterType && (
                   <span className="sheet-monster-type">{profile.monsterType}</span>
-                ) : (
-                  <RaceOccupationDisplay race={character.race} occupation={occupation} />
-                )}
-                {profile?.threat && <span className="sheet-threat">{profile.threat}</span>}
-              </div>
-            </>
-          ) : (
-            <>
-              <input className="sheet-name" value={character.name} onChange={(e) => update({ name: e.target.value })} />
-              <div className="sheet-meta">
-                {isMonster ? (
-                  profile?.monsterType && (
-                    <span className="sheet-monster-type">{profile.monsterType}</span>
-                  )
-                ) : isEnemyStatblock ? (
-                  <RaceOccupationDisplay race={character.race} occupation={occupation} />
-                ) : (
-                  <>
+                )
+              ) : isEnemyStatblock ? (
+                <RaceOccupationDisplay race={character.race} occupation={occupation} />
+              ) : (
+                <>
+                  <div className="sheet-meta-chip">
+                    <span className="chip-label">Race</span>
                     <RaceSelect value={character.race ?? ''} onChange={(v) => {
                       const occ = occupationAfterRaceChange(v, character.occupation ?? '');
                       update({ race: v, occupation: occ });
                     }} />
+                  </div>
+                  <div className="sheet-meta-chip">
+                    <span className="chip-label">Occupation</span>
                     <OccupationSelect
                       race={character.race ?? ''}
                       value={occupation}
                       onChange={(v) => update({ occupation: v })}
                     />
-                  </>
-                )}
-                {character.type === 'player' && (
+                  </div>
+                </>
+              )}
+              {character.type === 'player' && (
+                <div className="sheet-meta-chip">
+                  <span className="chip-label">Nickname</span>
                   <input
-                    placeholder="Player nickname"
                     value={character.nickname ?? ''}
                     onChange={(e) => update({ nickname: e.target.value.toLowerCase().replace(/\s/g, '') })}
                   />
-                )}
-              </div>
-            </>
-          )}
-        </div>
-      </header>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
 
-      {readOnly && !isEnemyStatblock && <p className="readonly-banner">View only — your DM updates this sheet</p>}
+      {readOnly && !isEnemyStatblock && <p className="readonly-banner">View only — your DM updates this sheet.</p>}
 
       {!isEnemyStatblock && (
-        <div className="tab-bar">
-          {tabs.map((t) => (
-            <button key={t} type="button" className={tab === t ? 'active' : ''} onClick={() => setTab(t)}>{t}</button>
-          ))}
+        <div className="sheet-tabs-wrap">
+          <div className="tab-bar">
+            {tabs.map((t) => (
+              <button key={t} type="button" className={tab === t ? 'active' : ''} onClick={() => setTab(t)}>{t}</button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -533,64 +556,94 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
               </section>
             )}
 
-            <section className="panel vitals-panel">
-              <div className="panel-title">Vitals</div>
-              <Counter readOnly={readOnly} label="HP" current={character.vitals.hp.current} max={hpMax} onChange={(v) => updateNested(['vitals', 'hp', 'current'], v)} />
-              <Counter readOnly={readOnly} label="STA" current={character.vitals.sta.current} max={staMax} onChange={(v) => updateNested(['vitals', 'sta', 'current'], v)} />
-              <Counter readOnly={readOnly} label="Resolve" current={character.vitals.resolve.current} max={resolveDisplayMax} onChange={(v) => updateNested(['vitals', 'resolve', 'current'], v)} />
-              <div className="vital-row">
-                <span className="vital-label">Wound Threshold</span>
-                <NumInput readOnly={readOnly} value={character.vitals.woundThreshold} onChange={(v) => updateNested(['vitals', 'woundThreshold'], v)} />
+            <section className="vitals-panel">
+              <div className="section-label">Vitals</div>
+              <div className="vitals-grid">
+                <Counter layout="card" readOnly={readOnly} label="HP" current={character.vitals.hp.current} max={hpMax} onChange={(v) => updateNested(['vitals', 'hp', 'current'], v)} />
+                <Counter layout="card" readOnly={readOnly} label="STA" current={character.vitals.sta.current} max={staMax} onChange={(v) => updateNested(['vitals', 'sta', 'current'], v)} />
+                <Counter layout="card" readOnly={readOnly} label="Resolve" current={character.vitals.resolve.current} max={resolveDisplayMax} onChange={(v) => updateNested(['vitals', 'resolve', 'current'], v)} />
+                <div className="vital-card">
+                  <div className="vital-card-label">Wound threshold</div>
+                  {readOnly ? (
+                    <div className="vital-card-value">{character.vitals.woundThreshold}</div>
+                  ) : (
+                    <NumInput className="vital-card-value" readOnly={readOnly} value={character.vitals.woundThreshold} onChange={(v) => updateNested(['vitals', 'woundThreshold'], v)} />
+                  )}
+                </div>
               </div>
               <p className="formula-hint">
                 {isBestiary
                   ? 'Stats from rulebook bestiary — HP/STA/RUN/LEAP/STUN/REC as printed.'
-                  : 'HP/STA: Physical Table (BODY+WILL)/2 ↓ · Resolve: (INT+WILL)/2×5 · RUN: SPD×3'}
+                  : 'HP & STA derived from (BODY + WILL) × 5; Resolve from WILL × 5.'}
               </p>
             </section>
 
-            <section className="panel">
-              <div className="panel-title">Attributes & Skills</div>
-              {Object.entries(ATTRIBUTES).map(([key, attr]) => (
-                <div key={key} className="attr-block">
-                  <div className={`attr-header attr-header--${key}`}>
-                    <span className="attr-icon">{ATTRIBUTE_ICONS[key]}</span>
-                    <div className="attr-header-text">
-                      <span className="attr-short">{attr.short}</span>
-                      <span className="attr-full">{attr.label}</span>
+            <section>
+              <div className="section-label">Attributes & skills</div>
+              <div className="attr-grid">
+                {Object.entries(ATTRIBUTES).map(([key, attr]) => (
+                  <div key={key} className="attr-block">
+                    <div className={`attr-header attr-header--${key}`}>
+                      <div className="attr-header-text">
+                        <span className="attr-short">{attr.short}</span>
+                        <span className="attr-full">{attr.label}</span>
+                      </div>
+                      <NumInput readOnly={readOnly} className="attr-value-input"
+                        value={character.attributes[key]}
+                        onChange={(v) => updateNested(['attributes', key], v)} />
                     </div>
-                    <NumInput readOnly={readOnly} className="attr-value-input"
-                      value={character.attributes[key]}
-                      onChange={(v) => updateNested(['attributes', key], v)} />
+                    {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => {
+                      const level = character.skills[key]?.[skill.key]?.level ?? 0;
+                      return (
+                        <div key={skill.key} className={`skill-row${skill.special ? ' special' : ''}`}>
+                          <span className="name">
+                            {skill.label}
+                            {readOnly ? (
+                              <span className="skill-lvl"> · {level}</span>
+                            ) : (
+                              <>
+                                {' · '}
+                                <NumInput readOnly={readOnly} className="skill-lvl-input"
+                                  value={level}
+                                  onChange={(v) => updateNested(['skills', key, skill.key, 'level'], v)} />
+                              </>
+                            )}
+                          </span>
+                          <span className="base">{skillBase(character, key, skill.key)}</span>
+                        </div>
+                      );
+                    })}
                   </div>
-                  <div className="skill-header-row"><span>Skill</span><span>Lvl</span><span>Base</span></div>
-                  {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => (
-                    <div key={skill.key} className={`skill-row${skill.special ? ' special' : ''}`}>
-                      <span className="name">{skill.label}</span>
-                      <NumInput readOnly={readOnly}
-                        value={character.skills[key]?.[skill.key]?.level ?? 0}
-                        onChange={(v) => updateNested(['skills', key, skill.key, 'level'], v)} />
-                      <span className="base">{skillBase(character, key, skill.key)}</span>
-                    </div>
-                  ))}
-                </div>
-              ))}
+                ))}
+              </div>
             </section>
 
-            <section className="panel misc-stats">
-              <div className="panel-title">Luck</div>
-              <div className="luck-bar">
-                {Array.from({ length: derived.luckMax || character.luck?.max || 0 }).map((_, i) =>
-                  readOnly ? (
-                    <span key={i} className={`luck-pip luck-pip-static${i < (character.luck?.used ?? 0) ? ' used' : ''}`} />
-                  ) : (
-                    <button key={i} type="button"
-                      className={`luck-pip${i < (character.luck?.used ?? 0) ? ' used' : ''}`}
-                      onClick={() => { const used = i < (character.luck?.used ?? 0) ? i : i + 1; updateNested(['luck', 'used'], used); }} />
-                  )
-                )}
+            <section className="misc-stats">
+              <div className="section-label">Movement, recovery & progression</div>
+              <div className="attr-block luck-block">
+                <div className="attr-header attr-header--luck">
+                  <div className="attr-header-text">
+                    <span className="attr-short">LUCK</span>
+                    <span className="attr-full">Luck</span>
+                  </div>
+                  <span className="readonly-value attr-value-input">{character.attributes.luck ?? 0}</span>
+                </div>
+                <div className="luck-row">
+                  <span className="luck-spent-label">spent</span>
+                  <div className="luck-bar">
+                    {Array.from({ length: derived.luckMax || character.luck?.max || 0 }).map((_, i) =>
+                      readOnly ? (
+                        <span key={i} className={`luck-pip luck-pip-static${i < (character.luck?.used ?? 0) ? ' used' : ''}`} />
+                      ) : (
+                        <button key={i} type="button"
+                          className={`luck-pip${i < (character.luck?.used ?? 0) ? ' used' : ''}`}
+                          onClick={() => { const used = i < (character.luck?.used ?? 0) ? i : i + 1; updateNested(['luck', 'used'], used); }} />
+                      )
+                    )}
+                  </div>
+                </div>
               </div>
-              <div className="stat-grid">
+              <div className="derived-grid">
                 <label>RUN <NumInput readOnly={readOnly} value={derived.run} onChange={(v) => updateNested(['movement', 'run'], v)} /></label>
                 <label>LEAP <NumInput readOnly={readOnly} value={derived.leap} onChange={(v) => updateNested(['movement', 'leap'], v)} /></label>
                 <label>STUN <NumInput readOnly={readOnly} value={derived.stun} onChange={(v) => updateNested(['recovery', 'stun'], v)} /></label>

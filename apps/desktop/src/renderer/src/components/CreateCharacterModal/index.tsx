@@ -63,9 +63,11 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
 
   return (
     <div className="create-modal-backdrop" onClick={onClose} role="presentation">
-      <div className="create-modal panel create-modal--wide" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
-        <button type="button" className="create-modal-close" onClick={onClose} aria-label="Close">×</button>
-        <h2 className="create-modal-title">{isPlayer ? 'New Player Character' : 'New Enemy'}</h2>
+      <div className={`create-modal${!isPlayer ? ' create-modal--wide' : ''}`} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+        <div className="create-modal-header">
+          <h2 className="create-modal-title">{isPlayer ? 'New player' : 'New enemy'}</h2>
+          <button type="button" className="create-modal-close" onClick={onClose} aria-label="Close">×</button>
+        </div>
         <form onSubmit={handleSubmit} className="create-modal-form">
           {!isPlayer && (
             <div className="create-modal-mode" role="tablist" aria-label="Enemy type">
@@ -90,6 +92,7 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
             </div>
           )}
 
+          <div className="create-modal-body">
           {!isPlayer && enemyMode === 'bestiary' && (
             <label>
               Creature <span className="required">*</span>
@@ -127,15 +130,17 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
               <input
                 value={nickname}
                 onChange={(e) => { setNickname(normalizeNickname(e.target.value)); setError(''); }}
-                placeholder="e.g. geralt — used to log in"
+                placeholder="e.g. yennefer"
                 autoComplete="off"
               />
             </label>
           )}
 
           {error && <p className="create-modal-error">{error}</p>}
+          </div>
+
           <div className="create-modal-actions">
-            <button type="button" onClick={onClose}>Cancel</button>
+            <button type="button" className="ghost" onClick={onClose}>Cancel</button>
             <button type="submit" className="primary">Create</button>
           </div>
         </form>

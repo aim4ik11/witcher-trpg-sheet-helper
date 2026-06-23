@@ -106,7 +106,7 @@ const LocalScreen = () => {
           )}
           <p style={{ marginTop: 20 }}>2. Підняти сервер.</p>
           {startError && <p className="muted" style={{ color: 'var(--danger)' }}>{startError}</p>}
-          <button onClick={() => void startSession()} disabled={!config || starting}>
+          <button className="primary" onClick={() => void startSession()} disabled={!config || starting}>
             {starting ? 'Запуск…' : 'Підняти сесію'}
           </button>
         </div>
@@ -120,10 +120,10 @@ const LocalScreen = () => {
             {server.urls.map((u) => (
               <div key={u} className="row">
                 <span className="url">{u}</span>
-                <QRCodeSVG value={u} size={88} bgColor="#1e1c28" fgColor="#ece9f5" />
+                <QRCodeSVG value={u} size={88} bgColor="#141210" fgColor="#eae3d6" />
               </div>
             ))}
-            <button style={{ marginTop: 16 }} onClick={() => navigate('/session')}>
+            <button className="primary" style={{ marginTop: 16 }} onClick={() => navigate('/session')}>
               Відкрити DM Console →
             </button>
           </div>
@@ -131,7 +131,9 @@ const LocalScreen = () => {
           <div className="card">
             <h3>Запрошені гравці ({credentials.length})</h3>
             <p className="muted">Нікнейм і код для входу в браузері. «Онлайн» — уже підключились.</p>
-            <PlayerInvitesList credentials={credentials} connected={players} onCopyCode={copyCode} />
+            <div className="invite-panel">
+              <PlayerInvitesList credentials={credentials} connected={players} onCopyCode={copyCode} />
+            </div>
           </div>
 
           <div className="card">
