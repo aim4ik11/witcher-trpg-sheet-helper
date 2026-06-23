@@ -1,0 +1,544 @@
+# Index
+
+> Rulebook pages 330–333 (PDF page ref: 330)
+> Source PDF: `data/pdfcoffee.com_the-witcher-pen-amp-paper-rpg-pdf-free.pdf`
+
+## Page 330
+
+330
+Index
+A
+Actions, 151
+Actively Dodge, 151
+Aim, 151
+Alliances, 201
+ Crescent Moon, 206
+ Havekar, 205
+ Mage Hunters, 206
+ Mages, 204
+ Scoia’tael, 205
+ Witchers, 201-203
+  Bear, 203
+  Cat, 203
+  Gryphon, 203
+  Viper, 203
+  Wolf, 203
+Alchemical Items, 87-88
+Alchemical Items Descriptions, 89
+Alchemy System, 141-142
+Ammunition, 74, 84, 255
+Ambush, 153
+Armor, 78-80
+ Head Armor, 79
+ Leg Armor, 80
+ Shields, 80
+ Torso Armor, 79
+Armor Descriptions, 81-82
+Armor Enhancements, 90
+Attacks, 151, 153, 163-165, 166-168, 171, 
+176-177
+ Charge, 163
+ Choke, 163
+ Disarm, 163
+ Fast Strike, 153
+ Feint, 163
+ Grapple, 163
+ Joint Attack, 163
+ Kick, 163
+ Pin, 163
+ Pommel Strike, 163
+ Punch, 163
+ Push Kick, 163
+ Shield Attack, 164
+ Strong Strike, 153
+ Throw, 163
+ Trip, 163
+Availability, 72, 78
+B
+Beyond the Borders, 199-200
+ Ofier, 200
+ The Far North, 200
+ Zerrikania, 200
+Bomb & Trap Resolution, 165
+C
+Crafting Components,128-129
+Crafting Diagrams, 130-139
+ Armor,  134-135
+ Armor Enhancements, 139
+ Elderfolk Items, 136-138
+ Ingredients, 130
+ Weapons, 131-133
+Crafting System, 126-127
+Creating Art, 53
+Critical Wounds, 158-160
+ Complex, 159
+ Deadly, 160
+ Difficult, 159-160
+ Simple, 158
+Cost, 72
+Concealment, 72
+Cover, 80, 155
+ Full Cover, 80
+ Human Shields, 155
+Currency, 71
+ Conversion Rates, 71
+ Getting Coin, 71
+D
+Damage, 72, 153
+Death Saves, 162
+Defenses, 164
+ Block, 164
+ Dodge, 164
+ Parry, 164
+ Reposition, 164-165
+Defining Skill, 38-46, 62-70
+ Busking, 38, 62
+ Healing Hands, 39, 63
+ Intiate of the Gods, 40, 64
+ Magical Training, 41, 65
+ Patch Job, 42, 66
+ Practiced Paranoia, 43, 67
+ Tough as Nails, 44, 68
+ Well Traveled, 45, 69
+ Witcher Training, 46, 70
+Derived Statistics, 47-48
+ Bonus Melee Damage, 48
+ Encumbrance, 48
+ Health Points, 48
+ Leap, 47
+ Punch & Kick, 48
+ Recovery, 48
+ Run, 47
+ Stamina, 48
+ Stun, 47-48
+ Vigor, 37, 47, 100,166
+Difficult Skills, 49, 59
+Difficulties, 58
+Dimeritium, 129, 167
+E
+Effect Tables, 161
+Elderfolk Items, 83-84, 90
+ Ammunition, 84
+ Armor Enhancements, 90
+ Armor Sets, 84
+ Axes, 83
+ Bludgeons, 83
+ Bows, 83
+ Crossbows, 83
+ Polearms, 83
+ Shields, 84
+ Small Blades, 83
+ Staves, 83
+ Swords, 83
+Elderfolk Item Descriptions, 85-86
+Elderlands, 189-191
+ Dol Blathanna, 191
+ Mahakam, 190
+Encumbrance Value, 78
+Enhancements, 72
+Environmentals Effects, 165
+Example Combat, 172
+Experimental Technology, 254-255
+ Ammunition, 255
+ Bombs, 254
+ Crafting Experimental Tech, 255
+ Traps, 254
+Extra Attack & Defense, 151
+F
+Fixing & Salvaging, 140
+Foraging, 51, 128
+Formulae, 146-147, 249-250, 255
+ Journeyman, 146
+ Master, 147
+ Novice, 146
+Fumbles, 157-158, 166
+ Fumble Table, 158
+ Magical Fumbles, 166
+
+## Page 331
+
+331
+G
+Game Master’s Guide, 211-235
+ Campaigning, 227-229
+ Curses, 230-231
+ Encounters, 219-220
+ Good NPCs, 226
+ Random Possessions, 223 
+ Relics & Min-Maxers, 224-225
+ Rewards, 221-222
+ Running Witcher, 216-218
+ World States, 232-235
+General Gear, 93-97
+ Containers, 93
+ Clothing, 93
+ Food & Drink, 93
+ General Gear, 93
+ General Gear Descriptions, 94-97
+ Lodging, 93
+ Services, 93, 97
+H
+Hands Required, 72
+Healing, 173-174
+ Healing Critical Wounds, 173-174
+ Healing With Magic, 173-174
+Hexes, 120-121
+Hit Locations, 152, 154
+Home Language, 50
+I
+Initiative, 151
+ Fast Draw, 153
+ Party Initative, 154 
+J
+K
+L
+Layering Armor, 154-155
+Learning Magic, 123
+Leveling Up, 59
+ Being Taught, 59
+ Improvement Points, 59
+ Raising Stats, 59
+Lifepath, 25-36
+ Life Events, 31-35
+ Personal Style, 36
+Line of Sight, 151-152
+ Vision Cones, 152 
+ Facing, 151
+ Restricted Vision, 79
+M
+Mage Spells, 101-108
+ Journeyman, 105-106
+ Master, 107-108
+ Novice, 102-104
+Magical Focuses, 72, 83, 92, 167
+ Magical Amulets, 92
+ Staves, 74, 83
+Magic Resolution, 166-168
+ Elemental Fumble Effects, 166
+ Group Rituals, 168
+ Highly Skilled Mages, 167
+ Magic Fumble Table, 166
+ Overexertion, 166
+ Vigor Threshold, 166
+Memorizing Recipes, 127
+Modifiers, 58, 152
+Monster Types, 268-269
+ Beasts, 268, 286-287, 310-313
+  Birds, 311
+  Cats, 310
+  Dogs, 310
+  Horses, 312
+  Mules, 313
+  Oxen, 313
+  Serpents, 311
+  War Horses, 312
+  Wolves & Wargs, 286-287
+ Cursed Ones, 268, 288-289
+  Werewolves, 288-289
+ Draconids, 268, 306-307
+  Wyverns, 306-307
+ Elementa, 268, 298-299
+  Golems, 298-299
+ Humanoids, 268, 270-275
+  Bandits, 270-271
+  Mages, 272-273
+  Scoia’tael Archers, 274-275
+ Hybrids, 268, 290-293
+  Griffins, 292-293
+  Sirens, 290-291
+ Insectoids, 268, 294-297
+  Arachasae, 296-297
+  Endrega, 294-295
+ Necrophages, 268, 276-281
+  Drowners, 276-277
+  Ghouls, 278-279
+  Grave Hags, 280-281
+ Ogroids, 269, 302-305
+  Nekkers, 302-303
+  Rock Trolls, 304-305
+ Relicts, 269, 300-301
+  Fiends, 300-301
+ Specters, 268, 282-285
+  Noonwraiths, 284-285
+  Wraiths, 282-283
+ Vampires, 269, 308-309
+  Katakans, 308-309
+Mutagens, 251
+N
+Nilfgaardian Empire, 192-198
+ Angren, 198
+ Attre, 198
+ Cintra, 198
+ Ebbing, 196
+ Etolia, 195
+ Gemmera, 195
+ Gheso, 197
+ Maecht, 196
+ Mag Turga, 197
+ Mettina, 196
+ Nazair, 197
+ The Heart of Nilgaard
+ Vicovaro, 195 
+Northern Kingdoms, 180-188
+ Aedirn, 184
+ Cidaris, 188
+ Hengefor’s League, 187
+ Kaedwen, 183
+ Kovir & Poviss, 187
+ Lyria & Rivia, 188
+ Redania, 182
+ Skellige, 186
+ Temeria, 185
+ Verden, 188
+O
+Optional Rules, 175-177
+ Adrenaline, 175
+ Monsters in the Novels, 175
+ Verbal Combat, 176-177
+P
+Perks, 22-24
+ Artistic, 23
+ Blindly Stubborn, 24
+ Crafter’s Eye, 23
+ Dulled Emotions, 22
+ Enhanced Senses, 22
+ Ingenuity, 24
+ Lightning Reflexes, 22
+ Marksman, 23
+ Natural Attunement, 23
+ Resilient Mutations, 22
+ Strong, 23
+ Trustworthy, 24
+
+## Page 332
+
+332
+ Tough, 23
+Personal Style, 36
+Priest Invocations, 109-113
+ Druid Invocations, 109, 110-111
+  Journeyman, 110
+  Master, 111
+  Novice, 110
+ Preacher Invocations, 109,  111-112 
+  Journeyman, 112
+  Master, 112
+  Novice, 111
+ Arch Priest Invocations, 109, 113
+Profession, 37-46
+ Bard, 38
+ Craftsman, 39
+ Criminal, 40
+ Doctor, 41
+ Mage, 42
+ Man At Arms, 43
+ Merchant, 44
+ Priest, 45
+ Witcher, 46
+Prone, 163
+Prosthetics, 93-94, 160, 174
+ Training with Prosthetics, 174
+Physical Table, 48
+Places of Power, 122
+Poisoning, 87
+Q
+R
+Races, 22-24
+ Dwarf, 23
+ Elves, 23
+ Humans, 24
+ Witchers, 22
+Range, 152, 164-165
+ Ranged Attacks, 164-165
+ Range Tables, 152, 164
+Recent History, 10-11
+ Witcher 1, 10
+ Witcher 2, 10-11
+ Witcher 3, 11
+Reliability, 72, 156
+Relic Items, 257-265
+ Caroline, 258
+ Cleaver Hood, 257
+ Decapitator, 259
+ Devine, 257
+ Draug Armor, 265
+ Fate, 262
+ Maugrim, 263
+ Moonblade, 263
+ Moon Bow, 261
+ Mountain Folk Armor, 265
+ Ogh’r, 260
+ Raven’s Armor, 264
+ Red Death, 262
+ Succubus Wand, 261
+ The Abyss Guard, 260
+ Thorn, 259
+ Wolf, 258
+Religions, 207-209
+ Freya, 209
+ Kreve, 207
+ Melitele, 208
+ The Eternal Fire, 208
+ The Great Sun, 209
+Reputation, 60
+Resistances, 78, 90, 161-162
+Rituals, 116-119
+ Journeyman, 118
+ Master, 119
+ Novice, 117-118
+Rounds, 151
+Runes & Glyphs, 256
+S
+Scatter Table, 152, 163
+Size Modifier Tables, 164
+Social Standing, 21
+Skills, 49-56
+ Awareness, 50
+ Alchemy, 54
+ Archery, 52
+ Athletics, 52
+ Brawling, 51
+ Business, 50
+ Charisma, 53
+ Courage, 55
+ Crafting, 55
+ Crossbow, 52
+ Deceit, 53
+ Deduction, 50
+ Disguise, 55
+ Dodge/Escape, 51
+ Education, 50
+ Endurance, 53
+ Fine Arts, 53
+ First Aid, 55
+ Forgery, 55
+ Gambling, 54
+ Grooming and Style, 54
+ Hex Weaving, 55
+ Human Perception, 54
+ Intimidation, 56
+ Language, 50
+ Leadership, 54
+ Melee, 51
+ Monster Lore, 50
+ Performance, 54
+ Persuasion, 54
+ Physique, 53
+ Pick Lock, 55
+ Resist Coercion, 56
+ Resist Magic, 56
+ Riding, 51-52
+ Ritual Crafting, 56
+ Sailing, 52
+ Seduction, 54
+ Sleight of Hand, 53
+ Small Blades, 52
+ Social Etiquette, 50
+ Spell Casting, 56
+ Staff/Spear, 52
+ Stealth, 53
+ Streetwise, 51
+ Swordsmanship, 52
+ Tactics, 51
+ Teaching, 51
+ Trap Crafting, 55
+ Wilderness Survival, 51
+Skill Base, 50
+Skill Resolution, 57
+Skill Trees, 61-70
+ Alchemist, 63
+ Anatomist, 65
+ Arch Mage, 66
+ Assassin, 64
+ Bounty Hunter, 67
+ Broker, 68
+ Charmer, 62
+ Contact, 68
+ Druid, 69
+ Fanatic, 69
+ Forge Master, 63
+ Gang Boss, 64
+ Havekar, 68
+ Herbalist, 65
+ Improviser, 63
+ Informant, 62
+ Manipulator, 62
+ Marksman, 67
+ Mutant, 70
+ Politician, 66
+ Preacher, 69
+ Reaver, 67
+ Scientist, 66
+ Slayer, 70
+ Spellsword, 70
+ Surgeon, 65
+ Theif, 64
+
+## Page 333
+
+333
+Stabilization, 158, 162 
+ Stabilizing Critical Wounds, 162
+Staged Penetration, 155
+Statistics, 47
+Stopping Power, 78, 154
+Substances, 142-145
+ Aether, 143
+ Caelum, 145
+ Fulgur, 145
+ Hydragenum, 144
+ Quebrith, 144
+ Rebis, 143
+ Sol, 145
+ Vermilion, 144
+ Vitriol, 143
+Suceptability, 161
+T
+Title Characters, 12-19
+ Dandelion, 14
+ Geralt of Rivia, 12
+ Iorveth, 18
+ Letho of Gulet, 19
+ Triss Merigold, 16
+ Vernon Roche, 17
+ Y ennefer of Vengerburg, 13
+ Zoltan Chivay, 15
+Tool Kits, 92
+Transportation, 91, 169-171
+ Charging & Ramming, 171
+ Control Rolls, 169
+ Mounted Control Lose Table, 170
+ Mounts & Vehicles, 91
+Type, 72
+U
+V
+W
+Weapons, 72-74
+ Axes, 73
+ Bludgeons, 73
+ Bows, 74
+ Crossbows, 74
+ Polearms, 73
+ Small Blades, 73
+ Staves, 74
+ Swords 73
+ Thrown Weapons, 74
+Weapon Accuracy, 72
+Weapon Descriptions, 75-77
+Weapon Effects, 72
+Weight, 72
+Witcher Gear, 246-250
+ Crafting Witcher Gear, 249-250
+ Blade Oils, 248
+ Witcher Decoctions, 248
+ Witcher Potions, 247
+ Witcher Swords, 247
+Witcher Lifepath, 238-245
+ Life as a Witcher, 241-245
+Witcher Signs, 114-115
+ Alternate Signs, 115
+ Basic Signs, 114
+Wound Threshold, 156
+X
+Y
+Z
