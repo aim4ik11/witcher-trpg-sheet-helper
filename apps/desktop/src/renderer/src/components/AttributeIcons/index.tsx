@@ -48,4 +48,14 @@ export const ATTRIBUTE_ICONS: Record<string, JSX.Element> = {
       <path d="M8 12h8" />
     </svg>
   ),
+  spd: (
+    <svg {...P}>
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+  ),
+  luck: (
+    <svg {...P}>
+      <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21 8 14 2 9.4h6.6z" />
+    </svg>
+  ),
 };

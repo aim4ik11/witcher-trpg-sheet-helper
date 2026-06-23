@@ -2,11 +2,12 @@ import { Router } from 'express';
 import type { Character } from '@wilmak/shared';
 import { state } from '../store';
 import { makeCharacter } from '../utils';
+import { normalizeCharacter } from '@wilmak/game-data';
 
 const router = Router();
 
 router.get('/', (_req, res) => {
-  res.json([...state.characters.values()]);
+  res.json([...state.characters.values()].map((c) => normalizeCharacter(c)));
 });
 
 router.post('/', (req, res) => {
@@ -21,13 +22,13 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const char = state.characters.get(req.params.id);
   if (!char) { res.status(404).json({ error: 'Not found' }); return; }
-  res.json(char);
+  res.json(normalizeCharacter(char));
 });
 
 router.put('/:id', (req, res) => {
   const existing = state.characters.get(req.params.id);
   if (!existing) { res.status(404).json({ error: 'Not found' }); return; }
-  const updated: Character = { ...existing, ...(req.body as Partial<Character>), id: req.params.id };
+  const updated: Character = normalizeCharacter({ ...existing, ...(req.body as Partial<Character>), id: req.params.id });
   state.characters.set(req.params.id, updated);
   state.io?.to(`character:${req.params.id}`).emit('character-updated', updated);
   res.json(updated);

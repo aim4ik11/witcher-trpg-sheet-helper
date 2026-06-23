@@ -4,6 +4,7 @@ import type { Socket } from 'socket.io';
 import type { Io } from '../store';
 import { state } from '../store';
 import { pushRoster, notifyHost, normalizeNickname } from '../utils';
+import { normalizeCharacter } from '@wilmak/game-data';
 
 type PlayerSocket = Socket<ClientToServerEvents, ServerToClientEvents, Record<string, never>, SocketData>;
 
@@ -68,7 +69,7 @@ export function registerSocketHandlers(io: Io): void {
       if (!existing) {
         return;
       }
-      const updated: Character = { ...existing, ...character, id: characterId };
+      const updated: Character = normalizeCharacter({ ...existing, ...character, id: characterId });
       state.characters.set(characterId, updated);
       socket.to(`character:${characterId}`).emit('character-updated', updated);
       notifyHost({ type: 'character:updated', character: updated });

@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import type { Character, Weapon, ArmorPiece, Spell } from '@wilmak/shared';
 import {
   ATTRIBUTES, ATTRIBUTE_SKILLS, ARMOR_LABELS,
-  calcVitalMaxes, skillBase,
+  calcVitalMaxes, calcDerivedStats, skillBase, normalizeCharacter,
 } from '@wilmak/game-data';
 import {
   isSpellcastingOccupation, getMagicSections, spellsForCategory, MAGIC_ROW_EMPTY,
@@ -12,7 +12,7 @@ import {
   getArmorForSlot, getMagicForCategory,
 } from '@wilmak/game-data';
 import type { CatalogItem } from '@wilmak/game-data';
-import { RaceSelect, OccupationSelect, RaceOccupationDisplay } from '../RaceOccupationSelect';
+import { RaceSelect, OccupationSelect, RaceOccupationDisplay, occupationAfterRaceChange } from '../RaceOccupationSelect';
 import { ATTRIBUTE_ICONS } from '../AttributeIcons';
 import CatalogPickerModal from '../CatalogPickerModal';
 import './CharacterSheet.css';
@@ -151,6 +151,7 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
   const readOnly = !isDM;
 
   const { hpStaMax, resolveMax } = calcVitalMaxes(character);
+  const derived = useMemo(() => calcDerivedStats(character), [character]);
   const occupation = character.occupation || '';
   const showMagic = isSpellcastingOccupation(occupation);
   const magicSections = useMemo(() => getMagicSections(occupation), [occupation]);
@@ -168,7 +169,7 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
 
   function update(patch: Partial<Character>) {
     if (readOnly || !onChange) return;
-    onChange({ ...character, ...patch });
+    onChange(normalizeCharacter({ ...character, ...patch }));
   }
 
   function updateNested(path: string[], value: unknown) {
@@ -178,14 +179,7 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
     let obj: any = next;
     for (let i = 0; i < path.length - 1; i++) obj = obj[path[i]];
     obj[path[path.length - 1]] = value;
-    const asChar = next as unknown as Character;
-    if (path[0] === 'attributes') {
-      const { hpStaMax: hm, resolveMax: rm } = calcVitalMaxes(asChar);
-      asChar.vitals.hp.max = hm;
-      asChar.vitals.sta.max = hm;
-      asChar.vitals.resolve.max = rm;
-    }
-    onChange(asChar);
+    onChange(normalizeCharacter(next as unknown as Character));
   }
 
   function updateSpellsForCategory(category: string, categoryRows: Spell[]) {
@@ -212,8 +206,15 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
             <>
               <input className="sheet-name" value={character.name} onChange={(e) => update({ name: e.target.value })} />
               <div className="sheet-meta">
-                <RaceSelect value={character.race ?? ''} onChange={(v) => update({ race: v })} />
-                <OccupationSelect value={occupation} onChange={(v) => update({ occupation: v })} />
+                <RaceSelect value={character.race ?? ''} onChange={(v) => {
+                  const occ = occupationAfterRaceChange(v, character.occupation ?? '');
+                  update({ race: v, occupation: occ });
+                }} />
+                <OccupationSelect
+                  race={character.race ?? ''}
+                  value={occupation}
+                  onChange={(v) => update({ occupation: v })}
+                />
                 {character.type === 'player' && (
                   <input
                     placeholder="Player nickname"
@@ -247,7 +248,7 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
                 <span className="vital-label">Wound Threshold</span>
                 <NumInput readOnly={readOnly} value={character.vitals.woundThreshold} onChange={(v) => updateNested(['vitals', 'woundThreshold'], v)} />
               </div>
-              <p className="formula-hint">HP/STA max: (BODY+WILL)/2×5 · Resolve: (INT+WILL)/2×5</p>
+              <p className="formula-hint">HP/STA: Physical Table (BODY+WILL)/2 ↓ · Resolve: (INT+WILL)/2×5 · RUN: SPD×3</p>
             </section>
 
             <section className="panel">
@@ -281,7 +282,7 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
             <section className="panel misc-stats">
               <div className="panel-title">Luck</div>
               <div className="luck-bar">
-                {Array.from({ length: character.luck?.max ?? 5 }).map((_, i) =>
+                {Array.from({ length: derived.luckMax || character.luck?.max || 0 }).map((_, i) =>
                   readOnly ? (
                     <span key={i} className={`luck-pip luck-pip-static${i < (character.luck?.used ?? 0) ? ' used' : ''}`} />
                   ) : (
@@ -292,14 +293,15 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
                 )}
               </div>
               <div className="stat-grid">
-                <label>SPD <NumInput readOnly={readOnly} value={character.speed} onChange={(v) => update({ speed: v })} /></label>
+                <label>RUN <NumInput readOnly={readOnly} value={derived.run} onChange={(v) => updateNested(['movement', 'run'], v)} /></label>
+                <label>LEAP <NumInput readOnly={readOnly} value={derived.leap} onChange={(v) => updateNested(['movement', 'leap'], v)} /></label>
+                <label>STUN <NumInput readOnly={readOnly} value={derived.stun} onChange={(v) => updateNested(['recovery', 'stun'], v)} /></label>
+                <label>REC <NumInput readOnly={readOnly} value={derived.rec} onChange={(v) => updateNested(['recovery', 'rec'], v)} /></label>
                 <label>Adrenaline <NumInput readOnly={readOnly} value={character.adrenaline} onChange={(v) => update({ adrenaline: v })} /></label>
-                <label>RUN <NumInput readOnly={readOnly} value={character.movement?.run} onChange={(v) => updateNested(['movement', 'run'], v)} /></label>
-                <label>LEAP <NumInput readOnly={readOnly} value={character.movement?.leap} onChange={(v) => updateNested(['movement', 'leap'], v)} /></label>
-                <label>STUN <NumInput readOnly={readOnly} value={character.recovery?.stun} onChange={(v) => updateNested(['recovery', 'stun'], v)} /></label>
-                <label>REC <NumInput readOnly={readOnly} value={character.recovery?.rec} onChange={(v) => updateNested(['recovery', 'rec'], v)} /></label>
                 <label>I.P. <NumInput readOnly={readOnly} value={character.improvementPoints?.ip} onChange={(v) => updateNested(['improvementPoints', 'ip'], v)} /></label>
                 <label>Training I.P. <NumInput readOnly={readOnly} value={character.improvementPoints?.trainingIp} onChange={(v) => updateNested(['improvementPoints', 'trainingIp'], v)} /></label>
+                <label>Punch <span className="readonly-value">{derived.punch}</span></label>
+                <label>Kick <span className="readonly-value">{derived.kick}</span></label>
               </div>
             </section>
           </>
@@ -397,8 +399,12 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
                 <div className="panel-title">{section.label}</div>
                 <DynamicTable readOnly={readOnly}
                   columns={[
-                    { key: 'name', label: 'Name' }, { key: 'staCost', label: 'STA', type: 'number' },
-                    { key: 'range', label: 'Range' }, { key: 'duration', label: 'Duration' }, { key: 'effect', label: 'Effect' },
+                    { key: 'name', label: 'Name' },
+                    { key: 'staCostText', label: 'STA' },
+                    { key: 'defense', label: 'Defense' },
+                    { key: 'range', label: 'Range' },
+                    { key: 'duration', label: 'Duration' },
+                    { key: 'effect', label: 'Effect' },
                   ]}
                   rows={spellsForCategory(character.spells, section.key) as unknown as DynRow[]}
                   onChange={(rows) => updateSpellsForCategory(section.key, rows as unknown as Spell[])}

@@ -94,9 +94,11 @@ export interface Spell {
   category: string;
   name: string;
   staCost: number;
+  staCostText?: string;
   range: string;
   duration: string;
   effect: string;
+  defense?: string;
   catalogId?: string;
 }
 

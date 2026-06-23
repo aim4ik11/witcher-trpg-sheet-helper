@@ -1,8 +1,9 @@
 import { useState, useMemo } from 'react';
 import type { Character } from '@wilmak/shared';
 import {
-  ATTRIBUTES, ATTRIBUTE_SKILLS, ARMOR_LABELS, calcVitalMaxes, skillBase,
+  ATTRIBUTES, ATTRIBUTE_SKILLS, ARMOR_LABELS, calcVitalMaxes, calcDerivedStats, skillBase,
   isSpellcastingOccupation, getMagicSections, spellsForCategory,
+  raceLabel, occupationLabel,
 } from '@wilmak/game-data';
 import { ATTRIBUTE_ICONS } from '../AttributeIcons';
 import './CharacterSheet.css';
@@ -30,6 +31,7 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
   const [tab, setTab] = useState('Stats');
 
   const { hpStaMax, resolveMax } = calcVitalMaxes(character);
+  const derived = useMemo(() => calcDerivedStats(character), [character]);
   const occupation = character.occupation || '';
   const showMagic = isSpellcastingOccupation(occupation);
   const magicSections = useMemo(() => getMagicSections(occupation), [occupation]);
@@ -48,8 +50,8 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
         <div className="sheet-identity">
           <h1 className="sheet-name-display">{character.name}</h1>
           <div className="sheet-meta-display">
-            {character.race && <span>{character.race}</span>}
-            {occupation && <span>{occupation}</span>}
+            {character.race && <span>{raceLabel(character.race)}</span>}
+            {occupation && <span>{occupationLabel(occupation)}</span>}
           </div>
         </div>
       </header>
@@ -103,18 +105,19 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
             <section className="panel misc-stats">
               <div className="panel-title">Luck</div>
               <div className="luck-bar">
-                {Array.from({ length: character.luck?.max ?? 5 }).map((_, i) => (
+                {Array.from({ length: derived.luckMax || character.luck?.max || 0 }).map((_, i) => (
                   <span key={i} className={`luck-pip luck-pip-static${i < (character.luck?.used ?? 0) ? ' used' : ''}`} />
                 ))}
               </div>
               <div className="stat-grid">
                 {[
-                  ['SPD', character.speed], ['Adrenaline', character.adrenaline],
-                  ['RUN', character.movement?.run], ['LEAP', character.movement?.leap],
-                  ['STUN', character.recovery?.stun], ['REC', character.recovery?.rec],
+                  ['RUN', derived.run], ['LEAP', derived.leap],
+                  ['STUN', derived.stun], ['REC', derived.rec],
+                  ['Adrenaline', character.adrenaline],
                   ['I.P.', character.improvementPoints?.ip], ['Training I.P.', character.improvementPoints?.trainingIp],
+                  ['Punch', derived.punch], ['Kick', derived.kick],
                 ].map(([l, v]) => (
-                  <label key={l as string}>{l as string} <span className="readonly-value">{v as number ?? 0}</span></label>
+                  <label key={l as string}>{l as string} <span className="readonly-value">{v as number | string ?? 0}</span></label>
                 ))}
               </div>
             </section>
@@ -185,10 +188,17 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
                   <p className="readonly-empty">None</p>
                 ) : (
                   <table>
-                    <thead><tr><th>Name</th><th>STA</th><th>Range</th><th>Duration</th><th>Effect</th></tr></thead>
+                    <thead><tr><th>Name</th><th>STA</th><th>Defense</th><th>Range</th><th>Duration</th><th>Effect</th></tr></thead>
                     <tbody>
                       {spellsForCategory(character.spells, section.key).map((s, i) => (
-                        <tr key={s.id ?? i}><td>{s.name}</td><td>{s.staCost}</td><td>{s.range}</td><td>{s.duration}</td><td>{s.effect}</td></tr>
+                        <tr key={s.id ?? i}>
+                          <td>{s.name}</td>
+                          <td>{s.staCostText || s.staCost || '—'}</td>
+                          <td>{s.defense || '—'}</td>
+                          <td>{s.range || '—'}</td>
+                          <td>{s.duration || '—'}</td>
+                          <td>{s.effect}</td>
+                        </tr>
                       ))}
                     </tbody>
                   </table>

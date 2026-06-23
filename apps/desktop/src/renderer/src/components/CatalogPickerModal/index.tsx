@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import type { CatalogItem } from '@wilmak/game-data';
+import type { CatalogItem, CatalogMagic } from '@wilmak/game-data';
 import { searchCatalog } from '@wilmak/game-data';
 import './CatalogPickerModal.css';
 
@@ -49,8 +49,17 @@ export default function CatalogPickerModal({
               <button key={item.id} type="button" className="catalog-item" onClick={() => onSelect(item)}>
                 <span className="catalog-item-name">{item.name}</span>
                 <span className="catalog-item-meta">{itemSubtitle(item)}</span>
-                {(item as { effect?: string }).effect && (
-                  <span className="catalog-item-effect">{(item as { effect?: string }).effect}</span>
+                {(item as CatalogMagic).defense && (
+                  <span className="catalog-item-meta">Defense: {(item as CatalogMagic).defense}</span>
+                )}
+                {(item as CatalogMagic).components && (
+                  <span className="catalog-item-meta">Components: {(item as CatalogMagic).components}</span>
+                )}
+                {(item as CatalogMagic).requirement && (
+                  <span className="catalog-item-meta">Lift: {(item as CatalogMagic).requirement}</span>
+                )}
+                {(item as CatalogMagic).effect && (
+                  <span className="catalog-item-effect">{(item as CatalogMagic).effect}</span>
                 )}
               </button>
             ))
@@ -70,6 +79,9 @@ function itemSubtitle(item: CatalogItem): string {
   const w = item as unknown as Record<string, unknown>;
   if (w['dmg']) return [w['type'], w['dmg'], w['hand']].filter(Boolean).join(' · ');
   if (w['sp'] != null) return `SP ${w['sp']}${w['slot'] ? ` · ${w['slot']}` : ''}`;
-  if (w['staCost'] != null) return [`STA ${w['staCost']}`, w['range'], w['duration']].filter(Boolean).join(' · ');
-  return (w['category'] as string) ?? '';
+  if (w['category']) {
+    const sta = w['staCostText'] || (w['staCost'] ? `STA ${w['staCost']}` : '');
+    return [sta, w['defense'], w['range'], w['tier'], w['element']].filter(Boolean).join(' · ');
+  }
+  return '';
 }
