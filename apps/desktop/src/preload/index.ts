@@ -1,15 +1,25 @@
 import { contextBridge, ipcRenderer, type IpcRendererEvent } from 'electron';
-import type { Api, SessionConfig, Player, Character } from '@wilmak/shared';
+import type { Api, SessionConfig, Player, Character, PlayerCredential } from '@wilmak/shared';
 
 const api: Api = {
+  loadLastSession: () => ipcRenderer.invoke('session:loadLast'),
+  saveLastSession: (config: SessionConfig) => ipcRenderer.invoke('session:saveLast', config),
   pickConfig: () => ipcRenderer.invoke('session:pickConfig'),
   startSession: (config: SessionConfig) => ipcRenderer.invoke('session:start', config),
+  stopSession: () => ipcRenderer.invoke('session:stop'),
   kickPlayer: (socketId: string) => ipcRenderer.invoke('player:kick', socketId),
   broadcast: (payload: unknown) => ipcRenderer.invoke('gm:broadcast', payload),
   onPlayersUpdate: (cb: (players: Player[]) => void) => {
     const handler = (_e: IpcRendererEvent, players: Player[]) => cb(players);
     ipcRenderer.on('players:update', handler);
     return () => ipcRenderer.removeListener('players:update', handler);
+  },
+  getCredentials: () => ipcRenderer.invoke('credentials:getAll'),
+  addCredential: (nickname: string, code?: string) => ipcRenderer.invoke('credentials:add', nickname, code),
+  onCredentialsUpdate: (cb: (credentials: PlayerCredential[]) => void) => {
+    const handler = (_e: IpcRendererEvent, credentials: PlayerCredential[]) => cb(credentials);
+    ipcRenderer.on('credentials:update', handler);
+    return () => ipcRenderer.removeListener('credentials:update', handler);
   },
   characters: {
     getAll: () => ipcRenderer.invoke('characters:getAll'),

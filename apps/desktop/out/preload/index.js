@@ -1,14 +1,24 @@
 "use strict";
 const electron = require("electron");
 const api = {
+  loadLastSession: () => electron.ipcRenderer.invoke("session:loadLast"),
+  saveLastSession: (config) => electron.ipcRenderer.invoke("session:saveLast", config),
   pickConfig: () => electron.ipcRenderer.invoke("session:pickConfig"),
   startSession: (config) => electron.ipcRenderer.invoke("session:start", config),
+  stopSession: () => electron.ipcRenderer.invoke("session:stop"),
   kickPlayer: (socketId) => electron.ipcRenderer.invoke("player:kick", socketId),
   broadcast: (payload) => electron.ipcRenderer.invoke("gm:broadcast", payload),
   onPlayersUpdate: (cb) => {
     const handler = (_e, players) => cb(players);
     electron.ipcRenderer.on("players:update", handler);
     return () => electron.ipcRenderer.removeListener("players:update", handler);
+  },
+  getCredentials: () => electron.ipcRenderer.invoke("credentials:getAll"),
+  addCredential: (nickname, code) => electron.ipcRenderer.invoke("credentials:add", nickname, code),
+  onCredentialsUpdate: (cb) => {
+    const handler = (_e, credentials) => cb(credentials);
+    electron.ipcRenderer.on("credentials:update", handler);
+    return () => electron.ipcRenderer.removeListener("credentials:update", handler);
   },
   characters: {
     getAll: () => electron.ipcRenderer.invoke("characters:getAll"),
