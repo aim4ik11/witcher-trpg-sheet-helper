@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "source": "data/pdfcoffee.com_the-witcher-pen-amp-paper-rpg-pdf-free.pdf",
+  "files": [
+    "README.md",
+    "character-creation.md",
+    "statistics.md",
+    "skills.md",
+    "professions.md",
+    "magic.md",
+    "gear-weapons.md",
+    "gear-armor.md",
+    "combat.md",
+    "excluded.md"
+  ],
+  "purpose": "Condensed rule reference for @wilmak/game-data and sheet helper"
+}

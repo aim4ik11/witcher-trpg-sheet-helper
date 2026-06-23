@@ -1,0 +1,166 @@
+# Table of Contents
+
+Total pages: 336
+
+- **Introduction** — p.4
+- **Recent History** — p.10
+- **Hero Characters** — p.12
+- **Geralt of Rivia** — p.12
+- **Yennefer of Vengerburg** — p.13
+- **Dandelion** — p.14
+- **Zoltan** — p.15
+- **Triss Merigold** — p.16
+- **Vernon Roche** — p.17
+- **Iorveth** — p.18
+- **Letho of Gulet** — p.19
+- **Creating Your Character** — p.20
+- **Races** — p.21
+- **Lifepath** — p.25
+- **Life Events & Style** — p.31
+- **Professions** — p.37
+- **Bard** — p.38
+- **Craftsman** — p.39
+- **Criminal** — p.40
+- **Doctor** — p.41
+- **Mage** — p.42
+- **Man At Arms** — p.43
+- **Merchant** — p.44
+- **Priest** — p.45
+- **Witcher** — p.46
+- **Statistics** — p.47
+- **Skills** — p.49
+- **Skill Resolution** — p.57
+- **Leveling Up** — p.59
+- **Reputation** — p.60
+- **Skill Trees** — p.61
+- **Gear** — p.71
+- **Weapons** — p.72
+- **Armor** — p.78
+- **Elderfolk Armory** — p.83
+- **Alchemical Items** — p.87
+- **Armor Enhancements** — p.90
+- **Transportation** — p.91
+- **Tool Kits** — p.92
+- **General Gear** — p.93
+- **Magic** — p.98
+- **Mage Spells** — p.101
+- **Priest Invocations** — p.109
+- **Witcher Signs** — p.114
+- **Rituals** — p.116
+- **Hexes** — p.120
+- **Places of Power** — p.122
+- **Learning Magic** — p.123
+- **Crafting** — p.124
+- **Crafting System** — p.126
+- **Crafting Components** — p.128
+- **Crafting Diagrams** — p.130
+- **Fixing & Disassembling** — p.140
+- **Alchemy System** — p.141
+- **Alchemical Substances** — p.143
+- **Alchemical Formulae** — p.146
+- **Combat** — p.148
+- **Combat Basics** — p.151
+- **Critical Wounds** — p.159
+- **Effects** — p.161
+- **In Depth Combat** — p.163
+- **Magic Resolution** — p.166
+- **Transportation & Cavalry** — p.169
+- **Example Combat** — p.172
+- **Healing** — p.173
+- **Optional Rules** — p.175
+- **Monsters in the Novels** — p.175
+- **Adrenaline** — p.175
+- **Verbal Combat** — p.176
+- **World** — p.178
+- **The Northern Kingdoms** — p.180
+- **Redania** — p.182
+- **Kaedwen** — p.183
+- **Aedirn** — p.184
+- **Temeria...................** — p.185
+- **Skellige** — p.186
+- **Kovir & Poviss** — p.187
+- **The Hengefor’s League** — p.187
+- **Lyria & Rivia** — p.188
+- **Cidaris** — p.188
+- **Verden** — p.188
+- **The Elderlands** — p.189
+- **Mahakam** — p.190
+- **Dol Blathanna** — p.191
+- **The Empire of Nilfgaard** — p.192
+- **Nilfgaard** — p.194
+- **Etolia** — p.195
+- **Vicovaro** — p.195
+- **Gemmera** — p.195
+- **Ebbing** — p.196
+- **Maecht** — p.196
+- **Mettina** — p.196
+- **Gheso** — p.197
+- **Nazair** — p.197
+- **Mag Turga** — p.197
+- **Angren** — p.198
+- **Cintra** — p.198
+- **Beyond the Borders** — p.199
+- **Zerrikania** — p.200
+- **Ofier** — p.200
+- **The Far North** — p.200
+- **Powerful Alliances** — p.201
+- **Witchers** — p.202
+- **Mages** — p.204
+- **The Havekar** — p.205
+- **The Scoia’tael** — p.205
+- **The Mage Hunters.....** — p.206
+- **The Crescent Moon** — p.206
+- **Powerful Religions** — p.207
+- **Melitele** — p.208
+- **The Eternal Fire** — p.208
+- **Freya** — p.209
+- **The Great Sun** — p.209
+- **Game Master’s Guide** — p.210
+- **Running Witcher** — p.216
+- **Encounters** — p.219
+- **Rewards** — p.221
+- **Random Possessions** — p.223
+- **Relics & Min-Maxers** — p.224
+- **Good NPCs** — p.226
+- **Campaigning** — p.227
+- **Curses** — p.230
+- **World States** — p.232
+- **Witchers** — p.236
+- **Witcher Lifepath** — p.238
+- **Life As A Witcher** — p.241
+- **Witcher Gear** — p.246
+- **Mutagens** — p.251
+- **Relics** — p.252
+- **Experimental Technology** — p.254
+- **Runes & Glyphs** — p.256
+- **Relic Items** — p.257
+- **Bestiary** — p.266
+- **Monster Types** — p.268
+- **Bandits** — p.270
+- **Mages** — p.272
+- **Scoia’tael Archers** — p.274
+- **Drowners** — p.276
+- **Ghouls** — p.278
+- **Grave Hags** — p.280
+- **Wraiths** — p.282
+- **Noon Wraiths** — p.284
+- **Wolves & Wargs** — p.286
+- **Werewolves** — p.288
+- **Sirens** — p.290
+- **Griffins** — p.292
+- **Endrega** — p.294
+- **Arachasae** — p.296
+- **Golems** — p.298
+- **Fiends** — p.300
+- **Nekkers** — p.302
+- **Rock Trolls** — p.304
+- **Wyverns** — p.306
+- **Katakans** — p.308
+- **Cats & Dogs** — p.310
+- **Birds & Serpents** — p.311
+- **Horses & War Horses** — p.312
+- **Oxen & Mules** — p.313
+- **Quest** — p.314
+- **Character Sheets** — p.326
+- **Index** — p.330
+- **Author Info** — p.334
