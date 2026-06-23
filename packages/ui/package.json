@@ -1,0 +1,8 @@
+{
+  "name": "@wilmak/ui",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    "./design-system.css": "./design-system.css"
+  }
+}

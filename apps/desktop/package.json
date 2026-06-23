@@ -30,6 +30,7 @@
     "@vitejs/plugin-react": "^4.3.1",
     "@wilmak/game-data": "*",
     "@wilmak/shared": "*",
+    "@wilmak/ui": "*",
     "electron": "31.7.7",
     "electron-builder": "^25.1.8",
     "electron-vite": "^2.3.0",
