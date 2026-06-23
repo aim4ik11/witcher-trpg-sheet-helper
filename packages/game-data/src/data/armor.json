@@ -1,218 +1,518 @@
 [
   {
-    "id": "leather-cap",
-    "name": "Leather Cap",
+    "id": "verden-archer-s-hood",
+    "name": "Verden Archer’s Hood",
     "slot": "head",
     "sp": 3,
     "weight": 0.5,
     "effects": "",
-    "tags": ["light", "leather"]
+    "tags": [
+      "c",
+      "ae-1"
+    ]
   },
   {
-    "id": "steel-cap",
-    "name": "Steel Cap",
+    "id": "double-woven-hood",
+    "name": "Double Woven Hood",
+    "slot": "head",
+    "sp": 5,
+    "weight": 1.0,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "spectacled-helm",
+    "name": "Spectacled Helm",
     "slot": "head",
     "sp": 8,
-    "weight": 2,
+    "weight": 1.0,
     "effects": "",
-    "tags": ["medium", "metal"]
+    "tags": [
+      "c",
+      "ae-0"
+    ]
   },
   {
-    "id": "sallet",
-    "name": "Sallet",
+    "id": "chain-coif",
+    "name": "Chain Coif",
     "slot": "head",
     "sp": 12,
-    "weight": 3,
+    "weight": 1.5,
     "effects": "",
-    "tags": ["heavy", "plate"]
+    "tags": [
+      "e",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "armored-hood",
+    "name": "Armored Hood",
+    "slot": "head",
+    "sp": 14,
+    "weight": 2.0,
+    "effects": "",
+    "tags": [
+      "c",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "temerian-armet",
+    "name": "Temerian Armet",
+    "slot": "head",
+    "sp": 16,
+    "weight": 1.5,
+    "effects": "Restricted Vision",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
   },
   {
     "id": "great-helm",
     "name": "Great Helm",
     "slot": "head",
-    "sp": 15,
-    "weight": 4,
-    "effects": "−3 Awareness",
-    "tags": ["heavy", "plate", "knight"]
+    "sp": 20,
+    "weight": 3.5,
+    "effects": "Restricted Vision",
+    "tags": [
+      "r",
+      "ae-1"
+    ]
   },
   {
-    "id": "leather-jacket",
-    "name": "Leather Jacket",
-    "slot": "torso",
-    "sp": 6,
-    "weight": 2,
-    "effects": "",
-    "tags": ["light", "leather"]
+    "id": "skellige-helm",
+    "name": "Skellige Helm",
+    "slot": "head",
+    "sp": 25,
+    "weight": 3.5,
+    "effects": "Restricted Vision",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "nilfgaardian-helm",
+    "name": "Nilfgaardian Helm",
+    "slot": "head",
+    "sp": 30,
+    "weight": 3.0,
+    "effects": "Restricted Vision",
+    "tags": [
+      "r",
+      "ae-2"
+    ]
   },
   {
     "id": "gambeson",
     "name": "Gambeson",
     "slot": "torso",
-    "sp": 8,
-    "weight": 3,
+    "sp": 3,
+    "weight": 1.0,
     "effects": "",
-    "tags": ["light", "padded"]
+    "tags": [
+      "e",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "aedirnian-gambeson",
+    "name": "Aedirnian Gambeson",
+    "slot": "torso",
+    "sp": 5,
+    "weight": 1.5,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "double-woven-gambeson",
+    "name": "Double Woven Gambeson",
+    "slot": "torso",
+    "sp": 8,
+    "weight": 2.5,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
   },
   {
     "id": "brigandine",
     "name": "Brigandine",
     "slot": "torso",
-    "sp": 14,
-    "weight": 8,
+    "sp": 12,
+    "weight": 7.0,
     "effects": "",
-    "tags": ["medium", "flexible"]
+    "tags": [
+      "c",
+      "ae-0"
+    ]
   },
   {
-    "id": "hauberk",
-    "name": "Hauberk",
+    "id": "armor",
+    "name": "Armor",
+    "slot": "torso",
+    "sp": 14,
+    "weight": 8.5,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "lyrian-leather-jacket",
+    "name": "Lyrian Leather Jacket",
     "slot": "torso",
     "sp": 16,
-    "weight": 10,
+    "weight": 6.5,
     "effects": "",
-    "tags": ["medium", "mail"]
+    "tags": [
+      "r",
+      "ae-1"
+    ]
   },
   {
-    "id": "breastplate",
-    "name": "Breastplate",
+    "id": "plate-armor",
+    "name": "Plate Armor",
     "slot": "torso",
-    "sp": 18,
-    "weight": 12,
+    "sp": 20,
+    "weight": 14.0,
     "effects": "",
-    "tags": ["heavy", "plate"]
+    "tags": [
+      "r",
+      "ae-1"
+    ]
   },
   {
-    "id": "full-plate",
-    "name": "Full Plate",
+    "id": "hindarsfjall-heavy-armor",
+    "name": "Hindarsfjall Heavy Armor",
     "slot": "torso",
-    "sp": 22,
-    "weight": 18,
-    "effects": "−2 REF, −2 DEX",
-    "tags": ["heavy", "plate", "knight"]
-  },
-  {
-    "id": "leather-gloves",
-    "name": "Leather Gloves",
-    "slot": "rArm",
-    "sp": 2,
-    "weight": 0.25,
+    "sp": 25,
+    "weight": 15.0,
     "effects": "",
-    "tags": ["light", "leather"]
+    "tags": [
+      "r",
+      "ae-3"
+    ]
   },
   {
-    "id": "leather-gloves-l",
-    "name": "Leather Gloves",
-    "slot": "lArm",
-    "sp": 2,
-    "weight": 0.25,
+    "id": "nilfgaardian-plate-armor",
+    "name": "Nilfgaardian Plate Armor",
+    "slot": "torso",
+    "sp": 30,
+    "weight": 12.0,
     "effects": "",
-    "tags": ["light", "leather"]
+    "tags": [
+      "r",
+      "ae-2"
+    ]
   },
   {
-    "id": "gauntlets",
-    "name": "Gauntlets",
-    "slot": "rArm",
-    "sp": 6,
-    "weight": 1.5,
-    "effects": "",
-    "tags": ["medium", "metal"]
-  },
-  {
-    "id": "gauntlets-l",
-    "name": "Gauntlets",
-    "slot": "lArm",
-    "sp": 6,
-    "weight": 1.5,
-    "effects": "",
-    "tags": ["medium", "metal"]
-  },
-  {
-    "id": "plate-gauntlets",
-    "name": "Plate Gauntlets",
-    "slot": "rArm",
-    "sp": 10,
-    "weight": 2,
-    "effects": "",
-    "tags": ["heavy", "plate"]
-  },
-  {
-    "id": "plate-gauntlets-l",
-    "name": "Plate Gauntlets",
-    "slot": "lArm",
-    "sp": 10,
-    "weight": 2,
-    "effects": "",
-    "tags": ["heavy", "plate"]
-  },
-  {
-    "id": "leather-trousers",
-    "name": "Leather Trousers",
+    "id": "cavalry-trousers",
+    "name": "Cavalry Trousers",
     "slot": "rLeg",
     "sp": 3,
-    "weight": 1,
+    "weight": 0.5,
     "effects": "",
-    "tags": ["light", "leather"]
+    "tags": [
+      "c",
+      "ae-0"
+    ]
   },
   {
-    "id": "leather-trousers-l",
-    "name": "Leather Trousers",
-    "slot": "lLeg",
-    "sp": 3,
-    "weight": 1,
+    "id": "padded-trousers",
+    "name": "Padded Trousers",
+    "slot": "rLeg",
+    "sp": 5,
+    "weight": 1.0,
     "effects": "",
-    "tags": ["light", "leather"]
+    "tags": [
+      "c",
+      "ae-1"
+    ]
   },
   {
-    "id": "greaves",
-    "name": "Greaves",
+    "id": "double-woven-trousers",
+    "name": "Double Woven Trousers",
     "slot": "rLeg",
     "sp": 8,
-    "weight": 3,
+    "weight": 1.5,
     "effects": "",
-    "tags": ["medium", "metal"]
+    "tags": [
+      "p",
+      "ae-0"
+    ]
   },
   {
-    "id": "greaves-l",
-    "name": "Greaves",
-    "slot": "lLeg",
-    "sp": 8,
-    "weight": 3,
+    "id": "armored-trousers",
+    "name": "Armored Trousers",
+    "slot": "rLeg",
+    "sp": 12,
+    "weight": 3.5,
     "effects": "",
-    "tags": ["medium", "metal"]
+    "tags": [
+      "e",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "redanian-greaves",
+    "name": "Redanian Greaves",
+    "slot": "rLeg",
+    "sp": 14,
+    "weight": 4.0,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "lyrian-leather-trousers",
+    "name": "Lyrian Leather Trousers",
+    "slot": "rLeg",
+    "sp": 16,
+    "weight": 3.5,
+    "effects": "",
+    "tags": [
+      "r",
+      "ae-1"
+    ]
   },
   {
     "id": "plate-greaves",
     "name": "Plate Greaves",
     "slot": "rLeg",
-    "sp": 12,
-    "weight": 5,
+    "sp": 20,
+    "weight": 7.5,
     "effects": "",
-    "tags": ["heavy", "plate"]
+    "tags": [
+      "r",
+      "ae-1"
+    ]
   },
   {
-    "id": "plate-greaves-l",
+    "id": "chausses",
+    "name": "Chausses",
+    "slot": "rLeg",
+    "sp": 25,
+    "weight": 5.0,
+    "effects": "",
+    "tags": [
+      "r",
+      "ae-3"
+    ]
+  },
+  {
+    "id": "nilfgaardian-greaves",
+    "name": "Nilfgaardian Greaves",
+    "slot": "rLeg",
+    "sp": 30,
+    "weight": 6.0,
+    "effects": "",
+    "tags": [
+      "r",
+      "ae-2"
+    ]
+  },
+  {
+    "id": "cavalry-trousers",
+    "name": "Cavalry Trousers",
+    "slot": "lLeg",
+    "sp": 3,
+    "weight": 0.5,
+    "effects": "",
+    "tags": [
+      "c",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "padded-trousers",
+    "name": "Padded Trousers",
+    "slot": "lLeg",
+    "sp": 5,
+    "weight": 1.0,
+    "effects": "",
+    "tags": [
+      "c",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "double-woven-trousers",
+    "name": "Double Woven Trousers",
+    "slot": "lLeg",
+    "sp": 8,
+    "weight": 1.5,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "armored-trousers",
+    "name": "Armored Trousers",
+    "slot": "lLeg",
+    "sp": 12,
+    "weight": 3.5,
+    "effects": "",
+    "tags": [
+      "e",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "redanian-greaves",
+    "name": "Redanian Greaves",
+    "slot": "lLeg",
+    "sp": 14,
+    "weight": 4.0,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "lyrian-leather-trousers",
+    "name": "Lyrian Leather Trousers",
+    "slot": "lLeg",
+    "sp": 16,
+    "weight": 3.5,
+    "effects": "",
+    "tags": [
+      "r",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "plate-greaves",
     "name": "Plate Greaves",
     "slot": "lLeg",
-    "sp": 12,
-    "weight": 5,
+    "sp": 20,
+    "weight": 7.5,
     "effects": "",
-    "tags": ["heavy", "plate"]
+    "tags": [
+      "r",
+      "ae-1"
+    ]
   },
   {
-    "id": "leather-boots",
-    "name": "Leather Boots",
-    "slot": "rLeg",
-    "sp": 2,
-    "weight": 0.5,
-    "effects": "",
-    "tags": ["light", "footwear"]
-  },
-  {
-    "id": "leather-boots-l",
-    "name": "Leather Boots",
+    "id": "chausses",
+    "name": "Chausses",
     "slot": "lLeg",
-    "sp": 2,
+    "sp": 25,
+    "weight": 5.0,
+    "effects": "",
+    "tags": [
+      "r",
+      "ae-3"
+    ]
+  },
+  {
+    "id": "nilfgaardian-greaves",
+    "name": "Nilfgaardian Greaves",
+    "slot": "lLeg",
+    "sp": 30,
+    "weight": 6.0,
+    "effects": "",
+    "tags": [
+      "r",
+      "ae-2"
+    ]
+  },
+  {
+    "id": "leather-shield",
+    "name": "Leather Shield",
+    "slot": "lArm",
+    "sp": 4,
     "weight": 0.5,
     "effects": "",
-    "tags": ["light", "footwear"]
+    "tags": [
+      "e",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "steel-buckler",
+    "name": "Steel Buckler",
+    "slot": "lArm",
+    "sp": 6,
+    "weight": 1.0,
+    "effects": "",
+    "tags": [
+      "c",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "temerian-shield",
+    "name": "Temerian Shield",
+    "slot": "lArm",
+    "sp": 8,
+    "weight": 1.5,
+    "effects": "",
+    "tags": [
+      "c",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "skellige-raider-shield",
+    "name": "Skellige Raider Shield",
+    "slot": "lArm",
+    "sp": 10,
+    "weight": 2.0,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "kaedweni-shield",
+    "name": "Kaedweni Shield",
+    "slot": "lArm",
+    "sp": 14,
+    "weight": 2.5,
+    "effects": "",
+    "tags": [
+      "p",
+      "ae-1"
+    ]
+  },
+  {
+    "id": "steel-kite-shield",
+    "name": "Steel Kite Shield",
+    "slot": "lArm",
+    "sp": 16,
+    "weight": 3.0,
+    "effects": "",
+    "tags": [
+      "c",
+      "ae-0"
+    ]
+  },
+  {
+    "id": "pavise",
+    "name": "Pavise",
+    "slot": "lArm",
+    "sp": 20,
+    "weight": 4.0,
+    "effects": "Full Cover",
+    "tags": [
+      "p",
+      "ae-0"
+    ]
   }
 ]

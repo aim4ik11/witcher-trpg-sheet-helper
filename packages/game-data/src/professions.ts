@@ -1,0 +1,97 @@
+/** Profession skill packages from the core rulebook (44 pts across 11 skills). */
+
+export interface ProfessionDef {
+  key: string;
+  definingSkill: string;
+  vigor: number;
+  skills: string[];
+  notes?: string;
+}
+
+export const PROFESSIONS: Record<string, ProfessionDef> = {
+  Bard: {
+    key: 'Bard',
+    definingSkill: 'Busking (EMP)',
+    vigor: 0,
+    skills: [
+      'Charisma', 'Deceit', 'Performance', 'Language', 'Human Perception',
+      'Persuasion', 'Streetwise', 'Fine Arts', 'Seduction', 'Social Etiquette',
+    ],
+  },
+  Craftsman: {
+    key: 'Craftsman',
+    definingSkill: 'Patch Job (CRA)',
+    vigor: 0,
+    skills: [
+      'Crafting', 'Business', 'Athletics', 'Endurance', 'Physique',
+      'Streetwise', 'Fine Arts', 'Alchemy', 'Education', 'Persuasion',
+    ],
+  },
+  Criminal: {
+    key: 'Criminal',
+    definingSkill: 'Practiced Paranoia (INT)',
+    vigor: 0,
+    skills: [
+      'Sleight of Hand', 'Pick Lock', 'Streetwise', 'Forgery', 'Deceit',
+      'Stealth', 'Intimidation', 'Small Blades', 'Athletics', 'Awareness',
+    ],
+  },
+  Doctor: {
+    key: 'Doctor',
+    definingSkill: 'Healing Hands (CRA)',
+    vigor: 0,
+    skills: [
+      'Resist Coercion', 'Charisma', 'Social Etiquette', 'Courage', 'Human Perception',
+      'Wilderness Survival', 'Business', 'Deduction', 'Small Blades', 'Alchemy',
+    ],
+  },
+  Mage: {
+    key: 'Mage',
+    definingSkill: 'Magic Training (INT)',
+    vigor: 5,
+    skills: [
+      'Human Perception', 'Spell Casting', 'Hex Weaving', 'Resist Magic', 'Staff/Spear',
+      'Education', 'Ritual Crafting', 'Social Etiquette', 'Seduction', 'Grooming & Style',
+    ],
+    notes: 'Humans and elves only.',
+  },
+  'Man At Arms': {
+    key: 'Man At Arms',
+    definingSkill: 'Tough As Nails (BODY)',
+    vigor: 0,
+    skills: [
+      'Wilderness Survival', 'Courage', 'Physique', 'Intimidation', 'Dodge/Escape',
+      '+ 5 combat skills (Brawling, Melee, Archery, etc.)',
+    ],
+  },
+  Merchant: {
+    key: 'Merchant',
+    definingSkill: 'Well Traveled (INT)',
+    vigor: 0,
+    skills: [
+      'Charisma', 'Small Blades', 'Education', 'Language', 'Streetwise',
+      'Business', 'Persuasion', 'Human Perception', 'Gambling', 'Resist Coercion',
+    ],
+    notes: 'Starts with cart, mule, and 1000 crowns of goods.',
+  },
+  Priest: {
+    key: 'Priest',
+    definingSkill: 'Initiate of the Gods (EMP)',
+    vigor: 2,
+    skills: [
+      'Ritual Crafting', 'Leadership', 'Courage', 'Human Perception', 'Hex Weaving',
+      'First Aid', 'Charisma', 'Wilderness Survival', 'Teaching', 'Spell Casting',
+    ],
+    notes: 'Humans and elves only.',
+  },
+  Witcher: {
+    key: 'Witcher',
+    definingSkill: 'Witcher Training (INT)',
+    vigor: 2,
+    skills: [
+      'Awareness', 'Deduction', 'Spell Casting', 'Alchemy', 'Dodge/Escape',
+      'Wilderness Survival', 'Swordsmanship', 'Athletics', 'Stealth', 'Riding',
+    ],
+    notes: 'Must take Witcher race. All basic signs.',
+  },
+};
