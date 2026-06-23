@@ -187,8 +187,18 @@ function CharCard({
     <div className="char-card">
       <div className="char-card-info">
         <button className="char-name-btn" onClick={onOpen}>{character.name}</button>
-        {character.race && <span className="char-race">{raceLabel(character.race)}</span>}
-        {character.occupation && <span className="char-prof">{occupationLabel(character.occupation)}</span>}
+        {character.enemyKind === 'monster' && character.monsterProfile?.monsterType && (
+          <span className="char-monster-type">{character.monsterProfile.monsterType}</span>
+        )}
+        {character.enemyKind !== 'monster' && character.race && (
+          <span className="char-race">{raceLabel(character.race)}</span>
+        )}
+        {character.enemyKind !== 'monster' && character.occupation && (
+          <span className="char-prof">{occupationLabel(character.occupation)}</span>
+        )}
+        {character.type === 'enemy' && character.monsterProfile?.threat && (
+          <span className="char-threat">{character.monsterProfile.threat}</span>
+        )}
         {character.type === 'player' && (
           <span className="char-nick">
             Login: <strong>{character.nickname || '(not set)'}</strong>

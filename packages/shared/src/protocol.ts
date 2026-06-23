@@ -47,6 +47,26 @@ export interface ResumeAck {
 
 export type CharacterType = 'player' | 'enemy';
 
+export type EnemyKind = 'npc' | 'monster';
+
+export interface MonsterProfile {
+  catalogId: string;
+  monsterType: string;
+  threat?: string;
+  bounty?: number;
+  naturalArmor?: number;
+  height?: string;
+  weight?: string;
+  environment?: string;
+  intelligence?: string;
+  organization?: string;
+  abilities?: string;
+  vulnerabilities?: string;
+  loot?: string;
+  vigor?: number;
+  encumbrance?: number;
+}
+
 export interface Vital {
   current: number;
   max: number;
@@ -137,6 +157,11 @@ export interface Character {
   race?: string;
   occupation?: string;
   nickname?: string;
+  /** Set when created from the bestiary catalog or a custom NPC enemy. */
+  enemyKind?: EnemyKind;
+  /** Rulebook bestiary entry id (e.g. drowners, bandits). */
+  bestiaryId?: string;
+  monsterProfile?: MonsterProfile;
   attributes: Record<string, number>;
   skills: Record<string, Record<string, SkillEntry>>;
   vitals: Vitals;

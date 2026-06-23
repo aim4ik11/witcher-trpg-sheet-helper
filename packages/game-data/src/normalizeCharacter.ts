@@ -17,6 +17,8 @@ const LEGACY_LANGUAGE_KEYS = ['nordling', 'elderSpeech', 'dwarven'] as const;
 export interface CharacterLike {
   race?: string;
   occupation?: string;
+  enemyKind?: 'npc' | 'monster';
+  bestiaryId?: string;
   attributes?: Record<string, number>;
   skills?: Record<string, Record<string, { level: number }>>;
   luck?: { max?: number; used?: number };
@@ -107,7 +109,30 @@ function migrateSkills(
   return out;
 }
 
+function isBestiaryEnemy(char: CharacterLike): boolean {
+  return !!char.bestiaryId;
+}
+
 function applyDerived(char: CharacterLike): void {
+  if (isBestiaryEnemy(char)) {
+    const attrs = char.attributes ?? {};
+    char.speed = attrs.spd ?? char.speed ?? 0;
+    char.luck = {
+      max: attrs.luck ?? char.luck?.max ?? 0,
+      used: char.luck?.used ?? 0,
+    };
+    const int = attrs.int ?? 0;
+    const will = attrs.will ?? 0;
+    const resolveMax = Math.floor(((int + will) / 2) * 5);
+    if (char.vitals && !char.vitals.resolve?.max) {
+      char.vitals.resolve = {
+        current: char.vitals.resolve?.current ?? resolveMax,
+        max: resolveMax,
+      };
+    }
+    return;
+  }
+
   const { hpStaMax, resolveMax } = calcVitalMaxes(char);
   const d = calcDerivedStats(char);
   char.speed = getSpd(char);
@@ -124,8 +149,10 @@ function applyDerived(char: CharacterLike): void {
 
 /** Migrate legacy sheet data to current rulebook schema. */
 export function normalizeCharacter<T extends CharacterLike>(char: T): T {
-  const race = normalizeRace(char.race);
-  const occupation = reconcileOccupation(race, char.occupation);
+  const race = char.enemyKind === 'monster' ? '' : normalizeRace(char.race);
+  const occupation = char.enemyKind === 'monster'
+    ? ''
+    : reconcileOccupation(race, char.occupation);
   const attributes = migrateAttributes(char);
   const skills = migrateSkills(char.skills ?? {});
 

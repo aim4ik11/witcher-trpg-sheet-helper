@@ -572,13 +572,419 @@ def parse_magic() -> list[dict]:
     )
 
 
+STAT_KEYS = (
+    "INT", "REF", "DEX", "BODY", "SPD", "EMP", "CRA", "WILL", "LUCK",
+    "STUN", "RUN", "LEAP", "STA", "ENC", "REC", "HP", "VIGOR",
+)
+
+SKILL_LABEL_MAP: dict[str, tuple[str, str]] = {
+    "swordsmanship": ("ref", "swordsmanship"),
+    "melee": ("ref", "melee"),
+    "brawling": ("ref", "brawling"),
+    "dodge/escape": ("ref", "dodgeEscape"),
+    "small blades": ("ref", "smallBlades"),
+    "staff/spear": ("ref", "staffSpear"),
+    "riding": ("ref", "riding"),
+    "sailing": ("ref", "sailing"),
+    "archery": ("dex", "archery"),
+    "crossbow": ("dex", "crossbow"),
+    "athletics": ("dex", "athletics"),
+    "stealth": ("dex", "stealth"),
+    "sleight of hand": ("dex", "sleightOfHand"),
+    "awareness": ("int", "awareness"),
+    "wild. survival": ("int", "wildernessSurv"),
+    "wilderness survival": ("int", "wildernessSurv"),
+    "education": ("int", "education"),
+    "deduction": ("int", "deduction"),
+    "streetwise": ("int", "streetwise"),
+    "tactics": ("int", "tactics"),
+    "physique": ("body", "physique"),
+    "endurance": ("body", "endurance"),
+    "charisma": ("emp", "charisma"),
+    "deceit": ("emp", "deceit"),
+    "persuasion": ("emp", "persuasion"),
+    "intimidation": ("will", "intimidation"),
+    "courage": ("will", "courage"),
+    "resist magic": ("will", "resistMagic"),
+    "resist coercion": ("will", "resistCoercion"),
+    "spell casting": ("will", "spellCasting"),
+    "alchemy": ("cra", "alchemy"),
+    "first aid": ("cra", "firstAid"),
+    "crafting": ("cra", "crafting"),
+}
+
+BESTIARY_ENTRIES: list[dict] = [
+    {"file": "270-bandits.md", "id": "bandits", "name": "Bandits", "kind": "npc", "monsterType": "Humanoid", "race": "Human"},
+    {"file": "272-mages.md", "id": "mages", "name": "Mages", "kind": "npc", "monsterType": "Humanoid", "race": "Human"},
+    {"file": "274-scoiatael-archers.md", "id": "scoiatael-archers", "name": "Scoia'tael Archers", "kind": "npc", "monsterType": "Humanoid", "race": "Elf"},
+    {"file": "276-drowners.md", "id": "drowners", "name": "Drowners", "kind": "monster", "monsterType": "Necrophage"},
+    {"file": "278-ghouls.md", "id": "ghouls", "name": "Ghouls", "kind": "monster", "monsterType": "Necrophage"},
+    {"file": "280-grave-hags.md", "id": "grave-hags", "name": "Grave Hags", "kind": "monster", "monsterType": "Necrophage"},
+    {"file": "282-wraiths.md", "id": "wraiths", "name": "Wraiths", "kind": "monster", "monsterType": "Specter"},
+    {"file": "284-noon-wraiths.md", "id": "noon-wraiths", "name": "Noon Wraiths", "kind": "monster", "monsterType": "Specter"},
+    {"file": "286-wolves-wargs.md", "id": "wolf", "name": "Wolf", "kind": "monster", "monsterType": "Beast", "until": "\nWargs\nINT"},
+    {"file": "286-wolves-wargs.md", "id": "warg", "name": "Warg", "kind": "monster", "monsterType": "Beast", "marker": "Wargs\nINT"},
+    {"file": "288-werewolves.md", "id": "werewolves", "name": "Werewolves", "kind": "monster", "monsterType": "Cursed One"},
+    {"file": "290-sirens.md", "id": "sirens", "name": "Sirens", "kind": "monster", "monsterType": "Hybrid"},
+    {"file": "292-griffins.md", "id": "griffins", "name": "Griffins", "kind": "monster", "monsterType": "Hybrid"},
+    {"file": "294-endrega.md", "id": "endrega", "name": "Endrega", "kind": "monster", "monsterType": "Insectoid"},
+    {"file": "296-arachasae.md", "id": "arachasae", "name": "Arachasae", "kind": "monster", "monsterType": "Insectoid"},
+    {"file": "298-golems.md", "id": "golems", "name": "Golems", "kind": "monster", "monsterType": "Elementa"},
+    {"file": "300-fiends.md", "id": "fiends", "name": "Fiends", "kind": "monster", "monsterType": "Relict"},
+    {"file": "302-nekkers.md", "id": "nekkers", "name": "Nekkers", "kind": "monster", "monsterType": "Ogroid", "until": "\nNekker Chieftain\nINT"},
+    {"file": "302-nekkers.md", "id": "nekker-chieftain", "name": "Nekker Chieftain", "kind": "monster", "monsterType": "Ogroid", "marker": "Nekker Chieftain\nINT"},
+    {"file": "304-rock-trolls.md", "id": "rock-trolls", "name": "Rock Trolls", "kind": "monster", "monsterType": "Ogroid"},
+    {"file": "306-wyverns.md", "id": "wyverns", "name": "Wyverns", "kind": "monster", "monsterType": "Draconid"},
+    {"file": "308-katakans.md", "id": "katakans", "name": "Katakans", "kind": "monster", "monsterType": "Vampire"},
+    {"file": "310-cats-dogs.md", "id": "cat", "name": "Cat", "kind": "monster", "monsterType": "Beast", "marker": "Cat\nSkills", "until": "\nDog\nSkills"},
+    {"file": "310-cats-dogs.md", "id": "dog", "name": "Dog", "kind": "monster", "monsterType": "Beast", "marker": "Dog\nSkills"},
+    {"file": "311-birds-serpents.md", "id": "bird", "name": "Bird", "kind": "monster", "monsterType": "Beast", "marker": "Bird\nSkills", "until": "\nSerpent\nSkills"},
+    {"file": "311-birds-serpents.md", "id": "serpent", "name": "Serpent", "kind": "monster", "monsterType": "Beast", "marker": "Serpent\nSkills"},
+    {"file": "312-horses-war-horses.md", "id": "horse", "name": "Horse", "kind": "monster", "monsterType": "Beast", "marker": "Horse\nSkills", "until": "\nWar Horse\nSkills"},
+    {"file": "312-horses-war-horses.md", "id": "war-horse", "name": "War Horse", "kind": "monster", "monsterType": "Beast", "marker": "War Horse\nSkills"},
+    {"file": "313-oxen-mules.md", "id": "ox", "name": "Ox", "kind": "monster", "monsterType": "Beast", "marker": "Ox\nSkills", "until": "\nMule\nSkills"},
+    {"file": "313-oxen-mules.md", "id": "mule", "name": "Mule", "kind": "monster", "monsterType": "Beast", "marker": "Mule\nSkills"},
+]
+
+
+THREAT_WORDS = frozenset({"Easy", "Medium", "Hard", "Simple", "Complex", "Difficult"})
+DMG_TOKEN_RE = re.compile(r"^\d+d\d+(?:/\d+)?(?:[+-]\d+)?$")
+ROF_TOKEN_RE = re.compile(r"^\d+$")
+
+
+BESTIARY_PAGE_MIN = 266
+BESTIARY_PAGE_MAX = 314
+
+
+def _find_lore_start(region: str) -> int | None:
+    """Find rulebook page break (e.g. 281) without matching bounty values like 500."""
+    for m in re.finditer(r"^(\d{3})$", region, re.MULTILINE):
+        page = int(m.group(1))
+        if BESTIARY_PAGE_MIN <= page <= BESTIARY_PAGE_MAX:
+            return m.start()
+    return None
+
+
+def _uses_last_stat_block(cfg: dict) -> bool:
+    return "Skills" in cfg.get("marker", "")
+
+
+def _stat_block_starts(text: str) -> list[int]:
+    return [m.start() for m in re.finditer(r"^INT\s+(?:\d+|-)", text, re.MULTILINE)]
+
+
+def _find_section_line(text: str, header: str) -> re.Match[str] | None:
+    """Match a standalone section header line (case-sensitive; avoids Vulnerabilities → abilities)."""
+    return re.search(rf"^(?:[A-Za-z'’ ]+ )?{re.escape(header)}\s*$", text, re.MULTILINE)
+
+
+def _header_region(text: str, cfg: dict) -> str:
+    starts = _stat_block_starts(text)
+    if not starts:
+        return text
+    use_last = _uses_last_stat_block(cfg)
+    start = starts[-1] if use_last else starts[0]
+    if not use_last:
+        meta = re.search(r"^(?:Height|INT)\s", text, re.MULTILINE)
+        if meta:
+            start = meta.start()
+    region = text[start:]
+    if _uses_last_stat_block(cfg):
+        armor = re.search(r"^Armor\s*\n\d+", region, re.MULTILINE)
+        if armor:
+            return region[: armor.end()]
+        return region
+    lore_at = _find_lore_start(region)
+    if lore_at is not None:
+        return region[:lore_at]
+    return region
+
+
+def _tactical_text(text: str, cfg: dict) -> str:
+    if _uses_last_stat_block(cfg):
+        return text
+    starts = _stat_block_starts(text)
+    sub = text[starts[0] :] if starts else text
+    hit: int | None = None
+    for hdr in ("Vulnerabilities", "Weapons", "Weap ons", "Loot", "Skills"):
+        m = _find_section_line(sub, hdr)
+        if m and (hit is None or m.start() < hit):
+            hit = m.start()
+    return sub[hit:] if hit is not None else sub
+
+
+def _stat_int(text: str, key: str) -> int | None:
+    m = re.search(rf"^{re.escape(key)}\s+(-|\d+)", text, re.MULTILINE)
+    if not m or m.group(1) == "-":
+        return None
+    return int(m.group(1))
+
+
+def _meta_line(text: str, field: str) -> str:
+    m = re.search(rf"^{re.escape(field)}\s*(.+)$", text, re.MULTILINE)
+    return m.group(1).strip() if m else ""
+
+
+SECTION_HEADERS = (
+    "Skills", "Weapons", "Weap ons", "Abilities", "Loot", "Vulnerabilities",
+)
+
+STAT_LINE = re.compile(
+    r"^(INT|REF|DEX|BODY|SPD|EMP|CRA|WILL|LUCK|STUN|RUN|LEAP|STA|ENC|REC|HP|VIGOR)\s+",
+    re.MULTILINE,
+)
+
+
+def _section_end(rest: str, header: str) -> int:
+    end = len(rest)
+    for h in SECTION_HEADERS:
+        if h == header:
+            continue
+        hm = _find_section_line(rest, h)
+        if hm and hm.start() < end:
+            end = hm.start()
+    sm = STAT_LINE.search(rest)
+    if sm and sm.start() < end:
+        end = sm.start()
+    # prose blocks that follow skills on shared pages (wolf/warg)
+    for marker in (
+        r"^While there are",
+        r"^Knowledge of ",
+        r"^Wargs are ",
+        r"^Nekker chieftains ",
+    ):
+        pm = re.search(marker, rest, re.MULTILINE)
+        if pm and pm.start() < end:
+            end = pm.start()
+    return end
+
+
+def _extract_block(text: str, header: str) -> str:
+    m = _find_section_line(text, header)
+    if not m:
+        return ""
+    rest = text[m.end() :]
+    return rest[: _section_end(rest, header)].strip()
+
+
+def _parse_threat(text: str) -> str:
+    m = re.search(
+        r"^Threat\s*\n(.+?)(?=\n(?:Bounty|Armor|Height|Weight|Environment|Intelligence|Organization|INT |STUN |\Z))",
+        text,
+        re.MULTILINE | re.DOTALL,
+    )
+    if not m:
+        return ""
+    parts = [p.strip() for p in re.split(r"\s*\n\s*", m.group(1).strip()) if p.strip()]
+    parts = [p for p in parts if p in THREAT_WORDS]
+    return " / ".join(parts)
+
+
+def _parse_skills(text: str) -> list[dict]:
+    block = _extract_block(text, "Skills")
+    if not block:
+        return []
+    flat = re.sub(r"\s+", " ", block)
+    skills: list[dict] = []
+    for m in re.finditer(r"([A-Za-z./ ]+?)\s*\+(\d+)", flat):
+        label = m.group(1).strip().lower()
+        level = int(m.group(2))
+        mapped = SKILL_LABEL_MAP.get(label)
+        if not mapped:
+            continue
+        attr, key = mapped
+        skills.append({"attr": attr, "key": key, "label": m.group(1).strip(), "level": level})
+    return skills
+
+
+def _line_has_dmg(line: str) -> bool:
+    return any(DMG_TOKEN_RE.match(part) for part in line.split())
+
+
+def _join_weapon_lines(raw: str) -> list[str]:
+    rows: list[str] = []
+    buf = ""
+    for raw_line in raw.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        if ROF_TOKEN_RE.match(line):
+            if buf:
+                rows.append(f"{buf} {line}")
+                buf = ""
+            continue
+        if buf and _line_has_dmg(buf) and not _line_has_dmg(line):
+            buf = f"{buf} {line}"
+            continue
+        if buf:
+            rows.append(buf)
+        buf = line
+    if buf:
+        rows.append(buf)
+    return rows
+
+
+def _parse_weapon_line(line: str) -> dict | None:
+    parts = line.split()
+    if len(parts) < 3:
+        return None
+    rof = parts[-1]
+    if not ROF_TOKEN_RE.match(rof):
+        return None
+    rest = parts[:-1]
+    dmg_i = next((i for i, p in enumerate(rest) if DMG_TOKEN_RE.match(p)), None)
+    if dmg_i is None:
+        return None
+    name = " ".join(rest[:dmg_i]).strip()
+    dmg = rest[dmg_i]
+    effect_parts = rest[dmg_i + 1 :]
+    rng = ""
+    if effect_parts and effect_parts[0] == "RNG:":
+        rng = f"RNG: {effect_parts[1]}" if len(effect_parts) > 1 else "RNG:"
+        effect_parts = effect_parts[2:]
+    effect = " ".join(effect_parts).strip() or "N/A"
+    return {"name": name, "dmg": dmg, "effect": effect, "rof": rof, "rng": rng}
+
+
+def _parse_monster_weapons(text: str) -> list[dict]:
+    m = re.search(
+        r"(?:Weapons|Weap ons)\s*\nName DMG Effect ROF\s*\n(.+)",
+        text,
+        re.DOTALL,
+    )
+    if not m:
+        return []
+    raw = m.group(1)
+    cut = _section_end(raw, "Weapons")
+    raw = raw[:cut]
+    weapons: list[dict] = []
+    for line in _join_weapon_lines(raw):
+        row = _parse_weapon_line(line)
+        if row:
+            weapons.append(row)
+    return weapons
+
+
+def _slice_entry_text(full: str, cfg: dict) -> str:
+    text = full
+    if cfg.get("marker"):
+        idx = text.find(cfg["marker"])
+        if idx < 0:
+            return ""
+        text = text[idx:]
+    if cfg.get("until"):
+        end = text.find(cfg["until"])
+        if end > 0 and (not cfg.get("marker") or end > len(cfg["marker"])):
+            text = text[:end]
+    return text
+
+
+def _parse_bestiary_entry(full_text: str, cfg: dict) -> dict | None:
+    text = _slice_entry_text(full_text, cfg)
+    if not text.strip():
+        return None
+
+    header = _header_region(text, cfg)
+    tactical = _tactical_text(text, cfg)
+
+    attrs: dict[str, int] = {}
+    for key in STAT_KEYS[:9]:
+        val = _stat_int(header, key)
+        if val is not None:
+            attrs[key.lower()] = val
+
+    combat: dict[str, int] = {}
+    for key in STAT_KEYS[9:]:
+        val = _stat_int(header, key)
+        if val is not None:
+            combat[key.lower()] = val
+
+    bounty = _stat_int(header, "Bounty")
+    if bounty is None:
+        m = re.search(r"^Bounty\s*\n(\d+)", header, re.MULTILINE)
+        bounty = int(m.group(1)) if m else None
+
+    armor = _stat_int(header, "Armor")
+    if armor is None:
+        m = re.search(r"^Armor\s*\n(\d+)", header, re.MULTILINE)
+        armor = int(m.group(1)) if m else 0
+
+    return {
+        "id": cfg["id"],
+        "name": cfg["name"],
+        "kind": cfg["kind"],
+        "monsterType": cfg["monsterType"],
+        "defaultRace": cfg.get("race", ""),
+        "threat": _parse_threat(header),
+        "bounty": bounty,
+        "naturalArmor": armor or 0,
+        "height": _meta_line(header, "Height"),
+        "weight": _meta_line(header, "Weight"),
+        "environment": _meta_line(header, "Environment"),
+        "intelligence": _meta_line(header, "Intelligence"),
+        "organization": _meta_line(header, "Organization"),
+        "attributes": attrs,
+        "combat": combat,
+        "skills": _parse_skills(tactical),
+        "weapons": _parse_monster_weapons(tactical),
+        "abilities": _extract_block(tactical, "Abilities"),
+        "vulnerabilities": _extract_block(tactical, "Vulnerabilities"),
+        "loot": _extract_block(tactical, "Loot"),
+    }
+
+
+def _validate_bestiary(entries: list[dict]) -> list[str]:
+    warnings: list[str] = []
+    for e in entries:
+        eid = e["id"]
+        if len(e.get("attributes", {})) < 9:
+            warnings.append(f"{eid}: incomplete attributes")
+        if not e.get("combat", {}).get("hp"):
+            warnings.append(f"{eid}: missing HP")
+        threat = e.get("threat") or ""
+        if threat and not all(p.strip() in THREAT_WORDS for p in threat.split("/")):
+            warnings.append(f"{eid}: suspicious threat {threat!r}")
+        ab = e.get("abilities") or ""
+        vu = e.get("vulnerabilities") or ""
+        if ab and vu and ab[:40] == vu[:40]:
+            warnings.append(f"{eid}: abilities duplicates vulnerabilities")
+        if len(ab) > 700:
+            warnings.append(f"{eid}: abilities block very long ({len(ab)} chars)")
+        for w in e.get("weapons", []):
+            if not DMG_TOKEN_RE.match(w.get("dmg", "")):
+                warnings.append(f"{eid}: bad weapon dmg {w!r}")
+    return warnings
+
+
+def parse_bestiary() -> list[dict]:
+    by_file: dict[str, str] = {}
+    entries: list[dict] = []
+    for cfg in BESTIARY_ENTRIES:
+        path = SECTIONS / cfg["file"]
+        if cfg["file"] not in by_file:
+            by_file[cfg["file"]] = clean_section_text(path.read_text(encoding="utf-8"))
+        row = _parse_bestiary_entry(by_file[cfg["file"]], cfg)
+        if row and row.get("attributes"):
+            entries.append(row)
+    warnings = _validate_bestiary(entries)
+    for w in warnings:
+        print(f"  bestiary warning: {w}")
+    return entries
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     weapons = parse_weapons()
     armor = parse_armor()
     magic = parse_magic()
+    monsters = parse_bestiary()
 
-    for name, data in [("weapons.json", weapons), ("armor.json", armor), ("magic.json", magic)]:
+    for name, data in [
+        ("weapons.json", weapons),
+        ("armor.json", armor),
+        ("magic.json", magic),
+        ("monsters.json", monsters),
+    ]:
         path = OUT / name
         path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"Wrote {len(data)} entries → {path.relative_to(ROOT)}")

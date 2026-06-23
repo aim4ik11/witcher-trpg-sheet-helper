@@ -149,9 +149,28 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
   const [tab, setTab] = useState('Stats');
   const [picker, setPicker] = useState<PickerState | null>(null);
   const readOnly = !isDM;
+  const isBestiary = !!character.bestiaryId;
+  const isMonster = character.enemyKind === 'monster';
+  const profile = character.monsterProfile;
 
   const { hpStaMax, resolveMax } = calcVitalMaxes(character);
-  const derived = useMemo(() => calcDerivedStats(character), [character]);
+  const derived = useMemo(() => {
+    if (isBestiary) {
+      return {
+        run: character.movement?.run ?? 0,
+        leap: character.movement?.leap ?? 0,
+        stun: character.recovery?.stun ?? 0,
+        rec: character.recovery?.rec ?? 0,
+        luckMax: character.luck?.max ?? character.attributes?.luck ?? 0,
+        punch: character.bonusMelee?.punch ?? '—',
+        kick: character.bonusMelee?.kick ?? '—',
+      };
+    }
+    return calcDerivedStats(character);
+  }, [character, isBestiary]);
+  const hpMax = isBestiary ? character.vitals.hp.max : hpStaMax;
+  const staMax = isBestiary ? character.vitals.sta.max : hpStaMax;
+  const resolveDisplayMax = isBestiary ? character.vitals.resolve.max : resolveMax;
   const occupation = character.occupation || '';
   const showMagic = isSpellcastingOccupation(occupation);
   const magicSections = useMemo(() => getMagicSections(occupation), [occupation]);
@@ -199,22 +218,34 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
             <>
               <h1 className="sheet-name-display">{character.name}</h1>
               <div className="sheet-meta-display">
-                <RaceOccupationDisplay race={character.race} occupation={occupation} />
+                {isMonster && profile?.monsterType ? (
+                  <span className="sheet-monster-type">{profile.monsterType}</span>
+                ) : (
+                  <RaceOccupationDisplay race={character.race} occupation={occupation} />
+                )}
               </div>
             </>
           ) : (
             <>
               <input className="sheet-name" value={character.name} onChange={(e) => update({ name: e.target.value })} />
               <div className="sheet-meta">
-                <RaceSelect value={character.race ?? ''} onChange={(v) => {
-                  const occ = occupationAfterRaceChange(v, character.occupation ?? '');
-                  update({ race: v, occupation: occ });
-                }} />
-                <OccupationSelect
-                  race={character.race ?? ''}
-                  value={occupation}
-                  onChange={(v) => update({ occupation: v })}
-                />
+                {isMonster ? (
+                  profile?.monsterType && (
+                    <span className="sheet-monster-type">{profile.monsterType}</span>
+                  )
+                ) : (
+                  <>
+                    <RaceSelect value={character.race ?? ''} onChange={(v) => {
+                      const occ = occupationAfterRaceChange(v, character.occupation ?? '');
+                      update({ race: v, occupation: occ });
+                    }} />
+                    <OccupationSelect
+                      race={character.race ?? ''}
+                      value={occupation}
+                      onChange={(v) => update({ occupation: v })}
+                    />
+                  </>
+                )}
                 {character.type === 'player' && (
                   <input
                     placeholder="Player nickname"
@@ -239,16 +270,56 @@ export default function CharacterSheet({ character, onChange, isDM, onBack, back
       <div className="sheet-body">
         {tab === 'Stats' && (
           <>
+            {profile && (
+              <section className="panel monster-profile-panel">
+                <div className="panel-title">{isMonster ? 'Monster' : 'NPC'} — {profile.monsterType}</div>
+                <dl className="monster-profile-grid">
+                  {profile.threat && <><dt>Threat</dt><dd>{profile.threat}</dd></>}
+                  {profile.bounty != null && profile.bounty > 0 && <><dt>Bounty</dt><dd>{profile.bounty}</dd></>}
+                  {profile.naturalArmor != null && <><dt>Natural armor</dt><dd>{profile.naturalArmor} SP</dd></>}
+                  {profile.height && <><dt>Height</dt><dd>{profile.height}</dd></>}
+                  {profile.weight && <><dt>Weight</dt><dd>{profile.weight}</dd></>}
+                  {profile.environment && <><dt>Environment</dt><dd>{profile.environment}</dd></>}
+                  {profile.intelligence && <><dt>Intelligence</dt><dd>{profile.intelligence}</dd></>}
+                  {profile.organization && <><dt>Organization</dt><dd>{profile.organization}</dd></>}
+                  {profile.vigor != null && <><dt>Vigor</dt><dd>{profile.vigor}</dd></>}
+                  {profile.encumbrance != null && <><dt>Encumbrance</dt><dd>{profile.encumbrance}</dd></>}
+                </dl>
+                {profile.vulnerabilities && (
+                  <div className="monster-profile-block">
+                    <div className="monster-profile-label">Vulnerabilities</div>
+                    <p className="monster-profile-text">{profile.vulnerabilities}</p>
+                  </div>
+                )}
+                {profile.abilities && (
+                  <div className="monster-profile-block">
+                    <div className="monster-profile-label">Abilities</div>
+                    <p className="monster-profile-text">{profile.abilities}</p>
+                  </div>
+                )}
+                {profile.loot && (
+                  <div className="monster-profile-block">
+                    <div className="monster-profile-label">Loot</div>
+                    <p className="monster-profile-text">{profile.loot}</p>
+                  </div>
+                )}
+              </section>
+            )}
+
             <section className="panel vitals-panel">
               <div className="panel-title">Vitals</div>
-              <Counter readOnly={readOnly} label="HP" current={character.vitals.hp.current} max={hpStaMax} onChange={(v) => updateNested(['vitals', 'hp', 'current'], v)} />
-              <Counter readOnly={readOnly} label="STA" current={character.vitals.sta.current} max={hpStaMax} onChange={(v) => updateNested(['vitals', 'sta', 'current'], v)} />
-              <Counter readOnly={readOnly} label="Resolve" current={character.vitals.resolve.current} max={resolveMax} onChange={(v) => updateNested(['vitals', 'resolve', 'current'], v)} />
+              <Counter readOnly={readOnly} label="HP" current={character.vitals.hp.current} max={hpMax} onChange={(v) => updateNested(['vitals', 'hp', 'current'], v)} />
+              <Counter readOnly={readOnly} label="STA" current={character.vitals.sta.current} max={staMax} onChange={(v) => updateNested(['vitals', 'sta', 'current'], v)} />
+              <Counter readOnly={readOnly} label="Resolve" current={character.vitals.resolve.current} max={resolveDisplayMax} onChange={(v) => updateNested(['vitals', 'resolve', 'current'], v)} />
               <div className="vital-row">
                 <span className="vital-label">Wound Threshold</span>
                 <NumInput readOnly={readOnly} value={character.vitals.woundThreshold} onChange={(v) => updateNested(['vitals', 'woundThreshold'], v)} />
               </div>
-              <p className="formula-hint">HP/STA: Physical Table (BODY+WILL)/2 ↓ · Resolve: (INT+WILL)/2×5 · RUN: SPD×3</p>
+              <p className="formula-hint">
+                {isBestiary
+                  ? 'Stats from rulebook bestiary — HP/STA/RUN/LEAP/STUN/REC as printed.'
+                  : 'HP/STA: Physical Table (BODY+WILL)/2 ↓ · Resolve: (INT+WILL)/2×5 · RUN: SPD×3'}
+              </p>
             </section>
 
             <section className="panel">

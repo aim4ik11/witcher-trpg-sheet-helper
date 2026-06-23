@@ -1,0 +1,3258 @@
+[
+  {
+    "id": "bandits",
+    "name": "Bandits",
+    "kind": "npc",
+    "monsterType": "Humanoid",
+    "defaultRace": "Human",
+    "threat": "Easy / Simple",
+    "bounty": 10,
+    "naturalArmor": 5,
+    "height": "Usual human heights",
+    "weight": "Usual human weights",
+    "environment": "Often near cities or main roads",
+    "intelligence": "Human-level",
+    "organization": "Bands of 3 to 15",
+    "attributes": {
+      "int": 3,
+      "ref": 6,
+      "dex": 5,
+      "body": 5,
+      "spd": 4,
+      "emp": 3,
+      "cra": 4,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 4,
+      "run": 12,
+      "leap": 2,
+      "sta": 20,
+      "enc": 50,
+      "rec": 4,
+      "hp": 20,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "swordsmanship",
+        "label": "Swordsmanship",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "crossbow",
+        "label": "Crossbow",
+        "level": 4
+      },
+      {
+        "attr": "ref",
+        "key": "smallBlades",
+        "label": "Small Blades",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 4
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 4
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 3
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 4
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 5
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 7
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Iron long sword",
+        "dmg": "2d6+2",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Dagger",
+        "dmg": "1d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Hand crossbow",
+        "dmg": "2d6+2",
+        "effect": "Slow Loading",
+        "rof": "1",
+        "rng": "RNG: 50m"
+      }
+    ],
+    "abilities": "NONE",
+    "vulnerabilities": "Hanged Man’s Venom",
+    "loot": "Crowns (3d10)\nMundane items (1d6)\nBolts (20)\nDouble woven hood\nAedirnian gambeson\nPadded trousers"
+  },
+  {
+    "id": "mages",
+    "name": "Mages",
+    "kind": "npc",
+    "monsterType": "Humanoid",
+    "defaultRace": "Human",
+    "threat": "Medium / Simple",
+    "bounty": 100,
+    "naturalArmor": 0,
+    "height": "Usual human heights",
+    "weight": "Usual human weights",
+    "environment": "In cities or remote towers",
+    "intelligence": "Human-level",
+    "organization": "Usually solitary",
+    "attributes": {
+      "int": 7,
+      "ref": 7,
+      "dex": 6,
+      "body": 5,
+      "spd": 5,
+      "emp": 4,
+      "cra": 5,
+      "will": 8,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 7,
+      "run": 15,
+      "leap": 3,
+      "sta": 30,
+      "enc": 50,
+      "rec": 7,
+      "hp": 30,
+      "vigor": 10
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "staffSpear",
+        "label": "Staff/Spear",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "spellCasting",
+        "label": "Spell Casting",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 5
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 7
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 5
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 7
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 7
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 6
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Iron staff",
+        "dmg": "3d6",
+        "effect": "Focus (2)",
+        "rof": "2",
+        "rng": ""
+      },
+      {
+        "name": "Dagger",
+        "dmg": "1d6",
+        "effect": "N/A",
+        "rof": "2",
+        "rng": ""
+      }
+    ],
+    "abilities": "Spells\nA mage is capable of using \nthe spells: \nAenye\nGlamour\nBlinding Dust\nRhewi\nTeleportation\nRituals\nA mage is capable of casting \nthese rituals:\nSpell jar\nRitual of magic\nHexes\nA mage is capable of casting \nthese hexes:\nThe Eternal Itch\nThe Hex of Shadows",
+    "vulnerabilities": "Hanged Man’s Venom\nDimeritium \nWhile touching dimeritium, \na mage has a Vigor of 0 and is \nsubjected to the Dimeritium \nEffects table on pg.167.",
+    "loot": "Crowns (5d10)\nMundane items (1d6)\nStrange items (1d6/2)\nFifth essence (1d6/2)\nAlchmey set\nSuccubus’ breath\nThe magic listed above is \nan example of what a mage \nmight be able to bring to bear \nagainst players. If you want \nyou can customize your mage, \npick new sets of spells, rituals, \nand hexes from the Magic section on pg.99.\nAlternate Magic"
+  },
+  {
+    "id": "scoiatael-archers",
+    "name": "Scoia'tael Archers",
+    "kind": "npc",
+    "monsterType": "Humanoid",
+    "defaultRace": "Elf",
+    "threat": "Easy / Complex",
+    "bounty": 20,
+    "naturalArmor": 5,
+    "height": "Usual human heights",
+    "weight": "Usual human weights",
+    "environment": "Wilderness or along main roads",
+    "intelligence": "Human-level",
+    "organization": "Commandos of 3 to 15",
+    "attributes": {
+      "int": 4,
+      "ref": 6,
+      "dex": 7,
+      "body": 5,
+      "spd": 7,
+      "emp": 3,
+      "cra": 4,
+      "will": 6,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 5,
+      "run": 21,
+      "leap": 4,
+      "sta": 25,
+      "enc": 50,
+      "rec": 5,
+      "hp": 25,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "dex",
+        "key": "archery",
+        "label": "Archery",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "swordsmanship",
+        "label": "Swordsmanship",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "smallBlades",
+        "label": "Small Blades",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 4
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 7
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 7
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 9
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 8
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 10
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 4
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 6
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 7
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 6
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Hunter’s falchion",
+        "dmg": "3d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Dagger",
+        "dmg": "1d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Throwing knives",
+        "dmg": "1d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": "RNG: 24m"
+      },
+      {
+        "name": "Longbow",
+        "dmg": "4d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": "RNG: 200m"
+      }
+    ],
+    "abilities": "Ambush Specialist\nWhen making a stealth roll to \nhide from targets, Scoia’tael \narchers use the highest \nStealth roll amongst all of \nthem. This roll counts for the \nwhole group.",
+    "vulnerabilities": "Hanged Man’s Venom",
+    "loot": "Crowns (1d10)\nMundane items (1d6)\nArrows (30)\nElven burrowers (10)\nDouble woven hood\nAedirnian gambeson\nPadded trousers\nScoia’tael archers will fire their \nregular arrows first and try to \nkill all targets quickly. Their \nelven burrower arrows are \nreserved for targets they particularly despise, and fleeing \ntargets who will need to be \ntracked down.\nSpiteful Ammunition"
+  },
+  {
+    "id": "drowners",
+    "name": "Drowners",
+    "kind": "monster",
+    "monsterType": "Necrophage",
+    "defaultRace": "",
+    "threat": "Easy / Simple",
+    "bounty": 10,
+    "naturalArmor": 0,
+    "height": "Usual human heights",
+    "weight": "Usual human weights",
+    "environment": "By rivers, lakes, or coastlines",
+    "intelligence": "About as intelligent as a fish",
+    "organization": "Groups of 3 to 6",
+    "attributes": {
+      "int": 1,
+      "ref": 7,
+      "dex": 7,
+      "body": 6,
+      "spd": 6,
+      "emp": 1,
+      "cra": 1,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 5,
+      "run": 18,
+      "leap": 3,
+      "sta": 25,
+      "enc": 60,
+      "rec": 5,
+      "hp": 25,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 5
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 5
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 4
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 8
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "3d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Feral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 7.\nPoison Immunity\nDrowners are immune to the \npoison effect.\nAmphibious\nDrowners can live underwater indefinitely and cannot be \ndrowned. They also do not \ntake penalties for acting underwater.\nImpenetrably Dim\nDrowners are so unintelligent \nthat they are immue to any \nmagic that affects thoughts or \nemotions.",
+    "vulnerabilities": "Necrophage Oil\nFire Vulnerability\nDrowners are vulnerable to \nfire damage, including damage from being on fire.",
+    "loot": "Drowner brains\nDrowner tongue\nEssence of water \n(1d6/2)\nDespite believing that drowners are resurrected criminals, \nmany townsfolk living along \nthe Pontar River have been \nknown to pay a fair bit for their \nbrains. Drowner brains are \noften boiled in a stew which \nis supposedly an extremely \npowerful aphrodisiac.\nDrowner Brain Stew"
+  },
+  {
+    "id": "ghouls",
+    "name": "Ghouls",
+    "kind": "monster",
+    "monsterType": "Necrophage",
+    "defaultRace": "",
+    "threat": "Easy / Difficult",
+    "bounty": 30,
+    "naturalArmor": 0,
+    "height": "Around 1.25 meters at the",
+    "weight": "Around 86kg",
+    "environment": "Battlefields and cemeteries",
+    "intelligence": "About as intelligent as a dog",
+    "organization": "Packs of 3 to 6",
+    "attributes": {
+      "int": 1,
+      "ref": 6,
+      "dex": 7,
+      "body": 6,
+      "spd": 6,
+      "emp": 1,
+      "cra": 1,
+      "will": 5,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 5,
+      "run": 21,
+      "leap": 4,
+      "sta": 25,
+      "enc": 60,
+      "rec": 5,
+      "hp": 25,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 7
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 7
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 4
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 4
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 7
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "3d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Bite",
+        "dmg": "3d6+2",
+        "effect": "Bleed (25%) -1 ACC",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Pounce\nA ghoul doesn’t need to take \na running start when leaping.\nFury\nWhen ghouls are brought below 10 HP they enter a fury \nin which they move every \nround, attack every round, \nand regenerate 3 points of \ndamage per turn.\nNight Vision\nGhouls operate in areas of \ndim light with no penalties.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 6.Weapons\nName DMG Effect ROF\nClaws 3d6 N/A 1\nBite 3d6+2 Bleed (25%)\n-1 ACC 1",
+    "vulnerabilities": "Necrophage Oil",
+    "loot": "Ghoul marrow (1d6/2)\nGhoul claws (2)\nVenom extract (1d6/2)"
+  },
+  {
+    "id": "grave-hags",
+    "name": "Grave Hags",
+    "kind": "monster",
+    "monsterType": "Necrophage",
+    "defaultRace": "",
+    "threat": "Medium / Complex",
+    "bounty": 500,
+    "naturalArmor": 0,
+    "height": "Around 1.75 meters",
+    "weight": "Around 80kg",
+    "environment": "Cemeteries or caves",
+    "intelligence": "Human-level",
+    "organization": "Solitary",
+    "attributes": {
+      "int": 6,
+      "ref": 10,
+      "dex": 10,
+      "body": 7,
+      "spd": 7,
+      "emp": 3,
+      "cra": 3,
+      "will": 6,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 6,
+      "run": 21,
+      "leap": 4,
+      "sta": 30,
+      "enc": 70,
+      "rec": 6,
+      "hp": 60,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 8
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 10
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 10
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 7
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 9
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "5d6",
+        "effect": "Bleed (50%)",
+        "rof": "2",
+        "rng": ""
+      },
+      {
+        "name": "Bite",
+        "dmg": "6d6",
+        "effect": "Poison (75%)",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Tongue",
+        "dmg": "3d6+2",
+        "effect": "Poison (100%) RNG: 4m",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Skull Circle\nA grave hag can take 1 hour \nto make a skull circle. If they \nare within 100m of their \nskull circle they get +3 to all \nactions.\nCommand the Undead\nInstead of attacking, a grave \nhag can give a command to \neach necrophage within 20m. \nThe necrophages will carry \nout this order instead of acting normally. The order cannot be more complex than \n‘grab that thing and bring it \nhere’ or ‘go there and wait’ .\nNight Vision\nGrave hags operate in areas \nof dim light with no penalties.",
+    "vulnerabilities": "Necrophage Oil\nWhip Tongue\nIf you successfully parry a \ngrave hag’s tongue attack \nwith a bladed weapon, it is \nsevered. The grave hag takes \n5 points of damage and cannot use its tongue again.",
+    "loot": "Grave hag ear (2)\nHag teeth (1d6/2)\nVenom extract (1d6)\nRandom rune\nStrange possesions \n(1d6)"
+  },
+  {
+    "id": "wraiths",
+    "name": "Wraiths",
+    "kind": "monster",
+    "monsterType": "Specter",
+    "defaultRace": "",
+    "threat": "Easy / Difficult",
+    "bounty": 30,
+    "naturalArmor": 0,
+    "height": "Usual human heights",
+    "weight": "Weightless",
+    "environment": "Battlefields and cemeteries",
+    "intelligence": "Consumed by emotion",
+    "organization": "Groups of 3 to 21",
+    "attributes": {
+      "int": 4,
+      "ref": 6,
+      "dex": 5,
+      "body": 5,
+      "spd": 5,
+      "emp": 1,
+      "cra": 1,
+      "will": 6,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 5,
+      "run": 15,
+      "leap": 3,
+      "sta": 25,
+      "enc": 50,
+      "rec": 5,
+      "hp": 25,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "swordsmanship",
+        "label": "Swordsmanship",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 5
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 9
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 6
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 7
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Wraith sword",
+        "dmg": "3d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Fueled By Rage\nWraiths are technically as intelligent as they were in life, \nbut they are blinded by overwhelming rage. They cannot \nbe reasoned with or intimidated.\nShift\nA wraith can use Spell Casting to become incorporeal and negate an attack on \nthem. If they succeed, nothing physical affects them until their next turn.\nTeleportation\nA wraith can use its move \naction to teleport 10m immediately. It will usually attack \ndirectly after this.\nNight Vision\nWraiths operate in areas of \ndim light with no penalties.",
+    "vulnerabilities": "Specter Oil\nMoondust & Yrden\nIf caught in the area of either \na moondust bomb or Yrden  \ncircle, a wraith cannot become incoporeal or teleport.",
+    "loot": "Wraith essence (1d6/2)\nSpecter dust (1d6/2)\nInfused dust (1d6/2)"
+  },
+  {
+    "id": "noon-wraiths",
+    "name": "Noon Wraiths",
+    "kind": "monster",
+    "monsterType": "Specter",
+    "defaultRace": "",
+    "threat": "Medium / Difficult",
+    "bounty": 800,
+    "naturalArmor": 0,
+    "height": "Usual human heights",
+    "weight": "Weightless",
+    "environment": "Near rural communities",
+    "intelligence": "Consumed by rage",
+    "organization": "Solitary",
+    "attributes": {
+      "int": 5,
+      "ref": 8,
+      "dex": 6,
+      "body": 7,
+      "spd": 6,
+      "emp": 1,
+      "cra": 1,
+      "will": 9,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 6,
+      "run": 18,
+      "leap": 3,
+      "sta": 30,
+      "enc": 70,
+      "rec": 6,
+      "hp": 60,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "will",
+        "key": "spellCasting",
+        "label": "Spell Casting",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 9
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 4
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 10
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 10
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 7
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 7
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "5d6",
+        "effect": "N/A",
+        "rof": "2",
+        "rng": ""
+      }
+    ],
+    "abilities": "Fueled By Rage\nNoonwraiths are technically \nas intelligent as they were \nin life, but they are blinded \nby overwhelming rage. They \ncannot be reasoned with or \nintimidated.\nIncorporeal\nA noonwraith is always \nincorporeal, rendering it \nimmune to physical attacks, \nbleeding, and poison.\nHigh Noon Dance\nA noonwraith can create 3 \ncopies that dance around, \nat least 5m away from \ntheir target. As long as one \ncopy remains, this drains \n3 points of health from the \ntarget each round to heal the \nnoonwraith. Striking a copy \nwill kill it.\nDust Devil\nA noonwraith can use magic \nto swirl dust and dirt up into \na target’s face. This attack \nuses Spell Casting, and on a \nhit it blinds the target for 1d6 \nrounds. The target must be \nwithin 5m.",
+    "vulnerabilities": "Specter Oil\nMoondust & Yrden\nIf caught in the area of either \na moondust bomb or Yrden \ncircle, a noonwraith is no \nlonger incoporeal.\nCelestial Weakness\nIn moonlight, noonwraiths \ntake a -2 to all actions.",
+    "loot": "Wraith essence (1d6)\nSpecter dust (1d6)\nInfused dust (1d6)\nLight essence (1d6/2)"
+  },
+  {
+    "id": "wolf",
+    "name": "Wolf",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "Easy / Simple",
+    "bounty": 10,
+    "naturalArmor": 0,
+    "height": "Around 0.8 meters",
+    "weight": "Around 68kg",
+    "environment": "Forests and plains",
+    "intelligence": "About as intelligent as a dog",
+    "organization": "Packs of 3 to 6",
+    "attributes": {
+      "int": 1,
+      "ref": 4,
+      "dex": 6,
+      "body": 5,
+      "spd": 7,
+      "emp": 1,
+      "cra": 1,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 4,
+      "run": 21,
+      "leap": 4,
+      "sta": 20,
+      "enc": 50,
+      "rec": 4,
+      "hp": 20,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 9
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 2
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 6
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Bite",
+        "dmg": "2d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Scent Tracking\nA wolf can track a creature \nwithout visual or audible \nclues with no penalty.\nNight Vision\nWolves operate in areas of \ndim light with no penalties.\nLeader\nOften, a group of wolves will \nbe lead by a warg. As long as \na warg is alive all wolves in \nits pack gain a +4 to cour -\nage. The warg is also capable \nof giving orders to the rest \nof the pack. These orders \nare never more complicated \nthan, ‘go here’ , ‘attack from \nbehind’ , or ‘wait’ .",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Dog tallow (1d6)\nWolf hide\nWolf liver\nBeast bones (1d6)"
+  },
+  {
+    "id": "warg",
+    "name": "Warg",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 2,
+      "ref": 5,
+      "dex": 7,
+      "body": 6,
+      "spd": 8,
+      "emp": 1,
+      "cra": 1,
+      "will": 6,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 6,
+      "run": 24,
+      "leap": 4,
+      "sta": 30,
+      "enc": 60,
+      "rec": 6,
+      "hp": 30,
+      "vigor": 0
+    },
+    "skills": [],
+    "weapons": [],
+    "abilities": "",
+    "vulnerabilities": "",
+    "loot": ""
+  },
+  {
+    "id": "werewolves",
+    "name": "Werewolves",
+    "kind": "monster",
+    "monsterType": "Cursed One",
+    "defaultRace": "",
+    "threat": "Medium / Complex",
+    "bounty": 500,
+    "naturalArmor": 8,
+    "height": "Around 2.5 meters",
+    "weight": "Around 136kg",
+    "environment": "Forests or near settlements",
+    "intelligence": "Human-level",
+    "organization": "Solitary",
+    "attributes": {
+      "int": 6,
+      "ref": 8,
+      "dex": 8,
+      "body": 7,
+      "spd": 9,
+      "emp": 1,
+      "cra": 3,
+      "will": 5,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 6,
+      "run": 27,
+      "leap": 5,
+      "sta": 30,
+      "enc": 70,
+      "rec": 6,
+      "hp": 60,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 9
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 8
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 10
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 9
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 9
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 9
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 10
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 10
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "4d6+2",
+        "effect": "Bleed (25%)",
+        "rof": "2",
+        "rng": ""
+      },
+      {
+        "name": "Bite",
+        "dmg": "5d6",
+        "effect": "Bleed (75%)",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Regeneration\nA werewolf regenerates 5 \npoints of damage per round. \nScent Tracking\nA werewolf can track a creature without visual or audible clues with no penalty.\nNight Vision\nWerewolves operate in \nareas of dim light with no \npenalties.",
+    "vulnerabilities": "Cursed Oil\nMoondust Bombs\nA werewolf caught in the \narea of a moondust bomb \ncannot regenerate for the \nduration of the bomb’s effect.",
+    "loot": "Werewolf pelt\nWerewolf saliva (1d6)\nRandom items (1d6)"
+  },
+  {
+    "id": "sirens",
+    "name": "Sirens",
+    "kind": "monster",
+    "monsterType": "Hybrid",
+    "defaultRace": "",
+    "threat": "Easy / Complex",
+    "bounty": 20,
+    "naturalArmor": 0,
+    "height": "Around 3 meters long",
+    "weight": "Around 120kg",
+    "environment": "At sea or on coastlines",
+    "intelligence": "Human-level",
+    "organization": "Groups of 3 to 6",
+    "attributes": {
+      "int": 3,
+      "ref": 7,
+      "dex": 7,
+      "body": 6,
+      "spd": 8,
+      "emp": 3,
+      "cra": 3,
+      "will": 8,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 7,
+      "run": 24,
+      "leap": 4,
+      "sta": 35,
+      "enc": 60,
+      "rec": 7,
+      "hp": 35,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 8
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 7
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 8
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 7
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 6
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 5
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "2d6+2",
+        "effect": "+1 ACC",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Tail",
+        "dmg": "3d6+2",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Illusion\nA siren is capable of instantly \nraising an illusion to make it \nlook like a beautiful woman \nwith features of its choosing. \nThis illusion can be dispelled  \nwith a DC:15 Spell Casting \nroll. \nSonic Screech\nA siren can take its turn to \nlet out a screech which forces \nanyone within 10m to make a \nStun save at -1.\nAmphibious\nSirens can live underwater \nindefinitely and cannot be \ndrowned. They also do not \ntake penalties for acting underwater.\nFlight\nA siren can take flight as a \nmovement. The siren can \nonly be knocked out of the \nair by stunning it or doing \nmore than 5 points of damage with an attack. If the siren is knocked out of the air \nit must make a DC:16 Athletics check or take ramming \ndamage equal to how many \nmeters it fell.",
+    "vulnerabilities": "Hybrid Oil\nLimited Movement\nOn land a siren has a",
+    "loot": "Siren vocal chords\nEssence of water (1d6)\nMundane Items \n(1d6/3)"
+  },
+  {
+    "id": "griffins",
+    "name": "Griffins",
+    "kind": "monster",
+    "monsterType": "Hybrid",
+    "defaultRace": "",
+    "threat": "Hard / Complex",
+    "bounty": 1200,
+    "naturalArmor": 8,
+    "height": "Around 2 meters at the shoulder",
+    "weight": "Around 907kg",
+    "environment": "Around high mountains",
+    "intelligence": "About as intelligent as a dog",
+    "organization": "Solitary or in pairs",
+    "attributes": {
+      "int": 1,
+      "ref": 10,
+      "dex": 10,
+      "body": 15,
+      "spd": 6,
+      "emp": 1,
+      "cra": 1,
+      "will": 5,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 10,
+      "run": 18,
+      "leap": 3,
+      "sta": 50,
+      "enc": 150,
+      "rec": 10,
+      "hp": 100,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 9
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 7
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 7
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 10
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 4
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 9
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 3
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 10
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "6d6",
+        "effect": "N/A",
+        "rof": "2",
+        "rng": ""
+      },
+      {
+        "name": "Bite",
+        "dmg": "7d6+2",
+        "effect": "Bleed (50%)",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Sonic Screech\nA griffin can take its turn to \nlet out a screech which forces \nanyone within 10m to make a \nStun save at -1.\nCharge\nIf a target moves more than \n10m away from the griffin, \nit can charge and make a \npowerful claw attack at -4 \nwhich does 10d6 damage and \nknocks the target back 8m. \nIf they strike anything while \nflying back, the target takes \nappropriate ramming damage as if from a horse.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 8.\nFlight\nA griffin can take flight as a \nmovement. The griffin can \nonly be knocked out of the \nair by stunning it or doing \nmore than 10 points of damage with an attack. If the griffin is knocked out of the air it \nmust make a DC:16 Athletics \ncheck or take ramming damage equal to how many meters it fell.\nNight Vision\nGriffins operate in areas of \ndim light with no penalties.",
+    "vulnerabilities": "Hybrid Oil",
+    "loot": "Griffin feather (1d10)\nInfused dust (1d6/2)\nGriffin egg (1d6/2)"
+  },
+  {
+    "id": "endrega",
+    "name": "Endrega",
+    "kind": "monster",
+    "monsterType": "Insectoid",
+    "defaultRace": "",
+    "threat": "Easy / Difficult",
+    "bounty": 30,
+    "naturalArmor": 8,
+    "height": "Around 2.5 meters",
+    "weight": "Around 200kg",
+    "environment": "Swamplands & floodplains",
+    "intelligence": "About as intelligent as a dog",
+    "organization": "Groups of 3 to 9",
+    "attributes": {
+      "int": 1,
+      "ref": 6,
+      "dex": 7,
+      "body": 8,
+      "spd": 7,
+      "emp": 1,
+      "cra": 1,
+      "will": 6,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 7,
+      "run": 21,
+      "leap": 4,
+      "sta": 35,
+      "enc": 80,
+      "rec": 7,
+      "hp": 35,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 5
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 5
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 7
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 6
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 5
+      }
+    ],
+    "weapons": [],
+    "abilities": "Pounce\nAn endrega doesn’t need to \ntake a running start when \nleaping.\nResistances\nEndrega only take half damage from bleeding & slash -\ning.\nPoison Immunity\nEndrega take no damage \nfrom poison.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 6.",
+    "vulnerabilities": "Insectoid Oil",
+    "loot": "Venom extract (1d6/2)\nEndrega saliva (1d6/2)\nChitin scale (1d6/2)"
+  },
+  {
+    "id": "arachasae",
+    "name": "Arachasae",
+    "kind": "monster",
+    "monsterType": "Insectoid",
+    "defaultRace": "",
+    "threat": "Hard / Complex",
+    "bounty": 1000,
+    "naturalArmor": 20,
+    "height": "Around 3 meters",
+    "weight": "Around 800kg",
+    "environment": "Swamplands & floodplains",
+    "intelligence": "About as intelligent as a dog",
+    "organization": "Solitary",
+    "attributes": {
+      "int": 1,
+      "ref": 9,
+      "dex": 6,
+      "body": 13,
+      "spd": 5,
+      "emp": 1,
+      "cra": 1,
+      "will": 5,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 9,
+      "run": 15,
+      "leap": 3,
+      "sta": 45,
+      "enc": 130,
+      "rec": 9,
+      "hp": 90,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 5
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 4
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 9
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 10
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "5d6",
+        "effect": "Poison (25%)",
+        "rof": "2",
+        "rng": ""
+      }
+    ],
+    "abilities": "Pounce\nAn arachas doesn’t need to \ntake a running start when \nleaping.\nResistances\nArachasae only take half \ndamage from bleeding, \nslashing, and piercing.\nPoison Immunity\nArachasae take no damage \nfrom poison.\nCamouflage\nArachasae have a +10 to \nStealth in their home terrain \nwhen they aren’t moving.\nWebbing\nIf an enemy gets more than \n8m from the arachas, it will \nshoot webbing at a range of \n10m with Athletics. If it hits, \nthe target is grappled until \nthey can make a DC:16 Physique check or do 10 points of \ndamage to the webbing.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 6.",
+    "vulnerabilities": "Insectoid Oil\nSoft Spot\nAn arachas’ back has only 10 \npoints of armor and does not \nhave its damage resistances.",
+    "loot": "Arachas eyes (1d6/2)\nArachas chitin (1d6)\nVenom extract (1d6)\nArachas venom (1d6)"
+  },
+  {
+    "id": "golems",
+    "name": "Golems",
+    "kind": "monster",
+    "monsterType": "Elementa",
+    "defaultRace": "",
+    "threat": "Hard / Simple",
+    "bounty": 1200,
+    "naturalArmor": 20,
+    "height": "Around 2.5 meters",
+    "weight": "Around 900kg",
+    "environment": "Around ruins or mage towers",
+    "intelligence": "Incapable of thought",
+    "organization": "Solitary",
+    "attributes": {
+      "int": 1,
+      "ref": 10,
+      "dex": 6,
+      "body": 13,
+      "spd": 4,
+      "emp": 1,
+      "cra": 1,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 8,
+      "run": 12,
+      "leap": 2,
+      "enc": 130,
+      "rec": 8,
+      "hp": 80,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 4
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 2
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 2
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 4
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 10
+      },
+      {
+        "attr": "body",
+        "key": "physique",
+        "label": "Physique",
+        "level": 10
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Punch",
+        "dmg": "8d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Crushing Force\nDue to the incredible force \nwith which they punch, a \ngolem cannot be parried and \ndoes double ablation damage to weapons, shields, or \narmor.\nCharge\nIf a target moves more than \n10m away from the golem, it \ncan charge and make a powerful attack at -4 which does \n10d6 damage and knocks the \ntarget back 8m. If they strike \nanything while flying back, \nthe target takes appropriate \nramming damage as if from \na horse.\nConstructed\nA golem is immune to bleeding, poison, fire, or spells \nthat affect the mind or emotions. They also cannot be \nreasoned with and never run \nout of STA.\nResistances\nGolems only take half damage from piercing & slash -\ning.",
+    "vulnerabilities": "Elementa Oil\nElectricity Vulnerability\nGolems are vulnerable to \nelectricity, which may disrupt \nthem. If they take more than \n10 points of damage, they \nmust roll a Stun save under 7.\nDimeritium Bombs\nWhen struck by a dimeritium bomb a golem becomes \ndisrupted and sluggish. They \nare incapable of using their \ncrushing force or charge and \ntake a -2 to all stats for the \nduration of the bomb.",
+    "loot": "Golem heart\nRandom rune\nInfused dust (1d6)"
+  },
+  {
+    "id": "fiends",
+    "name": "Fiends",
+    "kind": "monster",
+    "monsterType": "Relict",
+    "defaultRace": "",
+    "threat": "Hard / Difficult",
+    "bounty": 1500,
+    "naturalArmor": 10,
+    "height": "Around 4m at the shoulders",
+    "weight": "Around 1500kg",
+    "environment": "Remote areas of wilderness",
+    "intelligence": "About as intelligent as a dog",
+    "organization": "Solitary",
+    "attributes": {
+      "int": 1,
+      "ref": 13,
+      "dex": 10,
+      "body": 15,
+      "spd": 7,
+      "emp": 1,
+      "cra": 1,
+      "will": 9,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 11,
+      "run": 21,
+      "leap": 4,
+      "sta": 55,
+      "enc": 150,
+      "rec": 11,
+      "hp": 110,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 9
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 7
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 5
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 10
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 1
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 10
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 7
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 10
+      },
+      {
+        "attr": "body",
+        "key": "physique",
+        "label": "Physique",
+        "level": 10
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "6d6+2",
+        "effect": "N/A",
+        "rof": "2",
+        "rng": ""
+      },
+      {
+        "name": "Bite",
+        "dmg": "7d6",
+        "effect": "Bleed (50%)",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Horns",
+        "dmg": "8d6",
+        "effect": "-1 ACC",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Regeneration\nA fiend regenerates 5 point of \ndamage per round. \nCharge\nIf a target moves more than \n10m away from the fiend, \nit can charge and make a \npowerful horn attack at -4 \nwhich does 10d6 damage and \nknocks the target back 8m. \nIf they strike anything while \nflying back, the target takes \nappropriate ramming damage as if on a horse.\nMassive Bulk\nFiends are immune to Aard , \nor any effects that would \nknock them off their feet.\nHypnosis\nA fiend can take a turn to \nhypnotize its foes. Anyone \nlooking at the fiend must \nmake a Resist Magic check \nagainst the fiend’s Spell Casting or take a -4 to defense \nor attacks against the fiend \nand be blinded to the terrain \naround them for 5 rounds.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 8.",
+    "vulnerabilities": "Relict Oil\nMoondust Bombs\nA fiend caught in the area of \na moondust bomb cannot regenerate for the duration of \nthe bomb’s effect.\nSensitive Hearing\nWhen struck with a bomb or \ncaught in a loud, sharp noise, \na fiend is staggered.",
+    "loot": "Fiend eyes (3)\nFifth essence (1d10)\nFiend dung (1d6)"
+  },
+  {
+    "id": "nekkers",
+    "name": "Nekkers",
+    "kind": "monster",
+    "monsterType": "Ogroid",
+    "defaultRace": "",
+    "threat": "Easy / Complex",
+    "bounty": 10,
+    "naturalArmor": 0,
+    "height": "Around 1 meter",
+    "weight": "Around 13kg",
+    "environment": "Plains and forests",
+    "intelligence": "As intelligent as dumb humans",
+    "organization": "Bands of 3 to 12",
+    "attributes": {
+      "int": 2,
+      "ref": 5,
+      "dex": 7,
+      "body": 3,
+      "spd": 6,
+      "emp": 2,
+      "cra": 2,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 3,
+      "run": 18,
+      "leap": 3,
+      "sta": 15,
+      "enc": 30,
+      "rec": 3,
+      "hp": 15,
+      "vigor": 0
+    },
+    "skills": [],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "2d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Leader\nOften, a group of nekkers will \nbe lead by a nekker chieftain. \nAs long as a chieftain is alive \nall nekkers in its warband \ngain a +4 to courage. The \nchieftain is also capable of \ngiving orders to the rest of \nthe pack. These orders can be \nquite complex.\nNight Vision\nNekkers operate in areas of \ndim light with no penalties.",
+    "vulnerabilities": "Ogroid Oil",
+    "loot": "Nekker teeth (1d6/2)\nNekker claws (2)\nNekker heart (1)"
+  },
+  {
+    "id": "nekker-chieftain",
+    "name": "Nekker Chieftain",
+    "kind": "monster",
+    "monsterType": "Ogroid",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 2,
+      "ref": 6,
+      "dex": 8,
+      "body": 4,
+      "spd": 7,
+      "emp": 2,
+      "cra": 2,
+      "will": 5,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 4,
+      "run": 21,
+      "leap": 4,
+      "sta": 20,
+      "enc": 40,
+      "rec": 4,
+      "hp": 20,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 7
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 8
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 4
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 9
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 6
+      }
+    ],
+    "weapons": [],
+    "abilities": "",
+    "vulnerabilities": "",
+    "loot": ""
+  },
+  {
+    "id": "rock-trolls",
+    "name": "Rock Trolls",
+    "kind": "monster",
+    "monsterType": "Ogroid",
+    "defaultRace": "",
+    "threat": "Medium / Difficult",
+    "bounty": 800,
+    "naturalArmor": 20,
+    "height": "Around 2 meters",
+    "weight": "Around 150kg",
+    "environment": "Mountains and valleys",
+    "intelligence": "As intelligent as dumb humans",
+    "organization": "Solitary or groups of 2 to 3",
+    "attributes": {
+      "int": 3,
+      "ref": 8,
+      "dex": 7,
+      "body": 12,
+      "spd": 4,
+      "emp": 6,
+      "cra": 7,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 8,
+      "run": 12,
+      "leap": 2,
+      "sta": 40,
+      "enc": 120,
+      "rec": 8,
+      "hp": 80,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 5
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 3
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 9
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 3
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 7
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 6
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 10
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Punch",
+        "dmg": "6d6",
+        "effect": "N/A",
+        "rof": "2",
+        "rng": ""
+      }
+    ],
+    "abilities": "Crushing Force\nDue to the incredible force \nwith which they punch, a \ntroll cannot be parried and \ndoes double ablation damage to weapons, shields, or \narmor.\nThrown Boulders\nWhen more than 6m from \ntheir target, rock trolls prefer \nto throw boulders or other \nbits or rubble that do 5d6 \ndamage. These boulders have \na range of 16m.\nResistances\nRock trolls only take half \ndamage from piercing, \nbludgeoning, and slashing.",
+    "vulnerabilities": "Ogroid Oil\nSoft Spot\nA rock troll’s stomach has \nonly 5 points of armor and \ndoes not have its damage resistances.",
+    "loot": "Troll skin (1d6)\nTroll liver (1)\nStone (2d10)\nMundane items (1d6)"
+  },
+  {
+    "id": "wyverns",
+    "name": "Wyverns",
+    "kind": "monster",
+    "monsterType": "Draconid",
+    "defaultRace": "",
+    "threat": "Hard / Simple",
+    "bounty": 1000,
+    "naturalArmor": 10,
+    "height": "Around 2 meters",
+    "weight": "Around 900kg",
+    "environment": "Mountains and valleys",
+    "intelligence": "About as intelligent as a dog",
+    "organization": "Solitary or pairs",
+    "attributes": {
+      "int": 1,
+      "ref": 10,
+      "dex": 10,
+      "body": 10,
+      "spd": 7,
+      "emp": 1,
+      "cra": 1,
+      "will": 6,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 8,
+      "run": 21,
+      "leap": 4,
+      "sta": 40,
+      "enc": 100,
+      "rec": 8,
+      "hp": 80,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 8
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 10
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 9
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 8
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 8
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "6d6",
+        "effect": "N/A",
+        "rof": "2",
+        "rng": ""
+      },
+      {
+        "name": "Bite",
+        "dmg": "7d6",
+        "effect": "Poison (25%)",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Tail barbs",
+        "dmg": "5d6+2",
+        "effect": "Poison (75%)",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Flight\nA wyvern can take flight as a \nmovement. The wyvern can \nonly be knocked out of the air \nby stunning it or doing more \nthan 10 points of damage \nwith an attack. If the wyvern \nis knocked out of the air it \nmust make a DC:16 Athletics check or take ramming \ndamage equal to how many \nmeters it fell.\nSpit Venom\nWyverns can spit venom at \none target up to 8m away and \ndo 3d6 damage with a 100% \nchance of poisoning.\nResistances\nWyverns only take half damage from piercing and slashing.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 7.",
+    "vulnerabilities": "Draconid Oil",
+    "loot": "Draconid scales (1d10)\nVenom extract (1d10)\nWyvern egg (1d6/2)\nWyvern eyes (1d6/2)"
+  },
+  {
+    "id": "katakans",
+    "name": "Katakans",
+    "kind": "monster",
+    "monsterType": "Vampire",
+    "defaultRace": "",
+    "threat": "Hard / Difficult",
+    "bounty": 1500,
+    "naturalArmor": 0,
+    "height": "Around 2 meters",
+    "weight": "Around 115kg",
+    "environment": "Ruins, caves and near cities",
+    "intelligence": "Human-level",
+    "organization": "Solitary",
+    "attributes": {
+      "int": 6,
+      "ref": 14,
+      "dex": 12,
+      "body": 8,
+      "spd": 10,
+      "emp": 3,
+      "cra": 3,
+      "will": 8,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 8,
+      "run": 30,
+      "leap": 6,
+      "sta": 40,
+      "enc": 80,
+      "rec": 8,
+      "hp": 80,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 10
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 10
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 10
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 10
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "resistCoercion",
+        "label": "Resist Coercion",
+        "level": 10
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 8
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 8
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "6d6",
+        "effect": "Bleed (50%)",
+        "rof": "2",
+        "rng": ""
+      },
+      {
+        "name": "Bite",
+        "dmg": "7d6+2",
+        "effect": "Bleed (100%)",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Regeneration\nA katakan regenerates 5 point \nof damage per round.\nInvisibility\nA katakan can become invisible, granting it +10 to stealth \nand +5 to attack. It becomes \nvisible when it attacks. Even \nif you make your awareness \ncheck to spot the katakan, \nyou take a -3 to attack and \ndefense against it. Yrden  can \nmake a katakan visible.\nInvisible to Magical \nScanning\nKatakans cannot be detected \nby witcher medallions. Mages must succeed at a Magic \nTraining roll against the katakan’s Resist Magic roll to \nsense them.\nTelepathy\nKatakans can telepathically \ncommunicate with any one \ncreature within 20m of them \nas a free action.\nNight Vision\nKatakan operate in areas of \ndim light with no penalties.",
+    "vulnerabilities": "Vampire Oil\nBlack Blood Potion\nCelestial Weakness\nIn sunlight, a katakan’s regeneration is lowered to 3.\nFire Vulnerability\nKatakans take double damage from fire attacks or being \non fire.\nBlood Transference\nKatakan are affected by any \nsubstances in the blood they \ndrink.",
+    "loot": "Random rune\nVampire fangs (1d6/2)\nVampie saliva (1d6)\nMundane items (1d6)"
+  },
+  {
+    "id": "cat",
+    "name": "Cat",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 1,
+      "ref": 4,
+      "dex": 6,
+      "body": 1,
+      "spd": 6,
+      "emp": 3,
+      "cra": 1,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 2,
+      "run": 18,
+      "leap": 3,
+      "sta": 10,
+      "enc": 10,
+      "rec": 2,
+      "hp": 10,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 4
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 8
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 7
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wild. Survival",
+        "level": 3
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 4
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 5
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claw",
+        "dmg": "1d6/2",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Bite",
+        "dmg": "1d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Night Vision\nCats operate in areas of dim light with no penalties.\nPounce\nA cat doesn’t need to take a running start when leaping.\nMagically Attuned\nCats are capable of seeing invisible creature and sensing magical emanations or magic users \nwithin 20m.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT of 7.",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Raw meat (1d6/2)\nBeast bones (1d6/2)"
+  },
+  {
+    "id": "dog",
+    "name": "Dog",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 1,
+      "ref": 3,
+      "dex": 5,
+      "body": 3,
+      "spd": 5,
+      "emp": 4,
+      "cra": 1,
+      "will": 5,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 4,
+      "run": 15,
+      "leap": 3,
+      "sta": 20,
+      "enc": 30,
+      "rec": 4,
+      "hp": 20,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 7
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 3
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 9
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 3
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wild. Survival",
+        "level": 8
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 10
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 8
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Bite",
+        "dmg": "2d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Scent Tracking\nDogs are able to track things by scent and do not need hearing or verbal clues.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT of 7.",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Raw meat (1d6/2)\nBeast bones (1d6)\nDog tallow (1d6/2)"
+  },
+  {
+    "id": "bird",
+    "name": "Bird",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 1,
+      "ref": 3,
+      "dex": 4,
+      "body": 1,
+      "spd": 2,
+      "emp": 3,
+      "cra": 1,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 2,
+      "run": 10,
+      "leap": 2,
+      "sta": 10,
+      "enc": 10,
+      "rec": 2,
+      "hp": 10,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 9
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wild. Survival",
+        "level": 3
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 4
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 6
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Claw",
+        "dmg": "1d6/2",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Flight\nA bird can take flight as a movement. The bird can only be knocked out of the air by stunning \nit or hiting it. If the bird is knocked out of the air it must make a DC:16 Athletics check or take \nramming damage equal to how many meters it fell. While flying a bird has a SPD of 7.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT of 7.",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Raw meat (1d6/2)\nBeast bones (1d6/2)\nFeathers (1d6)"
+  },
+  {
+    "id": "serpent",
+    "name": "Serpent",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 1,
+      "ref": 4,
+      "dex": 3,
+      "body": 1,
+      "spd": 6,
+      "emp": 2,
+      "cra": 1,
+      "will": 3,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 2,
+      "run": 18,
+      "leap": 3,
+      "sta": 10,
+      "enc": 10,
+      "rec": 2,
+      "hp": 10,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 5
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 4
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 5
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 9
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wild. Survival",
+        "level": 2
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 4
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 5
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Bite",
+        "dmg": "1d6",
+        "effect": "Poison (75%)",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Swimming\nSerpents can swim at the same speed as their SPD and still use Dodge/Escape to dodge.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT of 7.",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Raw meat (1d6/2)\nBeast bones (1d6/2)\nVenom extract (1d6/2)"
+  },
+  {
+    "id": "horse",
+    "name": "Horse",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 1,
+      "ref": 4,
+      "dex": 5,
+      "body": 12,
+      "spd": 12,
+      "emp": 4,
+      "cra": 1,
+      "will": 4,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 8,
+      "run": 36,
+      "leap": 7,
+      "sta": 40,
+      "enc": 120,
+      "rec": 8,
+      "hp": 40,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 8
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 5
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 3
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wild. Survival",
+        "level": 2
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 6
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Hooves",
+        "dmg": "2d6+2",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Feral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Raw meat (1d10)\nBeast bones (1d10)"
+  },
+  {
+    "id": "war-horse",
+    "name": "War Horse",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 1,
+      "ref": 6,
+      "dex": 6,
+      "body": 14,
+      "spd": 11,
+      "emp": 3,
+      "cra": 1,
+      "will": 6,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 10,
+      "run": 33,
+      "leap": 6,
+      "sta": 50,
+      "enc": 140,
+      "rec": 10,
+      "hp": 50,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 8
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 2
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wild. Survival",
+        "level": 2
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 9
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 10
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Hooves",
+        "dmg": "4d6+2",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Feral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 7.",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Raw meat (2d6)\nBeast bones (2d6)"
+  },
+  {
+    "id": "ox",
+    "name": "Ox",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 1,
+      "ref": 3,
+      "dex": 3,
+      "body": 14,
+      "spd": 6,
+      "emp": 2,
+      "cra": 1,
+      "will": 6,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 10,
+      "run": 18,
+      "leap": 3,
+      "sta": 50,
+      "enc": 140,
+      "rec": 10,
+      "hp": 50,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 7
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 2
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 3
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 1
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wild. Survival",
+        "level": 1
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 6
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 10
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Hooves",
+        "dmg": "4d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Gore",
+        "dmg": "5d6",
+        "effect": "Bleed (50%)",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Feral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Raw meat (2d6)\nBeast bones (2d6)"
+  },
+  {
+    "id": "mule",
+    "name": "Mule",
+    "kind": "monster",
+    "monsterType": "Beast",
+    "defaultRace": "",
+    "threat": "",
+    "bounty": null,
+    "naturalArmor": 0,
+    "height": "",
+    "weight": "",
+    "environment": "",
+    "intelligence": "",
+    "organization": "",
+    "attributes": {
+      "int": 1,
+      "ref": 4,
+      "dex": 4,
+      "body": 11,
+      "spd": 9,
+      "emp": 3,
+      "cra": 1,
+      "will": 7,
+      "luck": 0
+    },
+    "combat": {
+      "stun": 9,
+      "run": 27,
+      "leap": 5,
+      "sta": 45,
+      "enc": 110,
+      "rec": 9,
+      "hp": 45,
+      "vigor": 0
+    },
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 5
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 5
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 3
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 3
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 2
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wild. Survival",
+        "level": 2
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 7
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 7
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Hooves",
+        "dmg": "2d6+2",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Feral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Raw meat (1d10)\nBeast bones (1d10)"
+  }
+]

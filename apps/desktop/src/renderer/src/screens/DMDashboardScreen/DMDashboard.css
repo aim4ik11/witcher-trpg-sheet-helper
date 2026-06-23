@@ -35,7 +35,8 @@
   background: none; border: none; padding: 0; text-align: left; cursor: pointer;
 }
 .char-name-btn:hover { color: var(--accent); }
-.char-race, .char-prof { font-size: 0.85rem; color: var(--text-muted); }
+.char-race, .char-prof, .char-monster-type, .char-threat { font-size: 0.85rem; color: var(--text-muted); }
+.char-monster-type { font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 .char-nick { font-size: 0.8rem; color: var(--text-muted); }
 .char-nick strong { color: var(--accent); }
 .char-card-actions { display: flex; gap: 0.35rem; flex-shrink: 0; }
