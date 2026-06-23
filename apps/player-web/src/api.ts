@@ -4,6 +4,7 @@ const API = '/api';
 
 export async function fetchPlayerCharacter(token: string): Promise<Character> {
   const res = await fetch(`${API}/player/me`, { headers: { 'X-Player-Token': token } });
+  if (res.status === 404) throw new Error('no-character');
   if (!res.ok) throw new Error('Session expired');
   return res.json() as Promise<Character>;
 }
