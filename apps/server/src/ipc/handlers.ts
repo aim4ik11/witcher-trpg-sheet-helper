@@ -1,6 +1,7 @@
 import type { Character, HostToServer } from '@wilmak/shared';
 import { state } from '../store';
-import { notifyHost, makeCharacter } from '../utils';
+import { notifyHost, makeCharacter, ensureCredential, normalizeNickname } from '../utils';
+import { revokePlayer } from '../socket/handlers';
 import { start } from '../server';
 
 export function handleGmMessage(msg: HostToServer): void {
@@ -9,7 +10,7 @@ export function handleGmMessage(msg: HostToServer): void {
       start(msg.config);
       break;
     case 'gm:kick':
-      state.io?.sockets.sockets.get(msg.socketId)?.disconnect(true);
+      revokePlayer(msg.socketId);
       break;
     case 'gm:broadcast':
       state.io?.emit('game:event', { from: 'GM', payload: msg.payload });
@@ -32,6 +33,10 @@ export function handleGmMessage(msg: HostToServer): void {
     }
     case 'characters:create': {
       const char = makeCharacter(msg.data as Partial<Character> & { type: Character['type']; name: string });
+      if (char.type === 'player' && char.nickname) {
+        char.nickname = normalizeNickname(char.nickname);
+        ensureCredential(char.nickname);
+      }
       state.characters.set(char.id, char);
       state.io?.emit('characters-changed');
       notifyHost({ type: 'characters:result', requestId: msg.requestId, data: char });
@@ -45,6 +50,10 @@ export function handleGmMessage(msg: HostToServer): void {
         break;
       }
       const updated: Character = { ...existing, ...msg.character, id: msg.id };
+      if (updated.type === 'player' && updated.nickname) {
+        updated.nickname = normalizeNickname(updated.nickname);
+        ensureCredential(updated.nickname);
+      }
       state.characters.set(msg.id, updated);
       state.io?.to(`character:${msg.id}`).emit('character-updated', updated);
       notifyHost({ type: 'characters:result', requestId: msg.requestId, data: updated });
@@ -56,5 +65,13 @@ export function handleGmMessage(msg: HostToServer): void {
       notifyHost({ type: 'characters:result', requestId: msg.requestId, data: null });
       notifyHost({ type: 'characters:changed' });
       break;
+    case 'credentials:getAll':
+      notifyHost({ type: 'characters:result', requestId: msg.requestId, data: [...state.config.players] });
+      break;
+    case 'credentials:add': {
+      const cred = ensureCredential(msg.nickname, msg.code);
+      notifyHost({ type: 'characters:result', requestId: msg.requestId, data: cred });
+      break;
+    }
   }
 }
