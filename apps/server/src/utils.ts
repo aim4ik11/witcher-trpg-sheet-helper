@@ -110,7 +110,6 @@ export function makeCharacter(
     bonusMelee: { punch: "", kick: "" },
     consumables: [],
     spells: [],
-    professionAbilities: [],
     wounds: [],
     statusEffects: [],
   };

@@ -11,7 +11,9 @@ import {
   OccupationSelect,
   occupationAfterRaceChange,
 } from "../RaceOccupationSelect";
+import PlayerCreationWizard from "./PlayerCreationWizard";
 import "./CreateCharacterModal.css";
+import "./PlayerCreationWizard.css";
 
 type EnemyMode = "bestiary" | "custom";
 
@@ -84,6 +86,10 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
     } else {
       onSubmit({ name: n, race, occupation, type: "enemy", enemyKind: "npc" });
     }
+  }
+
+  if (isPlayer) {
+    return <PlayerCreationWizard onSubmit={onSubmit} onClose={onClose} />;
   }
 
   return (

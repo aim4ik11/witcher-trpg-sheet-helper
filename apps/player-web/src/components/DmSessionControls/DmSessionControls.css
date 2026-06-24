@@ -1,0 +1,128 @@
+.session-controls {
+  margin-bottom: 16px;
+}
+
+.session-controls-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.session-controls-hint {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  max-width: 36rem;
+}
+
+.session-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.session-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.session-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.session-control-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.session-control-btns button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.session-control-btns button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.session-control-btns span {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--gold);
+  min-width: 2ch;
+  text-align: center;
+}
+
+.spend-panel {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.spend-panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.spend-panel-balances {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--gold);
+}
+
+.spend-panel-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.spend-btn {
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  border: 1px solid oklch(0.55 0.1 75 / 0.45);
+  border-radius: 4px;
+  background: oklch(0.55 0.1 75 / 0.1);
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.spend-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.spend-error {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: oklch(0.65 0.15 25);
+}

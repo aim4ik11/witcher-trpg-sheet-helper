@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Character } from "@wilmak/shared";
-import { fetchPlayerCharacter, getToken, clearToken } from "../../api";
+import { fetchPlayerCharacter, getToken, clearToken, updatePlayerCharacter } from "../../api";
 import {
   disconnectPlayerSocket,
   getPlayerSocket,
@@ -95,10 +95,22 @@ export default function PlayerSheetScreen() {
 
   if (!character) return <p className="loading-msg">Loading sheet...</p>;
 
+  async function handleChange(updated: Character) {
+    if (!token) return;
+    setCharacter(updated);
+    try {
+      const saved = await updatePlayerCharacter(token, updated);
+      setCharacter(saved);
+    } catch {
+      void load();
+    }
+  }
+
   return (
     <CharacterSheet
       character={character}
       isDM={false}
+      onChange={handleChange}
       onBack={handleLogout}
       backLabel="Logout"
     />

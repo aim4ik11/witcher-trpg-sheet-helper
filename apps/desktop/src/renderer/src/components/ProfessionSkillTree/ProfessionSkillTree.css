@@ -1,0 +1,255 @@
+.profession-skills-panel {
+  margin-bottom: 20px;
+}
+
+.profession-note {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.profession-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.profession-meta strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.prof-tree-hint {
+  flex: 1 1 220px;
+}
+
+.prof-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.prof-tree-paths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .prof-tree-paths {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prof-tree-path {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.prof-tree-path-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  text-align: center;
+  padding: 0 4px;
+}
+
+.prof-tree-path-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.prof-tree-tier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prof-tree-connector {
+  width: 2px;
+  height: 14px;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+.prof-tree-connector--to-core {
+  height: 18px;
+  margin: 0 auto 8px;
+}
+
+.prof-tree-core-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.prof-tree-node {
+  width: 100%;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 10px 12px;
+  transition: border-color 0.15s;
+}
+
+.prof-tree-node--core {
+  border-color: oklch(0.55 0.1 75 / 0.55);
+  box-shadow: 0 0 0 1px oklch(0.55 0.1 75 / 0.15);
+}
+
+.prof-tree-node--apex {
+  border-color: oklch(0.6 0.08 250 / 0.45);
+}
+
+.prof-tree-node-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.prof-tree-node-name {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.prof-tree-node-stat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.prof-tree-node-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.prof-tree-lvl {
+  font-family: var(--font-mono);
+  color: var(--gold);
+}
+
+.prof-tree-lvl-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.prof-tree-lvl-edit button {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.prof-tree-lvl-edit button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.prof-tree-lvl-edit span {
+  min-width: 1.25rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--gold);
+}
+
+.prof-tree-base {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.prof-tree-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.prof-tree-desc-more {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--gold);
+  font-size: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prof-tree-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: oklch(0.05 0.01 260 / 0.72);
+}
+
+.prof-tree-modal {
+  position: relative;
+  width: min(520px, 100%);
+  max-height: min(70vh, 560px);
+  overflow: auto;
+  padding: 20px 22px;
+}
+
+.prof-tree-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.prof-tree-modal-close:hover {
+  color: var(--text);
+}
+
+.prof-tree-modal-title {
+  margin: 0 0 12px;
+  padding-right: 28px;
+  font-size: 17px;
+  color: var(--gold);
+}
+
+.prof-tree-modal-body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+}

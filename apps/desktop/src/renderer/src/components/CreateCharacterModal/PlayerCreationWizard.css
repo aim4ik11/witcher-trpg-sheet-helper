@@ -1,0 +1,142 @@
+.create-modal--wizard {
+  max-width: 640px;
+  max-height: min(90vh, 820px);
+  display: flex;
+  flex-direction: column;
+}
+
+.wizard-body {
+  overflow-y: auto;
+  max-height: 55vh;
+}
+
+.wizard-steps {
+  display: flex;
+  gap: 6px;
+  padding: 0 20px 12px;
+  flex-wrap: wrap;
+}
+
+.wizard-step {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+
+.wizard-step.active {
+  color: var(--gold);
+  border-color: oklch(0.55 0.1 75 / 0.4);
+}
+
+.wizard-step.current {
+  background: oklch(0.55 0.1 75 / 0.12);
+}
+
+.wizard-hint {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.wizard-counter {
+  margin: 0 0 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--gold);
+}
+
+.wizard-row {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.wizard-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.wizard-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--bg-elevated, var(--bg-panel));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+.wizard-stat-label {
+  font-weight: 500;
+}
+
+.wizard-level-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.wizard-skill-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  padding: 4px 0;
+}
+
+.wizard-skill-row input {
+  display: none;
+}
+
+.wizard-skill-section {
+  margin-bottom: 20px;
+}
+
+.wizard-skill-section h3 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.wizard-skill-list,
+.wizard-pickup-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.wizard-pickup-grid {
+  max-height: 160px;
+}
+
+.wizard-review {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.wizard-review dt {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.wizard-review dd {
+  margin: 0;
+}

@@ -31,6 +31,15 @@ import {
   occupationAfterRaceChange,
 } from "../RaceOccupationSelect";
 import CatalogPickerModal from "../CatalogPickerModal";
+import ProfessionSkillTree from "../ProfessionSkillTree";
+import DmSessionControls from "../DmSessionControls";
+import PlayerProgressionPanel, {
+  SkillSpendButton,
+  StatSpendButton,
+} from "../PlayerProgressionPanel";
+import Stepper from "../Stepper";
+import "../DmSessionControls/DmSessionControls.css";
+import "../Stepper/Stepper.css";
 import "./CharacterSheet.css";
 import "../CatalogPickerModal/CatalogPickerModal.css";
 import "../RaceOccupationSelect/RaceOccupationSelect.css";
@@ -275,12 +284,18 @@ export default function CharacterSheet({
 }: Props) {
   const [tab, setTab] = useState("Stats");
   const [picker, setPicker] = useState<PickerState | null>(null);
+  const [manualEdit, setManualEdit] = useState(false);
   const readOnly = !isDM;
   const profile = character.monsterProfile;
   const isBestiary = !!character.bestiaryId;
   const isMonster = character.enemyKind === "monster";
   const isEnemyStatblock = character.type === "enemy" && !!profile;
   const isNpcStatblock = isEnemyStatblock && character.enemyKind === "npc";
+  const isPlayerSheet = character.type === "player" && !isEnemyStatblock;
+  const statsLocked = isPlayerSheet && character.creation?.complete === true;
+  const statsEditable = isDM && (!statsLocked || manualEdit);
+  const playerCanSpend = !isDM && statsLocked && !!onChange;
+  const attrReadOnly = !statsEditable;
   const skillRows = useMemo(() => trainedSkills(character), [character]);
 
   const { hpStaMax, resolveMax } = calcVitalMaxes(character);
@@ -426,8 +441,29 @@ export default function CharacterSheet({
         )}
       </div>
 
-      {readOnly && !isEnemyStatblock && (
+      {readOnly && !isEnemyStatblock && !playerCanSpend && (
         <p className="readonly-banner">View only — your DM updates this sheet.</p>
+      )}
+      {playerCanSpend && (
+        <p className="readonly-banner spend-banner">
+          Spend your I.P. and training points below — changes save automatically.
+        </p>
+      )}
+
+      {isDM && isPlayerSheet && statsLocked && onChange && (
+        <DmSessionControls
+          character={character}
+          manualEdit={manualEdit}
+          onManualEditChange={setManualEdit}
+          onChange={(patch) => update(patch)}
+        />
+      )}
+
+      {playerCanSpend && (
+        <PlayerProgressionPanel
+          character={character}
+          onApply={(c) => onChange!(c)}
+        />
       )}
 
       {!isEnemyStatblock && (
@@ -1036,6 +1072,21 @@ export default function CharacterSheet({
                   </p>
                 </section>
 
+                <ProfessionSkillTree
+                  character={character}
+                  readOnly={attrReadOnly}
+                  spendMode={playerCanSpend}
+                  onTreeChange={(professionTree, definingSkillLevel) =>
+                    update({
+                      professionTree,
+                      ...(definingSkillLevel != null
+                        ? { definingSkillLevel }
+                        : {}),
+                    })
+                  }
+                  onApply={(c) => onChange?.(c)}
+                />
+
                 <section>
                   <div className="section-label">Attributes & skills</div>
                   <div className="attr-grid">
@@ -1046,12 +1097,26 @@ export default function CharacterSheet({
                             <span className="attr-short">{attr.short}</span>
                             <span className="attr-full">{attr.label}</span>
                           </div>
-                          <NumInput
-                            readOnly={readOnly}
-                            className="attr-value-input"
-                            value={character.attributes[key]}
-                            onChange={(v) => updateNested(["attributes", key], v)}
-                          />
+                          {statsEditable ? (
+                            <Stepper
+                              className="attr-stepper"
+                              value={character.attributes[key] ?? 1}
+                              min={1}
+                              max={10}
+                              onChange={(v) => updateNested(["attributes", key], v)}
+                            />
+                          ) : (
+                            <span className="readonly-value attr-value-input">
+                              {character.attributes[key] ?? 0}
+                            </span>
+                          )}
+                          {!statsEditable && playerCanSpend && onChange && (
+                            <StatSpendButton
+                              character={character}
+                              attrKey={key}
+                              onApply={onChange}
+                            />
+                          )}
                         </div>
                         {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => {
                           const level = character.skills[key]?.[skill.key]?.level ?? 0;
@@ -1062,15 +1127,14 @@ export default function CharacterSheet({
                             >
                               <span className="name">
                                 {skill.label}
-                                {readOnly ? (
-                                  <span className="skill-lvl"> · {level}</span>
-                                ) : (
+                                {statsEditable ? (
                                   <>
                                     {" · "}
-                                    <NumInput
-                                      readOnly={readOnly}
-                                      className="skill-lvl-input"
+                                    <Stepper
+                                      className="skill-stepper"
                                       value={level}
+                                      min={0}
+                                      max={10}
                                       onChange={(v) =>
                                         updateNested(
                                           ["skills", key, skill.key, "level"],
@@ -1079,6 +1143,18 @@ export default function CharacterSheet({
                                       }
                                     />
                                   </>
+                                ) : (
+                                  <span className="skill-lvl"> · {level}</span>
+                                )}
+                                {!statsEditable && playerCanSpend && onChange && (
+                                  <SkillSpendButton
+                                    character={character}
+                                    attrKey={key}
+                                    skillKey={skill.key}
+                                    label={skill.label}
+                                    special={skill.special}
+                                    onApply={onChange}
+                                  />
                                 )}
                               </span>
                               <span className="base">
@@ -1175,7 +1251,7 @@ export default function CharacterSheet({
                     <label>
                       I.P.{" "}
                       <NumInput
-                        readOnly={readOnly}
+                        readOnly={attrReadOnly}
                         value={character.improvementPoints?.ip}
                         onChange={(v) => updateNested(["improvementPoints", "ip"], v)}
                       />
@@ -1183,7 +1259,7 @@ export default function CharacterSheet({
                     <label>
                       Training I.P.{" "}
                       <NumInput
-                        readOnly={readOnly}
+                        readOnly={attrReadOnly}
                         value={character.improvementPoints?.trainingIp}
                         onChange={(v) =>
                           updateNested(["improvementPoints", "trainingIp"], v)
@@ -1469,43 +1545,6 @@ export default function CharacterSheet({
 
             {tab === "Other" && (
               <>
-                <section className="panel">
-                  <div className="panel-title">Profession Abilities</div>
-                  <DynamicTable
-                    readOnly={readOnly}
-                    columns={[
-                      { key: "name", label: "Name" },
-                      { key: "stat", label: "Stat" },
-                      { key: "level", label: "Lvl", type: "number" },
-                      { key: "base", label: "Base", type: "number" },
-                    ]}
-                    rows={(character.professionAbilities ?? []) as unknown as DynRow[]}
-                    onChange={(rows) =>
-                      update({
-                        professionAbilities:
-                          rows as unknown as Character["professionAbilities"],
-                      })
-                    }
-                    onAdd={(empty) =>
-                      update({
-                        professionAbilities: [
-                          ...(character.professionAbilities ?? []),
-                          { ...empty, id: crypto.randomUUID() } as NonNullable<
-                            Character["professionAbilities"]
-                          >[number],
-                        ],
-                      })
-                    }
-                    onRemove={(i) =>
-                      update({
-                        professionAbilities: character.professionAbilities!.filter(
-                          (_, idx) => idx !== i,
-                        ),
-                      })
-                    }
-                    emptyRow={{ name: "", stat: "", level: 0, base: 0 }}
-                  />
-                </section>
                 <section className="panel">
                   <div className="panel-title">Wounds</div>
                   <DynamicTable

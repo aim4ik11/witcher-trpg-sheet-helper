@@ -462,6 +462,25 @@
   --attr-hue: 170;
 }
 
+.attr-header .attr-stepper {
+  flex-shrink: 0;
+}
+
+.skill-stepper {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.skill-stepper .stepper-value {
+  font-size: 13px;
+}
+
+.skill-stepper .stepper-btn {
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
+}
+
 .attr-block .skill-row:last-child {
   border-bottom: none;
 }

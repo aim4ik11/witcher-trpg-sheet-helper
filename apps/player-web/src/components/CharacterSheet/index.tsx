@@ -13,6 +13,12 @@ import {
   raceLabel,
   occupationLabel,
 } from "@wilmak/game-data";
+import ProfessionSkillTree from "../ProfessionSkillTree";
+import PlayerProgressionPanel, {
+  SkillSpendButton,
+  StatSpendButton,
+} from "../PlayerProgressionPanel";
+import "../DmSessionControls/DmSessionControls.css";
 import "./CharacterSheet.css";
 
 function VitalCard({ label, children }: { label: string; children: React.ReactNode }) {
@@ -27,14 +33,22 @@ function VitalCard({ label, children }: { label: string; children: React.ReactNo
 interface Props {
   character: Character;
   isDM: boolean;
+  onChange?: (c: Character) => void;
   onBack: () => void;
   backLabel: string;
 }
 
 const BASE_TABS = ["Stats", "Combat", "Inventory"];
 
-export default function CharacterSheet({ character, onBack, backLabel }: Props) {
+export default function CharacterSheet({
+  character,
+  onChange,
+  onBack,
+  backLabel,
+}: Props) {
   const [tab, setTab] = useState("Stats");
+  const statsLocked = character.creation?.complete === true;
+  const playerCanSpend = statsLocked && !!onChange;
 
   const { hpStaMax, resolveMax } = calcVitalMaxes(character);
   const derived = useMemo(() => calcDerivedStats(character), [character]);
@@ -69,7 +83,15 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
         )}
       </div>
 
-      <p className="readonly-banner">View only — your DM updates this sheet.</p>
+      <p className="readonly-banner">
+        {playerCanSpend
+          ? "Spend your I.P. and training points below — changes save automatically."
+          : "View only — your DM updates this sheet."}
+      </p>
+
+      {playerCanSpend && onChange && (
+        <PlayerProgressionPanel character={character} onApply={onChange} />
+      )}
 
       <div className="sheet-tabs-wrap">
         <div className="tab-bar">
@@ -118,6 +140,14 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
               </div>
             </section>
 
+            <ProfessionSkillTree
+              character={character}
+              readOnly
+              spendMode={playerCanSpend}
+              onTreeChange={() => {}}
+              onApply={onChange}
+            />
+
             <section>
               <div className="section-label">Attributes & skills</div>
               <div className="attr-grid">
@@ -131,6 +161,13 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
                       <span className="readonly-value attr-value-input">
                         {character.attributes[key] ?? 0}
                       </span>
+                      {playerCanSpend && onChange && (
+                        <StatSpendButton
+                          character={character}
+                          attrKey={key}
+                          onApply={onChange}
+                        />
+                      )}
                     </div>
                     {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => {
                       const level = character.skills[key]?.[skill.key]?.level ?? 0;
@@ -142,6 +179,16 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
                           <span className="name">
                             {skill.label}
                             <span className="skill-lvl"> · {level}</span>
+                            {playerCanSpend && onChange && (
+                              <SkillSpendButton
+                                character={character}
+                                attrKey={key}
+                                skillKey={skill.key}
+                                label={skill.label}
+                                special={skill.special}
+                                onApply={onChange}
+                              />
+                            )}
                           </span>
                           <span className="base">
                             {skillBase(character, key, skill.key)}
@@ -334,35 +381,6 @@ export default function CharacterSheet({ character, onBack, backLabel }: Props) 
 
         {tab === "Other" && (
           <>
-            <section className="panel">
-              <div className="panel-title">Profession abilities</div>
-              {(character.professionAbilities ?? []).length === 0 ? (
-                <p className="readonly-empty">None</p>
-              ) : (
-                <div className="dynamic-table-wrap">
-                  <table className="dynamic-table">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Stat</th>
-                        <th>Lvl</th>
-                        <th>Base</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(character.professionAbilities ?? []).map((a) => (
-                        <tr key={a.id ?? a.name}>
-                          <td>{a.name}</td>
-                          <td>{a.stat}</td>
-                          <td>{a.level}</td>
-                          <td>{a.base}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </section>
             <section className="panel">
               <div className="panel-title">Wounds</div>
               {(character.wounds ?? []).length === 0 ? (
