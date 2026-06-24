@@ -32,6 +32,9 @@ export interface CharacterLike {
   occupation?: string;
   enemyKind?: "npc" | "monster";
   bestiaryId?: string;
+  definingSkillLevel?: number;
+  professionTree?: Record<string, number>;
+  professionAbilities?: { level?: number }[];
   attributes?: Record<string, number>;
   skills?: Record<string, Record<string, { level: number }>>;
   luck?: { max?: number; used?: number };
@@ -164,6 +167,26 @@ function applyDerived(char: CharacterLike): void {
   }
 }
 
+function migrateDefiningSkillLevel(char: CharacterLike): number | undefined {
+  if (char.definingSkillLevel != null) return char.definingSkillLevel;
+  const legacy = char.professionAbilities?.[0]?.level;
+  return legacy != null ? legacy : undefined;
+}
+
+function migrateProfessionTree(char: CharacterLike): Record<string, number> | undefined {
+  const tree = { ...(char.professionTree ?? {}) };
+  const occ = normalizeOccupation(char.occupation ?? "");
+  if (!occ) return Object.keys(tree).length ? tree : undefined;
+
+  const coreId = `${occ}:core`;
+  if (tree[coreId] == null) {
+    const legacy = migrateDefiningSkillLevel(char);
+    if (legacy != null) tree[coreId] = legacy;
+  }
+
+  return Object.keys(tree).length ? tree : undefined;
+}
+
 /** Migrate legacy sheet data to current rulebook schema. */
 export function normalizeCharacter<T extends CharacterLike>(char: T): T {
   const race = char.enemyKind === "monster" ? "" : normalizeRace(char.race);
@@ -171,6 +194,10 @@ export function normalizeCharacter<T extends CharacterLike>(char: T): T {
     char.enemyKind === "monster" ? "" : reconcileOccupation(race, char.occupation);
   const attributes = migrateAttributes(char);
   const skills = migrateSkills(char.skills ?? {});
+  const professionTree = migrateProfessionTree({ ...char, occupation });
+  const definingSkillLevel =
+    professionTree?.[`${normalizeOccupation(occupation)}:core`] ??
+    migrateDefiningSkillLevel(char);
 
   const next = {
     ...char,
@@ -178,6 +205,8 @@ export function normalizeCharacter<T extends CharacterLike>(char: T): T {
     occupation,
     attributes,
     skills,
+    ...(professionTree ? { professionTree } : {}),
+    ...(definingSkillLevel != null ? { definingSkillLevel } : {}),
   };
 
   applyDerived(next);

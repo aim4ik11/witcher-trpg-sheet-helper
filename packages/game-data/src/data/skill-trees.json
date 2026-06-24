@@ -1,0 +1,623 @@
+{
+  "Bard": {
+    "core": {
+      "name": "Busking",
+      "stat": "emp",
+      "description": "A Bard can take an hour and make a Busking roll in the nearest town center. The total is crowns earned while performing. A fumble lowers income; a negative total means no coin and locals harass the Bard (−2 Charisma in that town for the day)."
+    },
+    "paths": [
+      {
+        "label": "The Charmer",
+        "tiers": [
+          {
+            "name": "Return Act",
+            "stat": "emp",
+            "description": "Before Busking, roll Return Act (GM sets DC) to see if the Bard played here before. On success, Busking income doubles and the Bard gains +2 Charisma at that venue."
+          },
+          {
+            "name": "Raise A Crowd",
+            "stat": "emp",
+            "description": "By performing for a full round, roll Raise A Crowd to captivate anyone within 20 m. Targets who fail Resist Coercion vs. your roll can only watch until they beat it; being attacked snaps them out."
+          },
+          {
+            "name": "Good Friend",
+            "stat": "emp",
+            "description": "Once per session, roll Good Friend to find an ally. Split the roll between Settlement, Profession, and Importance (see rulebook chart). The friend does one reasonable favor, then must be convinced again."
+          }
+        ]
+      },
+      {
+        "label": "The Informant",
+        "tiers": [
+          {
+            "name": "Fade",
+            "stat": "int",
+            "description": "Roll Fade vs. multiple targets' Awareness to blend into the background without cover—joining conversation, drawing attention elsewhere, etc. Fails if wearing flashy clothing."
+          },
+          {
+            "name": "Spread the Word",
+            "stat": "int",
+            "description": "After a successful Deceit roll, roll Spread the Word vs. the target's Resist Coercion. On success the target spreads your lie through their settlement or group, granting +2 to Deceit when repeating that lie to others."
+          },
+          {
+            "name": "Acclimatize",
+            "stat": "int",
+            "description": "In a settlement, roll Acclimatize (DC by settlement size). On success the Bard passes as a local (+2 Charisma & Persuasion with locals, not treated as an outsider)."
+          }
+        ]
+      },
+      {
+        "label": "The Manipulator",
+        "tiers": [
+          {
+            "name": "Poison The Well",
+            "stat": "emp",
+            "description": "Roll vs. target's EMP×3 while influencing people. On success, a pointed comment imposes −1 per point above DC to the target's Seduction, Persuasion, Leadership, Intimidation, or Charisma rolls."
+          },
+          {
+            "name": "Needling",
+            "stat": "emp",
+            "description": "Roll vs. target's Resist Coercion to goad them with insults until they attack. The target takes a penalty to attack and defense equal to half your Needling value for that many rounds."
+          },
+          {
+            "name": "Et Tu Brute",
+            "stat": "emp",
+            "description": "Roll vs. target's WILL×3 to turn them against one ally. On success they treat that ally with mistrust for days equal to Et Tu Brute value, until Resist Coercion beats the roll."
+          }
+        ]
+      }
+    ]
+  },
+  "Craftsman": {
+    "core": {
+      "name": "Patch Job",
+      "stat": "cra",
+      "description": "Take a turn and roll Patch Job at DC = item Crafting DC − 3 to keep gear in the fight: restore broken armor/shield to half SP or a broken weapon to half durability (half damage until properly fixed). An item can only be patched twice total (second patch brings it to ¼ SP/durability)."
+    },
+    "paths": [
+      {
+        "label": "The Forge Master",
+        "tiers": [
+          {
+            "name": "Extensive Catalogue",
+            "stat": "int",
+            "description": "Memorize extra weapon/armor diagrams in your head. At capacity, roll DC 15 (+1 per 10 diagrams memorized) to memorize one more—no hard limit."
+          },
+          {
+            "name": "Journeyman",
+            "stat": "cra",
+            "description": "When crafting, roll Journeyman vs. the item's crafting DC. Success adds +1 DMG or +1 SP per 2 points above DC (max +5). Cannot raise further with Luck."
+          },
+          {
+            "name": "Master Crafting",
+            "stat": "cra",
+            "description": "Craft master-grade items. Roll Master Crafting vs. crafting DC to permanently grant armor resistance (your choice) or weapons 50% bleeding or −2 Stun."
+          }
+        ]
+      },
+      {
+        "label": "The Alchemist",
+        "tiers": [
+          {
+            "name": "Mental Pharmacy",
+            "stat": "int",
+            "description": "Like Extensive Catalogue but for formulae: roll DC 15 (+1 per 10 memorized) to hold one more formula in memory."
+          },
+          {
+            "name": "Double Dose",
+            "stat": "cra",
+            "description": "When making an alchemical item, roll vs. formula crafting DC. Success creates two units with one set of ingredients (potions, oils, decoctions, bombs)."
+          },
+          {
+            "name": "Adaptation",
+            "stat": "cra",
+            "description": "Before brewing a witcher potion, roll Adaptation (DC 3 + crafting DC) to lower the poisoning avoidance DC by 1 per point over DC (minimum 12). Failure leaves normal toxicity."
+          }
+        ]
+      },
+      {
+        "label": "The Improviser",
+        "tiers": [
+          {
+            "name": "Augmentation",
+            "stat": "cra",
+            "description": "Roll vs. Augmentation chart DC to add special bonuses to weapons or armor in 3 rounds. A forge grants +2; a fumble damages the item by the fumble value."
+          },
+          {
+            "name": "Silver Coating",
+            "stat": "cra",
+            "description": "With a forge and silver ingots (2 for 1-handed, 4 for 2-handed), roll DC 16 to add +1d6 silver damage per 3 points above DC (max 5d6). Failure breaks the weapon."
+          },
+          {
+            "name": "Pinpoint",
+            "stat": "cra",
+            "description": "Study an item 1 turn and roll Pinpoint vs. its crafting DC to find a design flaw, enabling a −6 targeted attack that deals ablation damage in half your Pinpoint value in d6."
+          }
+        ]
+      }
+    ]
+  },
+  "Criminal": {
+    "core": {
+      "name": "Practiced Paranoia",
+      "stat": "int",
+      "description": "Within 10 m of a trap, ambush, or experimental trap, immediately roll Practiced Paranoia vs. trap DC, ambush Stealth, or GM DC. Even on failure you sense that something is wrong."
+    },
+    "paths": [
+      {
+        "label": "The Thief",
+        "tiers": [
+          {
+            "name": "Case The Area",
+            "stat": "int",
+            "description": "Spend an hour in a settlement and roll vs. settlement DC. Success maps guard patterns and hiding spots for +2 Stealth in that area for days equal to your value."
+          },
+          {
+            "name": "Mental Key",
+            "stat": "int",
+            "description": "After picking a lock, roll Mental Key vs. its DC to memorize tumblers and reopen without a Pick Lock roll. Store as many as INT; replace freely."
+          },
+          {
+            "name": "Go To Ground",
+            "stat": "int",
+            "description": "Once per session, roll and split points across Area, Security, and Perks (rulebook chart) to find a hideout until destroyed; you can always return."
+          }
+        ]
+      },
+      {
+        "label": "The Gang Boss",
+        "tiers": [
+          {
+            "name": "Weak Spot",
+            "stat": "emp",
+            "description": "Roll vs. sentient target's Deceit to learn their most valued possession or person, plus +1 Intimidation per 2 points above their roll until the weak spot changes."
+          },
+          {
+            "name": "Marked Man",
+            "stat": "will",
+            "description": "Roll vs. target's EMP×3 to mark them (carved sign, etc.). They need Charisma, Persuasion, or Intimidation beating your roll to get help or services in their settlement."
+          },
+          {
+            "name": "Rally",
+            "stat": "will",
+            "description": "Once per day, spend an hour and roll Rally (GM sets DC). Recruit 1 Bandit per 2 points above DC for days equal to Rally; bandits below half HP may flee vs. your WILL on d10."
+          }
+        ]
+      },
+      {
+        "label": "The Assassin",
+        "tiers": [
+          {
+            "name": "Careful Aim",
+            "stat": "dex",
+            "description": "When not in active combat, spend a round aiming and roll vs. target REF×3. Next attack gains bonus equal to half Careful Aim; being spotted before attacking halves the bonus."
+          },
+          {
+            "name": "Eye Gouge",
+            "stat": "dex",
+            "description": "Melee attack at −3 to hit; on hit deals 2d6 and blinds for rounds equal to Eye Gouge value."
+          },
+          {
+            "name": "Assassin's Strike",
+            "stat": "dex",
+            "description": "When ambushing, roll vs. target Awareness to conceal yourself after the attack. Light and cover impose penalties; each opponent may roll to spot you."
+          }
+        ]
+      }
+    ]
+  },
+  "Doctor": {
+    "core": {
+      "name": "Healing Hands",
+      "stat": "cra",
+      "description": "Only a Doctor with Healing Hands can heal critical wounds (multiple successes by severity; DC by severity). Also usable for any First Aid task."
+    },
+    "paths": [
+      {
+        "label": "The Surgeon",
+        "tiers": [
+          {
+            "name": "Diagnose",
+            "stat": "int",
+            "description": "Examine a wounded subject (GM sets DC). Success reveals critical wounds and remaining HP, plus +2 to Healing Hands on those wounds."
+          },
+          {
+            "name": "Analysis",
+            "stat": "int",
+            "description": "Before Healing Hands, spend a turn and roll vs. critical wound severity. Each 2 points over DC (min 1) reduces surgery time by 1 turn."
+          },
+          {
+            "name": "Effective Surgery",
+            "stat": "cra",
+            "description": "Before healing a critical wound, roll vs. its Healing Hands DC. Success doubles healing rate for critical and regular wounds."
+          }
+        ]
+      },
+      {
+        "label": "The Herbalist",
+        "tiers": [
+          {
+            "name": "Healing Tent",
+            "stat": "cra",
+            "description": "Roll vs. GM DC to create a covered medical space in 1 hour: +3 Healing Hands/First Aid inside and +2 healing rate for occupants for days equal to your value."
+          },
+          {
+            "name": "Improvisation",
+            "stat": "int",
+            "description": "Roll vs. crafting DC of a medical alchemical to substitute on-hand materials (1 round, retry on failure). Works only for that specific injury."
+          },
+          {
+            "name": "Herbal Remedy",
+            "stat": "cra",
+            "description": "Mix substances into a remedy (see rulebook chart) in 1 turn; lasts 3 days, one use by burning or chewing."
+          }
+        ]
+      },
+      {
+        "label": "The Anatomist",
+        "tiers": [
+          {
+            "name": "Bleeding Wound",
+            "stat": "int",
+            "description": "With a bladed weapon, roll DC 15 after dealing damage. Success causes bleeding at 1 HP per 2 points over DC until stopped by First Aid vs. your roll."
+          },
+          {
+            "name": "Practical Carnage",
+            "stat": "int",
+            "description": "Roll vs. opponent BODY×3 to make their wounds and critical wounds heal half as fast (countered by Effective Surgery and healing-rate boosts)."
+          },
+          {
+            "name": "Crippling Wound",
+            "stat": "int",
+            "description": "Attack at −6; on success imposes REF, BODY, or SPD penalty of 1 per 3 points above defense. Removed only by Effective Surgery beating your attack roll."
+          }
+        ]
+      }
+    ]
+  },
+  "Mage": {
+    "core": {
+      "name": "Magic Training",
+      "stat": "int",
+      "description": "Roll when encountering magical phenomena, unknown spells, or theory (GM sets DC). Success recalls full knowledge. Also works like Awareness for detecting magic, spells, and hexes."
+    },
+    "paths": [
+      {
+        "label": "The Politician",
+        "tiers": [
+          {
+            "name": "Scheming",
+            "stat": "int",
+            "description": "Roll vs. target INT×3. Success grants +3 to Deceit, Seduction, Intimidation, or Persuasion vs. that target for days equal to Scheming value."
+          },
+          {
+            "name": "Grape Vine",
+            "stat": "int",
+            "description": "Spend 1 hour and roll vs. target EMP×3 to spread rumors, lowering their local reputation by half your Grape Vine value for that many days."
+          },
+          {
+            "name": "Assets",
+            "stat": "int",
+            "description": "Once per game, roll and split points across Settlement, Profession, Importance, and Relationship (rulebook chart) to recall a helpful contact."
+          }
+        ]
+      },
+      {
+        "label": "The Scientist",
+        "tiers": [
+          {
+            "name": "Reverse Engineer",
+            "stat": "int",
+            "description": "Study an alchemical solution 1 hour; roll vs. crafting DC + 3. Success writes a formula that is +3 harder to craft but reliable."
+          },
+          {
+            "name": "Distillation",
+            "stat": "cra",
+            "description": "Use instead of Alchemy when brewing. Success creates a dose with 50% stronger effect (duration, damage, or resistance DC—your choice, round down)."
+          },
+          {
+            "name": "Mutate",
+            "stat": "int",
+            "description": "Spend all STA and a full day; roll vs. (28 − (BODY+WILL)/2). Success grants a minor mutagen effect; failure puts subject in Death State with the major mutation."
+          }
+        ]
+      },
+      {
+        "label": "The Arch Mage",
+        "tiers": [
+          {
+            "name": "In Touch",
+            "stat": "will",
+            "description": "Each point grants +2 Vigor threshold (trainable). At level 10, maximum Vigor threshold becomes 25."
+          },
+          {
+            "name": "Immutable",
+            "stat": "will",
+            "description": "Roll DC 16 when affected by dimeritium. Success retains half Vigor threshold and can still cast, though still uncomfortable."
+          },
+          {
+            "name": "Expanded Magic",
+            "stat": "will",
+            "description": "Before casting a spell or ritual, roll DC 16. Success lets you channel through any 2 foci, reducing Vigor cost twice."
+          }
+        ]
+      }
+    ]
+  },
+  "Man At Arms": {
+    "core": {
+      "name": "Tough As Nails",
+      "stat": "body",
+      "description": "At 0 or below HP, roll vs. (negative HP × 2) to keep fighting at Wound Threshold. Failure enters Death State. Further damage forces another roll based on current HP."
+    },
+    "paths": [
+      {
+        "label": "The Marksman",
+        "tiers": [
+          {
+            "name": "Extreme Range",
+            "stat": "dex",
+            "description": "On ranged attacks beyond normal range, roll vs. distance DC to ignore range penalties (targeting/environment penalties remain)."
+          },
+          {
+            "name": "Twin Shot",
+            "stat": "dex",
+            "description": "Replace normal ranged skill; on hit, two projectiles strike two random body locations. Can be dodged as one action or blocked by a shield; parry at −6."
+          },
+          {
+            "name": "Pin Point Aim",
+            "stat": "dex",
+            "description": "After a ranged critical, roll vs. target DEX×3. Success adds Pin Point Aim value to the critical location roll only."
+          }
+        ]
+      },
+      {
+        "label": "The Bounty Hunter",
+        "tiers": [
+          {
+            "name": "Bloodhound",
+            "stat": "int",
+            "description": "Add Bloodhound to Wilderness Survival when tracking. If the trail is lost, roll Bloodhound (GM DC) to pick it up immediately."
+          },
+          {
+            "name": "Booby Trap",
+            "stat": "cra",
+            "description": "Set one trap type (rulebook table) with 2 m tripwire; spotting requires Awareness vs. your Booby Trap roll."
+          },
+          {
+            "name": "Tactical Awareness",
+            "stat": "int",
+            "description": "Instead of moving, roll to gain +3 attack/defense vs. enemies within 10 m whose DEX×3 is below your roll for 1 round, and learn their intended actions."
+          }
+        ]
+      },
+      {
+        "label": "The Reaver",
+        "tiers": [
+          {
+            "name": "Fury",
+            "stat": "will",
+            "description": "Roll vs. EMP×3. Success grants immunity to fear, emotion magic, and Verbal Combat for Fury×2 rounds; rage clouds thinking."
+          },
+          {
+            "name": "Zweihand",
+            "stat": "body",
+            "description": "Spend 10 STA; roll Zweihand−3 vs. defense for one double-damage armor-piercing attack (upgrades existing piercing traits per rulebook)."
+          },
+          {
+            "name": "Shrug It Off",
+            "stat": "body",
+            "description": "BODY times per session, spend 10 STA when an enemy scores a critical on you. Beat their attack roll to negate the critical and take normal damage only."
+          }
+        ]
+      }
+    ]
+  },
+  "Merchant": {
+    "core": {
+      "name": "Well Traveled",
+      "stat": "int",
+      "description": "Roll when you need a fact about an item, culture, or area (GM sets DC). Success recalls the answer from past travels."
+    },
+    "paths": [
+      {
+        "label": "The Broker",
+        "tiers": [
+          {
+            "name": "Options",
+            "stat": "int",
+            "description": "Roll vs. GM DC to find the same item at half price (higher rarity = higher DC). Does not apply to experimental, witcher, or relic items."
+          },
+          {
+            "name": "Hard Bargain",
+            "stat": "emp",
+            "description": "When bribing, roll vs. WILL×3 to use any 5-crown item for +3 Persuasion (+5 DC for absurd bribes)."
+          },
+          {
+            "name": "Promise",
+            "stat": "emp",
+            "description": "When buying, roll vs. salesperson EMP×3 to pay later; they wait weeks equal to Promise value."
+          }
+        ]
+      },
+      {
+        "label": "The Contact",
+        "tiers": [
+          {
+            "name": "Rookery",
+            "stat": "emp",
+            "description": "Roll vs. settlement DC to gain 1 urchin/vagrant per point over DC (max 10) for +1 Streetwise each; pay 1 crown per consult."
+          },
+          {
+            "name": "Insider",
+            "stat": "int",
+            "description": "Spend 10 crowns and roll vs. Resist Coercion to recruit a spy for days equal to Insider (may re-roll and re-pay)."
+          },
+          {
+            "name": "Treasure Map",
+            "stat": "int",
+            "description": "Once per session, roll vs. GM DC to recall a relic or ruin location—usually dangerous and quest-worthy."
+          }
+        ]
+      },
+      {
+        "label": "The Havekar",
+        "tiers": [
+          {
+            "name": "Well Connected",
+            "stat": "will",
+            "description": "On entering a settlement, spend an hour spreading word then roll vs. settlement DC. Raise local reputation by half points over DC (min 1) for 1d6 weeks."
+          },
+          {
+            "name": "Fence",
+            "stat": "int",
+            "description": "Roll vs. GM DC to sell dubious/stolen goods at full market price to a no-questions buyer."
+          },
+          {
+            "name": "Warrior's Debt",
+            "stat": "emp",
+            "description": "Roll and split points on the Warrior chart (rulebook) to call a fighter who works for days equal to Warrior's Debt without questioning reasonable orders."
+          }
+        ]
+      }
+    ]
+  },
+  "Priest": {
+    "core": {
+      "name": "Initiate of the Gods",
+      "stat": "emp",
+      "description": "At same-faith churches (GM DC) gain free lodging, healing, and services. Works with lay faithful too, but they offer less. Ineffective on other faiths."
+    },
+    "paths": [
+      {
+        "label": "The Preacher",
+        "tiers": [
+          {
+            "name": "Divine Power",
+            "stat": "emp",
+            "description": "Each level adds +1 Vigor threshold (trainable, stacks with Nature Attunement). At level 10, threshold totals 12 from this path."
+          },
+          {
+            "name": "Divine Authority",
+            "stat": "emp",
+            "description": "Add full value to Leadership where your religion is worshipped; half value elsewhere."
+          },
+          {
+            "name": "Precognition",
+            "stat": "will",
+            "description": "When GM sends visions (3 rounds catatonic), roll vs. GM DC to interpret symbolic future visions."
+          }
+        ]
+      },
+      {
+        "label": "The Druid",
+        "tiers": [
+          {
+            "name": "Nature Attunement",
+            "stat": "emp",
+            "description": "Each level +1 Vigor threshold (trainable, stacks with Divine Power). At level 10, threshold totals 12 from this path."
+          },
+          {
+            "name": "Read Nature",
+            "stat": "int",
+            "description": "In natural environments, roll vs. GM DC to learn what passed through and what they did—localized, cannot track."
+          },
+          {
+            "name": "Animal Compact",
+            "stat": "will",
+            "description": "Add to Wilderness Survival with animals. Spend a round to ally one beast for hours equal to value (monsters unaffected)."
+          }
+        ]
+      },
+      {
+        "label": "The Fanatic",
+        "tiers": [
+          {
+            "name": "Blood Rituals",
+            "stat": "will",
+            "description": "When casting a ritual, roll vs. casting DC to replace missing alchemical components with 5 HP blood each (can be others', spilled during the ritual)."
+          },
+          {
+            "name": "Fervor",
+            "stat": "emp",
+            "description": "Roll vs. target INT×3 to grant 1d6 temp HP per point over DC (max 5) for Fervor×2 rounds; once per target per day."
+          },
+          {
+            "name": "Word of God",
+            "stat": "emp",
+            "description": "Roll vs. Resist Coercion to gain apostles (max = value; use bandit stats). Strange orders need Word of God vs. GM DC—3 failures lose them (fumble may turn them hostile)."
+          }
+        ]
+      }
+    ]
+  },
+  "Witcher": {
+    "core": {
+      "name": "Witcher Training",
+      "stat": "int",
+      "description": "In hostile terrain, reduce penalties by half Witcher Training (min 1). Substitutes for Monster Lore. Covers monster knowledge and adaptability from years in the keep."
+    },
+    "paths": [
+      {
+        "label": "The Spellsword",
+        "tiers": [
+          {
+            "name": "Meditation",
+            "stat": "will",
+            "description": "Trance grants sleep benefits while remaining vigilant; considered awake for noticing threats within double Meditation value in meters."
+          },
+          {
+            "name": "Magical Source",
+            "stat": "will",
+            "description": "Every 2 points grant +1 Vigor threshold (trainable). At level 10, max Vigor threshold is 7 from this ability."
+          },
+          {
+            "name": "Heliotrope",
+            "stat": "will",
+            "description": "When targeted by spell/invocation/hex, roll Spell Casting vs. opponent and spend half their Vigor cost to negate."
+          }
+        ]
+      },
+      {
+        "label": "The Mutant",
+        "tiers": [
+          {
+            "name": "Iron Stomach",
+            "stat": "body",
+            "description": "+5% max toxicity per 2 points (trainable). At level 10, max toxicity is 150%."
+          },
+          {
+            "name": "Frenzy",
+            "stat": "body",
+            "description": "While poisoned, +1d6 melee per Frenzy level; must reach safety or kill poisoner. End early with DC 15 Endurance."
+          },
+          {
+            "name": "Transmutation",
+            "stat": "body",
+            "description": "When taking a decoction, roll DC 18. Success grants the decoction's mutation bonus (rulebook table) at half normal duration."
+          }
+        ]
+      },
+      {
+        "label": "The Slayer",
+        "tiers": [
+          {
+            "name": "Parry Arrows",
+            "stat": "dex",
+            "description": "Deflect projectiles like melee parries (not non-physical magic). AoE attacks detonate after the parry."
+          },
+          {
+            "name": "Quick Strike",
+            "stat": "ref",
+            "description": "After your turn, spend 5 STA and roll vs. opponent REF×3 for an extra strike that round (disarms/trips allowed)."
+          },
+          {
+            "name": "Whirl",
+            "stat": "ref",
+            "description": "Spend 5 STA/round to attack everyone in sword range each turn using Whirl as the attack roll; can only whirl, dodge, and move 2 m until hit or you act otherwise."
+          }
+        ]
+      }
+    ]
+  }
+}

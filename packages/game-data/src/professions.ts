@@ -1,3 +1,6 @@
+import { ATTRIBUTE_SKILLS, skillBase } from "./characterData";
+import { normalizeOccupation } from "./gameOptions";
+
 /** Profession skill packages from the core rulebook (44 pts across 11 skills). */
 
 export interface ProfessionDef {
@@ -163,3 +166,140 @@ export const PROFESSIONS: Record<string, ProfessionDef> = {
     notes: "Must take Witcher race. All basic signs.",
   },
 };
+
+const STAT_FROM_ABBREV: Record<string, string> = {
+  INT: "int",
+  REF: "ref",
+  DEX: "dex",
+  BODY: "body",
+  SPD: "spd",
+  EMP: "emp",
+  CRA: "cra",
+  WILL: "will",
+};
+
+const SKILL_LABEL_ALIASES: Record<string, string> = {
+  "human perception": "Human Percep.",
+  "wilderness survival": "Wilderness Surv.",
+  "grooming & style": "Grooming & St.",
+  "grooming and style": "Grooming & St.",
+  language: "Language",
+};
+
+function normalizeSkillLabel(label: string): string {
+  return label.toLowerCase().replace(/\./g, "").replace(/\s+/g, " ").trim();
+}
+
+const SKILL_BY_NORMALIZED_LABEL = (() => {
+  const map = new Map<
+    string,
+    { attrKey: string; skillKey: string; label: string; special?: boolean }
+  >();
+  for (const [attrKey, skills] of Object.entries(ATTRIBUTE_SKILLS)) {
+    for (const skill of skills) {
+      map.set(normalizeSkillLabel(skill.label), {
+        attrKey,
+        skillKey: skill.key,
+        label: skill.label,
+        special: skill.special,
+      });
+    }
+  }
+  for (const [alias, canonical] of Object.entries(SKILL_LABEL_ALIASES)) {
+    const resolved = map.get(normalizeSkillLabel(canonical));
+    if (resolved) map.set(alias, resolved);
+  }
+  return map;
+})();
+
+export function getProfession(occupation: string): ProfessionDef | undefined {
+  const key = normalizeOccupation(occupation);
+  return key ? PROFESSIONS[key] : undefined;
+}
+
+export function parseDefiningSkill(definingSkill: string): {
+  name: string;
+  attrKey: string;
+  statShort: string;
+} {
+  const match = definingSkill.match(/^(.+?)\s*\(([A-Z]+)\)$/);
+  if (!match) {
+    return { name: definingSkill, attrKey: "int", statShort: "INT" };
+  }
+  const statShort = match[2];
+  return {
+    name: match[1].trim(),
+    attrKey: STAT_FROM_ABBREV[statShort] ?? "int",
+    statShort,
+  };
+}
+
+export function resolveProfessionSkillLabel(label: string): {
+  attrKey: string;
+  skillKey: string;
+  label: string;
+  special?: boolean;
+} | null {
+  return SKILL_BY_NORMALIZED_LABEL.get(normalizeSkillLabel(label)) ?? null;
+}
+
+export interface ProfessionSkillRow {
+  kind: "defining" | "package" | "note";
+  label: string;
+  attrKey?: string;
+  skillKey?: string;
+  statShort?: string;
+  level?: number;
+  base?: number;
+  special?: boolean;
+}
+
+export function getProfessionSkillRows(character: {
+  occupation?: string;
+  attributes?: Record<string, number>;
+  skills?: Record<string, Record<string, { level: number }>>;
+  definingSkillLevel?: number;
+  professionAbilities?: { level?: number }[];
+}): ProfessionSkillRow[] {
+  const profession = getProfession(character.occupation ?? "");
+  if (!profession) return [];
+
+  const defining = parseDefiningSkill(profession.definingSkill);
+  const definingLevel =
+    character.definingSkillLevel ?? character.professionAbilities?.[0]?.level ?? 0;
+  const definingAttr = character.attributes?.[defining.attrKey] ?? 0;
+
+  const rows: ProfessionSkillRow[] = [
+    {
+      kind: "defining",
+      label: defining.name,
+      attrKey: defining.attrKey,
+      statShort: defining.statShort,
+      level: definingLevel,
+      base: definingAttr + definingLevel,
+    },
+  ];
+
+  for (const skillLabel of profession.skills) {
+    if (skillLabel.startsWith("+")) {
+      rows.push({ kind: "note", label: skillLabel });
+      continue;
+    }
+    const resolved = resolveProfessionSkillLabel(skillLabel);
+    if (!resolved) {
+      rows.push({ kind: "note", label: skillLabel });
+      continue;
+    }
+    rows.push({
+      kind: "package",
+      label: resolved.label,
+      attrKey: resolved.attrKey,
+      skillKey: resolved.skillKey,
+      level: character.skills?.[resolved.attrKey]?.[resolved.skillKey]?.level ?? 0,
+      base: skillBase(character, resolved.attrKey, resolved.skillKey),
+      special: resolved.special,
+    });
+  }
+
+  return rows;
+}

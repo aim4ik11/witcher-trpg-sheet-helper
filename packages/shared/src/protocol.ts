@@ -150,6 +150,15 @@ export interface StatusEffect {
   description: string;
 }
 
+export interface CharacterCreationMeta {
+  /** One-time stat/skill setup finished — stats locked unless DM uses manual edit. */
+  complete: boolean;
+  /** Campaign stat point-buy total (60–80). */
+  pointBuy: number;
+  /** Experience level tracked by the GM. */
+  level: number;
+}
+
 export interface Character {
   id: string;
   type: CharacterType;
@@ -157,6 +166,11 @@ export interface Character {
   race?: string;
   occupation?: string;
   nickname?: string;
+  creation?: CharacterCreationMeta;
+  /** Level of the profession defining skill (name/stat come from rulebook by occupation). */
+  definingSkillLevel?: number;
+  /** Profession skill tree ability levels keyed by ability id (e.g. "Bard:core", "Bard:0:t1"). */
+  professionTree?: Record<string, number>;
   /** Set when created from the bestiary catalog or a custom NPC enemy. */
   enemyKind?: EnemyKind;
   /** Rulebook bestiary entry id (e.g. drowners, bandits). */
@@ -177,6 +191,7 @@ export interface Character {
   bonusMelee?: { punch: string; kick: string };
   consumables?: ConsumableItem[];
   spells?: Spell[];
+  /** @deprecated Migrated to definingSkillLevel — kept for legacy saves. */
   professionAbilities?: ProfessionAbility[];
   wounds?: Wound[];
   statusEffects?: StatusEffect[];

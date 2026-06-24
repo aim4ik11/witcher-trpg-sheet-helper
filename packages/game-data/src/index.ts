@@ -2,5 +2,8 @@ export * from "./characterData";
 export * from "./gameOptions";
 export * from "./catalog";
 export * from "./professions";
+export * from "./skillTrees";
+export * from "./progression";
+export * from "./characterCreation";
 export * from "./normalizeCharacter";
 export * from "./monsters";
