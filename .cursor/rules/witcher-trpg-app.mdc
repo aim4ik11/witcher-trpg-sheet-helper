@@ -1,0 +1,62 @@
+---
+description: Witcher TRPG sheet helper — app overview and rulebook as source of truth for game logic
+alwaysApply: true
+---
+
+# Witcher TRPG Sheet Helper (Вільмак)
+
+Desktop GM tool (Electron + React) for running local Witcher Pen & Paper RPG sessions. Players join via browser (Socket.io). The app manages character sheets, session state, and enforces Witcher TRPG rules in code.
+
+## Monorepo layout
+
+| Path | Role |
+|------|------|
+| `packages/shared/` | IPC + Socket.io protocol types (`protocol.ts`) |
+| `packages/game-data/` | **Game rules in code** — stats formulas, catalogs, normalization |
+| `apps/desktop/` | GM Electron app (main, preload, renderer) |
+| `apps/server/` | Express + Socket.io session server |
+| `apps/player-web/` | Player-facing React client (served by server) |
+| `data/rulebook/` | **Official rules text** — verify business logic here |
+
+## Rulebook: source of truth for business logic
+
+Before implementing or changing any game mechanic (stats, derived values, skills, professions, gear, magic, combat, crafting), **read the relevant rulebook files** and confirm the code matches.
+
+### Where to look (in order)
+
+1. **`data/rulebook/curated/`** — start here (condensed reference)
+   - `statistics.md` — core stats, physical table, derived formulas
+   - `skills.md`, `professions.md`, `character-creation.md`
+   - `gear-weapons.md`, `gear-armor.md`, `magic.md`, `combat.md`
+2. **`data/rulebook/sections/`** — full extract for a specific TOC topic
+3. **`data/rulebook/chunks/`** — broad search fallback (20-page slices)
+4. **`data/rulebook/toc.md`** — find section filenames by topic
+
+See `data/rulebook/README.md` and `data/rulebook/curated/README.md` for the full index.
+
+### Code ↔ rulebook mapping
+
+| Rules area | Implementation |
+|------------|----------------|
+| Stats, derived values, skill checks | `packages/game-data/src/characterData.ts` |
+| Character creation & point buy | `packages/game-data/src/characterCreation.ts` |
+| Progression spending (I.P.) | `packages/game-data/src/progression.ts` |
+| Profession skill trees | `packages/game-data/src/skillTrees.ts`, `data/skill-trees.json` |
+| Character schema / migration | `packages/game-data/src/normalizeCharacter.ts` |
+| Races, professions, options | `packages/game-data/src/gameOptions.ts`, `professions.ts` |
+| Item catalogs | `packages/game-data/src/data/*.json`, `catalog.ts` |
+| Sheet UI | `apps/desktop/.../CharacterSheet/`, `apps/player-web/.../CharacterSheet/` |
+| Creation wizard, steppers, spend UI | `PlayerCreationWizard`, `Stepper`, `PlayerProgressionPanel`, `DmSessionControls` |
+
+After changing curated rulebook content, sync catalogs: `npm run sync:game-data`.
+
+### Verification workflow
+
+When adding or reviewing business logic:
+
+1. Identify the mechanic in `data/rulebook/curated/` (or `sections/` if missing).
+2. Compare formulas, tables, limits, and terminology to the implementation.
+3. If the rulebook and code disagree, treat the **rulebook as authoritative** unless the user explicitly wants a house rule.
+4. Note: PDF extraction may have layout artifacts — for ambiguous stats, cross-check `sections/` or the source PDF in `data/`.
+
+Do not invent Witcher TRPG rules from memory; always ground changes in `data/rulebook`.
