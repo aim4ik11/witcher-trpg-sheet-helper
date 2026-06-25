@@ -193,7 +193,8 @@ export function resolveDamageFromHit(
   const locationMultiplier = LOCATION_MULTIPLIERS[location];
   const expression = weapon.dmg ?? "1d6";
   const damageRoll = rollDiceExpression(expression, rng);
-  const rawDamage = damageRoll.total * strongStrikeMultiplier;
+  const critBonus = critWoundDamageBonus(critWoundTier);
+  const rawDamage = damageRoll.total * strongStrikeMultiplier + critBonus;
 
   let afterResistance = applySilverSteelRule(rawDamage, target, weapon);
 
@@ -202,9 +203,7 @@ export function resolveDamageFromHit(
   const afterArmor = Math.max(0, afterResistance - spBefore);
   const ablation = afterArmor > 0 && spBefore > 0 ? 1 : 0;
 
-  const critBonus = critWoundDamageBonus(critWoundTier);
-  const afterLocation = Math.floor(afterArmor * locationMultiplier);
-  const finalDamage = afterLocation + critBonus;
+  const finalDamage = Math.floor(afterArmor * locationMultiplier);
 
   const critTable = rollCriticalWoundTable(critWoundTier, rng);
 
@@ -322,14 +321,17 @@ export function formatDamageBreakdown(result: CombatAttackResult): string[] {
         ? ` + ${result.damageModifier}`
         : ` − ${Math.abs(result.damageModifier)}`
       : "";
+  const critPart = result.critWoundDamageBonus
+    ? ` + ${result.critWoundDamageBonus} critical`
+    : "";
   lines.push(
-    `Damage roll ${result.damageExpression}: [${result.damageRolls?.join("+") ?? "?"}]${modPart} = ${diceTotal}`,
+    `Damage roll ${result.damageExpression}: [${result.damageRolls?.join("+") ?? "?"}]${modPart}${critPart} = ${result.rawDamage}`,
   );
 
   if (result.strongStrikeMultiplier && result.strongStrikeMultiplier > 1) {
-    lines.push(`Strong strike ×${result.strongStrikeMultiplier} → ${result.rawDamage}`);
-  } else if (result.rawDamage !== diceTotal) {
-    lines.push(`Weapon damage → ${result.rawDamage}`);
+    lines.push(
+      `Strong strike ×${result.strongStrikeMultiplier} on dice → ${diceTotal * result.strongStrikeMultiplier}`,
+    );
   }
 
   if (
@@ -357,7 +359,7 @@ export function formatDamageBreakdown(result: CombatAttackResult): string[] {
   }
 
   if (result.critWoundDamageBonus) {
-    lines.push(`Critical wound bonus +${result.critWoundDamageBonus} → ${result.finalDamage} total`);
+    lines.push(`Final damage → ${result.finalDamage}`);
   } else if (result.finalDamage !== undefined) {
     lines.push(`Final damage → ${result.finalDamage}`);
   }

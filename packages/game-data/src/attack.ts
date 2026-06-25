@@ -165,7 +165,11 @@ function toRollBreakdown(
   };
 }
 
-export function isRangedWeapon(weapon: Pick<Weapon, "name" | "rng" | "hand">): boolean {
+export function isRangedWeapon(weapon: {
+  name: string;
+  rng?: string;
+  hand?: string;
+}): boolean {
   const name = weapon.name.toLowerCase();
   return /bow|crossbow|javelin|throwing|sling|dart/.test(name);
 }
@@ -221,7 +225,7 @@ export function isDefenseAllowed(
 }
 
 export function thrownParryModifier(weapon: CombatAttackWeapon): number {
-  return weapon.isThrown && weapon.isRanged ? -5 : 0;
+  return weapon.isThrown ? -2 : 0;
 }
 
 export function isMonsterAttacker(character: Character): boolean {
@@ -234,7 +238,7 @@ export function isEnemyAttacker(character: Character): boolean {
 
 /** Bestiary ROF — attacks per action for this weapon. */
 export function weaponRateOfFire(
-  weapon: Pick<Weapon, "rateOfFire" | "rel" | "name">,
+  weapon: { rateOfFire?: number; rel?: string; name: string },
   attacker?: Character,
 ): number {
   if (weapon.rateOfFire && weapon.rateOfFire > 0) return weapon.rateOfFire;
@@ -245,8 +249,6 @@ export function weaponRateOfFire(
     );
     if (entry) return Math.max(1, parseInt(entry.rof, 10) || 1);
   }
-  const legacy = parseInt(weapon.rel ?? "", 10);
-  if (legacy > 1) return legacy;
   return 1;
 }
 
@@ -297,7 +299,11 @@ export function attackTypeConfigForAttacker(
   return attackTypeConfig(attackType, weapon);
 }
 
-export function inferWeaponSkill(weapon: Pick<Weapon, "name" | "rng" | "hand">): WeaponSkillRef {
+export function inferWeaponSkill(weapon: {
+  name: string;
+  rng?: string;
+  hand?: string;
+}): WeaponSkillRef {
   const name = weapon.name.toLowerCase();
   if (/crossbow/.test(name)) {
     return { attrKey: "dex", skillKey: "crossbow", isRanged: true };
