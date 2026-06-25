@@ -44,6 +44,46 @@ export function getMonsterById(id: string): CatalogMonster | undefined {
   return MONSTERS_CATALOG.find((m) => m.id === id);
 }
 
+export interface BestiaryCombatIssue {
+  monsterId: string;
+  monsterName: string;
+  problems: string[];
+}
+
+/** Validate catalog entries have minimum data needed for combat resolution. */
+export function validateBestiaryCombatData(
+  catalog: CatalogMonster[] = MONSTERS_CATALOG,
+): BestiaryCombatIssue[] {
+  const attackSkills = new Set([
+    "melee",
+    "brawling",
+    "swordsmanship",
+    "archery",
+    "crossbow",
+    "staffSpear",
+    "smallBlades",
+  ]);
+  const issues: BestiaryCombatIssue[] = [];
+
+  for (const entry of catalog) {
+    const problems: string[] = [];
+    if (!entry.combat?.hp) problems.push("missing combat.hp");
+    if (!entry.weapons?.length) problems.push("no weapons");
+    if (!entry.skills?.some((s) => attackSkills.has(s.key))) {
+      problems.push("no melee/brawling attack skill");
+    }
+    for (const weapon of entry.weapons ?? []) {
+      if (!weapon.name) problems.push("weapon missing name");
+      if (!weapon.dmg) problems.push(`weapon "${weapon.name}" missing dmg`);
+      if (!weapon.rof?.trim()) problems.push(`weapon "${weapon.name}" missing rof`);
+    }
+    if (problems.length > 0) {
+      issues.push({ monsterId: entry.id, monsterName: entry.name, problems });
+    }
+  }
+  return issues;
+}
+
 export function monsterCatalogGroups(): { label: string; entries: CatalogMonster[] }[] {
   const npcs = MONSTERS_CATALOG.filter((m) => m.kind === "npc");
   const monsters = MONSTERS_CATALOG.filter(
@@ -77,7 +117,8 @@ function buildWeapons(template: CatalogMonster) {
     type: "",
     wa: 0,
     dmg: w.dmg,
-    rel: w.rof === "1" ? "1" : "",
+    rel: "",
+    rateOfFire: Math.max(1, parseInt(w.rof, 10) || 1),
     hand: "",
     rng: w.rng ?? (w.effect.startsWith("RNG:") ? w.effect : ""),
     effect: w.effect.startsWith("RNG:") ? "" : w.effect,
@@ -92,7 +133,6 @@ export function catalogToEnemy(name: string, template: CatalogMonster) {
   const attrs = { ...template.attributes };
   const hp = template.combat.hp ?? 0;
   const sta = template.combat.sta ?? 0;
-  const resolveMax = Math.floor(((attrs.int + attrs.will) / 2) * 5);
 
   return {
     type: "enemy" as const,
@@ -106,8 +146,7 @@ export function catalogToEnemy(name: string, template: CatalogMonster) {
     vitals: {
       hp: { current: hp, max: hp },
       sta: { current: sta, max: sta },
-      resolve: { current: resolveMax, max: resolveMax },
-      woundThreshold: 0,
+      woundThreshold: Math.floor(hp / 5),
     },
     luck: { max: attrs.luck ?? 0, used: 0 },
     speed: attrs.spd ?? 0,

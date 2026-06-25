@@ -1135,11 +1135,80 @@
       "hp": 30,
       "vigor": 0
     },
-    "skills": [],
-    "weapons": [],
-    "abilities": "",
-    "vulnerabilities": "",
-    "loot": ""
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 6
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 9
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 2
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 6
+      }
+    ],
+    "weapons": [
+      {
+        "name": "Bite",
+        "dmg": "2d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Scent Tracking\nA warg can track a creature without visual or audible clues with no penalty.\nNight Vision\nWargs operate in areas of dim light with no penalties.\nPack Leader\nAs long as a warg is alive all wolves in its pack gain a +4 to courage. The warg can give orders to the rest of the pack.",
+    "vulnerabilities": "Beast Oil",
+    "loot": "Dog tallow (1d6)\nWolf hide\nWolf liver\nBeast bones (1d6)"
   },
   {
     "id": "werewolves",
@@ -1601,7 +1670,15 @@
         "level": 5
       }
     ],
-    "weapons": [],
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "3d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
     "abilities": "Pounce\nAn endrega doesn’t need to \ntake a running start when \nleaping.\nResistances\nEndrega only take half damage from bleeding & slash -\ning.\nPoison Immunity\nEndrega take no damage \nfrom poison.\nFeral\nFor the purposes of Awareness and Wilderness Survival, instinct gives them an INT \nof 6.",
     "vulnerabilities": "Insectoid Oil",
     "loot": "Venom extract (1d6/2)\nEndrega saliva (1d6/2)\nChitin scale (1d6/2)"
@@ -1978,7 +2055,68 @@
       "hp": 15,
       "vigor": 0
     },
-    "skills": [],
+    "skills": [
+      {
+        "attr": "ref",
+        "key": "melee",
+        "label": "Melee",
+        "level": 4
+      },
+      {
+        "attr": "ref",
+        "key": "brawling",
+        "label": "Brawling",
+        "level": 4
+      },
+      {
+        "attr": "ref",
+        "key": "dodgeEscape",
+        "label": "Dodge/Escape",
+        "level": 5
+      },
+      {
+        "attr": "dex",
+        "key": "athletics",
+        "label": "Athletics",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "awareness",
+        "label": "Awareness",
+        "level": 6
+      },
+      {
+        "attr": "dex",
+        "key": "stealth",
+        "label": "Stealth",
+        "level": 6
+      },
+      {
+        "attr": "int",
+        "key": "wildernessSurv",
+        "label": "Wilderness Survival",
+        "level": 5
+      },
+      {
+        "attr": "will",
+        "key": "resistMagic",
+        "label": "Resist Magic",
+        "level": 2
+      },
+      {
+        "attr": "body",
+        "key": "endurance",
+        "label": "Endurance",
+        "level": 3
+      },
+      {
+        "attr": "will",
+        "key": "courage",
+        "label": "Courage",
+        "level": 4
+      }
+    ],
     "weapons": [
       {
         "name": "Claws",
@@ -2095,10 +2233,25 @@
         "level": 6
       }
     ],
-    "weapons": [],
-    "abilities": "",
-    "vulnerabilities": "",
-    "loot": ""
+    "weapons": [
+      {
+        "name": "Claws",
+        "dmg": "2d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      },
+      {
+        "name": "Staff",
+        "dmg": "2d6",
+        "effect": "N/A",
+        "rof": "1",
+        "rng": ""
+      }
+    ],
+    "abilities": "Leader\nOften, a group of nekkers will \nbe lead by a nekker chieftain. \nAs long as a chieftain is alive \nall nekkers in its warband \ngain a +4 to courage. The \nchieftain is also capable of \ngiving orders to the rest of \nthe pack. These orders can be \nquite complex.\nNight Vision\nNekkers operate in areas of \ndim light with no penalties.",
+    "vulnerabilities": "Ogroid Oil",
+    "loot": "Nekker teeth (1d6/2)\nNekker claws (2)\nNekker heart (1)"
   },
   {
     "id": "rock-trolls",
