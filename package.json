@@ -15,7 +15,8 @@
     "dist": "npm run build -w desktop && npm run build:server -w desktop && npm run build -w player-web && npm run pack -w desktop",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",

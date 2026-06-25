@@ -1,0 +1,7 @@
+#!/bin/sh
+# Strip Cursor co-author trailers injected by the agent IDE.
+msg_file="$1"
+[ -f "$msg_file" ] || exit 0
+tmp=$(mktemp) || exit 0
+grep -Ev '^(Co-authored-by: Cursor|Made-with: Cursor)' "$msg_file" > "$tmp"
+mv "$tmp" "$msg_file"
