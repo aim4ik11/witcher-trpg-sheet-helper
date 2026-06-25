@@ -88,7 +88,7 @@ def parse_armor_block(block: str, slot: str) -> list[dict]:
                 "sp": row["sp"],
                 "weight": row["weight"],
                 "effects": row["effect"],
-                "tags": [row["avail"].lower(), f"ae-{row['ae']}"],
+                "tags": [row["avail"].lower(), f"ae-{row['ae']}", f"ev-{row['ev']}"],
             }
         )
     return items

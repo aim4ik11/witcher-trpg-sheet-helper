@@ -1,3 +1,4 @@
+import type { Spell } from "@wilmak/shared";
 import weaponsCatalog from "./data/weapons.json";
 import armorCatalog from "./data/armor.json";
 import magicCatalog from "./data/magic.json";
@@ -105,6 +106,12 @@ export function catalogToWeapon(item: CatalogWeapon) {
   };
 }
 
+export function evFromArmorTags(tags?: string[]): number {
+  const tag = tags?.find((t) => /^ev-\d+$/i.test(t));
+  if (!tag) return 0;
+  return parseInt(tag.replace(/^ev-/i, ""), 10) || 0;
+}
+
 export function catalogToArmorPiece(item: CatalogArmor, slot?: string) {
   return {
     slot: slot ?? item.slot,
@@ -113,6 +120,7 @@ export function catalogToArmorPiece(item: CatalogArmor, slot?: string) {
     damage: 0,
     effects: item.effects ?? "",
     weight: item.weight ?? 0,
+    ev: evFromArmorTags(item.tags),
     catalogId: item.id,
   };
 }
@@ -120,6 +128,7 @@ export function catalogToArmorPiece(item: CatalogArmor, slot?: string) {
 export function catalogToSpell(item: CatalogMagic, category?: string) {
   const staCost = item.staCost ?? 0;
   const staCostText = item.staCostText || (staCost > 0 ? String(staCost) : "");
+  const element = item.element as Spell["element"] | undefined;
   return {
     id: crypto.randomUUID(),
     category: category ?? item.category,
@@ -131,6 +140,7 @@ export function catalogToSpell(item: CatalogMagic, category?: string) {
     effect: item.effect ?? "",
     defense: item.defense ?? "",
     catalogId: item.id,
+    element,
   };
 }
 

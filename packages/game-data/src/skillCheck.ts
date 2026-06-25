@@ -35,7 +35,7 @@ export function evaluateSkillCheck(options: {
     simulated = true;
   }
 
-  const success = dc != null ? result.total >= dc : null;
+  const success = dc != null ? result.total > dc : null;
   return { ...result, dc, success, simulated };
 }
 
