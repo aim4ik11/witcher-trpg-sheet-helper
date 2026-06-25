@@ -88,12 +88,10 @@ export function makeCharacter(
     vitals: {
       hp: { current: 0, max: 0 },
       sta: { current: 0, max: 0 },
-      resolve: { current: 0, max: 0 },
       woundThreshold: 0,
     },
     luck: { max: 1, used: 0 },
     speed: 0,
-    adrenaline: 0,
     movement: { run: 0, leap: 0 },
     recovery: { stun: 0, rec: 0 },
     improvementPoints: { ip: 0, trainingIp: 0 },

@@ -683,3 +683,22 @@
     display: block;
   }
 }
+
+.panel-title-row,
+.section-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-title-row .panel-title,
+.section-label-row .section-label {
+  margin-bottom: 0;
+}
+
+.sheet-rest-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

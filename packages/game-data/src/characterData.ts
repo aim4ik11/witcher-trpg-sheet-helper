@@ -163,13 +163,24 @@ export function getLuckStat(character: {
 export function calcVitalMaxes(character: { attributes?: Record<string, number> }) {
   const body = character.attributes?.body ?? 0;
   const will = character.attributes?.will ?? 0;
-  const int = character.attributes?.int ?? 0;
   const avg = physicalAverage(body, will);
   const row = PHYSICAL_TABLE[clampTableKey(avg)];
   return {
     hpStaMax: row.hp,
-    resolveMax: Math.floor(((int + will) / 2) * 5),
+    woundThreshold: woundThresholdFromMaxHp(row.hp),
   };
+}
+
+/** Wound threshold table — max HP ÷ 5 (rulebook p.156). */
+export function woundThresholdFromMaxHp(maxHp: number): number {
+  return Math.floor(maxHp / 5);
+}
+
+/** True when current HP is below the wound threshold (halve REF/DEX/INT/WILL). */
+export function isBelowWoundThreshold(character: {
+  vitals: { hp: { current: number }; woundThreshold: number };
+}): boolean {
+  return character.vitals.hp.current < character.vitals.woundThreshold;
 }
 
 export function calcDerivedStats(character: {

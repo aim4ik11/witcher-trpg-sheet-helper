@@ -1,4 +1,9 @@
-import { calcDerivedStats, calcVitalMaxes, getSpd } from "./characterData";
+import {
+  calcDerivedStats,
+  calcVitalMaxes,
+  getSpd,
+  woundThresholdFromMaxHp,
+} from "./characterData";
 import {
   normalizeOccupation,
   OCCUPATIONS,
@@ -42,12 +47,15 @@ export interface CharacterLike {
   vitals?: {
     hp?: { current?: number; max?: number };
     sta?: { current?: number; max?: number };
-    resolve?: { current?: number; max?: number };
     woundThreshold?: number;
+    /** @deprecated Verbal combat removed — stripped on normalize. */
+    resolve?: { current?: number; max?: number };
   };
   movement?: { run?: number; leap?: number };
   recovery?: { stun?: number; rec?: number };
   bonusMelee?: { punch?: string; kick?: string };
+  /** @deprecated Optional rule removed — stripped on normalize. */
+  adrenaline?: number;
 }
 
 export function normalizeRace(race?: string): string {
@@ -138,19 +146,14 @@ function applyDerived(char: CharacterLike): void {
       max: attrs.luck ?? char.luck?.max ?? 0,
       used: char.luck?.used ?? 0,
     };
-    const int = attrs.int ?? 0;
-    const will = attrs.will ?? 0;
-    const resolveMax = Math.floor(((int + will) / 2) * 5);
-    if (char.vitals && !char.vitals.resolve?.max) {
-      char.vitals.resolve = {
-        current: char.vitals.resolve?.current ?? resolveMax,
-        max: resolveMax,
-      };
+    if (char.vitals) {
+      const hpMax = char.vitals.hp?.max ?? 0;
+      char.vitals.woundThreshold = woundThresholdFromMaxHp(hpMax);
     }
     return;
   }
 
-  const { hpStaMax, resolveMax } = calcVitalMaxes(char);
+  const { hpStaMax, woundThreshold } = calcVitalMaxes(char);
   const d = calcDerivedStats(char);
   char.speed = getSpd(char);
   char.luck = { max: d.luckMax, used: char.luck?.used ?? 0 };
@@ -158,12 +161,17 @@ function applyDerived(char: CharacterLike): void {
   char.recovery = { stun: d.stun, rec: d.rec };
   char.bonusMelee = { punch: d.punch, kick: d.kick };
   if (char.vitals) {
-    char.vitals.hp = { current: char.vitals.hp?.current ?? 0, max: hpStaMax };
-    char.vitals.sta = { current: char.vitals.sta?.current ?? 0, max: hpStaMax };
-    char.vitals.resolve = {
-      current: char.vitals.resolve?.current ?? 0,
-      max: resolveMax,
+    const freshVitals =
+      (char.vitals.hp?.max ?? 0) === 0 && (char.vitals.sta?.max ?? 0) === 0;
+    char.vitals.hp = {
+      current: freshVitals ? hpStaMax : (char.vitals.hp?.current ?? hpStaMax),
+      max: hpStaMax,
     };
+    char.vitals.sta = {
+      current: freshVitals ? hpStaMax : (char.vitals.sta?.current ?? hpStaMax),
+      max: hpStaMax,
+    };
+    char.vitals.woundThreshold = woundThreshold;
   }
 }
 
@@ -187,20 +195,33 @@ function migrateProfessionTree(char: CharacterLike): Record<string, number> | un
   return Object.keys(tree).length ? tree : undefined;
 }
 
+function stripRemovedFields<T extends CharacterLike>(char: T): T {
+  const next = { ...char };
+  delete next.adrenaline;
+  if (next.vitals) {
+    const { resolve: _resolve, ...vitals } = next.vitals as CharacterLike["vitals"] & {
+      resolve?: unknown;
+    };
+    next.vitals = vitals;
+  }
+  return next;
+}
+
 /** Migrate legacy sheet data to current rulebook schema. */
 export function normalizeCharacter<T extends CharacterLike>(char: T): T {
-  const race = char.enemyKind === "monster" ? "" : normalizeRace(char.race);
+  const cleaned = stripRemovedFields(char);
+  const race = cleaned.enemyKind === "monster" ? "" : normalizeRace(cleaned.race);
   const occupation =
-    char.enemyKind === "monster" ? "" : reconcileOccupation(race, char.occupation);
-  const attributes = migrateAttributes(char);
-  const skills = migrateSkills(char.skills ?? {});
-  const professionTree = migrateProfessionTree({ ...char, occupation });
+    cleaned.enemyKind === "monster" ? "" : reconcileOccupation(race, cleaned.occupation);
+  const attributes = migrateAttributes(cleaned);
+  const skills = migrateSkills(cleaned.skills ?? {});
+  const professionTree = migrateProfessionTree({ ...cleaned, occupation });
   const definingSkillLevel =
     professionTree?.[`${normalizeOccupation(occupation)}:core`] ??
-    migrateDefiningSkillLevel(char);
+    migrateDefiningSkillLevel(cleaned);
 
   const next = {
-    ...char,
+    ...cleaned,
     race,
     occupation,
     attributes,
@@ -211,4 +232,20 @@ export function normalizeCharacter<T extends CharacterLike>(char: T): T {
 
   applyDerived(next);
   return next;
+}
+
+/** Restore HP and STA to current maximum (e.g. after a rest). */
+export function restCharacterVitals<T extends CharacterLike>(character: T): T {
+  const normalized = normalizeCharacter(character);
+  if (!normalized.vitals) return normalized;
+  const hpMax = normalized.vitals.hp?.max ?? 0;
+  const staMax = normalized.vitals.sta?.max ?? 0;
+  return {
+    ...normalized,
+    vitals: {
+      ...normalized.vitals,
+      hp: { ...normalized.vitals.hp!, current: hpMax, max: hpMax },
+      sta: { ...normalized.vitals.sta!, current: staMax, max: staMax },
+    },
+  };
 }

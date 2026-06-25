@@ -50,7 +50,7 @@ export default function CharacterSheet({
   const statsLocked = character.creation?.complete === true;
   const playerCanSpend = statsLocked && !!onChange;
 
-  const { hpStaMax, resolveMax } = calcVitalMaxes(character);
+  const { hpStaMax } = calcVitalMaxes(character);
   const derived = useMemo(() => calcDerivedStats(character), [character]);
   const occupation = character.occupation || "";
   const showMagic = isSpellcastingOccupation(occupation);
@@ -126,13 +126,7 @@ export default function CharacterSheet({
                     <span className="max">/ {hpStaMax}</span>
                   </span>
                 </VitalCard>
-                <VitalCard label="Resolve">
-                  <span className="counter-readonly">
-                    {character.vitals.resolve.current}{" "}
-                    <span className="max">/ {resolveMax}</span>
-                  </span>
-                </VitalCard>
-                <VitalCard label="Wound">
+                <VitalCard label="Wound threshold">
                   <div className="vital-card-value">
                     {character.vitals.woundThreshold}
                   </div>

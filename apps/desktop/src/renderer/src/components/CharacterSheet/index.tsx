@@ -8,6 +8,7 @@ import {
   calcDerivedStats,
   skillBase,
   normalizeCharacter,
+  restCharacterVitals,
 } from "@wilmak/game-data";
 import {
   isSpellcastingOccupation,
@@ -298,7 +299,8 @@ export default function CharacterSheet({
   const attrReadOnly = !statsEditable;
   const skillRows = useMemo(() => trainedSkills(character), [character]);
 
-  const { hpStaMax, resolveMax } = calcVitalMaxes(character);
+  const { hpStaMax } = calcVitalMaxes(character);
+  const derivedLocked = !isBestiary;
   const derived = useMemo(() => {
     if (isBestiary) {
       return {
@@ -315,7 +317,6 @@ export default function CharacterSheet({
   }, [character, isBestiary]);
   const hpMax = isBestiary ? character.vitals.hp.max : hpStaMax;
   const staMax = isBestiary ? character.vitals.sta.max : hpStaMax;
-  const resolveDisplayMax = isBestiary ? character.vitals.resolve.max : resolveMax;
   const occupation = character.occupation || "";
   const showMagic = isSpellcastingOccupation(occupation);
   const magicSections = useMemo(() => getMagicSections(occupation), [occupation]);
@@ -344,6 +345,14 @@ export default function CharacterSheet({
     for (let i = 0; i < path.length - 1; i++) obj = obj[path[i]];
     obj[path[path.length - 1]] = value;
     onChange(normalizeCharacter(next as unknown as Character));
+  }
+
+  const atFullHealth =
+    character.vitals.hp.current >= hpMax && character.vitals.sta.current >= staMax;
+
+  function handleRest() {
+    if (readOnly || !onChange) return;
+    onChange(restCharacterVitals(character));
   }
 
   function updateSpellsForCategory(category: string, categoryRows: Spell[]) {
@@ -489,7 +498,20 @@ export default function CharacterSheet({
         {isEnemyStatblock ? (
           <div className="enemy-statblock-grid">
             <section className="panel enemy-combat-panel">
-              <div className="panel-title">Combat</div>
+              <div className="panel-title-row">
+                <div className="panel-title">Combat</div>
+                {isDM && onChange && (
+                  <button
+                    type="button"
+                    className="btn-sm sheet-rest-btn"
+                    onClick={handleRest}
+                    disabled={atFullHealth}
+                    title="Restore HP and STA to max"
+                  >
+                    Rest
+                  </button>
+                )}
+              </div>
               <Counter
                 readOnly={readOnly}
                 label="HP"
@@ -1019,7 +1041,20 @@ export default function CharacterSheet({
                 )}
 
                 <section className="vitals-panel">
-                  <div className="section-label">Vitals</div>
+                  <div className="section-label-row">
+                    <div className="section-label">Vitals</div>
+                    {isDM && onChange && (
+                      <button
+                        type="button"
+                        className="btn-sm sheet-rest-btn"
+                        onClick={handleRest}
+                        disabled={atFullHealth}
+                        title="Restore HP and STA to max"
+                      >
+                        Rest
+                      </button>
+                    )}
+                  </div>
                   <div className="vitals-grid">
                     <Counter
                       layout="card"
@@ -1037,38 +1072,17 @@ export default function CharacterSheet({
                       max={staMax}
                       onChange={(v) => updateNested(["vitals", "sta", "current"], v)}
                     />
-                    <Counter
-                      layout="card"
-                      readOnly={readOnly}
-                      label="Resolve"
-                      current={character.vitals.resolve.current}
-                      max={resolveDisplayMax}
-                      onChange={(v) =>
-                        updateNested(["vitals", "resolve", "current"], v)
-                      }
-                    />
                     <div className="vital-card">
                       <div className="vital-card-label">Wound threshold</div>
-                      {readOnly ? (
-                        <div className="vital-card-value">
-                          {character.vitals.woundThreshold}
-                        </div>
-                      ) : (
-                        <NumInput
-                          className="vital-card-value"
-                          readOnly={readOnly}
-                          value={character.vitals.woundThreshold}
-                          onChange={(v) =>
-                            updateNested(["vitals", "woundThreshold"], v)
-                          }
-                        />
-                      )}
+                      <div className="vital-card-value">
+                        {character.vitals.woundThreshold}
+                      </div>
                     </div>
                   </div>
                   <p className="formula-hint">
                     {isBestiary
                       ? "Stats from rulebook bestiary — HP/STA/RUN/LEAP/STUN/REC as printed."
-                      : "HP & STA derived from (BODY + WILL) × 5; Resolve from WILL × 5."}
+                      : "HP & STA from Physical Table (BODY + WILL) ÷ 2; wound threshold = max HP ÷ 5."}
                   </p>
                 </section>
 
@@ -1211,7 +1225,7 @@ export default function CharacterSheet({
                     <label>
                       RUN{" "}
                       <NumInput
-                        readOnly={readOnly}
+                        readOnly={readOnly || derivedLocked}
                         value={derived.run}
                         onChange={(v) => updateNested(["movement", "run"], v)}
                       />
@@ -1219,7 +1233,7 @@ export default function CharacterSheet({
                     <label>
                       LEAP{" "}
                       <NumInput
-                        readOnly={readOnly}
+                        readOnly={readOnly || derivedLocked}
                         value={derived.leap}
                         onChange={(v) => updateNested(["movement", "leap"], v)}
                       />
@@ -1227,7 +1241,7 @@ export default function CharacterSheet({
                     <label>
                       STUN{" "}
                       <NumInput
-                        readOnly={readOnly}
+                        readOnly={readOnly || derivedLocked}
                         value={derived.stun}
                         onChange={(v) => updateNested(["recovery", "stun"], v)}
                       />
@@ -1235,17 +1249,9 @@ export default function CharacterSheet({
                     <label>
                       REC{" "}
                       <NumInput
-                        readOnly={readOnly}
+                        readOnly={readOnly || derivedLocked}
                         value={derived.rec}
                         onChange={(v) => updateNested(["recovery", "rec"], v)}
-                      />
-                    </label>
-                    <label>
-                      Adrenaline{" "}
-                      <NumInput
-                        readOnly={readOnly}
-                        value={character.adrenaline}
-                        onChange={(v) => update({ adrenaline: v })}
                       />
                     </label>
                     <label>

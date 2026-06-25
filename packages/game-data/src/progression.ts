@@ -25,7 +25,6 @@ export interface ProgressionCharacter {
   spells?: unknown;
   wounds?: unknown;
   statusEffects?: unknown;
-  adrenaline?: number;
   professionAbilities?: unknown;
   luck?: { max: number; used: number };
   vitals?: unknown;
@@ -108,7 +107,6 @@ export function isPlayerProgressionPatch(
     "spells",
     "wounds",
     "statusEffects",
-    "adrenaline",
     "professionAbilities",
   ] as const;
 
