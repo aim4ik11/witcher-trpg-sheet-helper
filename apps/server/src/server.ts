@@ -21,6 +21,7 @@ export function start(cfg: Partial<SessionConfig>): void {
   state.config = { sessionName: "", port: 4317, playerWebDir: null, ...rest, players };
 
   state.characters.clear();
+  state.combat = null;
   for (const char of rawCharacters ?? []) {
     if (char?.id && char.type && char.name) {
       state.characters.set(char.id, normalizeCharacter(char));

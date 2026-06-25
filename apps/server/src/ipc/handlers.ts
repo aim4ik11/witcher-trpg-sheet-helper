@@ -1,4 +1,4 @@
-import type { Character, HostToServer } from "@wilmak/shared";
+import type { Character, HostToServer, CombatState } from "@wilmak/shared";
 import { state } from "../store";
 import {
   notifyHost,
@@ -6,7 +6,7 @@ import {
   ensureCredential,
   normalizeNickname,
 } from "../utils";
-import { normalizeCharacter } from "@wilmak/game-data";
+import { normalizeCharacter, normalizeCombatState } from "@wilmak/game-data";
 import { revokePlayer } from "../socket/handlers";
 import { start } from "../server";
 
@@ -111,6 +111,24 @@ export function handleGmMessage(msg: HostToServer): void {
     case "credentials:add": {
       const cred = ensureCredential(msg.nickname, msg.code);
       notifyHost({ type: "characters:result", requestId: msg.requestId, data: cred });
+      break;
+    }
+    case "combat:get":
+      notifyHost({
+        type: "characters:result",
+        requestId: msg.requestId,
+        data: state.combat ? normalizeCombatState(state.combat) : null,
+      });
+      break;
+    case "combat:set": {
+      state.combat = msg.combat ? normalizeCombatState(msg.combat) : null;
+      state.io?.emit("combat:update", msg.combat);
+      notifyHost({ type: "combat:updated", combat: msg.combat });
+      notifyHost({
+        type: "characters:result",
+        requestId: msg.requestId,
+        data: msg.combat,
+      });
       break;
     }
   }

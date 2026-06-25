@@ -1,0 +1,323 @@
+.start-combat-modal {
+  max-width: 640px;
+}
+
+.start-combat-hint {
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.start-combat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.start-combat-group h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.start-combat-empty {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.combat-participant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.combat-participant-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+}
+
+.combat-participant-row--selected {
+  border-color: rgba(201, 168, 108, 0.35);
+  background: rgba(201, 168, 108, 0.06);
+}
+
+.combat-participant-row input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.combat-participant-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.combat-participant-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.combat-participant-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.combat-participant-init {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.combat-die-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+}
+
+.combat-die-input input {
+  width: 52px;
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-align: center;
+}
+
+.combat-init-total,
+.combat-npc-roll {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.combat-init-total strong,
+.combat-npc-roll strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.combat-tracker {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+}
+
+.combat-tracker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.combat-tracker-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.combat-tracker-foot {
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: var(--text-faint);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.combat-tracker-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.combat-tracker-round {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.combat-init-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.combat-init-table th,
+.combat-init-table td {
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.combat-init-table th {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.combat-init-table tr:last-child td {
+  border-bottom: none;
+}
+
+.combat-init-table .order {
+  width: 2.5rem;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+}
+
+.combat-init-table .initiative {
+  font-family: var(--font-mono);
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.combat-init-table .breakdown {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.combat-init-table .kind {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+}
+
+.combat-init-table .hp {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.combat-orphan-warning {
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: var(--danger);
+  background: rgba(200, 80, 80, 0.08);
+  border-bottom: 1px solid rgba(200, 80, 80, 0.2);
+}
+
+.combat-orphan-badge {
+  margin-left: 6px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--danger);
+}
+
+.combat-init-row--current {
+  background: rgba(201, 168, 108, 0.08);
+}
+
+.combat-init-row--current td {
+  border-bottom-color: rgba(201, 168, 108, 0.15);
+}
+
+.combat-acting-badge {
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+}
+
+.combat-current-turn strong {
+  color: var(--gold);
+}
+
+.combat-attack-log {
+  border-top: 1px solid var(--line);
+  padding: 12px 16px;
+}
+
+.combat-attack-log-title {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.combat-attack-log-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.combat-attack-log-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.combat-attack-log-detail {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.combat-hit-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.combat-hit-badge--hit {
+  background: rgba(90, 160, 90, 0.2);
+  color: #8fd48f;
+}
+
+.combat-hit-badge--miss {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .combat-participant-row {
+    flex-wrap: wrap;
+  }
+
+  .combat-participant-init {
+    width: 100%;
+    padding-left: 28px;
+  }
+}

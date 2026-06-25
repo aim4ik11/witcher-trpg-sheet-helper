@@ -21,6 +21,7 @@ import {
 
 import type {
   Character,
+  CombatState,
   HostToServer,
   PlayerCredential,
   ServerInfo,
@@ -129,6 +130,9 @@ function handleServerMessage(msg: ServerToHost): void {
     case "character:updated":
       win?.webContents.send("character:updated", msg.character);
       schedulePersistCharacters();
+      break;
+    case "combat:updated":
+      win?.webContents.send("combat:update", msg.combat);
       break;
   }
 }
@@ -329,4 +333,14 @@ ipcMain.handle("characters:update", (_e, id: string, character: Character) =>
 );
 ipcMain.handle("characters:delete", (_e, id: string) =>
   requestServer<void>({ type: "characters:delete", requestId: randomUUID(), id }),
+);
+ipcMain.handle("combat:get", () =>
+  requestServer<CombatState | null>({ type: "combat:get", requestId: randomUUID() }),
+);
+ipcMain.handle("combat:set", (_e, combat: CombatState | null) =>
+  requestServer<CombatState | null>({
+    type: "combat:set",
+    requestId: randomUUID(),
+    combat,
+  }),
 );

@@ -1,0 +1,239 @@
+.attack-modal {
+  max-width: 720px;
+}
+
+.attack-modal-hint {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.attack-modal-monster-note {
+  margin: 0 0 1rem;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  background: rgba(201, 168, 108, 0.06);
+  border: 1px solid rgba(201, 168, 108, 0.18);
+  border-radius: var(--radius-md);
+}
+
+.attack-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.attack-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.attack-modal-grid label,
+.attack-rolls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.attack-modal-grid select,
+.attack-modal-grid input,
+.attack-rolls input,
+.attack-modifier-grid select,
+.attack-modifier-grid input {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 14px;
+}
+
+.attack-base-preview {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
+}
+
+.attack-base-preview strong {
+  font-family: var(--font-mono);
+  color: var(--gold);
+}
+
+.attack-modifiers {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin: 0;
+}
+
+.attack-modifiers legend {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  padding: 0 6px;
+}
+
+.attack-modifier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.attack-check {
+  flex-direction: row !important;
+  align-items: center;
+  text-transform: none !important;
+  font-size: 13px !important;
+  color: var(--text) !important;
+  cursor: pointer;
+}
+
+.attack-check input {
+  width: auto;
+}
+
+.attack-rolls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.attack-preview {
+  padding: 12px 14px;
+  background: rgba(201, 168, 108, 0.05);
+  border: 1px solid rgba(201, 168, 108, 0.2);
+  border-radius: var(--radius-md);
+}
+
+.attack-preview h3 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.attack-preview-row + .attack-preview-row {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.attack-preview-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+.attack-preview-margin {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.attack-preview-rolls {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.attack-outcome {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.attack-outcome--critical {
+  color: var(--gold);
+}
+
+.attack-outcome--fumble {
+  color: var(--danger);
+}
+
+.attack-rof-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  grid-column: 1 / -1;
+}
+
+.attack-rof-badge {
+  display: inline-block;
+  width: fit-content;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201, 168, 108, 0.12);
+  border: 1px solid rgba(201, 168, 108, 0.28);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.attack-rof-dmg {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.attack-rof-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.attack-rof-effect {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.attack-apply-toggle {
+  margin-bottom: 4px;
+}
+
+.attack-damage-detail {
+  line-height: 1.5;
+}
+
+.attack-damage-breakdown {
+  margin: 8px 0 0;
+  padding-left: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.attack-damage-breakdown li + li {
+  margin-top: 4px;
+}
+
+.attack-crit-wound {
+  margin-top: 6px;
+  color: var(--gold);
+  font-family: var(--font-sans);
+}
+
+.attack-hp-delta {
+  margin-top: 4px;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 640px) {
+  .attack-modal-grid,
+  .attack-modifier-grid,
+  .attack-rolls {
+    grid-template-columns: 1fr;
+  }
+}

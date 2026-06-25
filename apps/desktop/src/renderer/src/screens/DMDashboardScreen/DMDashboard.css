@@ -6,7 +6,80 @@
 .dm-dashboard__body {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 24px 40px 40px;
+}
+
+.dm-tabs-wrap {
+  margin-bottom: 28px;
+}
+
+.dm-tab-bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dm-tab-badge,
+.dm-tab-count {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 3px 6px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+.dm-tab-badge {
+  background: rgba(201, 168, 108, 0.18);
+  color: var(--gold);
+}
+
+.dm-tab-count {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+}
+
+.dm-tab-panel {
+  min-height: 320px;
+}
+
+.dm-section--flush {
+  margin-bottom: 0;
+}
+
+.dm-combat-empty {
+  padding: 28px 24px;
+  text-align: center;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+}
+
+.dm-combat-empty-title {
+  margin: 0 0 8px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dm-combat-empty .dm-section-hint {
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dm-combat-empty .primary {
+  margin-top: 8px;
+}
+
+.dm-section {
+  margin-bottom: 48px;
+}
+
+.dm-tab-panel .dm-section:last-child {
+  margin-bottom: 0;
 }
 
 .dm-topbar-meta {
@@ -24,10 +97,6 @@
 .dm-session-name strong {
   color: var(--text);
   font-weight: 600;
-}
-
-.dm-section {
-  margin-bottom: 48px;
 }
 
 .dm-section-head {
@@ -202,6 +271,22 @@
   font-family: var(--font-mono);
   color: var(--gold);
   letter-spacing: 1.5px;
+}
+
+.char-vitals {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.char-vitals .mono {
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+.char-vitals-sep {
+  margin: 0 6px;
+  color: var(--text-faint);
 }
 
 .char-card-actions {

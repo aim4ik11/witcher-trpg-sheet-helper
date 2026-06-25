@@ -5,6 +5,7 @@ import type {
   Player,
   Character,
   PlayerCredential,
+  CombatState,
 } from "@wilmak/shared";
 
 const api: Api = {
@@ -47,6 +48,13 @@ const api: Api = {
     const handler = (_e: IpcRendererEvent, character: Character) => cb(character);
     ipcRenderer.on("character:updated", handler);
     return () => ipcRenderer.removeListener("character:updated", handler);
+  },
+  getCombat: () => ipcRenderer.invoke("combat:get"),
+  setCombat: (combat: CombatState | null) => ipcRenderer.invoke("combat:set", combat),
+  onCombatUpdate: (cb: (combat: CombatState | null) => void) => {
+    const handler = (_e: IpcRendererEvent, combat: CombatState | null) => cb(combat);
+    ipcRenderer.on("combat:update", handler);
+    return () => ipcRenderer.removeListener("combat:update", handler);
   },
 };
 

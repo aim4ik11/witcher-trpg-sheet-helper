@@ -6,6 +6,7 @@ import type {
   ClientToServerEvents,
   ServerToClientEvents,
   SocketData,
+  CombatState,
 } from "@wilmak/shared";
 
 export type Io = SocketServer<
@@ -27,4 +28,5 @@ export const state = {
   connected: new Map<string, { nickname: string }>(),
   characters: new Map<string, Character>(),
   playerTokens: new Map<string, string>(), // token → nickname
+  combat: null as CombatState | null,
 };
