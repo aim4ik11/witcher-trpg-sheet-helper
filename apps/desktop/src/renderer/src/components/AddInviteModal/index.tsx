@@ -41,7 +41,7 @@ export default function AddInviteModal({
     try {
       await onSubmit(nick);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to add invite.");
+      setError(err instanceof Error ? err.message : "Failed to add player.");
       setSubmitting(false);
     }
   }
@@ -64,7 +64,7 @@ export default function AddInviteModal({
         >
           ×
         </button>
-        <h2 className="create-modal-title">Add player invite</h2>
+        <h2 className="create-modal-title">Add player</h2>
         <p
           className="muted-text"
           style={{ marginBottom: "1rem", fontStyle: "normal", fontSize: "0.85rem" }}
@@ -95,7 +95,7 @@ export default function AddInviteModal({
               className="primary"
               disabled={submitting || !nickname.trim()}
             >
-              {submitting ? "Adding…" : "Add invite"}
+              {submitting ? "Adding…" : "Add Player"}
             </button>
           </div>
         </form>

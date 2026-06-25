@@ -268,7 +268,7 @@ export default function DMDashboardScreen() {
                       onClick={() => setInviteOpen(true)}
                       disabled={!server}
                     >
-                      + Add invite
+                      + Add Player
                     </button>
                   </div>
                 </div>
