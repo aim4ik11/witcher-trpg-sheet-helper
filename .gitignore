@@ -1,12 +1,26 @@
+# Dependencies
 node_modules/
+
+# IDE data
+.idea
+
+# Build outputs
+dist/
 apps/desktop/renderer/
 apps/desktop/out/
 apps/player-web/dist/
 apps/server/dist/
-dist/
-.DS_Store
+
+# Logs
 *.log
+
+# OS files
+.DS_Store
+
+# Session data
+sessions/
+
+# Documentation data
 data/*
 !data/rulebook/
 !data/rulebook/**
-sessions/
