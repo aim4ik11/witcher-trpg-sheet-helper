@@ -166,5 +166,40 @@ export function handleGmMessage(msg: HostToServer): void {
       });
       break;
     }
+    case "magic-cast:request": {
+      state.io
+        ?.to(`character:${msg.data.characterId}`)
+        .emit("magic-cast:request", msg.data);
+      notifyHost({ type: "magic-cast:requested", request: msg.data });
+      notifyHost({
+        type: "characters:result",
+        requestId: msg.requestId,
+        data: msg.data,
+      });
+      break;
+    }
+    case "magic-cast:resolve": {
+      state.io
+        ?.to(`character:${msg.data.characterId}`)
+        .emit("magic-cast:resolved", msg.data);
+      notifyHost({ type: "magic-cast:resolved", result: msg.data });
+      notifyHost({
+        type: "characters:result",
+        requestId: msg.requestId,
+        data: msg.data,
+      });
+      break;
+    }
+    case "magic-cast:cancel": {
+      state.io
+        ?.to(`character:${msg.characterId}`)
+        .emit("magic-cast:cancel", msg.magicCastId);
+      notifyHost({
+        type: "characters:result",
+        requestId: msg.requestId,
+        data: null,
+      });
+      break;
+    }
   }
 }

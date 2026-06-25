@@ -1,0 +1,5 @@
+.magic-cast-banner .magic-cast-banner-vitals {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted, #aaa);
+}

@@ -6,6 +6,8 @@ import type {
   Character,
   PlayerCredential,
   CombatState,
+  MagicCastRequest,
+  MagicCastResolved,
   SkillCheckRequest,
   SkillCheckResolved,
 } from "@wilmak/shared";
@@ -73,6 +75,22 @@ const api: Api = {
     const handler = (_e: IpcRendererEvent, result: SkillCheckResolved) => cb(result);
     ipcRenderer.on("skill-check:resolved", handler);
     return () => ipcRenderer.removeListener("skill-check:resolved", handler);
+  },
+  requestMagicCast: (request: MagicCastRequest) =>
+    ipcRenderer.invoke("magic-cast:request", request),
+  resolveMagicCast: (result: MagicCastResolved) =>
+    ipcRenderer.invoke("magic-cast:resolve", result),
+  cancelMagicCast: (characterId: string, magicCastId: string) =>
+    ipcRenderer.invoke("magic-cast:cancel", characterId, magicCastId),
+  onMagicCastRequest: (cb: (request: MagicCastRequest) => void) => {
+    const handler = (_e: IpcRendererEvent, request: MagicCastRequest) => cb(request);
+    ipcRenderer.on("magic-cast:request", handler);
+    return () => ipcRenderer.removeListener("magic-cast:request", handler);
+  },
+  onMagicCastResolved: (cb: (result: MagicCastResolved) => void) => {
+    const handler = (_e: IpcRendererEvent, result: MagicCastResolved) => cb(result);
+    ipcRenderer.on("magic-cast:resolved", handler);
+    return () => ipcRenderer.removeListener("magic-cast:resolved", handler);
   },
 };
 

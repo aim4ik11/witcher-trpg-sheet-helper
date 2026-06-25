@@ -27,6 +27,8 @@ import type {
   ServerInfo,
   ServerToHost,
   SessionConfig,
+  MagicCastRequest,
+  MagicCastResolved,
   SkillCheckRequest,
   SkillCheckResolved,
 } from "@wilmak/shared";
@@ -141,6 +143,12 @@ function handleServerMessage(msg: ServerToHost): void {
       break;
     case "skill-check:resolved":
       win?.webContents.send("skill-check:resolved", msg.result);
+      break;
+    case "magic-cast:requested":
+      win?.webContents.send("magic-cast:request", msg.request);
+      break;
+    case "magic-cast:resolved":
+      win?.webContents.send("magic-cast:resolved", msg.result);
       break;
   }
 }
@@ -374,5 +382,29 @@ ipcMain.handle(
       requestId: randomUUID(),
       characterId,
       skillCheckId,
+    }),
+);
+ipcMain.handle("magic-cast:request", (_e, data: MagicCastRequest) =>
+  requestServer<MagicCastRequest>({
+    type: "magic-cast:request",
+    requestId: randomUUID(),
+    data,
+  }),
+);
+ipcMain.handle("magic-cast:resolve", (_e, data: MagicCastResolved) =>
+  requestServer<MagicCastResolved>({
+    type: "magic-cast:resolve",
+    requestId: randomUUID(),
+    data,
+  }),
+);
+ipcMain.handle(
+  "magic-cast:cancel",
+  (_e, characterId: string, magicCastId: string) =>
+    requestServer<void>({
+      type: "magic-cast:cancel",
+      requestId: randomUUID(),
+      characterId,
+      magicCastId,
     }),
 );

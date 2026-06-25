@@ -184,6 +184,8 @@ interface DynamicTableProps {
   emptyRow: DynRow;
   readOnly?: boolean;
   renderAddActions?: () => React.ReactNode;
+  renderRowActions?: (row: DynRow, index: number) => React.ReactNode;
+  rowActionsHeader?: string;
 }
 function DynamicTable({
   columns,
@@ -194,6 +196,8 @@ function DynamicTable({
   emptyRow,
   readOnly,
   renderAddActions,
+  renderRowActions,
+  rowActionsHeader,
 }: DynamicTableProps) {
   if (readOnly && rows.length === 0) return <p className="readonly-empty">None</p>;
   return (
@@ -204,6 +208,7 @@ function DynamicTable({
             {columns.map((col) => (
               <th key={col.key}>{col.label}</th>
             ))}
+            {renderRowActions && <th>{rowActionsHeader ?? ""}</th>}
             {!readOnly && <th></th>}
           </tr>
         </thead>
@@ -237,6 +242,7 @@ function DynamicTable({
                   )}
                 </td>
               ))}
+              {renderRowActions && <td>{renderRowActions(row, i)}</td>}
               {!readOnly && (
                 <td>
                   <button type="button" className="danger" onClick={() => onRemove(i)}>
@@ -280,6 +286,8 @@ interface Props {
     skillKey: string;
     skillLabel: string;
   }) => void;
+  /** DM: cast a spell from the Magic tab. */
+  onMagicCast?: (params: { spell: Spell }) => void;
 }
 
 export default function CharacterSheet({
@@ -289,6 +297,7 @@ export default function CharacterSheet({
   onBack,
   backLabel,
   onSkillCheck,
+  onMagicCast,
 }: Props) {
   const [tab, setTab] = useState("Stats");
   const [picker, setPicker] = useState<PickerState | null>(null);
@@ -311,6 +320,10 @@ export default function CharacterSheet({
     onSkillCheck?.({ attrKey, skillKey, skillLabel });
   }
 
+  function openMagicCast(spell: Spell) {
+    onMagicCast?.({ spell });
+  }
+
   const { hpStaMax } = calcVitalMaxes(character);
   const derivedLocked = !isBestiary;
   const derived = useMemo(() => {
@@ -331,6 +344,7 @@ export default function CharacterSheet({
   const staMax = isBestiary ? character.vitals.sta.max : hpStaMax;
   const occupation = character.occupation || "";
   const showMagic = isSpellcastingOccupation(occupation);
+  const magicCastable = isDM && !!onMagicCast && showMagic;
   const magicSections = useMemo(() => getMagicSections(occupation), [occupation]);
 
   const tabs = useMemo(() => {
@@ -1575,6 +1589,20 @@ export default function CharacterSheet({
                         );
                       }}
                       emptyRow={{ ...MAGIC_ROW_EMPTY }}
+                      renderRowActions={
+                        magicCastable
+                          ? (row) => (
+                              <button
+                                type="button"
+                                className="btn-sm"
+                                onClick={() => openMagicCast(row as unknown as Spell)}
+                              >
+                                Cast
+                              </button>
+                            )
+                          : undefined
+                      }
+                      rowActionsHeader="Cast"
                       renderAddActions={() => (
                         <button
                           type="button"

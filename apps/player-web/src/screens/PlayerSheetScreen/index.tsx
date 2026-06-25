@@ -1,6 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import type { Character, SkillCheckRequest, SkillCheckResolved } from "@wilmak/shared";
+import type {
+  Character,
+  MagicCastRequest,
+  MagicCastResolved,
+  SkillCheckRequest,
+  SkillCheckResolved,
+} from "@wilmak/shared";
 import { fetchPlayerCharacter, getToken, clearToken, updatePlayerCharacter } from "../../api";
 import {
   disconnectPlayerSocket,
@@ -9,6 +15,7 @@ import {
 } from "../../socket";
 import CharacterSheet from "../../components/CharacterSheet";
 import SkillCheckBanner from "../../components/SkillCheckBanner";
+import MagicCastBanner from "../../components/MagicCastBanner";
 
 export default function PlayerSheetScreen() {
   const [character, setCharacter] = useState<Character | null>(null);
@@ -17,6 +24,10 @@ export default function PlayerSheetScreen() {
     null,
   );
   const [resolvedSkillCheck, setResolvedSkillCheck] = useState<SkillCheckResolved | null>(
+    null,
+  );
+  const [pendingMagicCast, setPendingMagicCast] = useState<MagicCastRequest | null>(null);
+  const [resolvedMagicCast, setResolvedMagicCast] = useState<MagicCastResolved | null>(
     null,
   );
   const navigate = useNavigate();
@@ -80,10 +91,28 @@ export default function PlayerSheetScreen() {
     const onSkillCancel = (requestId: string) => {
       setPendingSkillCheck((prev) => (prev?.id === requestId ? null : prev));
     };
+    const onMagicRequest = (request: MagicCastRequest) => {
+      if (request.characterId === character?.id) {
+        setPendingMagicCast(request);
+        setResolvedMagicCast(null);
+      }
+    };
+    const onMagicResolved = (result: MagicCastResolved) => {
+      if (result.characterId === character?.id) {
+        setPendingMagicCast(null);
+        setResolvedMagicCast(result);
+      }
+    };
+    const onMagicCancel = (requestId: string) => {
+      setPendingMagicCast((prev) => (prev?.id === requestId ? null : prev));
+    };
     socket.on("character-updated", onUpdate);
     socket.on("skill-check:request", onSkillRequest);
     socket.on("skill-check:resolved", onSkillResolved);
     socket.on("skill-check:cancel", onSkillCancel);
+    socket.on("magic-cast:request", onMagicRequest);
+    socket.on("magic-cast:resolved", onMagicResolved);
+    socket.on("magic-cast:cancel", onMagicCancel);
 
     return () => {
       stopResume();
@@ -91,6 +120,9 @@ export default function PlayerSheetScreen() {
       socket.off("skill-check:request", onSkillRequest);
       socket.off("skill-check:resolved", onSkillResolved);
       socket.off("skill-check:cancel", onSkillCancel);
+      socket.off("magic-cast:request", onMagicRequest);
+      socket.off("magic-cast:resolved", onMagicResolved);
+      socket.off("magic-cast:cancel", onMagicCancel);
     };
   }, [token, character?.id, invalidateSession]);
 
@@ -140,6 +172,11 @@ export default function PlayerSheetScreen() {
         pending={pendingSkillCheck}
         resolved={resolvedSkillCheck}
         onDismissResolved={() => setResolvedSkillCheck(null)}
+      />
+      <MagicCastBanner
+        pending={pendingMagicCast}
+        resolved={resolvedMagicCast}
+        onDismissResolved={() => setResolvedMagicCast(null)}
       />
       <CharacterSheet
         character={character}

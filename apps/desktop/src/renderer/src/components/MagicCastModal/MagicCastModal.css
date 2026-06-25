@@ -1,0 +1,50 @@
+.magic-cast-modal .magic-cast-element {
+  text-transform: capitalize;
+  color: var(--accent, #c9a227);
+}
+
+.magic-cast-cost {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.magic-cast-overexert {
+  color: #e07070;
+}
+
+.magic-cast-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1.4rem;
+}
+
+.magic-cast-vitals,
+.magic-cast-fumble {
+  font-size: 0.9rem;
+  color: var(--text-muted, #aaa);
+  margin: 0.5rem 0;
+}
+
+.magic-cast-sign-effect,
+.magic-cast-targeting {
+  text-transform: capitalize;
+}
+
+.magic-cast-category-hint,
+.magic-cast-dimeritium-hint {
+  font-size: 0.88rem;
+  padding: 0.55rem 0.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted, #aaa);
+}
+
+.magic-cast-effects {
+  margin: 0.5rem 0 1rem;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+}

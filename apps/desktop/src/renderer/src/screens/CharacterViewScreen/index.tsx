@@ -6,12 +6,16 @@ import CharacterSheet from "../../components/CharacterSheet";
 import SkillCheckModal, {
   type SkillCheckTarget,
 } from "../../components/SkillCheckModal";
+import MagicCastModal, {
+  type MagicCastTarget,
+} from "../../components/MagicCastModal";
 
 export default function CharacterViewScreen() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [character, setCharacter] = useState<Character | null>(null);
   const [skillCheck, setSkillCheck] = useState<SkillCheckTarget | null>(null);
+  const [magicCast, setMagicCast] = useState<MagicCastTarget | null>(null);
 
   const load = useCallback(async () => {
     if (!id) return;
@@ -52,11 +56,26 @@ export default function CharacterViewScreen() {
         onSkillCheck={(params) =>
           setSkillCheck({ character, ...params })
         }
+        onMagicCast={({ spell }) =>
+          setMagicCast({ character, spell })
+        }
       />
       {skillCheck && (
         <SkillCheckModal
           target={skillCheck}
           onClose={() => setSkillCheck(null)}
+        />
+      )}
+      {magicCast && (
+        <MagicCastModal
+          target={magicCast}
+          onClose={() => setMagicCast(null)}
+          onCharacterUpdated={(updated) => {
+            setCharacter(updated);
+            setMagicCast((prev) =>
+              prev ? { ...prev, character: updated } : null,
+            );
+          }}
         />
       )}
     </>
