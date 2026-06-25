@@ -14,7 +14,7 @@ export default function PlayerInvitesList({
   if (credentials.length === 0) {
     return (
       <p className="invite-empty">
-        No player invites yet. Add a player character or invite in DM Console.
+        No player invites yet. Add a player character or invite in GM Console.
       </p>
     );
   }

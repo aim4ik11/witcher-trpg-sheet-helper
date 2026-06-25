@@ -59,7 +59,7 @@ Suggested mood — designer may interpret freely:
 DESKTOP (GM)
 ├── Main Screen              — choose session type
 ├── Local Session            — load config, start server, lobby
-├── DM Console               — invites, character lists, connection info
+├── GM Console               — invites, character lists, connection info
 └── Character Sheet          — full-screen edit view for one character
 
 PLAYER WEB (browser, same WiFi)
@@ -91,7 +91,7 @@ PLAYER WEB (browser, same WiFi)
 
 ### 4.2 Local Session Screen
 
-**Purpose:** Load session file, start server, show how players connect, manage lobby before DM Console.
+**Purpose:** Load session file, start server, show how players connect, manage lobby before GM Console.
 
 **Header:** Screen title + **← Назад** (stops server, returns to Main).
 
@@ -116,7 +116,7 @@ PLAYER WEB (browser, same WiFi)
 | Title               | «Сервер працює»                       |
 | Hint                | Players use URL or QR on same network |
 | Per network address | Readable URL + scannable QR code      |
-| CTA                 | **Відкрити DM Console →**             |
+| CTA                 | **Відкрити GM Console →**             |
 
 **Invited players card:**
 
@@ -136,11 +136,11 @@ PLAYER WEB (browser, same WiFi)
 
 ---
 
-### 4.3 DM Console
+### 4.3 GM Console
 
 **Purpose:** Hub for running the game — connection helpers, invites, all character sheets.
 
-**Header:** **← Back** (to Local Session) + title **DM Console**.
+**Header:** **← Back** (to Local Session) + title **GM Console**.
 
 #### Section: Player Connection
 
@@ -204,7 +204,7 @@ PLAYER WEB (browser, same WiFi)
 
 | Element | Behavior                                    |
 | ------- | ------------------------------------------- |
-| Back    | **← DM Console**                            |
+| Back    | **← GM Console**                            |
 | Loading | Centered loading message until data arrives |
 
 Sheet content depends on character type — see **Section 6**.
@@ -292,7 +292,7 @@ Catalogs: weapons, armor, magic (signs, spells, invocations, hexes, rituals).
 
 ### 5.5 Player Invites List
 
-Used on Local Session and DM Console.
+Used on Local Session and GM Console.
 
 **Each row:**
 
@@ -321,7 +321,7 @@ Three variants:
 
 | Element          | GM                                                    | Player                                   |
 | ---------------- | ----------------------------------------------------- | ---------------------------------------- |
-| Back             | Returns to DM Console                                 | **Logout**                               |
+| Back             | Returns to GM Console                                 | **Logout**                               |
 | Character name   | Editable                                              | Display only                             |
 | Identity line    | Race + occupation selectors, or monster type + threat | Race and occupation as text              |
 | Player only      | Nickname field in header                              | —                                        |
@@ -538,11 +538,11 @@ Players only see player characters, not enemy sheets.
 ## 10. User flows
 
 ```
-GM: Main → Local → load session → start server → DM Console
+GM: Main → Local → load session → start server → GM Console
 
-GM: DM Console → + New Player → fill form → character + invite created
+GM: GM Console → + New Player → fill form → character + invite created
 
-GM: DM Console → + New Enemy → Bestiary → pick creature → stat block sheet
+GM: GM Console → + New Enemy → Bestiary → pick creature → stat block sheet
 
 Player: scan QR or open URL → login → sheet (or waiting screen)
 
@@ -560,7 +560,7 @@ Mixed Ukrainian and English in current copy:
 | Area                             | Language                 |
 | -------------------------------- | ------------------------ |
 | Main, Local session              | Ukrainian                |
-| DM Console, modals, enemy sheets | English                  |
+| GM Console, modals, enemy sheets | English                  |
 | Player login                     | Ukrainian + some English |
 
 Design may unify or localize later.

@@ -81,7 +81,7 @@ export default function DMDashboardScreen() {
       setCharacters(chars);
     } catch {
       setCharacters([]);
-      navigate("/local");
+      navigate("/session");
     } finally {
       setLoading(false);
     }
@@ -184,10 +184,7 @@ export default function DMDashboardScreen() {
     <div className="dm-dashboard">
       <header className="page-topbar">
         <div className="page-topbar__inner">
-          <button type="button" className="ghost" onClick={() => navigate("/local")}>
-            ← Local Session
-          </button>
-          <div className="page-topbar__title">DM Console</div>
+          <div className="page-topbar__title">GM Console</div>
           <div className="dm-topbar-meta">
             {server && (
               <span className="status-pill status-pill--online">
@@ -205,7 +202,7 @@ export default function DMDashboardScreen() {
       </header>
 
       <div className="dm-dashboard__body">
-        <nav className="dm-tabs-wrap" aria-label="DM console sections">
+        <nav className="dm-tabs-wrap" aria-label="GM Console sections">
           <div className="tab-bar dm-tab-bar">
             {DM_TABS.map((tab) => (
               <button
@@ -262,7 +259,7 @@ export default function DMDashboardScreen() {
 
               <section className="dm-section">
                 <div className="dm-section-head">
-                  <h2>Player invites</h2>
+                  <h2>Lobby</h2>
                   <span className="badge badge--count">{credentials.length}</span>
                   <div className="dm-section-actions">
                     <button

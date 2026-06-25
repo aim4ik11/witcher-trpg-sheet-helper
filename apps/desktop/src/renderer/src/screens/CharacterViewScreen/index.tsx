@@ -52,7 +52,7 @@ export default function CharacterViewScreen() {
         onChange={handleChange}
         isDM
         onBack={() => navigate("/session")}
-        backLabel="← DM Console"
+        backLabel="← GM Console"
         onSkillCheck={(params) =>
           setSkillCheck({ character, ...params })
         }
