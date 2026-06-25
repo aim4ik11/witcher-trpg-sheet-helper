@@ -11,7 +11,7 @@ const MainScreen = () => {
         <div className="card">
           <h3>Локальна сесія</h3>
           <p className="muted">Сервер у вашій WiFi-мережі.</p>
-          <button className="primary" onClick={() => navigate("session")}>
+          <button className="primary" onClick={() => navigate("local-init")}>
             Обрати
           </button>
         </div>
