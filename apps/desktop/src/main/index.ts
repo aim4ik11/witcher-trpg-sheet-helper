@@ -27,6 +27,8 @@ import type {
   ServerInfo,
   ServerToHost,
   SessionConfig,
+  SkillCheckRequest,
+  SkillCheckResolved,
 } from "@wilmak/shared";
 
 const isDev = !!process.env.ELECTRON_RENDERER_URL;
@@ -133,6 +135,12 @@ function handleServerMessage(msg: ServerToHost): void {
       break;
     case "combat:updated":
       win?.webContents.send("combat:update", msg.combat);
+      break;
+    case "skill-check:requested":
+      win?.webContents.send("skill-check:request", msg.request);
+      break;
+    case "skill-check:resolved":
+      win?.webContents.send("skill-check:resolved", msg.result);
       break;
   }
 }
@@ -343,4 +351,28 @@ ipcMain.handle("combat:set", (_e, combat: CombatState | null) =>
     requestId: randomUUID(),
     combat,
   }),
+);
+ipcMain.handle("skill-check:request", (_e, data: SkillCheckRequest) =>
+  requestServer<SkillCheckRequest>({
+    type: "skill-check:request",
+    requestId: randomUUID(),
+    data,
+  }),
+);
+ipcMain.handle("skill-check:resolve", (_e, data: SkillCheckResolved) =>
+  requestServer<SkillCheckResolved>({
+    type: "skill-check:resolve",
+    requestId: randomUUID(),
+    data,
+  }),
+);
+ipcMain.handle(
+  "skill-check:cancel",
+  (_e, characterId: string, skillCheckId: string) =>
+    requestServer<void>({
+      type: "skill-check:cancel",
+      requestId: randomUUID(),
+      characterId,
+      skillCheckId,
+    }),
 );

@@ -6,6 +6,8 @@ import type {
   Character,
   PlayerCredential,
   CombatState,
+  SkillCheckRequest,
+  SkillCheckResolved,
 } from "@wilmak/shared";
 
 const api: Api = {
@@ -55,6 +57,22 @@ const api: Api = {
     const handler = (_e: IpcRendererEvent, combat: CombatState | null) => cb(combat);
     ipcRenderer.on("combat:update", handler);
     return () => ipcRenderer.removeListener("combat:update", handler);
+  },
+  requestSkillCheck: (request: SkillCheckRequest) =>
+    ipcRenderer.invoke("skill-check:request", request),
+  resolveSkillCheck: (result: SkillCheckResolved) =>
+    ipcRenderer.invoke("skill-check:resolve", result),
+  cancelSkillCheck: (characterId: string, skillCheckId: string) =>
+    ipcRenderer.invoke("skill-check:cancel", characterId, skillCheckId),
+  onSkillCheckRequest: (cb: (request: SkillCheckRequest) => void) => {
+    const handler = (_e: IpcRendererEvent, request: SkillCheckRequest) => cb(request);
+    ipcRenderer.on("skill-check:request", handler);
+    return () => ipcRenderer.removeListener("skill-check:request", handler);
+  },
+  onSkillCheckResolved: (cb: (result: SkillCheckResolved) => void) => {
+    const handler = (_e: IpcRendererEvent, result: SkillCheckResolved) => cb(result);
+    ipcRenderer.on("skill-check:resolved", handler);
+    return () => ipcRenderer.removeListener("skill-check:resolved", handler);
   },
 };
 

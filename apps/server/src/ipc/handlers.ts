@@ -131,5 +131,40 @@ export function handleGmMessage(msg: HostToServer): void {
       });
       break;
     }
+    case "skill-check:request": {
+      state.io
+        ?.to(`character:${msg.data.characterId}`)
+        .emit("skill-check:request", msg.data);
+      notifyHost({ type: "skill-check:requested", request: msg.data });
+      notifyHost({
+        type: "characters:result",
+        requestId: msg.requestId,
+        data: msg.data,
+      });
+      break;
+    }
+    case "skill-check:resolve": {
+      state.io
+        ?.to(`character:${msg.data.characterId}`)
+        .emit("skill-check:resolved", msg.data);
+      notifyHost({ type: "skill-check:resolved", result: msg.data });
+      notifyHost({
+        type: "characters:result",
+        requestId: msg.requestId,
+        data: msg.data,
+      });
+      break;
+    }
+    case "skill-check:cancel": {
+      state.io
+        ?.to(`character:${msg.characterId}`)
+        .emit("skill-check:cancel", msg.skillCheckId);
+      notifyHost({
+        type: "characters:result",
+        requestId: msg.requestId,
+        data: null,
+      });
+      break;
+    }
   }
 }

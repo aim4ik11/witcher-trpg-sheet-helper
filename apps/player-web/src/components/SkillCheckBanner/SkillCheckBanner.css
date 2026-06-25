@@ -1,0 +1,96 @@
+.skill-check-banner-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.skill-check-banner {
+  padding: 14px 16px;
+  border: 1px solid rgba(201, 168, 108, 0.25);
+  background: rgba(201, 168, 108, 0.06);
+}
+
+.skill-check-banner--pending {
+  border-color: rgba(201, 168, 108, 0.35);
+}
+
+.skill-check-banner--resolved {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.skill-check-banner-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.skill-check-banner-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.skill-check-banner-head .skill-check-banner-title {
+  margin-bottom: 0;
+}
+
+.skill-check-banner-body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.skill-check-banner-body strong {
+  font-family: var(--font-mono);
+  color: var(--gold);
+}
+
+.skill-check-banner-notes {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.skill-check-banner-hint {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.skill-check-banner-dismiss {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.skill-check-banner-pass {
+  color: #7cb87c;
+  font-weight: 600;
+}
+
+.skill-check-banner-fail {
+  color: #e07070;
+  font-weight: 600;
+}
+
+.skill-check-banner-crit {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.skill-check-banner-fumble {
+  color: #e07070;
+  font-weight: 600;
+}

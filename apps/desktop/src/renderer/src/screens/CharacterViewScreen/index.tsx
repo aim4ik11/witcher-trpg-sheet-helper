@@ -3,11 +3,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import type { Character } from "@wilmak/shared";
 import { api } from "../../api";
 import CharacterSheet from "../../components/CharacterSheet";
+import SkillCheckModal, {
+  type SkillCheckTarget,
+} from "../../components/SkillCheckModal";
 
 export default function CharacterViewScreen() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [character, setCharacter] = useState<Character | null>(null);
+  const [skillCheck, setSkillCheck] = useState<SkillCheckTarget | null>(null);
 
   const load = useCallback(async () => {
     if (!id) return;
@@ -38,12 +42,23 @@ export default function CharacterViewScreen() {
   if (!character) return <p className="loading-msg">Loading...</p>;
 
   return (
-    <CharacterSheet
-      character={character}
-      onChange={handleChange}
-      isDM
-      onBack={() => navigate("/session")}
-      backLabel="← DM Console"
-    />
+    <>
+      <CharacterSheet
+        character={character}
+        onChange={handleChange}
+        isDM
+        onBack={() => navigate("/session")}
+        backLabel="← DM Console"
+        onSkillCheck={(params) =>
+          setSkillCheck({ character, ...params })
+        }
+      />
+      {skillCheck && (
+        <SkillCheckModal
+          target={skillCheck}
+          onClose={() => setSkillCheck(null)}
+        />
+      )}
+    </>
   );
 }

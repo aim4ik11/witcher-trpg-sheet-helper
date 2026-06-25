@@ -702,3 +702,19 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+
+.skill-row--checkable {
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background 0.12s ease;
+}
+
+.skill-row--checkable:hover,
+.skill-row--checkable:focus-visible {
+  background: rgba(201, 168, 108, 0.08);
+  outline: none;
+}
+
+.enemy-skills-table tbody tr.skill-row--checkable:hover {
+  background: rgba(201, 168, 108, 0.06);
+}

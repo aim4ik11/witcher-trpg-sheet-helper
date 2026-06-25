@@ -161,6 +161,41 @@ export interface CharacterCreationMeta {
   level: number;
 }
 
+/** DM → player: roll this skill and report the d10 result. */
+export interface SkillCheckRequest {
+  id: string;
+  characterId: string;
+  characterName: string;
+  attrKey: string;
+  skillKey: string;
+  skillLabel: string;
+  base: number;
+  modifier: number;
+  dc?: number;
+  notes?: string;
+  createdAt: number;
+}
+
+/** Resolved skill check broadcast to the table. */
+export interface SkillCheckResolved {
+  requestId: string;
+  characterId: string;
+  characterName: string;
+  skillLabel: string;
+  base: number;
+  modifier: number;
+  dc?: number;
+  dieRolls: number[];
+  outcome: "normal" | "critical" | "fumble";
+  effectiveBase: number;
+  fumblePenalty: number;
+  total: number;
+  /** `null` when no DC was set. */
+  success: boolean | null;
+  simulated: boolean;
+  resolvedAt: number;
+}
+
 export interface CombatParticipant {
   characterId: string;
   name: string;
@@ -341,7 +376,15 @@ export type HostToServer =
   | { type: "credentials:getAll"; requestId: string }
   | { type: "credentials:add"; requestId: string; nickname: string; code?: string }
   | { type: "combat:get"; requestId: string }
-  | { type: "combat:set"; requestId: string; combat: CombatState | null };
+  | { type: "combat:set"; requestId: string; combat: CombatState | null }
+  | { type: "skill-check:request"; requestId: string; data: SkillCheckRequest }
+  | { type: "skill-check:resolve"; requestId: string; data: SkillCheckResolved }
+  | {
+      type: "skill-check:cancel";
+      requestId: string;
+      characterId: string;
+      skillCheckId: string;
+    };
 
 /** server -> Electron main. */
 export type ServerToHost =
@@ -353,7 +396,9 @@ export type ServerToHost =
   | { type: "characters:error"; requestId: string; message: string }
   | { type: "characters:changed" }
   | { type: "character:updated"; character: Character }
-  | { type: "combat:updated"; combat: CombatState | null };
+  | { type: "combat:updated"; combat: CombatState | null }
+  | { type: "skill-check:requested"; request: SkillCheckRequest }
+  | { type: "skill-check:resolved"; result: SkillCheckResolved };
 
 // ─── Socket.IO ────────────────────────────────────────────────────────────
 
@@ -364,6 +409,9 @@ export interface ServerToClientEvents {
   "character-updated": (character: Character) => void;
   "characters-changed": () => void;
   "combat:update": (combat: CombatState | null) => void;
+  "skill-check:request": (request: SkillCheckRequest) => void;
+  "skill-check:resolved": (result: SkillCheckResolved) => void;
+  "skill-check:cancel": (requestId: string) => void;
 }
 
 /** Socket.io: client -> server. */
@@ -406,4 +454,9 @@ export interface Api {
   getCombat(): Promise<CombatState | null>;
   setCombat(combat: CombatState | null): Promise<CombatState | null>;
   onCombatUpdate(cb: (combat: CombatState | null) => void): () => void;
+  requestSkillCheck(request: SkillCheckRequest): Promise<SkillCheckRequest>;
+  resolveSkillCheck(result: SkillCheckResolved): Promise<SkillCheckResolved>;
+  cancelSkillCheck(characterId: string, skillCheckId: string): Promise<void>;
+  onSkillCheckRequest(cb: (request: SkillCheckRequest) => void): () => void;
+  onSkillCheckResolved(cb: (result: SkillCheckResolved) => void): () => void;
 }

@@ -1,3 +1,4 @@
+export * from "./skillCheck";
 export * from "./attack";
 export * from "./combat";
 export * from "./damage";

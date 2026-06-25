@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import type { Character } from "@wilmak/shared";
+import type { Character, SkillCheckRequest, SkillCheckResolved } from "@wilmak/shared";
 import { fetchPlayerCharacter, getToken, clearToken, updatePlayerCharacter } from "../../api";
 import {
   disconnectPlayerSocket,
@@ -8,10 +8,17 @@ import {
   watchSessionResume,
 } from "../../socket";
 import CharacterSheet from "../../components/CharacterSheet";
+import SkillCheckBanner from "../../components/SkillCheckBanner";
 
 export default function PlayerSheetScreen() {
   const [character, setCharacter] = useState<Character | null>(null);
   const [waitingForSheet, setWaitingForSheet] = useState(false);
+  const [pendingSkillCheck, setPendingSkillCheck] = useState<SkillCheckRequest | null>(
+    null,
+  );
+  const [resolvedSkillCheck, setResolvedSkillCheck] = useState<SkillCheckResolved | null>(
+    null,
+  );
   const navigate = useNavigate();
   const token = getToken();
 
@@ -58,11 +65,32 @@ export default function PlayerSheetScreen() {
     const onUpdate = (updated: Character) => {
       if (updated.id === character?.id) setCharacter(updated);
     };
+    const onSkillRequest = (request: SkillCheckRequest) => {
+      if (request.characterId === character?.id) {
+        setPendingSkillCheck(request);
+        setResolvedSkillCheck(null);
+      }
+    };
+    const onSkillResolved = (result: SkillCheckResolved) => {
+      if (result.characterId === character?.id) {
+        setPendingSkillCheck(null);
+        setResolvedSkillCheck(result);
+      }
+    };
+    const onSkillCancel = (requestId: string) => {
+      setPendingSkillCheck((prev) => (prev?.id === requestId ? null : prev));
+    };
     socket.on("character-updated", onUpdate);
+    socket.on("skill-check:request", onSkillRequest);
+    socket.on("skill-check:resolved", onSkillResolved);
+    socket.on("skill-check:cancel", onSkillCancel);
 
     return () => {
       stopResume();
       socket.off("character-updated", onUpdate);
+      socket.off("skill-check:request", onSkillRequest);
+      socket.off("skill-check:resolved", onSkillResolved);
+      socket.off("skill-check:cancel", onSkillCancel);
     };
   }, [token, character?.id, invalidateSession]);
 
@@ -107,12 +135,19 @@ export default function PlayerSheetScreen() {
   }
 
   return (
-    <CharacterSheet
-      character={character}
-      isDM={false}
-      onChange={handleChange}
-      onBack={handleLogout}
-      backLabel="Logout"
-    />
+    <>
+      <SkillCheckBanner
+        pending={pendingSkillCheck}
+        resolved={resolvedSkillCheck}
+        onDismissResolved={() => setResolvedSkillCheck(null)}
+      />
+      <CharacterSheet
+        character={character}
+        isDM={false}
+        onChange={handleChange}
+        onBack={handleLogout}
+        backLabel="Logout"
+      />
+    </>
   );
 }

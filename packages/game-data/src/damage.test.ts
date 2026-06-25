@@ -67,6 +67,32 @@ describe("normalizeCharacter vitals", () => {
   });
 });
 
+describe("evaluateSkillCheck", () => {
+  it("resolves manual roll with DC", async () => {
+    const { evaluateSkillCheck } = await import("../src/skillCheck");
+    const check = evaluateSkillCheck({
+      base: 12,
+      modifier: -2,
+      dc: 15,
+      dieRolls: [7],
+    });
+    expect(check.total).toBe(17);
+    expect(check.success).toBe(true);
+    expect(check.simulated).toBe(false);
+  });
+
+  it("simulates NPC roll when no dice provided", async () => {
+    const { evaluateSkillCheck } = await import("../src/skillCheck");
+    const { createSequenceRng } = await import("../src/dice");
+    const check = evaluateSkillCheck({
+      base: 10,
+      rng: createSequenceRng([0.4]),
+    });
+    expect(check.total).toBe(15);
+    expect(check.simulated).toBe(true);
+  });
+});
+
 describe("restCharacterVitals", () => {
   it("sets hp and sta current to max on first normalize for new characters", () => {
     const char = normalizeCharacter({

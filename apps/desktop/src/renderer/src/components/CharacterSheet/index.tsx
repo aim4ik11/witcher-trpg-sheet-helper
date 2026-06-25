@@ -274,6 +274,12 @@ interface Props {
   isDM: boolean;
   onBack: () => void;
   backLabel: string;
+  /** DM: click a skill to open the skill-check flow. */
+  onSkillCheck?: (params: {
+    attrKey: string;
+    skillKey: string;
+    skillLabel: string;
+  }) => void;
 }
 
 export default function CharacterSheet({
@@ -282,6 +288,7 @@ export default function CharacterSheet({
   isDM,
   onBack,
   backLabel,
+  onSkillCheck,
 }: Props) {
   const [tab, setTab] = useState("Stats");
   const [picker, setPicker] = useState<PickerState | null>(null);
@@ -297,7 +304,12 @@ export default function CharacterSheet({
   const statsEditable = isDM && (!statsLocked || manualEdit);
   const playerCanSpend = !isDM && statsLocked && !!onChange;
   const attrReadOnly = !statsEditable;
+  const skillCheckable = isDM && !!onSkillCheck;
   const skillRows = useMemo(() => trainedSkills(character), [character]);
+
+  function openSkillCheck(attrKey: string, skillKey: string, skillLabel: string) {
+    onSkillCheck?.({ attrKey, skillKey, skillLabel });
+  }
 
   const { hpStaMax } = calcVitalMaxes(character);
   const derivedLocked = !isBestiary;
@@ -660,9 +672,18 @@ export default function CharacterSheet({
                   </thead>
                   <tbody>
                     {skillRows.map((row) => (
-                      <tr key={`${row.attrKey}-${row.skillKey}`}>
+                      <tr
+                        key={`${row.attrKey}-${row.skillKey}`}
+                        className={skillCheckable ? "skill-row--checkable" : undefined}
+                        onClick={
+                          skillCheckable
+                            ? () => openSkillCheck(row.attrKey, row.skillKey, row.label)
+                            : undefined
+                        }
+                        title={skillCheckable ? "Request skill check" : undefined}
+                      >
                         <td>{row.label}</td>
-                        <td>
+                        <td onClick={(e) => e.stopPropagation()}>
                           <NumInput
                             readOnly={readOnly}
                             value={row.level}
@@ -1137,12 +1158,33 @@ export default function CharacterSheet({
                           return (
                             <div
                               key={skill.key}
-                              className={`skill-row${skill.special ? " special" : ""}`}
+                              className={`skill-row${skill.special ? " special" : ""}${skillCheckable ? " skill-row--checkable" : ""}`}
+                              role={skillCheckable ? "button" : undefined}
+                              tabIndex={skillCheckable ? 0 : undefined}
+                              title={skillCheckable ? "Request skill check" : undefined}
+                              onClick={
+                                skillCheckable
+                                  ? () => openSkillCheck(key, skill.key, skill.label)
+                                  : undefined
+                              }
+                              onKeyDown={
+                                skillCheckable
+                                  ? (e) => {
+                                      if (e.key === "Enter" || e.key === " ") {
+                                        e.preventDefault();
+                                        openSkillCheck(key, skill.key, skill.label);
+                                      }
+                                    }
+                                  : undefined
+                              }
                             >
                               <span className="name">
                                 {skill.label}
                                 {statsEditable ? (
-                                  <>
+                                  <span
+                                    onClick={(e) => e.stopPropagation()}
+                                    onKeyDown={(e) => e.stopPropagation()}
+                                  >
                                     {" · "}
                                     <Stepper
                                       className="skill-stepper"
@@ -1156,19 +1198,24 @@ export default function CharacterSheet({
                                         )
                                       }
                                     />
-                                  </>
+                                  </span>
                                 ) : (
                                   <span className="skill-lvl"> · {level}</span>
                                 )}
                                 {!statsEditable && playerCanSpend && onChange && (
-                                  <SkillSpendButton
-                                    character={character}
-                                    attrKey={key}
-                                    skillKey={skill.key}
-                                    label={skill.label}
-                                    special={skill.special}
-                                    onApply={onChange}
-                                  />
+                                  <span
+                                    onClick={(e) => e.stopPropagation()}
+                                    onKeyDown={(e) => e.stopPropagation()}
+                                  >
+                                    <SkillSpendButton
+                                      character={character}
+                                      attrKey={key}
+                                      skillKey={skill.key}
+                                      label={skill.label}
+                                      special={skill.special}
+                                      onApply={onChange}
+                                    />
+                                  </span>
                                 )}
                               </span>
                               <span className="base">
