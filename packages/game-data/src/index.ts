@@ -1,3 +1,7 @@
+export * from "./attack";
+export * from "./combat";
+export * from "./damage";
+export * from "./dice";
 export * from "./characterData";
 export * from "./gameOptions";
 export * from "./catalog";

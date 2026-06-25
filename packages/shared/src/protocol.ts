@@ -75,7 +75,7 @@ export interface Vital {
 export interface Vitals {
   hp: Vital;
   sta: Vital;
-  resolve: Vital;
+  /** Derived from max HP — when current HP is below this, halve REF/DEX/INT/WILL (rulebook p.156). */
   woundThreshold: number;
 }
 
@@ -97,6 +97,8 @@ export interface Weapon {
   enhancements: string;
   weight: number;
   catalogId?: string;
+  /** Bestiary rate of fire — attacks per action when using this weapon. */
+  rateOfFire?: number;
 }
 
 export interface ArmorPiece {
@@ -159,6 +161,133 @@ export interface CharacterCreationMeta {
   level: number;
 }
 
+export interface CombatParticipant {
+  characterId: string;
+  name: string;
+  type: CharacterType;
+  ref: number;
+  /** Total d10 contribution (1–10 for initiative; can exceed 10 on open-ended skill checks). */
+  dieRoll: number;
+  initiative: number;
+  /** Individual d10 results when open-ended chains apply (skill checks only). */
+  dieRolls?: number[];
+  /** Whether this participant has used their main action this round. */
+  actionUsed?: boolean;
+  /** STA spent on extra attacks / extra defenses this round. */
+  staSpentThisRound?: number;
+  /** Number of defensive actions taken beyond the first (each costs 1 STA after the first). */
+  defensesThisRound?: number;
+}
+
+export type HitLocation =
+  | "head"
+  | "torso"
+  | "rArm"
+  | "lArm"
+  | "rLeg"
+  | "lLeg"
+  | "special";
+
+export type DamageType = "piercing" | "slashing" | "bludgeoning" | "elemental";
+
+export type CombatAttackType = "normal" | "fast" | "strong" | "extra";
+
+export type CombatDefenseType = "dodge" | "reposition" | "block" | "parry" | "none";
+
+export type CritWoundTier = "none" | "simple" | "complex" | "difficult" | "deadly";
+
+export interface CombatAttackWeapon {
+  id?: string;
+  name: string;
+  dmg?: string;
+  /** Weapon damage type from catalog (e.g. S/P, B). */
+  damageType?: string;
+  wa: number;
+  isRanged: boolean;
+  isThrown?: boolean;
+  isUnarmed?: boolean;
+  unarmedKind?: "punch" | "kick";
+  /** Bestiary rate of fire — attacks per action. */
+  rateOfFire?: number;
+  effect?: string;
+}
+
+export interface CombatRollBreakdown {
+  outcome: "normal" | "critical" | "fumble";
+  rolls: number[];
+  /** Stat + skill before fumble penalty. */
+  statSkillBase: number;
+  /** After fumble adjustment, before die. */
+  effectiveBase: number;
+  /** @deprecated Use statSkillBase — kept for log compatibility. */
+  base: number;
+  modifier: number;
+  total: number;
+}
+
+export interface CombatAttackModifier {
+  label: string;
+  value: number;
+}
+
+export interface CombatAttackResult {
+  id: string;
+  round: number;
+  /** 1-based index within a fast-strike action. */
+  attackIndex?: number;
+  attackerId: string;
+  attackerName: string;
+  targetId: string;
+  targetName: string;
+  attackType: CombatAttackType;
+  weapon: CombatAttackWeapon;
+  defenseType: CombatDefenseType;
+  modifiers: CombatAttackModifier[];
+  attackRoll: CombatRollBreakdown;
+  defenseRoll?: CombatRollBreakdown;
+  /** Used when defense is none (stunned/unaware/inanimate). */
+  defenseDc?: number;
+  hit: boolean;
+  margin: number;
+  critWoundTier: CritWoundTier;
+  /** Damage resolution (present when hit and damage was rolled). */
+  hitLocation?: HitLocation;
+  locationRoll?: number;
+  locationMultiplier?: number;
+  damageExpression?: string;
+  damageRolls?: number[];
+  damageDiceSum?: number;
+  damageModifier?: number;
+  rawDamage?: number;
+  strongStrikeMultiplier?: number;
+  damageAfterResistance?: number;
+  damageAfterArmor?: number;
+  critWoundDamageBonus?: number;
+  finalDamage?: number;
+  armorSlot?: string;
+  armorSpBefore?: number;
+  armorSpAfter?: number;
+  armorAblation?: number;
+  criticalWoundRoll?: number;
+  criticalWoundEffect?: string;
+  stunSaveDc?: number;
+  staCost?: number;
+  hpBefore?: number;
+  hpAfter?: number;
+  damageApplied?: boolean;
+  notes?: string;
+  timestamp: string;
+}
+
+export interface CombatState {
+  active: boolean;
+  round: number;
+  participants: CombatParticipant[];
+  /** Index into `participants` for whose turn it is. */
+  currentTurnIndex: number;
+  attackLog: CombatAttackResult[];
+}
+
 export interface Character {
   id: string;
   type: CharacterType;
@@ -181,7 +310,6 @@ export interface Character {
   vitals: Vitals;
   luck?: { max: number; used: number };
   speed?: number;
-  adrenaline?: number;
   movement?: { run: number; leap: number };
   recovery?: { stun: number; rec: number };
   improvementPoints?: { ip: number; trainingIp: number };
@@ -211,7 +339,9 @@ export type HostToServer =
   | { type: "characters:update"; requestId: string; id: string; character: Character }
   | { type: "characters:delete"; requestId: string; id: string }
   | { type: "credentials:getAll"; requestId: string }
-  | { type: "credentials:add"; requestId: string; nickname: string; code?: string };
+  | { type: "credentials:add"; requestId: string; nickname: string; code?: string }
+  | { type: "combat:get"; requestId: string }
+  | { type: "combat:set"; requestId: string; combat: CombatState | null };
 
 /** server -> Electron main. */
 export type ServerToHost =
@@ -222,7 +352,8 @@ export type ServerToHost =
   | { type: "characters:result"; requestId: string; data: unknown }
   | { type: "characters:error"; requestId: string; message: string }
   | { type: "characters:changed" }
-  | { type: "character:updated"; character: Character };
+  | { type: "character:updated"; character: Character }
+  | { type: "combat:updated"; combat: CombatState | null };
 
 // ─── Socket.IO ────────────────────────────────────────────────────────────
 
@@ -232,6 +363,7 @@ export interface ServerToClientEvents {
   "game:event": (event: GameEvent) => void;
   "character-updated": (character: Character) => void;
   "characters-changed": () => void;
+  "combat:update": (combat: CombatState | null) => void;
 }
 
 /** Socket.io: client -> server. */
@@ -271,4 +403,7 @@ export interface Api {
   };
   onCharactersChanged(cb: () => void): () => void;
   onCharacterUpdated(cb: (character: Character) => void): () => void;
+  getCombat(): Promise<CombatState | null>;
+  setCombat(combat: CombatState | null): Promise<CombatState | null>;
+  onCombatUpdate(cb: (combat: CombatState | null) => void): () => void;
 }
