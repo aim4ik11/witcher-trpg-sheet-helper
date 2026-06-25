@@ -108,6 +108,8 @@ export interface ArmorPiece {
   damage: number;
   effects: string;
   weight: number;
+  /** Encumbrance value — penalizes REF, DEX, Spell Casting. */
+  ev?: number;
   catalogId?: string;
 }
 
@@ -122,6 +124,7 @@ export interface Spell {
   effect: string;
   defense?: string;
   catalogId?: string;
+  element?: "mixed" | "earth" | "air" | "fire" | "water";
 }
 
 export interface ConsumableItem {
@@ -193,6 +196,71 @@ export interface SkillCheckResolved {
   /** `null` when no DC was set. */
   success: boolean | null;
   simulated: boolean;
+  resolvedAt: number;
+}
+
+/** DM → player: roll Spell Casting for this magic. */
+export interface MagicCastRequest {
+  id: string;
+  characterId: string;
+  characterName: string;
+  spellId: string;
+  spellName: string;
+  spellCategory: string;
+  element: string;
+  staCost: number;
+  staCostText?: string;
+  base: number;
+  vigorThreshold: number;
+  modifier: number;
+  dc?: number;
+  notes?: string;
+  createdAt: number;
+}
+
+/** Resolved magic cast — roll, costs, fumble effects, vitals delta. */
+export interface MagicCastResolved {
+  requestId: string;
+  characterId: string;
+  characterName: string;
+  spellId: string;
+  spellName: string;
+  spellCategory: string;
+  element: string;
+  base: number;
+  modifier: number;
+  dc?: number;
+  dieRolls: number[];
+  fumbleSecondRoll?: number;
+  outcome: "normal" | "critical" | "fumble";
+  effectiveBase: number;
+  fumblePenalty: number;
+  total: number;
+  success: boolean | null;
+  simulated: boolean;
+  staCost: number;
+  vigorThreshold: number;
+  overexertionHp: number;
+  fumble?: {
+    tier: string;
+    element: string;
+    fumbleMargin: number;
+    spellSucceeds: boolean;
+    selfDamage: number;
+    stunned: boolean;
+    knockedBackMeters: number;
+    onFire: boolean;
+    frozen: boolean;
+    focusExplodes: boolean;
+    requiresRandomElementalRider: boolean;
+  };
+  spellSucceeds: boolean;
+  hpBefore: number;
+  hpAfter: number;
+  staBefore: number;
+  staAfter: number;
+  stunnedFromSta: boolean;
+  statusEffectsAdded: string[];
   resolvedAt: number;
 }
 
@@ -384,6 +452,14 @@ export type HostToServer =
       requestId: string;
       characterId: string;
       skillCheckId: string;
+    }
+  | { type: "magic-cast:request"; requestId: string; data: MagicCastRequest }
+  | { type: "magic-cast:resolve"; requestId: string; data: MagicCastResolved }
+  | {
+      type: "magic-cast:cancel";
+      requestId: string;
+      characterId: string;
+      magicCastId: string;
     };
 
 /** server -> Electron main. */
@@ -398,7 +474,9 @@ export type ServerToHost =
   | { type: "character:updated"; character: Character }
   | { type: "combat:updated"; combat: CombatState | null }
   | { type: "skill-check:requested"; request: SkillCheckRequest }
-  | { type: "skill-check:resolved"; result: SkillCheckResolved };
+  | { type: "skill-check:resolved"; result: SkillCheckResolved }
+  | { type: "magic-cast:requested"; request: MagicCastRequest }
+  | { type: "magic-cast:resolved"; result: MagicCastResolved };
 
 // ─── Socket.IO ────────────────────────────────────────────────────────────
 
@@ -412,6 +490,9 @@ export interface ServerToClientEvents {
   "skill-check:request": (request: SkillCheckRequest) => void;
   "skill-check:resolved": (result: SkillCheckResolved) => void;
   "skill-check:cancel": (requestId: string) => void;
+  "magic-cast:request": (request: MagicCastRequest) => void;
+  "magic-cast:resolved": (result: MagicCastResolved) => void;
+  "magic-cast:cancel": (requestId: string) => void;
 }
 
 /** Socket.io: client -> server. */
@@ -459,4 +540,9 @@ export interface Api {
   cancelSkillCheck(characterId: string, skillCheckId: string): Promise<void>;
   onSkillCheckRequest(cb: (request: SkillCheckRequest) => void): () => void;
   onSkillCheckResolved(cb: (result: SkillCheckResolved) => void): () => void;
+  requestMagicCast(request: MagicCastRequest): Promise<MagicCastRequest>;
+  resolveMagicCast(result: MagicCastResolved): Promise<MagicCastResolved>;
+  cancelMagicCast(characterId: string, magicCastId: string): Promise<void>;
+  onMagicCastRequest(cb: (request: MagicCastRequest) => void): () => void;
+  onMagicCastResolved(cb: (result: MagicCastResolved) => void): () => void;
 }
