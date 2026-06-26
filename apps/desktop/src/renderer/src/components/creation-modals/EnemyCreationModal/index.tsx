@@ -5,29 +5,26 @@ import {
   getMonsterById,
   monsterCatalogGroups,
 } from "@wilmak/game-data";
-import { normalizeNickname } from "../../utils/session";
+import { normalizeNickname } from "../../../utils/session";
 import {
   RaceSelect,
   OccupationSelect,
   occupationAfterRaceChange,
-} from "../RaceOccupationSelect";
-import Modal from "../Modal";
-import PlayerCreationWizard from "./PlayerCreationWizard";
-import "./CreateCharacterModal.css";
-import "./PlayerCreationWizard.css";
+} from "../../RaceOccupationSelect";
+import Modal from "../../Modal";
+import "./EnemyCreationModal.css";
+import "../styles.css";
 
 type EnemyMode = "bestiary" | "custom";
 
 interface Props {
-  type: "player" | "enemy";
   onSubmit: (data: Partial<Character>) => void;
   onClose: () => void;
 }
 
 const FORM_ID = "create-enemy-form";
 
-export default function CreateCharacterModal({ type, onSubmit, onClose }: Props) {
-  const isPlayer = type === "player";
+export default function EnemyCreationModal({ onSubmit, onClose }: Props) {
   const [name, setName] = useState("");
   const [race, setRace] = useState("");
   const [occupation, setOccupation] = useState("");
@@ -56,14 +53,7 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
       setError("Name is required.");
       return;
     }
-    if (isPlayer) {
-      const nick = normalizeNickname(nickname);
-      if (!nick) {
-        setError("Nickname is required so the player can log in.");
-        return;
-      }
-      onSubmit({ name: n, race, occupation, nickname: nick, type: "player" });
-    } else if (enemyMode === "bestiary") {
+    if (enemyMode === "bestiary") {
       if (!catalogId) {
         setError("Pick a creature from the bestiary.");
         return;
@@ -77,10 +67,6 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
     } else {
       onSubmit({ name: n, race, occupation, type: "enemy", enemyKind: "npc" });
     }
-  }
-
-  if (isPlayer) {
-    return <PlayerCreationWizard onSubmit={onSubmit} onClose={onClose} />;
   }
 
   return (

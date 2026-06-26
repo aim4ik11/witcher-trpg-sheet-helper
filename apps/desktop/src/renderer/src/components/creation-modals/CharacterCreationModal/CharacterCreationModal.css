@@ -1,28 +1,49 @@
-.wizard-steps {
+/* ── Field layout (label + control) ──────────────────────── */
+
+.field {
   display: flex;
-  gap: 6px;
-  padding: 0 20px 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.wizard-step {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+/* override .create-modal-form label's display:flex */
+.create-modal-form .field > label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--text-muted);
-  padding: 4px 8px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.wizard-step.active {
+/* ── Navigation tabs ──────────────────────────────────────── */
+
+.wizard-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 12px 20px 4px;
+}
+
+.wizard-tab {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.wizard-tab.active {
+  background: var(--bg-raise);
   color: var(--gold);
-  border-color: oklch(0.55 0.1 75 / 0.4);
+  font-weight: 600;
 }
 
-.wizard-step.current {
-  background: oklch(0.55 0.1 75 / 0.12);
-}
+/* ── Shared hints & counters ──────────────────────────────── */
 
 .wizard-hint {
   margin: 0 0 12px;
@@ -37,6 +58,8 @@
   font-size: 13px;
   color: var(--gold);
 }
+
+/* ── Stats tab ────────────────────────────────────────────── */
 
 .wizard-row {
   display: grid;
@@ -74,6 +97,8 @@
   font-size: 13px;
 }
 
+/* ── Skills tab ───────────────────────────────────────────── */
+
 .wizard-skill-row {
   display: flex;
   align-items: center;
@@ -81,10 +106,6 @@
   gap: 8px;
   font-size: 13px;
   padding: 4px 0;
-}
-
-.wizard-skill-row input {
-  display: none;
 }
 
 .wizard-skill-section {
@@ -111,6 +132,8 @@
 .wizard-pickup-grid {
   max-height: 160px;
 }
+
+/* ── Review tab ───────────────────────────────────────────── */
 
 .wizard-review {
   display: grid;

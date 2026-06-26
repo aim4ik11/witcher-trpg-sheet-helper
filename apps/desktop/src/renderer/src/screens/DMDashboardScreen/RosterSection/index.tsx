@@ -1,8 +1,9 @@
 import { useState } from "react";
 import type { Character } from "@wilmak/shared";
-import CreateCharacterModal from "../../../components/CreateCharacterModal";
 import PlayerCharactersSection from "./PlayerCharactersSection";
 import EnemiesSection from "./EnemiesSection";
+import CharacterCreationModal from '../../../components/creation-modals/CharacterCreationModal';
+import EnemyCreationModal from '../../../components/creation-modals/EnemyCreationModal';
 
 interface Props {
   players: Character[];
@@ -51,9 +52,14 @@ export default function RosterSection({
         onCreateEnemy={() => setCreateType("enemy")}
       />
 
-      {createType && (
-        <CreateCharacterModal
-          type={createType}
+      {createType == 'enemy' && (
+        <EnemyCreationModal
+          onSubmit={handleCreate}
+          onClose={() => setCreateType(null)}
+        />
+      )}
+      {createType == 'player' && (
+        <CharacterCreationModal
           onSubmit={handleCreate}
           onClose={() => setCreateType(null)}
         />

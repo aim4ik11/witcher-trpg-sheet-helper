@@ -28,7 +28,7 @@ export default function PlayerCharactersSection({
         <span className="badge badge--count">{players.length}</span>
         <div className="dm-section-actions">
           <button type="button" className="primary btn-sm" onClick={onCreatePlayer}>
-            + New Player
+            + New Character
           </button>
         </div>
       </div>
