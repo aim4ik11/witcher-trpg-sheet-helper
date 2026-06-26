@@ -213,11 +213,17 @@
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-panel);
-  padding: 18px;
+  padding: 16px 18px 14px;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 12px;
 }
+
+.char-card--wounded {
+  border-color: oklch(0.55 0.15 20 / 0.5);
+}
+
+/* ── Header ────────────────────────────────────────────────── */
 
 .char-card-top {
   display: flex;
@@ -231,11 +237,19 @@
   flex: 1;
 }
 
+.char-card-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
 .char-name-btn {
   font-family: var(--font-serif);
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--text);
   background: none;
   border: none;
@@ -249,17 +263,23 @@
 }
 
 .char-subtitle {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-muted);
   margin-top: 3px;
 }
 
+/* ── Player meta ───────────────────────────────────────────── */
+
 .char-login-meta {
   display: flex;
-  gap: 16px;
-  font-size: 12.5px;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  font-size: 12px;
   color: var(--text-muted);
-  margin: 14px 0 16px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
 }
 
 .char-login-meta .mono {
@@ -273,26 +293,88 @@
   letter-spacing: 1.5px;
 }
 
-.char-vitals {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 8px;
+/* ── Vitals ────────────────────────────────────────────────── */
+
+.char-vitals-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.char-vitals .mono {
-  font-family: var(--font-mono);
-  color: var(--text);
+.char-vital {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-.char-vitals-sep {
-  margin: 0 6px;
+.char-vital-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.char-vital-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-faint);
 }
 
+.char-vital-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.char-vital-max {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.char-vital-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.char-vital-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.2s ease;
+}
+
+.char-vital-fill--ok  { background: #5c9e5c; }
+.char-vital-fill--mid { background: var(--gold); }
+.char-vital-fill--low { background: var(--danger); }
+.char-vital-fill--sta { background: oklch(0.55 0.12 240); }
+
+/* ── Status row ────────────────────────────────────────────── */
+
+.char-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ── Monster env ───────────────────────────────────────────── */
+
+.char-monster-env {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* ── Actions ───────────────────────────────────────────────── */
+
 .char-card-actions {
   display: flex;
-  gap: 9px;
+  gap: 8px;
   margin-top: auto;
+  padding-top: 2px;
 }
 
 .char-card-actions button {
@@ -302,4 +384,5 @@
 
 .char-card-actions button.danger {
   padding: 7px 12px;
+  margin-left: auto;
 }

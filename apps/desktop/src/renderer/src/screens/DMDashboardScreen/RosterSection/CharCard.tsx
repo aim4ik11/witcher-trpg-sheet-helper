@@ -10,6 +10,12 @@ function threatBadgeClass(threat: string): string {
   return "badge badge--muted";
 }
 
+function hpFillClass(pct: number): string {
+  if (pct > 0.6) return "char-vital-fill char-vital-fill--ok";
+  if (pct > 0.3) return "char-vital-fill char-vital-fill--mid";
+  return "char-vital-fill char-vital-fill--low";
+}
+
 interface Props {
   character: Character;
   loginCode?: string;
@@ -20,12 +26,24 @@ interface Props {
 
 export default function CharCard({ character, loginCode, onOpen, onDelete, onRest }: Props) {
   const isMonster = character.enemyKind === "monster";
+  const isPlayer = character.type === "player";
   const profile = character.monsterProfile;
-  const subtitleParts: string[] = [];
-  const atFullHealth =
-    character.vitals.hp.current >= character.vitals.hp.max &&
-    character.vitals.sta.current >= character.vitals.sta.max;
 
+  const hp = character.vitals.hp;
+  const sta = character.vitals.sta;
+  const hpPct = hp.max > 0 ? hp.current / hp.max : 0;
+  const staPct = sta.max > 0 ? sta.current / sta.max : 0;
+  const atFullHealth = hp.current >= hp.max && sta.current >= sta.max;
+  const wounded = hp.current < character.vitals.woundThreshold;
+
+  const woundCount = character.wounds?.filter((w) => w.days > 0).length ?? 0;
+  const statusCount = character.statusEffects?.length ?? 0;
+
+  const level = character.creation?.level;
+  const ip = character.improvementPoints?.ip ?? 0;
+  const trainingIp = character.improvementPoints?.trainingIp ?? 0;
+
+  const subtitleParts: string[] = [];
   if (isMonster && profile?.monsterType) {
     subtitleParts.push(profile.monsterType);
   } else {
@@ -44,7 +62,8 @@ export default function CharCard({ character, loginCode, onOpen, onDelete, onRes
     ) : null);
 
   return (
-    <div className="char-card">
+    <div className={`char-card${wounded ? " char-card--wounded" : ""}`}>
+      {/* ── Header ───────────────────────────────────────── */}
       <div className="char-card-top">
         <div className="char-card-info">
           <button type="button" className="char-name-btn" onClick={onOpen}>
@@ -54,9 +73,16 @@ export default function CharCard({ character, loginCode, onOpen, onDelete, onRes
             <div className="char-subtitle">{subtitleParts.join(" · ")}</div>
           )}
         </div>
-        {threatBadge}
+        <div className="char-card-badges">
+          {isPlayer && level != null && (
+            <span className="badge badge--muted">Lv {level}</span>
+          )}
+          {threatBadge}
+        </div>
       </div>
-      {character.type === "player" && (
+
+      {/* ── Player meta ──────────────────────────────────── */}
+      {isPlayer && (
         <div className="char-login-meta">
           <span>
             nick <span className="mono">{character.nickname || "—"}</span>
@@ -66,19 +92,71 @@ export default function CharCard({ character, loginCode, onOpen, onDelete, onRes
               code <span className="code">{loginCode}</span>
             </span>
           )}
+          {(ip > 0 || trainingIp > 0) && (
+            <span>
+              I.P. <span className="mono">{ip}</span>
+              {trainingIp > 0 && (
+                <> · T.I.P. <span className="mono">{trainingIp}</span></>
+              )}
+            </span>
+          )}
         </div>
       )}
-      <div className="char-vitals">
-        HP{" "}
-        <span className="mono">
-          {character.vitals.hp.current}/{character.vitals.hp.max}
-        </span>
-        <span className="char-vitals-sep">·</span>
-        STA{" "}
-        <span className="mono">
-          {character.vitals.sta.current}/{character.vitals.sta.max}
-        </span>
+
+      {/* ── Vitals ───────────────────────────────────────── */}
+      <div className="char-vitals-section">
+        <div className="char-vital">
+          <div className="char-vital-row">
+            <span className="char-vital-label">HP</span>
+            <span className="char-vital-value">
+              {hp.current}<span className="char-vital-max">/{hp.max}</span>
+            </span>
+          </div>
+          <div className="char-vital-track">
+            <div
+              className={hpFillClass(hpPct)}
+              style={{ width: `${Math.min(100, hpPct * 100)}%` }}
+            />
+          </div>
+        </div>
+        <div className="char-vital">
+          <div className="char-vital-row">
+            <span className="char-vital-label">STA</span>
+            <span className="char-vital-value">
+              {sta.current}<span className="char-vital-max">/{sta.max}</span>
+            </span>
+          </div>
+          <div className="char-vital-track">
+            <div
+              className="char-vital-fill char-vital-fill--sta"
+              style={{ width: `${Math.min(100, staPct * 100)}%` }}
+            />
+          </div>
+        </div>
       </div>
+
+      {/* ── Wounds & status effects ───────────────────────── */}
+      {(woundCount > 0 || statusCount > 0) && (
+        <div className="char-status-row">
+          {woundCount > 0 && (
+            <span className="badge badge--danger">
+              {woundCount} wound{woundCount > 1 ? "s" : ""}
+            </span>
+          )}
+          {statusCount > 0 && (
+            <span className="badge badge--muted">
+              {statusCount} effect{statusCount > 1 ? "s" : ""}
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* ── Monster environment hint ──────────────────────── */}
+      {isMonster && profile?.environment && (
+        <div className="char-monster-env">{profile.environment}</div>
+      )}
+
+      {/* ── Actions ──────────────────────────────────────── */}
       <div className="char-card-actions">
         <button type="button" className="btn-sm" onClick={onOpen}>
           Open sheet
