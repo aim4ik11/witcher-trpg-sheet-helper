@@ -1,42 +1,9 @@
-.create-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(10, 8, 6, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-}
-
-.create-modal {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  background: var(--bg-panel);
-  border: 1px solid var(--line2);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
-
-.create-modal--wide {
-  max-width: 460px;
-}
-
-.create-modal-header {
-  padding: 18px 20px;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* ── Mode tabs (Bestiary / Custom NPC) ───────────────────── */
 
 .create-modal-mode {
   display: flex;
   gap: 4px;
-  padding: 0 20px 16px;
-  margin-top: -4px;
+  padding: 12px 20px 4px;
 }
 
 .create-modal-mode button {
@@ -57,34 +24,16 @@
   font-weight: 600;
 }
 
-.create-modal-form select {
-  width: 100%;
-}
+/* ── Form layout ─────────────────────────────────────────── */
 
-.create-modal-close {
-  width: auto;
-  height: auto;
-  padding: 0;
-  font-size: 20px;
-  line-height: 1;
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-}
-
-.create-modal-title {
-  font-family: var(--font-serif);
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--text);
-  margin: 0;
-}
-
-.create-modal-body {
-  padding: 20px;
+.create-modal-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.create-modal-form select {
+  width: 100%;
 }
 
 .create-modal-form label {
@@ -98,26 +47,8 @@
   letter-spacing: 0.08em;
 }
 
+/* ── Utilities ───────────────────────────────────────────── */
+
 .required {
   color: var(--danger);
-}
-.create-modal-error {
-  color: var(--danger);
-  font-size: 13px;
-}
-
-.create-modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 16px 20px;
-  border-top: 1px solid var(--line);
-}
-
-.create-modal-actions button.ghost {
-  padding: 9px 16px;
-}
-
-.create-modal-actions button.primary {
-  padding: 9px 18px;
 }

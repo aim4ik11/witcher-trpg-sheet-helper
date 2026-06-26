@@ -1,4 +1,4 @@
-.magic-cast-modal .magic-cast-element {
+.magic-cast-element {
   text-transform: capitalize;
   color: var(--accent, #c9a227);
 }

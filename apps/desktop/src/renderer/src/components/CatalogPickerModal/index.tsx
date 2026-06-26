@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import type { CatalogItem, CatalogMagic } from "@wilmak/game-data";
 import { searchCatalog } from "@wilmak/game-data";
+import Modal from "../Modal";
 import "./CatalogPickerModal.css";
 
 interface Props {
@@ -25,89 +26,70 @@ export default function CatalogPickerModal({
   const [query, setQuery] = useState("");
   const filtered = useMemo(() => searchCatalog(items, query), [items, query]);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
   return (
-    <div className="catalog-modal-backdrop" onClick={onClose} role="presentation">
-      <div
-        className="catalog-modal panel"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-      >
-        <button
-          type="button"
-          className="catalog-modal-close"
-          onClick={onClose}
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <h2 className="catalog-modal-title">{title}</h2>
-        <input
-          className="catalog-search"
-          type="search"
-          placeholder="Search by name, type, effect..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          autoFocus
-        />
-        <div className="catalog-list">
-          {filtered.length === 0 ? (
-            <p className="catalog-empty">{emptyMessage}</p>
-          ) : (
-            filtered.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className="catalog-item"
-                onClick={() => onSelect(item)}
-              >
-                <span className="catalog-item-name">{item.name}</span>
-                <span className="catalog-item-meta">{itemSubtitle(item)}</span>
-                {(item as CatalogMagic).defense && (
-                  <span className="catalog-item-meta">
-                    Defense: {(item as CatalogMagic).defense}
-                  </span>
-                )}
-                {(item as CatalogMagic).components && (
-                  <span className="catalog-item-meta">
-                    Components: {(item as CatalogMagic).components}
-                  </span>
-                )}
-                {(item as CatalogMagic).requirement && (
-                  <span className="catalog-item-meta">
-                    Lift: {(item as CatalogMagic).requirement}
-                  </span>
-                )}
-                {(item as CatalogMagic).effect && (
-                  <span className="catalog-item-effect">
-                    {(item as CatalogMagic).effect}
-                  </span>
-                )}
-              </button>
-            ))
-          )}
+    <Modal
+      title={title}
+      size="md"
+      onClose={onClose}
+      backdropClassName="catalog-modal-backdrop"
+      subheader={
+        <div className="catalog-search-wrap">
+          <input
+            className="catalog-search"
+            type="search"
+            placeholder="Search by name, type, effect..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            autoFocus
+          />
         </div>
-        {onCustom && (
-          <div className="catalog-footer">
-            <button type="button" className="catalog-custom-btn" onClick={onCustom}>
-              {customLabel}
+      }
+      footer={
+        onCustom ? (
+          <button type="button" className="catalog-custom-btn" onClick={onCustom}>
+            {customLabel}
+          </button>
+        ) : undefined
+      }
+    >
+      <div className="catalog-list">
+        {filtered.length === 0 ? (
+          <p className="catalog-empty">{emptyMessage}</p>
+        ) : (
+          filtered.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className="catalog-item"
+              onClick={() => onSelect(item)}
+            >
+              <span className="catalog-item-name">{item.name}</span>
+              <span className="catalog-item-meta">{itemSubtitle(item)}</span>
+              {(item as CatalogMagic).defense && (
+                <span className="catalog-item-meta">
+                  Defense: {(item as CatalogMagic).defense}
+                </span>
+              )}
+              {(item as CatalogMagic).components && (
+                <span className="catalog-item-meta">
+                  Components: {(item as CatalogMagic).components}
+                </span>
+              )}
+              {(item as CatalogMagic).requirement && (
+                <span className="catalog-item-meta">
+                  Lift: {(item as CatalogMagic).requirement}
+                </span>
+              )}
+              {(item as CatalogMagic).effect && (
+                <span className="catalog-item-effect">
+                  {(item as CatalogMagic).effect}
+                </span>
+              )}
             </button>
-          </div>
+          ))
         )}
       </div>
-    </div>
+    </Modal>
   );
 }
 

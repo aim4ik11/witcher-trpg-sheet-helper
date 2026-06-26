@@ -21,6 +21,8 @@ import {
   occupationAfterRaceChange,
 } from "../RaceOccupationSelect";
 import Stepper from "../Stepper";
+import Modal from "../Modal";
+import "./CreateCharacterModal.css";
 import "./PlayerCreationWizard.css";
 
 interface Props {
@@ -64,18 +66,6 @@ export default function PlayerCreationWizard({ onSubmit, onClose }: Props) {
   );
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
-  useEffect(() => {
     setOccupation((prev) => occupationAfterRaceChange(race, prev));
   }, [race]);
 
@@ -98,8 +88,8 @@ export default function PlayerCreationWizard({ onSubmit, onClose }: Props) {
     return pickupUsed + cost <= pickupBudget;
   }
 
-  function setPackageLevel(ref: (typeof packageRefs)[0], level: number) {
-    const v = Math.max(0, Math.min(6, level));
+  function setPackageLevel(ref: (typeof packageRefs)[0], lvl: number) {
+    const v = Math.max(0, Math.min(6, lvl));
     if (ref.isDefining && occupation) {
       setProfessionTree((prev) => ({ ...prev, [coreAbilityId(occupation)]: v }));
       return;
@@ -120,8 +110,8 @@ export default function PlayerCreationWizard({ onSubmit, onClose }: Props) {
     return skills[ref.attrKey]?.[ref.skillKey]?.level ?? 0;
   }
 
-  function setPickupLevel(attrKey: string, skillKey: string, level: number) {
-    const v = Math.max(0, Math.min(6, level));
+  function setPickupLevel(attrKey: string, skillKey: string, lvl: number) {
+    const v = Math.max(0, Math.min(6, lvl));
     setSkills((prev) => ({
       ...prev,
       [attrKey]: {
@@ -203,20 +193,11 @@ export default function PlayerCreationWizard({ onSubmit, onClose }: Props) {
   const steps: Step[] = ["identity", "stats", "skills", "review"];
 
   return (
-    <div className="create-modal-backdrop" onClick={onClose} role="presentation">
-      <div
-        className="create-modal create-modal--wizard"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-      >
-        <div className="create-modal-header">
-          <h2 className="create-modal-title">New player character</h2>
-          <button type="button" className="create-modal-close" onClick={onClose}>
-            ×
-          </button>
-        </div>
-
+    <Modal
+      title="New player character"
+      size="xl"
+      onClose={onClose}
+      subheader={
         <div className="wizard-steps" aria-label="Creation steps">
           {steps.map((s, i) => (
             <span
@@ -229,174 +210,9 @@ export default function PlayerCreationWizard({ onSubmit, onClose }: Props) {
             </span>
           ))}
         </div>
-
-        <div className="create-modal-body wizard-body">
-          {step === "identity" && (
-            <>
-              <label>
-                Name <span className="required">*</span>
-                <input value={name} onChange={(e) => setName(e.target.value)} autoFocus />
-              </label>
-              <label>
-                Race <RaceSelect value={race} onChange={setRace} />
-              </label>
-              <label>
-                Occupation{" "}
-                <OccupationSelect race={race} value={occupation} onChange={setOccupation} />
-              </label>
-              <label>
-                Player nickname <span className="required">*</span>
-                <input
-                  value={nickname}
-                  onChange={(e) => setNickname(normalizeNickname(e.target.value))}
-                />
-              </label>
-            </>
-          )}
-
-          {step === "stats" && (
-            <>
-              <div className="wizard-row">
-                <label>
-                  Campaign power
-                  <select
-                    value={pointBuy}
-                    onChange={(e) => setPointBuy(Number(e.target.value))}
-                  >
-                    {POINT_BUY_OPTIONS.map((o) => (
-                      <option key={o.value} value={o.value}>
-                        {o.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="wizard-level-row">
-                  Level
-                  <Stepper
-                    value={level}
-                    min={1}
-                    max={99}
-                    onChange={setLevel}
-                  />
-                </label>
-              </div>
-              <p className="wizard-hint">
-                Distribute {pointBuy} points across stats (min 1, max 10 each). Pickup skill
-                budget = INT + REF = {pickupBudget}.
-              </p>
-              <div className="wizard-stat-grid">
-                {Object.entries(ATTRIBUTES).map(([key, attr]) => (
-                  <div key={key} className="wizard-stat">
-                    <span className="wizard-stat-label">{attr.short}</span>
-                    <Stepper
-                      value={attributes[key] ?? 1}
-                      min={1}
-                      max={10}
-                      onChange={(v) =>
-                        setAttributes((prev) => ({ ...prev, [key]: v }))
-                      }
-                    />
-                  </div>
-                ))}
-              </div>
-              <p className="wizard-counter">
-                Stat points: {Object.values(attributes).reduce((a, b) => a + b, 0)} / {pointBuy}
-              </p>
-            </>
-          )}
-
-          {step === "skills" && (
-            <>
-              <section className="wizard-skill-section">
-                <h3>Profession package</h3>
-                <p className="wizard-hint">
-                  {PROFESSION_PACKAGE_POINTS} points · min 1 each · max 6 at creation · (2) =
-                  double cost
-                </p>
-                <p className="wizard-counter">
-                  {packageUsed} / {PROFESSION_PACKAGE_POINTS}
-                </p>
-                <div className="wizard-skill-list">
-                  {packageRefs.map((ref) => {
-                    const lvl = packageLevel(ref);
-                    return (
-                      <div key={`${ref.attrKey}-${ref.skillKey}`} className="wizard-skill-row">
-                        <span>
-                          {ref.label}
-                          {ref.special ? " (2)" : ""}
-                        </span>
-                        <Stepper
-                          value={lvl}
-                          min={0}
-                          max={6}
-                          onChange={(v) => setPackageLevel(ref, v)}
-                          disableIncrease={!canRaisePackage(ref)}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-              <section className="wizard-skill-section">
-                <h3>Pickup skills (INT + REF)</h3>
-                <p className="wizard-counter">
-                  {pickupUsed} / {pickupBudget}
-                </p>
-                <div className="wizard-pickup-grid">
-                  {Object.entries(ATTRIBUTE_SKILLS).map(([attrKey, list]) =>
-                    list.map((skill) => {
-                      const lvl = skills[attrKey]?.[skill.key]?.level ?? 0;
-                      return (
-                        <div key={`${attrKey}-${skill.key}`} className="wizard-skill-row">
-                          <span>
-                            {skill.label}
-                            {skill.special ? " (2)" : ""}
-                          </span>
-                          <Stepper
-                            value={lvl}
-                            min={0}
-                            max={6}
-                            onChange={(v) => setPickupLevel(attrKey, skill.key, v)}
-                            disableIncrease={!canRaisePickup(attrKey, skill.key, skill.special)}
-                          />
-                        </div>
-                      );
-                    }),
-                  )}
-                </div>
-              </section>
-            </>
-          )}
-
-          {step === "review" && (
-            <dl className="wizard-review">
-              <dt>Name</dt>
-              <dd>{name}</dd>
-              <dt>Race / occupation</dt>
-              <dd>
-                {race} · {occupation}
-              </dd>
-              <dt>Level</dt>
-              <dd>{level}</dd>
-              <dt>Stats</dt>
-              <dd>
-                {Object.entries(attributes)
-                  .map(([k, v]) => `${ATTRIBUTES[k]?.short ?? k} ${v}`)
-                  .join(", ")}
-              </dd>
-              <dt>Package skills</dt>
-              <dd>{packageUsed} pts allocated</dd>
-              <dt>Pickup skills</dt>
-              <dd>
-                {pickupUsed} / {pickupBudget} pts
-              </dd>
-            </dl>
-          )}
-
-          {error && <p className="create-modal-error">{error}</p>}
-        </div>
-
-        <div className="create-modal-actions">
+      }
+      footer={
+        <>
           <button type="button" className="ghost" onClick={onClose}>
             Cancel
           </button>
@@ -414,8 +230,168 @@ export default function PlayerCreationWizard({ onSubmit, onClose }: Props) {
               Create character
             </button>
           )}
-        </div>
+        </>
+      }
+    >
+      <div className="create-modal-form">
+        {step === "identity" && (
+          <>
+            <label>
+              Name <span className="required">*</span>
+              <input value={name} onChange={(e) => setName(e.target.value)} autoFocus />
+            </label>
+            <label>
+              Race <RaceSelect value={race} onChange={setRace} />
+            </label>
+            <label>
+              Occupation{" "}
+              <OccupationSelect race={race} value={occupation} onChange={setOccupation} />
+            </label>
+            <label>
+              Player nickname <span className="required">*</span>
+              <input
+                value={nickname}
+                onChange={(e) => setNickname(normalizeNickname(e.target.value))}
+              />
+            </label>
+          </>
+        )}
+
+        {step === "stats" && (
+          <>
+            <div className="wizard-row">
+              <label>
+                Campaign power
+                <select
+                  value={pointBuy}
+                  onChange={(e) => setPointBuy(Number(e.target.value))}
+                >
+                  {POINT_BUY_OPTIONS.map((o) => (
+                    <option key={o.value} value={o.value}>
+                      {o.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="wizard-level-row">
+                Level
+                <Stepper value={level} min={1} max={99} onChange={setLevel} />
+              </label>
+            </div>
+            <p className="wizard-hint">
+              Distribute {pointBuy} points across stats (min 1, max 10 each). Pickup skill
+              budget = INT + REF = {pickupBudget}.
+            </p>
+            <div className="wizard-stat-grid">
+              {Object.entries(ATTRIBUTES).map(([key, attr]) => (
+                <div key={key} className="wizard-stat">
+                  <span className="wizard-stat-label">{attr.short}</span>
+                  <Stepper
+                    value={attributes[key] ?? 1}
+                    min={1}
+                    max={10}
+                    onChange={(v) => setAttributes((prev) => ({ ...prev, [key]: v }))}
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="wizard-counter">
+              Stat points: {Object.values(attributes).reduce((a, b) => a + b, 0)} /{" "}
+              {pointBuy}
+            </p>
+          </>
+        )}
+
+        {step === "skills" && (
+          <>
+            <section className="wizard-skill-section">
+              <h3>Profession package</h3>
+              <p className="wizard-hint">
+                {PROFESSION_PACKAGE_POINTS} points · min 1 each · max 6 at creation · (2) =
+                double cost
+              </p>
+              <p className="wizard-counter">
+                {packageUsed} / {PROFESSION_PACKAGE_POINTS}
+              </p>
+              <div className="wizard-skill-list">
+                {packageRefs.map((ref) => {
+                  const lvl = packageLevel(ref);
+                  return (
+                    <div key={`${ref.attrKey}-${ref.skillKey}`} className="wizard-skill-row">
+                      <span>
+                        {ref.label}
+                        {ref.special ? " (2)" : ""}
+                      </span>
+                      <Stepper
+                        value={lvl}
+                        min={0}
+                        max={6}
+                        onChange={(v) => setPackageLevel(ref, v)}
+                        disableIncrease={!canRaisePackage(ref)}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+            <section className="wizard-skill-section">
+              <h3>Pickup skills (INT + REF)</h3>
+              <p className="wizard-counter">
+                {pickupUsed} / {pickupBudget}
+              </p>
+              <div className="wizard-pickup-grid">
+                {Object.entries(ATTRIBUTE_SKILLS).map(([attrKey, list]) =>
+                  list.map((skill) => {
+                    const lvl = skills[attrKey]?.[skill.key]?.level ?? 0;
+                    return (
+                      <div key={`${attrKey}-${skill.key}`} className="wizard-skill-row">
+                        <span>
+                          {skill.label}
+                          {skill.special ? " (2)" : ""}
+                        </span>
+                        <Stepper
+                          value={lvl}
+                          min={0}
+                          max={6}
+                          onChange={(v) => setPickupLevel(attrKey, skill.key, v)}
+                          disableIncrease={!canRaisePickup(attrKey, skill.key, skill.special)}
+                        />
+                      </div>
+                    );
+                  }),
+                )}
+              </div>
+            </section>
+          </>
+        )}
+
+        {step === "review" && (
+          <dl className="wizard-review">
+            <dt>Name</dt>
+            <dd>{name}</dd>
+            <dt>Race / occupation</dt>
+            <dd>
+              {race} · {occupation}
+            </dd>
+            <dt>Level</dt>
+            <dd>{level}</dd>
+            <dt>Stats</dt>
+            <dd>
+              {Object.entries(attributes)
+                .map(([k, v]) => `${ATTRIBUTES[k]?.short ?? k} ${v}`)
+                .join(", ")}
+            </dd>
+            <dt>Package skills</dt>
+            <dd>{packageUsed} pts allocated</dd>
+            <dt>Pickup skills</dt>
+            <dd>
+              {pickupUsed} / {pickupBudget} pts
+            </dd>
+          </dl>
+        )}
+
+        {error && <p className="modal-error">{error}</p>}
       </div>
-    </div>
+    </Modal>
   );
 }

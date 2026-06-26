@@ -30,7 +30,7 @@ import {
   weaponToCombatWeapon,
   type RangeBand,
 } from "@wilmak/game-data";
-import "../CreateCharacterModal/CreateCharacterModal.css";
+import Modal from "../Modal";
 import "./AttackModal.css";
 
 type WeaponChoice =
@@ -168,18 +168,6 @@ export default function AttackModal({
     }
   }, [allowedDefenses, defenseType]);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
   function buildOptions() {
     if (!target || !selectedWeapon) return null;
 
@@ -309,377 +297,373 @@ export default function AttackModal({
       ? inferDefenderBlockSkill(target, defenseType)
       : undefined;
 
-  return (
-    <div className="create-modal-backdrop" onClick={onClose} role="presentation">
-      <div
-        className="create-modal create-modal--wide panel attack-modal"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-      >
-        <button type="button" className="create-modal-close" onClick={onClose} aria-label="Close">
-          ×
+  const footer = (
+    <>
+      <button type="button" onClick={onClose} disabled={submitting}>
+        Cancel
+      </button>
+      {step === "damage" && (
+        <button
+          type="button"
+          className="btn-sm"
+          onClick={() => setStep("attack")}
+          disabled={submitting}
+        >
+          ← Back
         </button>
-        <h2 className="create-modal-title">Attack — {attacker.name}</h2>
-        <p className="attack-modal-hint">
-          Round {combat.round}. Step {step === "attack" ? "1" : "2"}:{" "}
-          {step === "attack" ? "Attack vs defense" : "Damage resolution"}
+      )}
+      {step === "attack" && (
+        <button
+          type="button"
+          className="btn-sm"
+          onClick={handlePreview}
+          disabled={submitting}
+        >
+          Preview
+        </button>
+      )}
+      <button
+        type="button"
+        className="primary"
+        onClick={() => void handleConfirm()}
+        disabled={submitting || (step === "damage" && !preview)}
+      >
+        {submitting
+          ? "Recording…"
+          : step === "damage"
+            ? applyDamage
+              ? "Apply & confirm"
+              : "Log only"
+            : preview
+              ? "Confirm attack"
+              : "Resolve & confirm"}
+      </button>
+    </>
+  );
+
+  return (
+    <Modal title={`Attack — ${attacker.name}`} size="xl" onClose={onClose} footer={footer}>
+      <p className="attack-modal-hint">
+        Round {combat.round}. Step {step === "attack" ? "1" : "2"}:{" "}
+        {step === "attack" ? "Attack vs defense" : "Damage resolution"}
+      </p>
+
+      {isMonsterAttacker(attacker) && step === "attack" && (
+        <p className="attack-modal-monster-note">
+          Monsters use bestiary weapons only — each weapon&apos;s ROF is how many attacks it
+          makes per action. No fast/strong/extra strikes.
         </p>
+      )}
 
-        {isMonsterAttacker(attacker) && step === "attack" && (
-          <p className="attack-modal-monster-note">
-            Monsters use bestiary weapons only — each weapon&apos;s ROF is how many attacks it
-            makes per action. No fast/strong/extra strikes.
-          </p>
-        )}
-
-        {step === "attack" && (
-          <div className="attack-modal-form">
-            <div className="attack-modal-grid">
-              <label>
-                Target
-                <select value={targetId} onChange={(e) => setTargetId(e.target.value)}>
-                  {targets.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name} ({c.type === "player" ? "Player" : "NPC"})
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>
-                {isEnemyAttacker ? "Attack" : "Weapon"}
-                <select
-                  value={
-                    weaponChoice.kind === "weapon"
-                      ? `w:${weaponChoice.weaponId}`
-                      : `u:${weaponChoice.unarmed}`
-                  }
-                  onChange={(e) => {
-                    const v = e.target.value;
-                    if (v.startsWith("u:")) {
-                      setWeaponChoice({
-                        kind: "unarmed",
-                        unarmed: v.slice(2) as "punch" | "kick",
-                      });
-                    } else {
-                      setWeaponChoice({ kind: "weapon", weaponId: v.slice(2) });
-                    }
-                  }}
-                >
-                  {attackerWeapons.map((w) => (
-                    <option key={w.id} value={`w:${w.id}`}>
-                      {weaponOptionLabel(w, attacker)}
-                    </option>
-                  ))}
-                  {showUnarmed && (
-                    <>
-                      <option value="u:punch">
-                        Punch ({attacker.bonusMelee?.punch ?? "1d6"})
-                      </option>
-                      <option value="u:kick">Kick ({attacker.bonusMelee?.kick ?? "1d6+2"})</option>
-                    </>
-                  )}
-                </select>
-              </label>
-
-              {attackOptions.showAttackTypes ? (
-                <label>
-                  Attack type
-                  <select
-                    value={attackType}
-                    onChange={(e) => setAttackType(e.target.value as CombatAttackType)}
-                  >
-                    {attackOptions.attackTypes.map((t) => {
-                      const cfg = selectedWeapon
-                        ? attackTypeConfig(t, selectedWeapon)
-                        : null;
-                      return (
-                        <option key={t} value={t} disabled={cfg ? !cfg.allowed : false}>
-                          {cfg?.label ?? t}
-                          {cfg && !cfg.allowed ? " (N/A)" : ""}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </label>
-              ) : (
-                selectedWeapon && (
-                  <div className="attack-base-preview attack-rof-summary">
-                    <span className="attack-rof-badge">ROF {selectedRof}</span>
-                    <div>
-                      <strong>{selectedWeapon.name}</strong>
-                      {selectedWeapon.dmg && (
-                        <span className="attack-rof-dmg"> · {selectedWeapon.dmg} damage</span>
-                      )}
-                    </div>
-                    <div className="attack-rof-detail">{formatRofSummary(selectedRof)}</div>
-                    {selectedWeapon.effect && selectedWeapon.effect !== "N/A" && (
-                      <div className="attack-rof-effect">{selectedWeapon.effect}</div>
-                    )}
-                  </div>
-                )
-              )}
-
-              <label>
-                Defense
-                <select
-                  value={defenseType}
-                  onChange={(e) => setDefenseType(e.target.value as CombatDefenseType)}
-                >
-                  {allowedDefenses.map((d) => (
-                    <option key={d} value={d}>
-                      {defenseLabel(d)}
-                      {d === "block" &&
-                        selectedWeapon?.isRanged &&
-                        !selectedWeapon.isThrown &&
-                        " (shield only)"}
-                      {d === "parry" && selectedWeapon?.isThrown && " (−5 vs thrown)"}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              {selectedWeapon?.isRanged && (
-                <label>
-                  Range
-                  <select
-                    value={rangeBand}
-                    onChange={(e) => setRangeBand(e.target.value as RangeBand)}
-                  >
-                    {RANGE_BANDS.map((b) => (
-                      <option key={b.id} value={b.id}>
-                        {b.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              )}
-
-              {defenseType === "none" ? (
-                <label>
-                  Defense DC
-                  <input
-                    type="number"
-                    min={0}
-                    value={defenseDc}
-                    onChange={(e) => setDefenseDc(e.target.value)}
-                  />
-                </label>
-              ) : (
-                target && (
-                  <div className="attack-base-preview">
-                    Defense base:{" "}
-                    <strong>
-                      {defenseBase(target, defenseType, defenderBlockSkill)}
-                    </strong>
-                    {defenseType === "parry" && selectedWeapon?.isThrown && " (−5 thrown)"}
-                    {defenseType === "parry" && !selectedWeapon?.isThrown && " (−3 parry)"}
-                    {defenderBlockSkill && ` · ${defenderBlockSkill}`}
-                  </div>
-                )
-              )}
-            </div>
-
-            {attackBasePreview !== null && (
-              <div className="attack-base-preview">
-                Attack base: <strong>{attackBasePreview}</strong>
-                {typeConfig && typeConfig.attackModifier !== 0 && (
-                  <span> (incl. {typeConfig.attackModifier} from attack type)</span>
-                )}
-              </div>
-            )}
-
-            <fieldset className="attack-modifiers">
-              <legend>Modifiers</legend>
-              <div className="attack-modifier-grid">
-                <label>
-                  Aim location
-                  <select
-                    value={aimLocation}
-                    onChange={(e) => setAimLocation(e.target.value as HitLocation | "")}
-                  >
-                    <option value="">Unaimed</option>
-                    {Object.entries(AIM_LOCATION_PENALTIES).map(([loc, pen]) => (
-                      <option key={loc} value={loc}>
-                        {loc} ({pen})
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="attack-check">
-                  <input
-                    type="checkbox"
-                    checked={targetDodging}
-                    onChange={(e) => setTargetDodging(e.target.checked)}
-                  />
-                  Target dodging (−2)
-                </label>
-                <label className="attack-check">
-                  <input
-                    type="checkbox"
-                    checked={fastDraw}
-                    onChange={(e) => setFastDraw(e.target.checked)}
-                  />
-                  Fast draw (−3)
-                </label>
-                <label className="attack-check">
-                  <input
-                    type="checkbox"
-                    checked={ambush}
-                    onChange={(e) => setAmbush(e.target.checked)}
-                  />
-                  Ambush (+5)
-                </label>
-                <label className="attack-check">
-                  <input
-                    type="checkbox"
-                    checked={outsideVisionCone}
-                    onChange={(e) => setOutsideVisionCone(e.target.checked)}
-                  />
-                  Outside vision cone (−3)
-                </label>
-                <label>
-                  Custom
-                  <input
-                    type="number"
-                    value={customModifier}
-                    onChange={(e) => setCustomModifier(e.target.value)}
-                    placeholder="0"
-                  />
-                </label>
-              </div>
-            </fieldset>
-
-            <div className="attack-rolls">
-              <label>
-                Attacker d10{isPlayerAttacker ? "" : " (auto if empty)"}
-                <input
-                  value={attackerRollInput}
-                  onChange={(e) => setAttackerRollInput(e.target.value)}
-                  placeholder={isPlayerAttacker ? "e.g. 7 or 10,7" : "Leave empty to simulate"}
-                />
-              </label>
-              {defenseType !== "none" &&
-                Array.from({ length: fastStrikeCount }, (_, i) => (
-                  <label key={i}>
-                    Defender d10
-                    {fastStrikeCount > 1 ? ` (strike #${i + 1})` : ""}
-                    {isPlayerDefender ? "" : " (auto if empty)"}
-                    <input
-                      value={defenderRollInputs[i] ?? ""}
-                      onChange={(e) => {
-                        const next = [...defenderRollInputs];
-                        next[i] = e.target.value;
-                        setDefenderRollInputs(next);
-                      }}
-                      placeholder={isPlayerDefender ? "e.g. 6" : "Leave empty to simulate"}
-                    />
-                  </label>
+      {step === "attack" && (
+        <div className="attack-modal-form">
+          <div className="attack-modal-grid">
+            <label>
+              Target
+              <select value={targetId} onChange={(e) => setTargetId(e.target.value)}>
+                {targets.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name} ({c.type === "player" ? "Player" : "NPC"})
+                  </option>
                 ))}
-            </div>
-          </div>
-        )}
-
-        {step === "damage" && preview && (
-          <div className="attack-modal-form">
-            <label className="attack-check attack-apply-toggle">
-              <input
-                type="checkbox"
-                checked={applyDamage}
-                onChange={(e) => setApplyDamage(e.target.checked)}
-              />
-              Apply damage to character sheet
+              </select>
             </label>
 
-            <div className="attack-preview panel">
-              <h3>Damage breakdown</h3>
-              {preview.map((r) => (
-                <div key={r.id} className="attack-preview-row">
-                  {r.attackIndex && <span className="attack-preview-tag">#{r.attackIndex}</span>}
+            <label>
+              {isEnemyAttacker ? "Attack" : "Weapon"}
+              <select
+                value={
+                  weaponChoice.kind === "weapon"
+                    ? `w:${weaponChoice.weaponId}`
+                    : `u:${weaponChoice.unarmed}`
+                }
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v.startsWith("u:")) {
+                    setWeaponChoice({
+                      kind: "unarmed",
+                      unarmed: v.slice(2) as "punch" | "kick",
+                    });
+                  } else {
+                    setWeaponChoice({ kind: "weapon", weaponId: v.slice(2) });
+                  }
+                }}
+              >
+                {attackerWeapons.map((w) => (
+                  <option key={w.id} value={`w:${w.id}`}>
+                    {weaponOptionLabel(w, attacker)}
+                  </option>
+                ))}
+                {showUnarmed && (
+                  <>
+                    <option value="u:punch">
+                      Punch ({attacker.bonusMelee?.punch ?? "1d6"})
+                    </option>
+                    <option value="u:kick">
+                      Kick ({attacker.bonusMelee?.kick ?? "1d6+2"})
+                    </option>
+                  </>
+                )}
+              </select>
+            </label>
+
+            {attackOptions.showAttackTypes ? (
+              <label>
+                Attack type
+                <select
+                  value={attackType}
+                  onChange={(e) => setAttackType(e.target.value as CombatAttackType)}
+                >
+                  {attackOptions.attackTypes.map((t) => {
+                    const cfg = selectedWeapon ? attackTypeConfig(t, selectedWeapon) : null;
+                    return (
+                      <option key={t} value={t} disabled={cfg ? !cfg.allowed : false}>
+                        {cfg?.label ?? t}
+                        {cfg && !cfg.allowed ? " (N/A)" : ""}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+            ) : (
+              selectedWeapon && (
+                <div className="attack-base-preview attack-rof-summary">
+                  <span className="attack-rof-badge">ROF {selectedRof}</span>
                   <div>
-                    <strong>{r.hit ? "HIT" : "MISS"}</strong>
-                    {!r.hit && (
-                      <span>
-                        {" "}
-                        — attack {r.attackRoll.total}
-                        {r.defenseRoll ? ` vs ${r.defenseRoll.total}` : ""}
-                      </span>
-                    )}
-                    {r.hit && r.finalDamage !== undefined && (
-                      <span className="attack-preview-margin">
-                        {" "}
-                        · {r.hitLocation} ×{r.locationMultiplier} →{" "}
-                        <strong>{r.finalDamage} dmg</strong>
-                        {r.critWoundTier !== "none" && (
-                          <> · {formatCritWoundTier(r.critWoundTier)}</>
-                        )}
-                      </span>
+                    <strong>{selectedWeapon.name}</strong>
+                    {selectedWeapon.dmg && (
+                      <span className="attack-rof-dmg"> · {selectedWeapon.dmg} damage</span>
                     )}
                   </div>
-                  {r.hit && (
-                    <ol className="attack-damage-breakdown">
-                      {formatDamageBreakdown(r).map((line, index) => (
-                        <li key={index}>{line}</li>
-                      ))}
-                      {r.criticalWoundEffect && (
-                        <li className="attack-crit-wound">
-                          Crit wound table ({r.criticalWoundRoll}): {r.criticalWoundEffect}
-                        </li>
-                      )}
-                      {target && applyDamage && (
-                        <li className="attack-hp-delta">
-                          HP: {target.vitals.hp.current} →{" "}
-                          {Math.max(0, target.vitals.hp.current - (r.finalDamage ?? 0))}
-                        </li>
-                      )}
-                    </ol>
+                  <div className="attack-rof-detail">{formatRofSummary(selectedRof)}</div>
+                  {selectedWeapon.effect && selectedWeapon.effect !== "N/A" && (
+                    <div className="attack-rof-effect">{selectedWeapon.effect}</div>
                   )}
                 </div>
-              ))}
-            </div>
+              )
+            )}
+
+            <label>
+              Defense
+              <select
+                value={defenseType}
+                onChange={(e) => setDefenseType(e.target.value as CombatDefenseType)}
+              >
+                {allowedDefenses.map((d) => (
+                  <option key={d} value={d}>
+                    {defenseLabel(d)}
+                    {d === "block" &&
+                      selectedWeapon?.isRanged &&
+                      !selectedWeapon.isThrown &&
+                      " (shield only)"}
+                    {d === "parry" && selectedWeapon?.isThrown && " (−5 vs thrown)"}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            {selectedWeapon?.isRanged && (
+              <label>
+                Range
+                <select
+                  value={rangeBand}
+                  onChange={(e) => setRangeBand(e.target.value as RangeBand)}
+                >
+                  {RANGE_BANDS.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+
+            {defenseType === "none" ? (
+              <label>
+                Defense DC
+                <input
+                  type="number"
+                  min={0}
+                  value={defenseDc}
+                  onChange={(e) => setDefenseDc(e.target.value)}
+                />
+              </label>
+            ) : (
+              target && (
+                <div className="attack-base-preview">
+                  Defense base:{" "}
+                  <strong>
+                    {defenseBase(target, defenseType, defenderBlockSkill)}
+                  </strong>
+                  {defenseType === "parry" && selectedWeapon?.isThrown && " (−5 thrown)"}
+                  {defenseType === "parry" && !selectedWeapon?.isThrown && " (−3 parry)"}
+                  {defenderBlockSkill && ` · ${defenderBlockSkill}`}
+                </div>
+              )
+            )}
           </div>
-        )}
 
-        {error && <p className="create-modal-error">{error}</p>}
+          {attackBasePreview !== null && (
+            <div className="attack-base-preview">
+              Attack base: <strong>{attackBasePreview}</strong>
+              {typeConfig && typeConfig.attackModifier !== 0 && (
+                <span> (incl. {typeConfig.attackModifier} from attack type)</span>
+              )}
+            </div>
+          )}
 
-        <div className="create-modal-actions">
-          <button type="button" onClick={onClose} disabled={submitting}>
-            Cancel
-          </button>
-          {step === "damage" && (
-            <button
-              type="button"
-              className="btn-sm"
-              onClick={() => setStep("attack")}
-              disabled={submitting}
-            >
-              ← Back
-            </button>
-          )}
-          {step === "attack" && (
-            <button type="button" className="btn-sm" onClick={handlePreview} disabled={submitting}>
-              Preview
-            </button>
-          )}
-          <button
-            type="button"
-            className="primary"
-            onClick={() => void handleConfirm()}
-            disabled={submitting || (step === "damage" && !preview)}
-          >
-            {submitting
-              ? "Recording…"
-              : step === "damage"
-                ? applyDamage
-                  ? "Apply & confirm"
-                  : "Log only"
-                : preview
-                  ? "Confirm attack"
-                  : "Resolve & confirm"}
-          </button>
+          <fieldset className="attack-modifiers">
+            <legend>Modifiers</legend>
+            <div className="attack-modifier-grid">
+              <label>
+                Aim location
+                <select
+                  value={aimLocation}
+                  onChange={(e) => setAimLocation(e.target.value as HitLocation | "")}
+                >
+                  <option value="">Unaimed</option>
+                  {Object.entries(AIM_LOCATION_PENALTIES).map(([loc, pen]) => (
+                    <option key={loc} value={loc}>
+                      {loc} ({pen})
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="attack-check">
+                <input
+                  type="checkbox"
+                  checked={targetDodging}
+                  onChange={(e) => setTargetDodging(e.target.checked)}
+                />
+                Target dodging (−2)
+              </label>
+              <label className="attack-check">
+                <input
+                  type="checkbox"
+                  checked={fastDraw}
+                  onChange={(e) => setFastDraw(e.target.checked)}
+                />
+                Fast draw (−3)
+              </label>
+              <label className="attack-check">
+                <input
+                  type="checkbox"
+                  checked={ambush}
+                  onChange={(e) => setAmbush(e.target.checked)}
+                />
+                Ambush (+5)
+              </label>
+              <label className="attack-check">
+                <input
+                  type="checkbox"
+                  checked={outsideVisionCone}
+                  onChange={(e) => setOutsideVisionCone(e.target.checked)}
+                />
+                Outside vision cone (−3)
+              </label>
+              <label>
+                Custom
+                <input
+                  type="number"
+                  value={customModifier}
+                  onChange={(e) => setCustomModifier(e.target.value)}
+                  placeholder="0"
+                />
+              </label>
+            </div>
+          </fieldset>
+
+          <div className="attack-rolls">
+            <label>
+              Attacker d10{isPlayerAttacker ? "" : " (auto if empty)"}
+              <input
+                value={attackerRollInput}
+                onChange={(e) => setAttackerRollInput(e.target.value)}
+                placeholder={isPlayerAttacker ? "e.g. 7 or 10,7" : "Leave empty to simulate"}
+              />
+            </label>
+            {defenseType !== "none" &&
+              Array.from({ length: fastStrikeCount }, (_, i) => (
+                <label key={i}>
+                  Defender d10
+                  {fastStrikeCount > 1 ? ` (strike #${i + 1})` : ""}
+                  {isPlayerDefender ? "" : " (auto if empty)"}
+                  <input
+                    value={defenderRollInputs[i] ?? ""}
+                    onChange={(e) => {
+                      const next = [...defenderRollInputs];
+                      next[i] = e.target.value;
+                      setDefenderRollInputs(next);
+                    }}
+                    placeholder={isPlayerDefender ? "e.g. 6" : "Leave empty to simulate"}
+                  />
+                </label>
+              ))}
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+
+      {step === "damage" && preview && (
+        <div className="attack-modal-form">
+          <label className="attack-check attack-apply-toggle">
+            <input
+              type="checkbox"
+              checked={applyDamage}
+              onChange={(e) => setApplyDamage(e.target.checked)}
+            />
+            Apply damage to character sheet
+          </label>
+
+          <div className="attack-preview panel">
+            <h3>Damage breakdown</h3>
+            {preview.map((r) => (
+              <div key={r.id} className="attack-preview-row">
+                {r.attackIndex && <span className="attack-preview-tag">#{r.attackIndex}</span>}
+                <div>
+                  <strong>{r.hit ? "HIT" : "MISS"}</strong>
+                  {!r.hit && (
+                    <span>
+                      {" "}
+                      — attack {r.attackRoll.total}
+                      {r.defenseRoll ? ` vs ${r.defenseRoll.total}` : ""}
+                    </span>
+                  )}
+                  {r.hit && r.finalDamage !== undefined && (
+                    <span className="attack-preview-margin">
+                      {" "}
+                      · {r.hitLocation} ×{r.locationMultiplier} →{" "}
+                      <strong>{r.finalDamage} dmg</strong>
+                      {r.critWoundTier !== "none" && (
+                        <> · {formatCritWoundTier(r.critWoundTier)}</>
+                      )}
+                    </span>
+                  )}
+                </div>
+                {r.hit && (
+                  <ol className="attack-damage-breakdown">
+                    {formatDamageBreakdown(r).map((line, index) => (
+                      <li key={index}>{line}</li>
+                    ))}
+                    {r.criticalWoundEffect && (
+                      <li className="attack-crit-wound">
+                        Crit wound table ({r.criticalWoundRoll}): {r.criticalWoundEffect}
+                      </li>
+                    )}
+                    {target && applyDamage && (
+                      <li className="attack-hp-delta">
+                        HP: {target.vitals.hp.current} →{" "}
+                        {Math.max(0, target.vitals.hp.current - (r.finalDamage ?? 0))}
+                      </li>
+                    )}
+                  </ol>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {error && <p className="modal-error">{error}</p>}
+    </Modal>
   );
 }

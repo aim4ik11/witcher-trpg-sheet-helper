@@ -8,7 +8,7 @@ import {
   parseManualDieRolls,
   skillBase,
 } from "@wilmak/game-data";
-import "../CreateCharacterModal/CreateCharacterModal.css";
+import Modal from "../Modal";
 import "./SkillCheckModal.css";
 
 export interface SkillCheckTarget {
@@ -153,140 +153,128 @@ export default function SkillCheckModal({ target, onClose }: Props) {
     }
   }
 
-  return (
-    <div className="create-modal-backdrop" onClick={onClose} role="presentation">
-      <div
-        className="create-modal create-modal--wide panel skill-check-modal"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-      >
-        <button type="button" className="create-modal-close" onClick={onClose} aria-label="Close">
-          ×
+  const footer = resolved ? (
+    <button type="button" className="primary" onClick={onClose}>
+      Done
+    </button>
+  ) : (
+    <>
+      {isPlayer && (
+        <button
+          type="button"
+          className="btn-sm"
+          onClick={() => void handleNotifyPlayer()}
+          disabled={busy || notified}
+        >
+          {notified ? "Player notified" : "Ask player to roll"}
         </button>
-        <h2 className="create-modal-title">Skill check — {character.name}</h2>
-        <p className="skill-check-hint">
-          {skillLabel} · base <strong>{statSkillBase}</strong>
-          {isPlayer
-            ? " — ask the player to roll, then enter their d10 result."
-            : " — enter a roll or simulate for this NPC."}
-        </p>
+      )}
+      {!isPlayer && (
+        <button type="button" className="btn-sm" onClick={handleSimulate} disabled={busy}>
+          Simulate roll
+        </button>
+      )}
+      <button
+        type="button"
+        className="primary"
+        onClick={() => void handleResolve(!isPlayer && !rollInput.trim())}
+        disabled={busy}
+      >
+        {isPlayer ? "Resolve" : rollInput.trim() ? "Resolve" : "Simulate & resolve"}
+      </button>
+    </>
+  );
 
-        {resolved ? (
-          <div className="skill-check-result panel">
-            <h3>Result</h3>
-            <p className="skill-check-result-line">
-              <span
-                className={`skill-check-outcome skill-check-outcome--${resolved.outcome}`}
-              >
-                {resolved.outcome}
-              </span>
-              {" · "}
-              d10 [{formatSkillCheckRolls(resolved.dieRolls)}] + {resolved.effectiveBase} ={" "}
-              <strong>{resolved.total}</strong>
-              {resolved.dc != null && (
-                <>
-                  {" "}
-                  vs DC {resolved.dc} —{" "}
-                  <strong
-                    className={
-                      resolved.success ? "skill-check-pass" : "skill-check-fail"
-                    }
-                  >
-                    {resolved.success ? "Success" : "Failure"}
-                  </strong>
-                </>
-              )}
-            </p>
-            {resolved.simulated && (
-              <p className="skill-check-note">Simulated roll for NPC.</p>
+  return (
+    <Modal
+      title={`Skill check — ${character.name}`}
+      size="lg"
+      onClose={onClose}
+      footer={footer}
+    >
+      <p className="skill-check-hint">
+        {skillLabel} · base <strong>{statSkillBase}</strong>
+        {isPlayer
+          ? " — ask the player to roll, then enter their d10 result."
+          : " — enter a roll or simulate for this NPC."}
+      </p>
+
+      {resolved ? (
+        <div className="skill-check-result panel">
+          <h3>Result</h3>
+          <p className="skill-check-result-line">
+            <span className={`skill-check-outcome skill-check-outcome--${resolved.outcome}`}>
+              {resolved.outcome}
+            </span>
+            {" · "}
+            d10 [{formatSkillCheckRolls(resolved.dieRolls)}] + {resolved.effectiveBase} ={" "}
+            <strong>{resolved.total}</strong>
+            {resolved.dc != null && (
+              <>
+                {" "}
+                vs DC {resolved.dc} —{" "}
+                <strong
+                  className={resolved.success ? "skill-check-pass" : "skill-check-fail"}
+                >
+                  {resolved.success ? "Success" : "Failure"}
+                </strong>
+              </>
             )}
-            <button type="button" className="primary" onClick={onClose}>
-              Done
-            </button>
-          </div>
-        ) : (
-          <div className="skill-check-form">
-            <div className="skill-check-grid">
-              <label>
-                Modifier
-                <input
-                  type="number"
-                  value={modifier}
-                  onChange={(e) => setModifier(e.target.value)}
-                />
-              </label>
-              <label>
-                DC (optional)
-                <input
-                  type="number"
-                  min={0}
-                  value={dc}
-                  onChange={(e) => setDc(e.target.value)}
-                  placeholder="—"
-                />
-              </label>
-            </div>
-
+          </p>
+          {resolved.simulated && (
+            <p className="skill-check-note">Simulated roll for NPC.</p>
+          )}
+        </div>
+      ) : (
+        <div className="skill-check-form">
+          <div className="skill-check-grid">
             <label>
-              Notes (optional)
+              Modifier
               <input
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder="e.g. Climb the crumbling wall"
+                type="number"
+                value={modifier}
+                onChange={(e) => setModifier(e.target.value)}
               />
             </label>
-
             <label>
-              d10 roll{isPlayer ? " (from player)" : ""}
+              DC (optional)
               <input
-                value={rollInput}
-                onChange={(e) => setRollInput(e.target.value)}
-                placeholder={isPlayer ? "e.g. 7 or 10,7" : "Leave empty to simulate"}
+                type="number"
+                min={0}
+                value={dc}
+                onChange={(e) => setDc(e.target.value)}
+                placeholder="—"
               />
             </label>
-
-            {preview && (
-              <div className="skill-check-preview">
-                Preview: {formatSkillCheckOutcome(preview)}
-              </div>
-            )}
-
-            {error && <p className="skill-check-error">{error}</p>}
-
-            <div className="skill-check-actions">
-              {isPlayer && (
-                <button
-                  type="button"
-                  className="btn-sm"
-                  onClick={() => void handleNotifyPlayer()}
-                  disabled={busy || notified}
-                >
-                  {notified ? "Player notified" : "Ask player to roll"}
-                </button>
-              )}
-              {!isPlayer && (
-                <button
-                  type="button"
-                  className="btn-sm"
-                  onClick={handleSimulate}
-                  disabled={busy}
-                >
-                  Simulate roll
-                </button>
-              )}
-              <button
-                type="button"
-                className="primary"
-                onClick={() => void handleResolve(!isPlayer && !rollInput.trim())}
-                disabled={busy}
-              >
-                {isPlayer ? "Resolve" : rollInput.trim() ? "Resolve" : "Simulate & resolve"}
-              </button>
-            </div>
           </div>
-        )}
-      </div>
-    </div>
+
+          <label>
+            Notes (optional)
+            <input
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="e.g. Climb the crumbling wall"
+            />
+          </label>
+
+          <label>
+            d10 roll{isPlayer ? " (from player)" : ""}
+            <input
+              value={rollInput}
+              onChange={(e) => setRollInput(e.target.value)}
+              placeholder={isPlayer ? "e.g. 7 or 10,7" : "Leave empty to simulate"}
+            />
+          </label>
+
+          {preview && (
+            <div className="skill-check-preview">
+              Preview: {formatSkillCheckOutcome(preview)}
+            </div>
+          )}
+
+          {error && <p className="modal-error">{error}</p>}
+        </div>
+      )}
+    </Modal>
   );
 }

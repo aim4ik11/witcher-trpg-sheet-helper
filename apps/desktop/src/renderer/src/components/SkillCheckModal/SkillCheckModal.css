@@ -1,7 +1,3 @@
-.skill-check-modal {
-  max-width: 520px;
-}
-
 .skill-check-hint {
   margin: 0 0 1rem;
   font-size: 0.85rem;
@@ -55,13 +51,6 @@
   margin: 0;
   font-size: 13px;
   color: var(--danger, #e07070);
-}
-
-.skill-check-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
 }
 
 .skill-check-result h3 {

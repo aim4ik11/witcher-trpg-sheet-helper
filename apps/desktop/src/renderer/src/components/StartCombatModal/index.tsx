@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { Character, CombatParticipant } from "@wilmak/shared";
 import {
   buildCombatParticipant,
   characterRef,
   rollInitiativeRoll,
 } from "@wilmak/game-data";
-import "../CreateCharacterModal/CreateCharacterModal.css";
+import Modal from "../Modal";
 import "./StartCombatModal.css";
 
 export type CombatParticipantsMode = "start" | "add";
@@ -13,7 +13,6 @@ export type CombatParticipantsMode = "start" | "add";
 interface Props {
   mode: CombatParticipantsMode;
   characters: Character[];
-  /** Already in combat — hidden in add mode. */
   existingParticipantIds?: string[];
   onSubmit: (participants: CombatParticipant[]) => void | Promise<void>;
   onClose: () => void;
@@ -48,6 +47,8 @@ const COPY: Record<
   },
 };
 
+const FORM_ID = "start-combat-form";
+
 export default function StartCombatModal({
   mode,
   characters,
@@ -81,18 +82,6 @@ export default function StartCombatModal({
   );
 
   const copy = COPY[mode];
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
 
   function rollNpc(character: Character) {
     const ref = characterRef(character);
@@ -146,7 +135,7 @@ export default function StartCombatModal({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!allReady()) {
-      setError("Select participants and enter every player’s d10 roll (1–10).");
+      setError("Select participants and enter every player's d10 roll (1–10).");
       return;
     }
 
@@ -257,60 +246,48 @@ export default function StartCombatModal({
   }
 
   return (
-    <div className="create-modal-backdrop" onClick={onClose} role="presentation">
-      <div
-        className="create-modal create-modal--wide panel start-combat-modal"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-      >
-        <button
-          type="button"
-          className="create-modal-close"
-          onClick={onClose}
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <h2 className="create-modal-title">{copy.title}</h2>
-        <p className="start-combat-hint">{copy.hint}</p>
-
-        <form onSubmit={(e) => void handleSubmit(e)} className="start-combat-form">
-          {available.length === 0 ? (
-            <p className="start-combat-empty">{copy.empty}</p>
-          ) : (
-            <>
-              {players.length > 0 && (
-                <section className="start-combat-group">
-                  <h3>Players</h3>
-                  <div className="combat-participant-list">{players.map(renderRow)}</div>
-                </section>
-              )}
-              {enemies.length > 0 && (
-                <section className="start-combat-group">
-                  <h3>Enemies & NPCs</h3>
-                  <div className="combat-participant-list">{enemies.map(renderRow)}</div>
-                </section>
-              )}
-            </>
-          )}
-
-          {error && <p className="create-modal-error">{error}</p>}
-
-          <div className="create-modal-actions">
-            <button type="button" onClick={onClose} disabled={submitting}>
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="primary"
-              disabled={submitting || !allReady()}
-            >
-              {submitting ? copy.submitting : copy.submit}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <Modal
+      title={copy.title}
+      size="xl"
+      onClose={onClose}
+      footer={
+        <>
+          <button type="button" onClick={onClose} disabled={submitting}>
+            Cancel
+          </button>
+          <button
+            type="submit"
+            form={FORM_ID}
+            className="primary"
+            disabled={submitting || !allReady()}
+          >
+            {submitting ? copy.submitting : copy.submit}
+          </button>
+        </>
+      }
+    >
+      <p className="start-combat-hint">{copy.hint}</p>
+      <form id={FORM_ID} onSubmit={(e) => void handleSubmit(e)} className="start-combat-form">
+        {available.length === 0 ? (
+          <p className="start-combat-empty">{copy.empty}</p>
+        ) : (
+          <>
+            {players.length > 0 && (
+              <section className="start-combat-group">
+                <h3>Players</h3>
+                <div className="combat-participant-list">{players.map(renderRow)}</div>
+              </section>
+            )}
+            {enemies.length > 0 && (
+              <section className="start-combat-group">
+                <h3>Enemies & NPCs</h3>
+                <div className="combat-participant-list">{enemies.map(renderRow)}</div>
+              </section>
+            )}
+          </>
+        )}
+        {error && <p className="modal-error">{error}</p>}
+      </form>
+    </Modal>
   );
 }

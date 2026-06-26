@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Character } from "@wilmak/shared";
 import {
   catalogToEnemy,
@@ -11,6 +11,7 @@ import {
   OccupationSelect,
   occupationAfterRaceChange,
 } from "../RaceOccupationSelect";
+import Modal from "../Modal";
 import PlayerCreationWizard from "./PlayerCreationWizard";
 import "./CreateCharacterModal.css";
 import "./PlayerCreationWizard.css";
@@ -23,6 +24,8 @@ interface Props {
   onClose: () => void;
 }
 
+const FORM_ID = "create-enemy-form";
+
 export default function CreateCharacterModal({ type, onSubmit, onClose }: Props) {
   const isPlayer = type === "player";
   const [name, setName] = useState("");
@@ -34,18 +37,6 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
   const [error, setError] = useState("");
 
   const catalogGroups = useMemo(() => monsterCatalogGroups(), []);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
 
   useEffect(() => {
     setOccupation((prev) => occupationAfterRaceChange(race, prev));
@@ -93,130 +84,97 @@ export default function CreateCharacterModal({ type, onSubmit, onClose }: Props)
   }
 
   return (
-    <div className="create-modal-backdrop" onClick={onClose} role="presentation">
-      <div
-        className={`create-modal${!isPlayer ? " create-modal--wide" : ""}`}
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-      >
-        <div className="create-modal-header">
-          <h2 className="create-modal-title">
-            {isPlayer ? "New player" : "New enemy"}
-          </h2>
+    <Modal
+      title="New enemy"
+      size="lg"
+      onClose={onClose}
+      subheader={
+        <div className="create-modal-mode" role="tablist" aria-label="Enemy type">
           <button
             type="button"
-            className="create-modal-close"
-            onClick={onClose}
-            aria-label="Close"
+            role="tab"
+            aria-selected={enemyMode === "bestiary"}
+            className={enemyMode === "bestiary" ? "active" : ""}
+            onClick={() => setEnemyMode("bestiary")}
           >
-            ×
+            Bestiary
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={enemyMode === "custom"}
+            className={enemyMode === "custom" ? "active" : ""}
+            onClick={() => setEnemyMode("custom")}
+          >
+            Custom NPC
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="create-modal-form">
-          {!isPlayer && (
-            <div className="create-modal-mode" role="tablist" aria-label="Enemy type">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={enemyMode === "bestiary"}
-                className={enemyMode === "bestiary" ? "active" : ""}
-                onClick={() => setEnemyMode("bestiary")}
-              >
-                Bestiary
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={enemyMode === "custom"}
-                className={enemyMode === "custom" ? "active" : ""}
-                onClick={() => setEnemyMode("custom")}
-              >
-                Custom NPC
-              </button>
-            </div>
-          )}
-
-          <div className="create-modal-body">
-            {!isPlayer && enemyMode === "bestiary" && (
-              <label>
-                Creature <span className="required">*</span>
-                <select
-                  value={catalogId}
-                  onChange={(e) => handleCatalogChange(e.target.value)}
-                >
-                  <option value="">— Select from rulebook —</option>
-                  {catalogGroups.map((group) => (
-                    <optgroup key={group.label} label={group.label}>
-                      {group.entries.map((entry) => (
-                        <option key={entry.id} value={entry.id}>
-                          {entry.name}
-                          {entry.threat ? ` (${entry.threat})` : ""}
-                        </option>
-                      ))}
-                    </optgroup>
+      }
+      footer={
+        <>
+          <button type="button" className="ghost" onClick={onClose}>
+            Cancel
+          </button>
+          <button type="submit" form={FORM_ID} className="primary">
+            Create
+          </button>
+        </>
+      }
+    >
+      <form id={FORM_ID} onSubmit={handleSubmit} className="create-modal-form">
+        {enemyMode === "bestiary" && (
+          <label>
+            Creature <span className="required">*</span>
+            <select
+              value={catalogId}
+              onChange={(e) => handleCatalogChange(e.target.value)}
+            >
+              <option value="">— Select from rulebook —</option>
+              {catalogGroups.map((group) => (
+                <optgroup key={group.label} label={group.label}>
+                  {group.entries.map((entry) => (
+                    <option key={entry.id} value={entry.id}>
+                      {entry.name}
+                      {entry.threat ? ` (${entry.threat})` : ""}
+                    </option>
                   ))}
-                </select>
-              </label>
-            )}
+                </optgroup>
+              ))}
+            </select>
+          </label>
+        )}
 
+        <label>
+          Name <span className="required">*</span>
+          <input
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              setError("");
+            }}
+            placeholder="e.g. Geralt of Rivia"
+            autoFocus
+          />
+        </label>
+
+        {enemyMode === "custom" && (
+          <>
             <label>
-              Name <span className="required">*</span>
-              <input
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                  setError("");
-                }}
-                placeholder="e.g. Geralt of Rivia"
-                autoFocus
+              Race <RaceSelect value={race} onChange={setRace} />
+            </label>
+            <label>
+              Occupation{" "}
+              <OccupationSelect
+                race={race}
+                value={occupation}
+                onChange={setOccupation}
               />
             </label>
+          </>
+        )}
 
-            {(isPlayer || enemyMode === "custom") && (
-              <>
-                <label>
-                  Race <RaceSelect value={race} onChange={setRace} />
-                </label>
-                <label>
-                  Occupation{" "}
-                  <OccupationSelect
-                    race={race}
-                    value={occupation}
-                    onChange={setOccupation}
-                  />
-                </label>
-              </>
-            )}
-
-            {isPlayer && (
-              <label>
-                Player nickname <span className="required">*</span>
-                <input
-                  value={nickname}
-                  onChange={(e) => {
-                    setNickname(normalizeNickname(e.target.value));
-                    setError("");
-                  }}
-                  placeholder="e.g. yennefer"
-                  autoComplete="off"
-                />
-              </label>
-            )}
-
-            {error && <p className="create-modal-error">{error}</p>}
-          </div>
-
-          <div className="create-modal-actions">
-            <button type="button" className="ghost" onClick={onClose}>
-              Cancel
-            </button>
-            <button type="submit" className="primary">
-              Create
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+        {error && <p className="modal-error">{error}</p>}
+      </form>
+    </Modal>
   );
 }

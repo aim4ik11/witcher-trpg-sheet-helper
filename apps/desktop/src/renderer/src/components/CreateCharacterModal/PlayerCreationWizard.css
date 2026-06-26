@@ -1,15 +1,3 @@
-.create-modal--wizard {
-  max-width: 640px;
-  max-height: min(90vh, 820px);
-  display: flex;
-  flex-direction: column;
-}
-
-.wizard-body {
-  overflow-y: auto;
-  max-height: 55vh;
-}
-
 .wizard-steps {
   display: flex;
   gap: 6px;
