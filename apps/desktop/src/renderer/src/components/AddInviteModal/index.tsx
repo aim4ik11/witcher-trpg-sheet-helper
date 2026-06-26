@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { normalizeNickname } from "../../utils/session";
 import Modal from "../Modal";
-import "../CreateCharacterModal/CreateCharacterModal.css";
 
 interface Props {
   onSubmit: (nickname: string) => void | Promise<void>;
