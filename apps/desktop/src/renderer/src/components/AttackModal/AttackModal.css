@@ -28,10 +28,8 @@
 }
 
 .attack-modal-grid label,
+.attack-modifier-grid label,
 .attack-rolls label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
   font-size: 12px;
   color: var(--text-muted);
   text-transform: uppercase;

@@ -420,8 +420,8 @@ export default function MagicCastModal({ target, onClose, onCharacterUpdated }: 
 
           <div className="skill-check-grid">
             {variableSta && (
-              <label>
-                STA spent (max 7 for signs)
+              <div className="field">
+                <label>STA spent (max 7 for signs)</label>
                 <input
                   type="number"
                   min={0}
@@ -429,27 +429,27 @@ export default function MagicCastModal({ target, onClose, onCharacterUpdated }: 
                   value={staSpent}
                   onChange={(e) => setStaSpent(e.target.value)}
                 />
-              </label>
+              </div>
             )}
-            <label>
-              Focus reduction
+            <div className="field">
+              <label>Focus reduction</label>
               <input
                 type="number"
                 min={0}
                 value={focusReduction}
                 onChange={(e) => setFocusReduction(e.target.value)}
               />
-            </label>
-            <label>
-              Modifier
+            </div>
+            <div className="field">
+              <label>Modifier</label>
               <input
                 type="number"
                 value={modifier}
                 onChange={(e) => setModifier(e.target.value)}
               />
-            </label>
-            <label>
-              DC (optional)
+            </div>
+            <div className="field">
+              <label>DC (optional)</label>
               <input
                 type="number"
                 min={0}
@@ -457,19 +457,19 @@ export default function MagicCastModal({ target, onClose, onCharacterUpdated }: 
                 onChange={(e) => setDc(e.target.value)}
                 placeholder="—"
               />
-            </label>
+            </div>
           </div>
 
           <div className="skill-check-grid">
-            <label>
-              Dimeritium within 5 m
+            <div className="field">
+              <label>Dimeritium within 5 m</label>
               <input
                 type="number"
                 min={0}
                 value={dimeritiumUnits}
                 onChange={(e) => setDimeritiumUnits(e.target.value)}
               />
-            </label>
+            </div>
             <label className="magic-cast-checkbox">
               <input
                 type="checkbox"
@@ -480,27 +480,27 @@ export default function MagicCastModal({ target, onClose, onCharacterUpdated }: 
             </label>
           </div>
 
-          <label>
-            Notes (optional)
+          <div className="field">
+            <label>Notes (optional)</label>
             <input
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. Casting Aard at the ghoul"
             />
-          </label>
+          </div>
 
-          <label>
-            d10 roll{isPlayer ? " (from player)" : ""}
+          <div className="field">
+            <label>d10 roll{isPlayer ? " (from player)" : ""}</label>
             <input
               value={rollInput}
               onChange={(e) => setRollInput(e.target.value)}
               placeholder={isPlayer ? "e.g. 7 or 10,7" : "Leave empty to simulate"}
             />
-          </label>
+          </div>
 
           {(preview?.outcome === "fumble" || fumbleSecondInput) && (
-            <label>
-              Magic fumble — second d10
+            <div className="field">
+              <label>Magic fumble — second d10</label>
               <input
                 type="number"
                 min={1}
@@ -509,13 +509,13 @@ export default function MagicCastModal({ target, onClose, onCharacterUpdated }: 
                 onChange={(e) => setFumbleSecondInput(e.target.value)}
                 placeholder="Required on natural 1"
               />
-            </label>
+            </div>
           )}
 
           {(parseOptionalInt(fumbleSecondInput) === 10 || preview?.outcome === "fumble") &&
             parseOptionalInt(fumbleSecondInput) === 10 && (
-              <label>
-                Focus explosion — d10 damage
+              <div className="field">
+                <label>Focus explosion — d10 damage</label>
                 <input
                   type="number"
                   min={1}
@@ -524,7 +524,7 @@ export default function MagicCastModal({ target, onClose, onCharacterUpdated }: 
                   onChange={(e) => setFocusExplosionInput(e.target.value)}
                   placeholder="Catastrophic fumble bomb damage"
                 />
-              </label>
+              </div>
             )}
 
           {error && <p className="modal-error">{error}</p>}

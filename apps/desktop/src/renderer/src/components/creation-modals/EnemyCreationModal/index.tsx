@@ -109,8 +109,8 @@ export default function EnemyCreationModal({ onSubmit, onClose }: Props) {
     >
       <form id={FORM_ID} onSubmit={handleSubmit} className="create-modal-form">
         {enemyMode === "bestiary" && (
-          <label>
-            Creature <span className="required">*</span>
+          <div className="field">
+            <label>Creature <span className="required">*</span></label>
             <select
               value={catalogId}
               onChange={(e) => handleCatalogChange(e.target.value)}
@@ -127,11 +127,11 @@ export default function EnemyCreationModal({ onSubmit, onClose }: Props) {
                 </optgroup>
               ))}
             </select>
-          </label>
+          </div>
         )}
 
-        <label>
-          Name <span className="required">*</span>
+        <div className="field">
+          <label>Name <span className="required">*</span></label>
           <input
             value={name}
             onChange={(e) => {
@@ -141,21 +141,22 @@ export default function EnemyCreationModal({ onSubmit, onClose }: Props) {
             placeholder="e.g. Geralt of Rivia"
             autoFocus
           />
-        </label>
+        </div>
 
         {enemyMode === "custom" && (
           <>
-            <label>
-              Race <RaceSelect value={race} onChange={setRace} />
-            </label>
-            <label>
-              Occupation{" "}
+            <div className="field">
+              <label>Race</label>
+              <RaceSelect value={race} onChange={setRace} />
+            </div>
+            <div className="field">
+              <label>Occupation</label>
               <OccupationSelect
                 race={race}
                 value={occupation}
                 onChange={setOccupation}
               />
-            </label>
+            </div>
           </>
         )}
 

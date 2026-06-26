@@ -358,8 +358,8 @@ export default function AttackModal({
       {step === "attack" && (
         <div className="attack-modal-form">
           <div className="attack-modal-grid">
-            <label>
-              Target
+            <div className="field">
+              <label>Target</label>
               <select value={targetId} onChange={(e) => setTargetId(e.target.value)}>
                 {targets.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -367,10 +367,10 @@ export default function AttackModal({
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
 
-            <label>
-              {isEnemyAttacker ? "Attack" : "Weapon"}
+            <div className="field">
+              <label>{isEnemyAttacker ? "Attack" : "Weapon"}</label>
               <select
                 value={
                   weaponChoice.kind === "weapon"
@@ -405,11 +405,11 @@ export default function AttackModal({
                   </>
                 )}
               </select>
-            </label>
+            </div>
 
             {attackOptions.showAttackTypes ? (
-              <label>
-                Attack type
+              <div className="field">
+                <label>Attack type</label>
                 <select
                   value={attackType}
                   onChange={(e) => setAttackType(e.target.value as CombatAttackType)}
@@ -424,7 +424,7 @@ export default function AttackModal({
                     );
                   })}
                 </select>
-              </label>
+              </div>
             ) : (
               selectedWeapon && (
                 <div className="attack-base-preview attack-rof-summary">
@@ -443,8 +443,8 @@ export default function AttackModal({
               )
             )}
 
-            <label>
-              Defense
+            <div className="field">
+              <label>Defense</label>
               <select
                 value={defenseType}
                 onChange={(e) => setDefenseType(e.target.value as CombatDefenseType)}
@@ -460,11 +460,11 @@ export default function AttackModal({
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
 
             {selectedWeapon?.isRanged && (
-              <label>
-                Range
+              <div className="field">
+                <label>Range</label>
                 <select
                   value={rangeBand}
                   onChange={(e) => setRangeBand(e.target.value as RangeBand)}
@@ -475,19 +475,19 @@ export default function AttackModal({
                     </option>
                   ))}
                 </select>
-              </label>
+              </div>
             )}
 
             {defenseType === "none" ? (
-              <label>
-                Defense DC
+              <div className="field">
+                <label>Defense DC</label>
                 <input
                   type="number"
                   min={0}
                   value={defenseDc}
                   onChange={(e) => setDefenseDc(e.target.value)}
                 />
-              </label>
+              </div>
             ) : (
               target && (
                 <div className="attack-base-preview">
@@ -515,8 +515,8 @@ export default function AttackModal({
           <fieldset className="attack-modifiers">
             <legend>Modifiers</legend>
             <div className="attack-modifier-grid">
-              <label>
-                Aim location
+              <div className="field">
+                <label>Aim location</label>
                 <select
                   value={aimLocation}
                   onChange={(e) => setAimLocation(e.target.value as HitLocation | "")}
@@ -528,7 +528,7 @@ export default function AttackModal({
                     </option>
                   ))}
                 </select>
-              </label>
+              </div>
               <label className="attack-check">
                 <input
                   type="checkbox"
@@ -561,33 +561,35 @@ export default function AttackModal({
                 />
                 Outside vision cone (−3)
               </label>
-              <label>
-                Custom
+              <div className="field">
+                <label>Custom</label>
                 <input
                   type="number"
                   value={customModifier}
                   onChange={(e) => setCustomModifier(e.target.value)}
                   placeholder="0"
                 />
-              </label>
+              </div>
             </div>
           </fieldset>
 
           <div className="attack-rolls">
-            <label>
-              Attacker d10{isPlayerAttacker ? "" : " (auto if empty)"}
+            <div className="field">
+              <label>Attacker d10{isPlayerAttacker ? "" : " (auto if empty)"}</label>
               <input
                 value={attackerRollInput}
                 onChange={(e) => setAttackerRollInput(e.target.value)}
                 placeholder={isPlayerAttacker ? "e.g. 7 or 10,7" : "Leave empty to simulate"}
               />
-            </label>
+            </div>
             {defenseType !== "none" &&
               Array.from({ length: fastStrikeCount }, (_, i) => (
-                <label key={i}>
-                  Defender d10
-                  {fastStrikeCount > 1 ? ` (strike #${i + 1})` : ""}
-                  {isPlayerDefender ? "" : " (auto if empty)"}
+                <div key={i} className="field">
+                  <label>
+                    Defender d10
+                    {fastStrikeCount > 1 ? ` (strike #${i + 1})` : ""}
+                    {isPlayerDefender ? "" : " (auto if empty)"}
+                  </label>
                   <input
                     value={defenderRollInputs[i] ?? ""}
                     onChange={(e) => {
@@ -597,7 +599,7 @@ export default function AttackModal({
                     }}
                     placeholder={isPlayerDefender ? "e.g. 6" : "Leave empty to simulate"}
                   />
-                </label>
+                </div>
               ))}
           </div>
         </div>

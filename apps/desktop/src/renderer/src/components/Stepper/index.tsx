@@ -6,9 +6,11 @@ interface Props {
   min: number;
   max: number;
   onChange: (value: number) => void;
+  onValClick?: () => void;
   disabled?: boolean;
   disableIncrease?: boolean;
   disableDecrease?: boolean;
+  hideValue?: boolean;
   className?: string;
 }
 
@@ -77,9 +79,11 @@ export default function Stepper({
   min,
   max,
   onChange,
+  onValClick,
   disabled,
   disableIncrease,
   disableDecrease,
+  hideValue,
   className = "",
 }: Props) {
   const stateRef = useRef({
@@ -144,9 +148,15 @@ export default function Stepper({
       >
         −
       </button>
-      <span className="stepper-value" aria-live="polite">
-        {value}
-      </span>
+      {!hideValue && (
+        <span
+          className={"stepper-value " + (!!onValClick && 'clickable')}
+          aria-live="polite"
+          onClick={onValClick}
+        >
+          {value}
+        </span>
+      )}
       <button
         type="button"
         className="stepper-btn"

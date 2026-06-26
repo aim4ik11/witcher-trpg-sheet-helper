@@ -110,3 +110,15 @@
   font-size: 13px;
   margin: 0;
 }
+
+/* ── Field: label + control pair ─────────────────────────── */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-backdrop--raised {
+  z-index: 200;
+}

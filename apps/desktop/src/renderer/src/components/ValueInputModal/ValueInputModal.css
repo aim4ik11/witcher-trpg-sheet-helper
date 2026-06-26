@@ -1,0 +1,11 @@
+.value-input-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.value-input-error {
+  margin: 0;
+  font-size: 13px;
+  color: var(--danger);
+}

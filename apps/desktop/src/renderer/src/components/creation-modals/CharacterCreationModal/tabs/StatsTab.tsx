@@ -23,8 +23,8 @@ export default function StatsTab({
   return (
     <>
       <div className="wizard-row">
-        <label>
-          Campaign power
+        <div className="field">
+          <label>Campaign power</label>
           <select value={pointBuy} onChange={(e) => onPointBuyChange(Number(e.target.value))}>
             {POINT_BUY_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>
@@ -32,11 +32,11 @@ export default function StatsTab({
               </option>
             ))}
           </select>
-        </label>
-        <label className="wizard-level-row">
-          Level
+        </div>
+        <div className="field wizard-level-row">
+          <label>Level</label>
           <Stepper value={level} min={1} max={99} onChange={onLevelChange} />
-        </label>
+        </div>
       </div>
       <p className="wizard-hint">
         Distribute {pointBuy} points across stats (min 1, max 10 each). Pickup skill budget

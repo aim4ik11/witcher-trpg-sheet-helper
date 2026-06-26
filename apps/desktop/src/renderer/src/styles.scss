@@ -480,3 +480,26 @@ th {
     padding: 12px 18px;
   }
 }
+
+.clickable {
+  cursor: pointer;
+}
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #63583b2d;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #796d4d;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #ebd69c;
+  }
+}

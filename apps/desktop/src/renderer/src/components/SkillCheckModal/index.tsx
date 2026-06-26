@@ -228,16 +228,16 @@ export default function SkillCheckModal({ target, onClose }: Props) {
       ) : (
         <div className="skill-check-form">
           <div className="skill-check-grid">
-            <label>
-              Modifier
+            <div className="field">
+              <label>Modifier</label>
               <input
                 type="number"
                 value={modifier}
                 onChange={(e) => setModifier(e.target.value)}
               />
-            </label>
-            <label>
-              DC (optional)
+            </div>
+            <div className="field">
+              <label>DC (optional)</label>
               <input
                 type="number"
                 min={0}
@@ -245,26 +245,26 @@ export default function SkillCheckModal({ target, onClose }: Props) {
                 onChange={(e) => setDc(e.target.value)}
                 placeholder="—"
               />
-            </label>
+            </div>
           </div>
 
-          <label>
-            Notes (optional)
+          <div className="field">
+            <label>Notes (optional)</label>
             <input
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. Climb the crumbling wall"
             />
-          </label>
+          </div>
 
-          <label>
-            d10 roll{isPlayer ? " (from player)" : ""}
+          <div className="field">
+            <label>d10 roll{isPlayer ? " (from player)" : ""}</label>
             <input
               value={rollInput}
               onChange={(e) => setRollInput(e.target.value)}
               placeholder={isPlayer ? "e.g. 7 or 10,7" : "Leave empty to simulate"}
             />
-          </label>
+          </div>
 
           {preview && (
             <div className="skill-check-preview">

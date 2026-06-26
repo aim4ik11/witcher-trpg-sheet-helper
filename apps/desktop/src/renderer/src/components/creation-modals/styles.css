@@ -1,1 +1,5 @@
-/* shared creation-modal styles */
+.section-heading {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}

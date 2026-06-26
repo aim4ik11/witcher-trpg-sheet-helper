@@ -67,8 +67,8 @@ export default function AddInviteModal({
         A login code will be generated automatically.
       </p>
       <form id={FORM_ID} onSubmit={(e) => void handleSubmit(e)} className="create-modal-form">
-        <label>
-          Nickname <span className="required">*</span>
+        <div className="field">
+          <label>Nickname <span className="required">*</span></label>
           <input
             value={nickname}
             onChange={(e) => {
@@ -79,7 +79,7 @@ export default function AddInviteModal({
             autoFocus
             autoComplete="off"
           />
-        </label>
+        </div>
         {displayError && <p className="modal-error">{displayError}</p>}
       </form>
     </Modal>
