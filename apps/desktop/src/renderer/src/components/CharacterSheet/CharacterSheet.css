@@ -718,3 +718,472 @@
 .enemy-skills-table tbody tr.skill-row--checkable:hover {
   background: rgba(201, 168, 108, 0.06);
 }
+
+/* ── CharacterInfoBar ───────────────────────────────────── */
+.char-info-identity {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.identity-sep {
+  color: var(--text-faint);
+  font-size: 13px;
+  user-select: none;
+}
+
+.identity-select-wrap select {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.identity-select-wrap select:hover {
+  color: var(--gold);
+}
+
+.identity-badge {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.identity-nick {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.identity-nick-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.identity-nick-btn:hover {
+  text-decoration: underline;
+}
+
+.char-info-bar {
+  margin: 0px 40px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .char-info-bar {
+    padding: 14px 18px;
+  }
+}
+
+.char-info-vitals {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Level badge */
+.level-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 8px 14px;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-md);
+  background: rgba(201, 168, 108, 0.07);
+  flex-shrink: 0;
+  min-width: 54px;
+}
+
+.level-badge[role="button"] {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.level-badge[role="button"]:hover {
+  background: rgba(201, 168, 108, 0.14);
+}
+
+.level-badge-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
+.level-badge-value {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* HP / STA bars */
+.vital-bar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 110px;
+  flex: 1;
+  max-width: 200px;
+}
+
+.vital-bar-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.hp-bar-track {
+  height: 7px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hp-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.hp-bar-fill--high   { background: linear-gradient(to right, #27ae60, #2ecc71); }
+.hp-bar-fill--medium { background: linear-gradient(to right, #c09010, #e8c040); }
+.hp-bar-fill--low    { background: linear-gradient(to right, #a02020, #e04040); }
+
+.vital-bar-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.vital-adj-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--line2);
+  background: var(--bg-raise);
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.vital-adj-btn:hover {
+  background: var(--bg-input);
+  color: var(--text);
+}
+
+.vital-bar-val {
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.vital-current {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.vital-sep {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.vital-max {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Static info chips (WT, IP, etc.) */
+.info-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-raise);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.info-chip[role="button"] {
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.info-chip[role="button"]:hover {
+  background: var(--bg-input);
+  border-color: var(--text-muted);
+}
+
+.info-chip .chip-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.info-chip .chip-value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* Resources row: luck + IP */
+.char-info-resources {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.luck-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.luck-group-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Stats sub-tabs ─────────────────────────────────────── */
+.stats-subtabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.stats-subtab-btn {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--line2);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.stats-subtab-btn.active {
+  background: var(--bg-raise);
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.stats-subtab-btn:hover:not(.active) {
+  background: var(--bg-panel);
+  color: var(--text);
+}
+
+/* ── Compact derived block (top of Stats tab) ───────────── */
+.derived-top-panel {
+  padding: 14px 16px;
+}
+
+.derived-compact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.derived-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-raise);
+  min-width: 56px;
+}
+
+.derived-chip-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.derived-chip-value {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.derived-chip .readonly-value {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gold);
+  min-width: unset;
+  text-align: center;
+}
+
+.derived-chip input[type="number"] {
+  width: 3rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* ── Attr compact row (BODY + SPD) ─────────────────────── */
+.attr-compact-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .attr-compact-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Attr edit button ───────────────────────────────────── */
+.attr-edit-btn {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.12s, background 0.12s, border-color 0.12s;
+  margin-left: 4px;
+}
+
+.attr-header:hover .attr-edit-btn,
+.attr-edit-btn:focus-visible {
+  opacity: 1;
+}
+
+.attr-edit-btn:hover {
+  background: var(--bg-raise);
+  border-color: var(--line2);
+  color: var(--text-muted);
+}
+
+/* ── AttrBlockEditModal body ────────────────────────────── */
+.attr-block-edit-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.attr-block-edit-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.attr-block-edit-stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.attr-block-edit-skills {
+  padding-top: 6px;
+  max-height: 52vh;
+  overflow-y: auto;
+}
+
+.attr-block-edit-skill-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  gap: 12px;
+}
+
+.attr-block-edit-skill-row:last-child {
+  border-bottom: none;
+}
+
+.attr-block-edit-skill-name {
+  font-size: 13px;
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+}
+
+.attr-block-edit-skill-name.special {
+  color: var(--gold);
+}
+
+/* ── Nickname edit button (in hero meta) ────────────────── */
+.nickname-edit-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.nickname-edit-btn:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}

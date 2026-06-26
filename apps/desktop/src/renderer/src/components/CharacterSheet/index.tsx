@@ -22,20 +22,13 @@ import {
   getArmorForSlot,
   getMagicForCategory,
 } from "@wilmak/game-data";
-import {
-  RaceSelect,
-  OccupationSelect,
-  RaceOccupationDisplay,
-  occupationAfterRaceChange,
-} from "../RaceOccupationSelect";
 import CatalogPickerModal from "../CatalogPickerModal";
-import DmSessionControls from "../DmSessionControls";
 import PlayerProgressionPanel from "../PlayerProgressionPanel";
-import "../DmSessionControls/DmSessionControls.css";
 import "../Stepper/Stepper.css";
 import "./CharacterSheet.css";
 import "../CatalogPickerModal/CatalogPickerModal.css";
 import "../RaceOccupationSelect/RaceOccupationSelect.css";
+import CharacterInfoBar from "./CharacterInfoBar";
 import StatsTab from "./StatsTab";
 import CombatTab from "./CombatTab";
 import InventoryTab from "./InventoryTab";
@@ -103,7 +96,6 @@ export default function CharacterSheet({
 }: Props) {
   const [tab, setTab] = useState("Stats");
   const [picker, setPicker] = useState<PickerState | null>(null);
-  const [manualEdit, setManualEdit] = useState(false);
   const readOnly = !isDM;
   const profile = character.monsterProfile;
   const isBestiary = !!character.bestiaryId;
@@ -112,9 +104,7 @@ export default function CharacterSheet({
   const isNpcStatblock = isEnemyStatblock && character.enemyKind === "npc";
   const isPlayerSheet = character.type === "player" && !isEnemyStatblock;
   const statsLocked = isPlayerSheet && character.creation?.complete === true;
-  const statsEditable = isDM && (!statsLocked || manualEdit);
   const playerCanSpend = !isDM && statsLocked && !!onChange;
-  const attrReadOnly = !statsEditable;
   const skillCheckable = isDM && !!onSkillCheck;
   const skillRows = useMemo(() => trainedSkills(character), [character]);
 
@@ -200,73 +190,13 @@ export default function CharacterSheet({
 
       <div className="sheet-hero">
         {readOnly ? (
-          <>
-            <h1 className="sheet-name-display">{character.name}</h1>
-            <div className="sheet-meta-display">
-              {isMonster && profile?.monsterType ? (
-                <span className="sheet-monster-type">{profile.monsterType}</span>
-              ) : (
-                <RaceOccupationDisplay race={character.race} occupation={occupation} />
-              )}
-              {profile?.threat && (
-                <span className="sheet-threat">{profile.threat}</span>
-              )}
-            </div>
-          </>
+          <h1 className="sheet-name-display">{character.name}</h1>
         ) : (
-          <>
-            <input
-              className="sheet-name"
-              value={character.name}
-              onChange={(e) => update({ name: e.target.value })}
-            />
-            <div className="sheet-meta">
-              {isMonster ? (
-                profile?.monsterType && (
-                  <span className="sheet-monster-type">{profile.monsterType}</span>
-                )
-              ) : isEnemyStatblock ? (
-                <RaceOccupationDisplay race={character.race} occupation={occupation} />
-              ) : (
-                <>
-                  <div className="sheet-meta-chip">
-                    <span className="chip-label">Race</span>
-                    <RaceSelect
-                      value={character.race ?? ""}
-                      onChange={(v) => {
-                        const occ = occupationAfterRaceChange(
-                          v,
-                          character.occupation ?? "",
-                        );
-                        update({ race: v, occupation: occ });
-                      }}
-                    />
-                  </div>
-                  <div className="sheet-meta-chip">
-                    <span className="chip-label">Occupation</span>
-                    <OccupationSelect
-                      race={character.race ?? ""}
-                      value={occupation}
-                      onChange={(v) => update({ occupation: v })}
-                    />
-                  </div>
-                </>
-              )}
-              {character.type === "player" && (
-                <div className="sheet-meta-chip">
-                  <span className="chip-label">Nickname</span>
-                  <input
-                    value={character.nickname ?? ""}
-                    onChange={(e) =>
-                      update({
-                        nickname: e.target.value.toLowerCase().replace(/\s/g, ""),
-                      })
-                    }
-                  />
-                </div>
-              )}
-            </div>
-          </>
+          <input
+            className="sheet-name"
+            value={character.name}
+            onChange={(e) => update({ name: e.target.value })}
+          />
         )}
       </div>
 
@@ -279,19 +209,27 @@ export default function CharacterSheet({
         </p>
       )}
 
-      {isDM && isPlayerSheet && statsLocked && onChange && (
-        <DmSessionControls
-          character={character}
-          manualEdit={manualEdit}
-          onManualEditChange={setManualEdit}
-          onChange={(patch) => update(patch)}
-        />
-      )}
-
       {playerCanSpend && (
         <PlayerProgressionPanel
           character={character}
           onApply={(c) => onChange!(c)}
+        />
+      )}
+
+      {!isEnemyStatblock && (
+        <CharacterInfoBar
+          character={character}
+          isDM={isDM}
+          hpMax={hpMax}
+          staMax={staMax}
+          derived={derived}
+          atFullHealth={atFullHealth}
+          onRest={handleRest}
+          updateNested={updateNested}
+          update={update}
+          isPlayerSheet={isPlayerSheet}
+          isMonster={isMonster}
+          isEnemyStatblock={isEnemyStatblock}
         />
       )}
 
@@ -345,18 +283,12 @@ export default function CharacterSheet({
                 updateNested={updateNested}
                 readOnly={readOnly}
                 isDM={isDM}
-                statsEditable={statsEditable}
-                attrReadOnly={attrReadOnly}
                 playerCanSpend={playerCanSpend}
                 skillCheckable={skillCheckable}
-                hpMax={hpMax}
-                staMax={staMax}
                 derived={derived}
                 isBestiary={isBestiary}
                 derivedLocked={derivedLocked}
-                atFullHealth={atFullHealth}
                 onChange={onChange}
-                onRest={handleRest}
                 onSkillCheck={onSkillCheck}
               />
             )}
@@ -494,6 +426,8 @@ export default function CharacterSheet({
           onClose={() => setPicker(null)}
         />
       )}
+
+
     </div>
   );
 }

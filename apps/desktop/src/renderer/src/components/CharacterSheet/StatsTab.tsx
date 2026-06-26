@@ -1,16 +1,15 @@
+import { useState } from "react";
 import type { Character } from "@wilmak/shared";
-import {
-  ATTRIBUTES,
-  ATTRIBUTE_SKILLS,
-  skillBase,
-} from "@wilmak/game-data";
+import { ATTRIBUTES, ATTRIBUTE_SKILLS, skillBase } from "@wilmak/game-data";
 import ProfessionSkillTree from "../ProfessionSkillTree";
-import {
-  SkillSpendButton,
-  StatSpendButton,
-} from "../PlayerProgressionPanel";
-import Stepper from "../Stepper";
-import { Counter, NumInput } from "./helpers";
+import { SkillSpendButton, StatSpendButton } from "../PlayerProgressionPanel";
+import AttrBlockEditModal from "./AttrBlockEditModal";
+import type { SkillEditEntry } from "./AttrBlockEditModal";
+import { NumInput } from "./helpers";
+
+// LUCK is displayed in CharacterInfoBar; BODY and SPD go in the compact bottom row
+const COMPACT_ATTR_KEYS = ["body", "spd"];
+const SKIP_ATTR_KEYS = ["luck"];
 
 interface DerivedStats {
   run: number;
@@ -28,19 +27,21 @@ interface Props {
   updateNested: (path: string[], value: unknown) => void;
   readOnly: boolean;
   isDM: boolean;
-  statsEditable: boolean;
-  attrReadOnly: boolean;
   playerCanSpend: boolean;
   skillCheckable: boolean;
-  hpMax: number;
-  staMax: number;
   derived: DerivedStats;
   isBestiary: boolean;
   derivedLocked: boolean;
-  atFullHealth: boolean;
   onChange?: (c: Character) => void;
-  onRest: () => void;
   onSkillCheck?: (params: { attrKey: string; skillKey: string; skillLabel: string }) => void;
+}
+
+interface AttrEditState {
+  key: string;
+  short: string;
+  label: string;
+  attrValue: number;
+  skills: SkillEditEntry[];
 }
 
 export default function StatsTab({
@@ -49,26 +50,118 @@ export default function StatsTab({
   updateNested,
   readOnly,
   isDM,
-  statsEditable,
-  attrReadOnly,
   playerCanSpend,
   skillCheckable,
-  hpMax,
-  staMax,
   derived,
   isBestiary,
   derivedLocked,
-  atFullHealth,
   onChange,
-  onRest,
   onSkillCheck,
 }: Props) {
+  const [subTab, setSubTab] = useState<"attrs" | "tree">("attrs");
+  const [attrEdit, setAttrEdit] = useState<AttrEditState | null>(null);
+
   const profile = character.monsterProfile;
   const isMonster = character.enemyKind === "monster";
   const isEnemyStatblock = character.type === "enemy" && !!profile;
 
   function openSkillCheck(attrKey: string, skillKey: string, skillLabel: string) {
     onSkillCheck?.({ attrKey, skillKey, skillLabel });
+  }
+
+  const mainAttrEntries = Object.entries(ATTRIBUTES).filter(
+    ([k]) => !COMPACT_ATTR_KEYS.includes(k) && !SKIP_ATTR_KEYS.includes(k),
+  );
+  const compactAttrEntries = Object.entries(ATTRIBUTES).filter(([k]) =>
+    COMPACT_ATTR_KEYS.includes(k),
+  );
+
+  function renderAttrBlock([key, attr]: [string, { key: string; label: string; short: string }]) {
+    const skills = ATTRIBUTE_SKILLS[key] ?? [];
+    return (
+      <div key={key} className="attr-block">
+        <div className={`attr-header attr-header--${key}`}>
+          <div className="attr-header-text">
+            <span className="attr-short">{attr.short}</span>
+            <span className="attr-full">{attr.label}</span>
+          </div>
+          <span className="readonly-value attr-value-input">
+            {character.attributes[key] ?? 0}
+          </span>
+          {playerCanSpend && onChange && (
+            <StatSpendButton character={character} attrKey={key} onApply={onChange} />
+          )}
+          {isDM && (
+            <button
+              type="button"
+              className="attr-edit-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                setAttrEdit({
+                  key,
+                  short: attr.short,
+                  label: attr.label,
+                  attrValue: character.attributes[key] ?? 1,
+                  skills: (ATTRIBUTE_SKILLS[key] ?? []).map((s) => ({
+                    key: s.key,
+                    label: s.label,
+                    level: character.skills[key]?.[s.key]?.level ?? 0,
+                    special: s.special,
+                  })),
+                });
+              }}
+              title={`Edit ${attr.label}`}
+            >
+              ✎
+            </button>
+          )}
+        </div>
+        {skills.map((skill) => {
+          const level = character.skills[key]?.[skill.key]?.level ?? 0;
+          return (
+            <div
+              key={skill.key}
+              className={`skill-row${skill.special ? " special" : ""}${skillCheckable ? " skill-row--checkable" : ""}`}
+              role={skillCheckable ? "button" : undefined}
+              tabIndex={skillCheckable ? 0 : undefined}
+              title={skillCheckable ? "Request skill check" : undefined}
+              onClick={skillCheckable ? () => openSkillCheck(key, skill.key, skill.label) : undefined}
+              onKeyDown={
+                skillCheckable
+                  ? (e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        openSkillCheck(key, skill.key, skill.label);
+                      }
+                    }
+                  : undefined
+              }
+            >
+              <span className="name">
+                {skill.label}
+                <span className="skill-lvl"> · {level}</span>
+                {playerCanSpend && onChange && (
+                  <span
+                    onClick={(e) => e.stopPropagation()}
+                    onKeyDown={(e) => e.stopPropagation()}
+                  >
+                    <SkillSpendButton
+                      character={character}
+                      attrKey={key}
+                      skillKey={skill.key}
+                      label={skill.label}
+                      special={skill.special}
+                      onApply={onChange}
+                    />
+                  </span>
+                )}
+              </span>
+              <span className="base">{skillBase(character, key, skill.key)}</span>
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 
   return (
@@ -79,66 +172,16 @@ export default function StatsTab({
             {isMonster ? "Monster" : "NPC"} — {profile.monsterType}
           </div>
           <dl className="monster-profile-grid">
-            {profile.threat && (
-              <>
-                <dt>Threat</dt>
-                <dd>{profile.threat}</dd>
-              </>
-            )}
-            {profile.bounty != null && profile.bounty > 0 && (
-              <>
-                <dt>Bounty</dt>
-                <dd>{profile.bounty}</dd>
-              </>
-            )}
-            {profile.naturalArmor != null && (
-              <>
-                <dt>Natural armor</dt>
-                <dd>{profile.naturalArmor} SP</dd>
-              </>
-            )}
-            {profile.height && (
-              <>
-                <dt>Height</dt>
-                <dd>{profile.height}</dd>
-              </>
-            )}
-            {profile.weight && (
-              <>
-                <dt>Weight</dt>
-                <dd>{profile.weight}</dd>
-              </>
-            )}
-            {profile.environment && (
-              <>
-                <dt>Environment</dt>
-                <dd>{profile.environment}</dd>
-              </>
-            )}
-            {profile.intelligence && (
-              <>
-                <dt>Intelligence</dt>
-                <dd>{profile.intelligence}</dd>
-              </>
-            )}
-            {profile.organization && (
-              <>
-                <dt>Organization</dt>
-                <dd>{profile.organization}</dd>
-              </>
-            )}
-            {profile.vigor != null && (
-              <>
-                <dt>Vigor</dt>
-                <dd>{profile.vigor}</dd>
-              </>
-            )}
-            {profile.encumbrance != null && (
-              <>
-                <dt>Encumbrance</dt>
-                <dd>{profile.encumbrance}</dd>
-              </>
-            )}
+            {profile.threat && (<><dt>Threat</dt><dd>{profile.threat}</dd></>)}
+            {profile.bounty != null && profile.bounty > 0 && (<><dt>Bounty</dt><dd>{profile.bounty}</dd></>)}
+            {profile.naturalArmor != null && (<><dt>Natural armor</dt><dd>{profile.naturalArmor} SP</dd></>)}
+            {profile.height && (<><dt>Height</dt><dd>{profile.height}</dd></>)}
+            {profile.weight && (<><dt>Weight</dt><dd>{profile.weight}</dd></>)}
+            {profile.environment && (<><dt>Environment</dt><dd>{profile.environment}</dd></>)}
+            {profile.intelligence && (<><dt>Intelligence</dt><dd>{profile.intelligence}</dd></>)}
+            {profile.organization && (<><dt>Organization</dt><dd>{profile.organization}</dd></>)}
+            {profile.vigor != null && (<><dt>Vigor</dt><dd>{profile.vigor}</dd></>)}
+            {profile.encumbrance != null && (<><dt>Encumbrance</dt><dd>{profile.encumbrance}</dd></>)}
           </dl>
           {profile.vulnerabilities && (
             <div className="monster-profile-block">
@@ -161,262 +204,111 @@ export default function StatsTab({
         </section>
       )}
 
-      <section className="vitals-panel">
-        <div className="section-label-row">
-          <div className="section-label">Vitals</div>
-          {isDM && onChange && (
-            <button
-              type="button"
-              className="btn-sm sheet-rest-btn"
-              onClick={onRest}
-              disabled={atFullHealth}
-              title="Restore HP and STA to max"
-            >
-              Rest
-            </button>
-          )}
-        </div>
-        <div className="vitals-grid">
-          <Counter
-            layout="card"
-            readOnly={readOnly}
-            label="HP"
-            current={character.vitals.hp.current}
-            max={hpMax}
-            onChange={(v) => updateNested(["vitals", "hp", "current"], v)}
-          />
-          <Counter
-            layout="card"
-            readOnly={readOnly}
-            label="STA"
-            current={character.vitals.sta.current}
-            max={staMax}
-            onChange={(v) => updateNested(["vitals", "sta", "current"], v)}
-          />
-          <div className="vital-card">
-            <div className="vital-card-label">Wound threshold</div>
-            <div className="vital-card-value">
-              {character.vitals.woundThreshold}
-            </div>
-          </div>
-        </div>
-        <p className="formula-hint">
-          {isBestiary
-            ? "Stats from rulebook bestiary — HP/STA/RUN/LEAP/STUN/REC as printed."
-            : "HP & STA from Physical Table (BODY + WILL) ÷ 2; wound threshold = max HP ÷ 5."}
-        </p>
-      </section>
-
-      <ProfessionSkillTree
-        character={character}
-        readOnly={attrReadOnly}
-        spendMode={playerCanSpend}
-        onTreeChange={(professionTree, definingSkillLevel) =>
-          update({
-            professionTree,
-            ...(definingSkillLevel != null ? { definingSkillLevel } : {}),
-          })
-        }
-        onApply={(c) => onChange?.(c)}
-      />
-
-      <section>
-        <div className="section-label">Attributes & skills</div>
-        <div className="attr-grid">
-          {Object.entries(ATTRIBUTES).map(([key, attr]) => (
-            <div key={key} className="attr-block">
-              <div className={`attr-header attr-header--${key}`}>
-                <div className="attr-header-text">
-                  <span className="attr-short">{attr.short}</span>
-                  <span className="attr-full">{attr.label}</span>
-                </div>
-                {statsEditable ? (
-                  <Stepper
-                    className="attr-stepper"
-                    value={character.attributes[key] ?? 1}
-                    min={1}
-                    max={10}
-                    onChange={(v) => updateNested(["attributes", key], v)}
-                  />
-                ) : (
-                  <span className="readonly-value attr-value-input">
-                    {character.attributes[key] ?? 0}
-                  </span>
-                )}
-                {!statsEditable && playerCanSpend && onChange && (
-                  <StatSpendButton
-                    character={character}
-                    attrKey={key}
-                    onApply={onChange}
-                  />
-                )}
-              </div>
-              {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => {
-                const level = character.skills[key]?.[skill.key]?.level ?? 0;
-                return (
-                  <div
-                    key={skill.key}
-                    className={`skill-row${skill.special ? " special" : ""}${skillCheckable ? " skill-row--checkable" : ""}`}
-                    role={skillCheckable ? "button" : undefined}
-                    tabIndex={skillCheckable ? 0 : undefined}
-                    title={skillCheckable ? "Request skill check" : undefined}
-                    onClick={
-                      skillCheckable
-                        ? () => openSkillCheck(key, skill.key, skill.label)
-                        : undefined
-                    }
-                    onKeyDown={
-                      skillCheckable
-                        ? (e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              e.preventDefault();
-                              openSkillCheck(key, skill.key, skill.label);
-                            }
-                          }
-                        : undefined
-                    }
-                  >
-                    <span className="name">
-                      {skill.label}
-                      {statsEditable ? (
-                        <span
-                          onClick={(e) => e.stopPropagation()}
-                          onKeyDown={(e) => e.stopPropagation()}
-                        >
-                          {" · "}
-                          <Stepper
-                            className="skill-stepper"
-                            value={level}
-                            min={0}
-                            max={10}
-                            onChange={(v) =>
-                              updateNested(["skills", key, skill.key, "level"], v)
-                            }
-                          />
-                        </span>
-                      ) : (
-                        <span className="skill-lvl"> · {level}</span>
-                      )}
-                      {!statsEditable && playerCanSpend && onChange && (
-                        <span
-                          onClick={(e) => e.stopPropagation()}
-                          onKeyDown={(e) => e.stopPropagation()}
-                        >
-                          <SkillSpendButton
-                            character={character}
-                            attrKey={key}
-                            skillKey={skill.key}
-                            label={skill.label}
-                            special={skill.special}
-                            onApply={onChange}
-                          />
-                        </span>
-                      )}
-                    </span>
-                    <span className="base">{skillBase(character, key, skill.key)}</span>
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="misc-stats">
-        <div className="section-label">Movement, recovery & progression</div>
-        <div className="attr-block luck-block">
-          <div className="attr-header attr-header--luck">
-            <div className="attr-header-text">
-              <span className="attr-short">LUCK</span>
-              <span className="attr-full">Luck</span>
-            </div>
-            <span className="readonly-value attr-value-input">
-              {character.attributes.luck ?? 0}
-            </span>
-          </div>
-          <div className="luck-row">
-            <span className="luck-spent-label">spent</span>
-            <div className="luck-bar">
-              {Array.from({
-                length: derived.luckMax || character.luck?.max || 0,
-              }).map((_, i) =>
-                readOnly ? (
-                  <span
-                    key={i}
-                    className={`luck-pip luck-pip-static${i < (character.luck?.used ?? 0) ? " used" : ""}`}
-                  />
-                ) : (
-                  <button
-                    key={i}
-                    type="button"
-                    className={`luck-pip${i < (character.luck?.used ?? 0) ? " used" : ""}`}
-                    onClick={() => {
-                      const used = i < (character.luck?.used ?? 0) ? i : i + 1;
-                      updateNested(["luck", "used"], used);
-                    }}
-                  />
-                ),
+      {/* Movement & recovery — compact, at the top */}
+      <section className="panel derived-top-panel">
+        <div className="derived-compact-grid">
+          {(
+            [
+              { label: "RUN", value: derived.run, path: ["movement", "run"] },
+              { label: "LEAP", value: derived.leap, path: ["movement", "leap"] },
+              { label: "STUN", value: derived.stun, path: ["recovery", "stun"] },
+              { label: "REC", value: derived.rec, path: ["recovery", "rec"] },
+            ] as { label: string; value: number; path: string[] }[]
+          ).map(({ label, value, path }) => (
+            <div key={label} className="derived-chip">
+              <span className="derived-chip-label">{label}</span>
+              {!derivedLocked && isDM ? (
+                <NumInput
+                  value={value}
+                  onChange={(v) => updateNested(path, v)}
+                />
+              ) : (
+                <span className="derived-chip-value">{value}</span>
               )}
             </div>
+          ))}
+          <div className="derived-chip">
+            <span className="derived-chip-label">Punch</span>
+            <span className="derived-chip-value">{derived.punch}</span>
+          </div>
+          <div className="derived-chip">
+            <span className="derived-chip-label">Kick</span>
+            <span className="derived-chip-value">{derived.kick}</span>
           </div>
         </div>
-        <div className="derived-grid">
-          <label>
-            RUN{" "}
-            <NumInput
-              readOnly={readOnly || derivedLocked}
-              value={derived.run}
-              onChange={(v) => updateNested(["movement", "run"], v)}
-            />
-          </label>
-          <label>
-            LEAP{" "}
-            <NumInput
-              readOnly={readOnly || derivedLocked}
-              value={derived.leap}
-              onChange={(v) => updateNested(["movement", "leap"], v)}
-            />
-          </label>
-          <label>
-            STUN{" "}
-            <NumInput
-              readOnly={readOnly || derivedLocked}
-              value={derived.stun}
-              onChange={(v) => updateNested(["recovery", "stun"], v)}
-            />
-          </label>
-          <label>
-            REC{" "}
-            <NumInput
-              readOnly={readOnly || derivedLocked}
-              value={derived.rec}
-              onChange={(v) => updateNested(["recovery", "rec"], v)}
-            />
-          </label>
-          <label>
-            I.P.{" "}
-            <NumInput
-              readOnly={attrReadOnly}
-              value={character.improvementPoints?.ip}
-              onChange={(v) => updateNested(["improvementPoints", "ip"], v)}
-            />
-          </label>
-          <label>
-            Training I.P.{" "}
-            <NumInput
-              readOnly={attrReadOnly}
-              value={character.improvementPoints?.trainingIp}
-              onChange={(v) => updateNested(["improvementPoints", "trainingIp"], v)}
-            />
-          </label>
-          <label>
-            Punch <span className="readonly-value">{derived.punch}</span>
-          </label>
-          <label>
-            Kick <span className="readonly-value">{derived.kick}</span>
-          </label>
-        </div>
+        {isBestiary && (
+          <p className="formula-hint">Stats from rulebook bestiary — HP/STA/RUN/LEAP/STUN/REC as printed.</p>
+        )}
       </section>
+
+      {/* Sub-tabs */}
+      <div className="stats-subtabs">
+        <button
+          type="button"
+          className={`stats-subtab-btn${subTab === "attrs" ? " active" : ""}`}
+          onClick={() => setSubTab("attrs")}
+        >
+          Attributes & Skills
+        </button>
+        <button
+          type="button"
+          className={`stats-subtab-btn${subTab === "tree" ? " active" : ""}`}
+          onClick={() => setSubTab("tree")}
+        >
+          Skill Tree
+        </button>
+      </div>
+
+      {subTab === "attrs" && (
+        <section>
+          <div className="attr-grid">
+            {mainAttrEntries.map(renderAttrBlock)}
+            {compactAttrEntries.length > 0 && (
+              <div className="attr-compact-row">
+                {compactAttrEntries.map(renderAttrBlock)}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {subTab === "tree" && (
+        <ProfessionSkillTree
+          character={character}
+          readOnly={!isDM && !playerCanSpend}
+          spendMode={playerCanSpend}
+          onTreeChange={(professionTree, definingSkillLevel) =>
+            update({
+              professionTree,
+              ...(definingSkillLevel != null ? { definingSkillLevel } : {}),
+            })
+          }
+          onApply={(c) => onChange?.(c)}
+        />
+      )}
+
+      {attrEdit && (
+        <AttrBlockEditModal
+          attrShort={attrEdit.short}
+          attrLabel={attrEdit.label}
+          attrValue={attrEdit.attrValue}
+          skills={attrEdit.skills}
+          onConfirm={(newAttrValue, newSkills) => {
+            if (!onChange) return;
+            const next = structuredClone(character);
+            next.attributes[attrEdit.key] = newAttrValue;
+            for (const s of newSkills) {
+              if (!next.skills[attrEdit.key]) next.skills[attrEdit.key] = {};
+              if (!next.skills[attrEdit.key][s.key])
+                next.skills[attrEdit.key][s.key] = { level: 0 };
+              next.skills[attrEdit.key][s.key].level = s.level;
+            }
+            onChange(next);
+            setAttrEdit(null);
+          }}
+          onClose={() => setAttrEdit(null)}
+        />
+      )}
     </>
   );
 }
