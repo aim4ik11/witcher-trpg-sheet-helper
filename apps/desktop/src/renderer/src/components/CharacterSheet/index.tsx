@@ -178,81 +178,69 @@ export default function CharacterSheet({
   }
 
   return (
-    <div
-      className={`sheet${readOnly ? " sheet-readonly" : ""}${isEnemyStatblock ? " sheet--enemy-statblock" : ""}`}
-    >
-      <header className="sheet-header">
-        <button type="button" className="back-btn" onClick={onBack}>
-          {backLabel}
-        </button>
-        {!readOnly && <span className="sheet-save-hint">Saved automatically</span>}
+    <div className="sheet">
+      <header className="page-topbar">
+        <div className="page-topbar__inner">
+          <button type="button" className="back-btn" onClick={onBack}>
+            {backLabel}
+          </button>
+          <span className="sheet-topbar-name">{character.name}</span>
+          {!readOnly && <span className="sheet-save-hint">Saved automatically</span>}
+        </div>
       </header>
 
-      <div className="sheet-hero">
-        {readOnly ? (
-          <h1 className="sheet-name-display">{character.name}</h1>
-        ) : (
-          <input
-            className="sheet-name"
-            value={character.name}
-            onChange={(e) => update({ name: e.target.value })}
+      <div className="sheet-page-body">
+        {readOnly && !isEnemyStatblock && !playerCanSpend && (
+          <p className="readonly-banner">View only — your DM updates this sheet.</p>
+        )}
+        {playerCanSpend && (
+          <p className="readonly-banner spend-banner">
+            Spend your I.P. and training points below — changes save automatically.
+          </p>
+        )}
+
+        {playerCanSpend && (
+          <PlayerProgressionPanel
+            character={character}
+            onApply={(c) => onChange!(c)}
           />
         )}
-      </div>
 
-      {readOnly && !isEnemyStatblock && !playerCanSpend && (
-        <p className="readonly-banner">View only — your DM updates this sheet.</p>
-      )}
-      {playerCanSpend && (
-        <p className="readonly-banner spend-banner">
-          Spend your I.P. and training points below — changes save automatically.
-        </p>
-      )}
+        {!isEnemyStatblock && (
+          <CharacterInfoBar
+            character={character}
+            isDM={isDM}
+            hpMax={hpMax}
+            staMax={staMax}
+            derived={derived}
+            atFullHealth={atFullHealth}
+            onRest={handleRest}
+            updateNested={updateNested}
+            update={update}
+            isPlayerSheet={isPlayerSheet}
+            isMonster={isMonster}
+            isEnemyStatblock={isEnemyStatblock}
+          />
+        )}
 
-      {playerCanSpend && (
-        <PlayerProgressionPanel
-          character={character}
-          onApply={(c) => onChange!(c)}
-        />
-      )}
-
-      {!isEnemyStatblock && (
-        <CharacterInfoBar
-          character={character}
-          isDM={isDM}
-          hpMax={hpMax}
-          staMax={staMax}
-          derived={derived}
-          atFullHealth={atFullHealth}
-          onRest={handleRest}
-          updateNested={updateNested}
-          update={update}
-          isPlayerSheet={isPlayerSheet}
-          isMonster={isMonster}
-          isEnemyStatblock={isEnemyStatblock}
-        />
-      )}
-
-      {!isEnemyStatblock && (
-        <div className="sheet-tabs-wrap">
-          <div className="tab-bar">
-            {tabs.map((t) => (
-              <button
-                key={t}
-                type="button"
-                className={tab === t ? "active" : ""}
-                onClick={() => setTab(t)}
-              >
-                {t}
-              </button>
-            ))}
+        {!isEnemyStatblock && (
+          <div className="sheet-tabs-wrap">
+            <div className="tab-bar">
+              {tabs.map((t) => (
+                <button
+                  key={t}
+                  type="button"
+                  className={tab === t ? "active" : ""}
+                  onClick={() => setTab(t)}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div
-        className={`sheet-body${isEnemyStatblock ? " sheet-body--enemy-statblock" : ""}`}
-      >
+      <div className="sheet-body">
         {isEnemyStatblock ? (
           <EnemyStatblock
             character={character}
@@ -426,8 +414,7 @@ export default function CharacterSheet({
           onClose={() => setPicker(null)}
         />
       )}
-
-
+      </div>
     </div>
   );
 }
