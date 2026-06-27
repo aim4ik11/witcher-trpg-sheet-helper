@@ -34,7 +34,7 @@ function LevelInput({ value, readOnly, spendMode, onChange }: LevelInputProps & 
         −
       </button>
       <span>{value}</span>
-      <button type="button" onClick={() => onChange(value + 1)}>
+      <button type="button" onClick={() => onChange(Math.min(value + 1, 10))}>
         +
       </button>
     </div>
