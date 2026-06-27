@@ -563,12 +563,17 @@ def merge_magic_entries(entries: list[dict]) -> list[dict]:
 
 
 def parse_magic() -> list[dict]:
+    homebrew_path = OUT / "homebrew-magic.json"
+    homebrew: list[dict] = []
+    if homebrew_path.is_file():
+        homebrew = json.loads(homebrew_path.read_text(encoding="utf-8"))
     return merge_magic_entries(
         parse_signs()
         + parse_mage_spells()
         + parse_invocations()
         + parse_rituals()
         + parse_hexes()
+        + homebrew
     )
 
 

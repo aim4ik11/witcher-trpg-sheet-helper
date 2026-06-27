@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import type { Character } from "@wilmak/shared";
+import type { Character, Spell } from "@wilmak/shared";
 import {
   ATTRIBUTES,
   ATTRIBUTE_SKILLS,
@@ -14,6 +14,7 @@ import {
   occupationLabel,
 } from "@wilmak/game-data";
 import ProfessionSkillTree from "../ProfessionSkillTree";
+import SpellDetailModal, { SpellNameButton } from "../SpellDetailModal";
 import PlayerProgressionPanel, {
   SkillSpendButton,
   StatSpendButton,
@@ -47,6 +48,7 @@ export default function CharacterSheet({
   backLabel,
 }: Props) {
   const [tab, setTab] = useState("Stats");
+  const [detailSpell, setDetailSpell] = useState<Spell | null>(null);
   const statsLocked = character.creation?.complete === true;
   const playerCanSpend = statsLocked && !!onChange;
 
@@ -342,32 +344,37 @@ export default function CharacterSheet({
                 {rows.length === 0 ? (
                   <p className="readonly-empty">None</p>
                 ) : (
-                  <div className="dynamic-table-wrap">
-                    <table className="dynamic-table">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                          <th>STA</th>
-                          <th>Defense</th>
-                          <th>Range</th>
-                          <th>Duration</th>
-                          <th>Effect</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {rows.map((s) => (
-                          <tr key={s.id ?? s.name}>
-                            <td>{s.name}</td>
-                            <td>{s.staCost}</td>
-                            <td>{s.defense ?? "—"}</td>
-                            <td>{s.range}</td>
-                            <td>{s.duration}</td>
-                            <td>{s.effect}</td>
+                  <>
+                    <p className="spell-table-hint">Tap a spell name for full details.</p>
+                    <div className="dynamic-table-wrap">
+                      <table className="dynamic-table">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>STA</th>
+                            <th>Defense</th>
+                            <th>Range</th>
+                            <th>Duration</th>
+                            <th>Effect</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody>
+                          {rows.map((s) => (
+                            <tr key={s.id ?? s.name}>
+                              <td>
+                                <SpellNameButton spell={s} onOpen={setDetailSpell} />
+                              </td>
+                              <td>{s.staCostText || s.staCost || "—"}</td>
+                              <td>{s.defense ?? "—"}</td>
+                              <td>{s.range || "—"}</td>
+                              <td>{s.duration || "—"}</td>
+                              <td>{s.effect || "—"}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
                 )}
               </section>
             );
@@ -417,6 +424,10 @@ export default function CharacterSheet({
           </>
         )}
       </div>
+
+      {detailSpell && (
+        <SpellDetailModal spell={detailSpell} onClose={() => setDetailSpell(null)} />
+      )}
     </div>
   );
 }

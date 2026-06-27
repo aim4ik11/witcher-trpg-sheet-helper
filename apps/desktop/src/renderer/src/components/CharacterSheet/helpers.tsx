@@ -100,6 +100,7 @@ interface DynamicTableProps {
   renderAddActions?: () => React.ReactNode;
   renderRowActions?: (row: DynRow, index: number) => React.ReactNode;
   rowActionsHeader?: string;
+  renderCell?: (row: DynRow, col: ColDef, rowIndex: number) => React.ReactNode | null | undefined;
 }
 export function DynamicTable({
   columns,
@@ -112,6 +113,7 @@ export function DynamicTable({
   renderAddActions,
   renderRowActions,
   rowActionsHeader,
+  renderCell,
 }: DynamicTableProps) {
   if (readOnly && rows.length === 0) return <p className="readonly-empty">None</p>;
   return (
@@ -131,29 +133,36 @@ export function DynamicTable({
             <tr key={(row.id as string) ?? i}>
               {columns.map((col) => (
                 <td key={col.key}>
-                  {readOnly ? (
-                    <span>
-                      {(row[col.key] as string | number) ??
-                        (col.type === "number" ? 0 : "—")}
-                    </span>
-                  ) : (
-                    <input
-                      type={col.type === "number" ? "number" : "text"}
-                      value={
-                        (row[col.key] as string | number) ??
-                        (col.type === "number" ? 0 : "")
-                      }
-                      onChange={(e) => {
-                        const val =
-                          col.type === "number"
-                            ? parseInt(e.target.value, 10) || 0
-                            : e.target.value;
-                        const updated = [...rows];
-                        updated[i] = { ...updated[i], [col.key]: val };
-                        onChange(updated);
-                      }}
-                    />
-                  )}
+                  {(() => {
+                    const custom = renderCell?.(row, col, i);
+                    if (custom != null) return custom;
+                    if (readOnly) {
+                      return (
+                        <span>
+                          {(row[col.key] as string | number) ??
+                            (col.type === "number" ? 0 : "—")}
+                        </span>
+                      );
+                    }
+                    return (
+                      <input
+                        type={col.type === "number" ? "number" : "text"}
+                        value={
+                          (row[col.key] as string | number) ??
+                          (col.type === "number" ? 0 : "")
+                        }
+                        onChange={(e) => {
+                          const val =
+                            col.type === "number"
+                              ? parseInt(e.target.value, 10) || 0
+                              : e.target.value;
+                          const updated = [...rows];
+                          updated[i] = { ...updated[i], [col.key]: val };
+                          onChange(updated);
+                        }}
+                      />
+                    );
+                  })()}
                 </td>
               ))}
               {renderRowActions && <td>{renderRowActions(row, i)}</td>}
