@@ -82,24 +82,48 @@ input.sheet-topbar-name {
   }
 }
 
-.enemy-derived-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
-  gap: 10px;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
+/* ── Enemy vitals header ────────────────────────────────── */
+.enemy-vitals-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
 }
 
-.enemy-derived-grid label {
+.enemy-vital-bar-group {
+  min-width: 140px;
+  flex: 1;
+  max-width: 260px;
+}
+
+.enemy-hp-bar-track {
+  height: 10px !important;
+}
+
+.enemy-vital-current {
+  font-size: 20px !important;
+}
+
+.enemy-vitals-chips {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+  padding-top: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Enemy info panel key-stat chips ───────────────────── */
+.enemy-info-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.enemy-info-panel .monster-profile-grid {
+  margin-top: 4px;
 }
 
 .enemy-attr-grid {

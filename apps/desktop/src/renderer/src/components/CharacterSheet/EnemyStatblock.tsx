@@ -1,6 +1,6 @@
 import type { Character } from "@wilmak/shared";
 import { ATTRIBUTES, ARMOR_LABELS } from "@wilmak/game-data";
-import { Counter, NumInput, DynamicTable } from "./helpers";
+import { NumInput, DynamicTable } from "./helpers";
 import type { DynRow } from "./helpers";
 
 interface DerivedStats {
@@ -49,6 +49,53 @@ interface Props {
   setPicker: (s: PickerState | null) => void;
 }
 
+function hpColorClass(current: number, max: number): "high" | "medium" | "low" {
+  if (max === 0) return "low";
+  const pct = current / max;
+  if (pct > 0.6) return "high";
+  if (pct > 0.25) return "medium";
+  return "low";
+}
+
+interface VitalBarProps {
+  label: string;
+  current: number;
+  max: number;
+  canEdit: boolean;
+  onDecrement: () => void;
+  onIncrement: () => void;
+}
+
+function VitalBar({ label, current, max, canEdit, onDecrement, onIncrement }: VitalBarProps) {
+  const color = hpColorClass(current, max);
+  const pct = max > 0 ? Math.min(100, Math.round((current / max) * 100)) : 0;
+  return (
+    <div className="vital-bar-group enemy-vital-bar-group">
+      <span className="vital-bar-label">{label}</span>
+      <div className="hp-bar-track enemy-hp-bar-track">
+        <div className={`hp-bar-fill hp-bar-fill--${color}`} style={{ width: `${pct}%` }} />
+      </div>
+      <div className="vital-bar-controls">
+        {canEdit && (
+          <button type="button" className="vital-adj-btn" onClick={onDecrement}>
+            −
+          </button>
+        )}
+        <span className="vital-bar-val">
+          <span className="vital-current enemy-vital-current">{current}</span>
+          <span className="vital-sep">/</span>
+          <span className="vital-max">{max}</span>
+        </span>
+        {canEdit && (
+          <button type="button" className="vital-adj-btn" onClick={onIncrement}>
+            +
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function EnemyStatblock({
   character,
   update,
@@ -69,12 +116,28 @@ export default function EnemyStatblock({
   setPicker,
 }: Props) {
   const profile = character.monsterProfile!;
+  const canEdit = !readOnly;
+
+  const hasKeyStats =
+    !!profile.threat ||
+    (profile.bounty != null && profile.bounty > 0) ||
+    profile.naturalArmor != null;
+
+  const hasDescriptiveInfo =
+    !!profile.height ||
+    !!profile.weight ||
+    !!profile.environment ||
+    !!profile.intelligence ||
+    !!profile.organization ||
+    profile.encumbrance != null;
 
   return (
     <div className="enemy-statblock-grid">
-      <section className="panel enemy-combat-panel">
+
+      {/* ── Vitals header (full width) ─────────────────────────── */}
+      <section className="panel enemy-vitals-header enemy-statblock-span-2">
         <div className="panel-title-row">
-          <div className="panel-title">Combat</div>
+          <div className="panel-title">Vitals</div>
           {isDM && onChange && (
             <button
               type="button"
@@ -87,122 +150,153 @@ export default function EnemyStatblock({
             </button>
           )}
         </div>
-        <Counter
-          readOnly={readOnly}
-          label="HP"
-          current={character.vitals.hp.current}
-          max={hpMax}
-          onChange={(v) => updateNested(["vitals", "hp", "current"], v)}
-        />
-        <Counter
-          readOnly={readOnly}
-          label="STA"
-          current={character.vitals.sta.current}
-          max={staMax}
-          onChange={(v) => updateNested(["vitals", "sta", "current"], v)}
-        />
-        <div className="enemy-derived-grid">
-          <label>
-            RUN{" "}
-            <NumInput
-              readOnly={readOnly}
-              value={derived.run}
-              onChange={(v) => updateNested(["movement", "run"], v)}
-            />
-          </label>
-          <label>
-            LEAP{" "}
-            <NumInput
-              readOnly={readOnly}
-              value={derived.leap}
-              onChange={(v) => updateNested(["movement", "leap"], v)}
-            />
-          </label>
-          <label>
-            STUN{" "}
-            <NumInput
-              readOnly={readOnly}
-              value={derived.stun}
-              onChange={(v) => updateNested(["recovery", "stun"], v)}
-            />
-          </label>
-          <label>
-            REC{" "}
-            <NumInput
-              readOnly={readOnly}
-              value={derived.rec}
-              onChange={(v) => updateNested(["recovery", "rec"], v)}
-            />
-          </label>
-          {profile.vigor != null && profile.vigor > 0 && (
-            <label>
-              VIGOR <span className="readonly-value">{profile.vigor}</span>
-            </label>
-          )}
+        <div className="enemy-vitals-row">
+          <VitalBar
+            label="HP"
+            current={character.vitals.hp.current}
+            max={hpMax}
+            canEdit={canEdit}
+            onDecrement={() =>
+              updateNested(["vitals", "hp", "current"], Math.max(0, character.vitals.hp.current - 1))
+            }
+            onIncrement={() =>
+              updateNested(["vitals", "hp", "current"], Math.min(hpMax, character.vitals.hp.current + 1))
+            }
+          />
+          <VitalBar
+            label="STA"
+            current={character.vitals.sta.current}
+            max={staMax}
+            canEdit={canEdit}
+            onDecrement={() =>
+              updateNested(["vitals", "sta", "current"], Math.max(0, character.vitals.sta.current - 1))
+            }
+            onIncrement={() =>
+              updateNested(["vitals", "sta", "current"], Math.min(staMax, character.vitals.sta.current + 1))
+            }
+          />
+          <div className="enemy-vitals-chips">
+            <div className="derived-chip">
+              <span className="derived-chip-label">WT</span>
+              <span className="derived-chip-value">{character.vitals.woundThreshold}</span>
+            </div>
+            <div className="derived-chip">
+              <span className="derived-chip-label">RUN</span>
+              <NumInput
+                readOnly={readOnly}
+                value={derived.run}
+                onChange={(v) => updateNested(["movement", "run"], v)}
+              />
+            </div>
+            <div className="derived-chip">
+              <span className="derived-chip-label">LEAP</span>
+              <NumInput
+                readOnly={readOnly}
+                value={derived.leap}
+                onChange={(v) => updateNested(["movement", "leap"], v)}
+              />
+            </div>
+            <div className="derived-chip">
+              <span className="derived-chip-label">STUN</span>
+              <NumInput
+                readOnly={readOnly}
+                value={derived.stun}
+                onChange={(v) => updateNested(["recovery", "stun"], v)}
+              />
+            </div>
+            <div className="derived-chip">
+              <span className="derived-chip-label">REC</span>
+              <NumInput
+                readOnly={readOnly}
+                value={derived.rec}
+                onChange={(v) => updateNested(["recovery", "rec"], v)}
+              />
+            </div>
+            {profile.vigor != null && profile.vigor > 0 && (
+              <div className="derived-chip">
+                <span className="derived-chip-label">VIGOR</span>
+                <span className="derived-chip-value">{profile.vigor}</span>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
+      {/* ── Info panel (left col) ──────────────────────────────── */}
       <section className="panel enemy-info-panel">
         <div className="panel-title">{isMonster ? "Monster" : "NPC"}</div>
-        <dl className="monster-profile-grid">
-          {profile.threat && (
-            <>
-              <dt>Threat</dt>
-              <dd>{profile.threat}</dd>
-            </>
-          )}
-          {profile.bounty != null && profile.bounty > 0 && (
-            <>
-              <dt>Bounty</dt>
-              <dd>{profile.bounty}</dd>
-            </>
-          )}
-          {profile.naturalArmor != null && (
-            <>
-              <dt>Armor</dt>
-              <dd>{profile.naturalArmor} SP</dd>
-            </>
-          )}
-          {profile.height && (
-            <>
-              <dt>Height</dt>
-              <dd>{profile.height}</dd>
-            </>
-          )}
-          {profile.weight && (
-            <>
-              <dt>Weight</dt>
-              <dd>{profile.weight}</dd>
-            </>
-          )}
-          {profile.environment && (
-            <>
-              <dt>Environment</dt>
-              <dd>{profile.environment}</dd>
-            </>
-          )}
-          {profile.intelligence && (
-            <>
-              <dt>Intelligence</dt>
-              <dd>{profile.intelligence}</dd>
-            </>
-          )}
-          {profile.organization && (
-            <>
-              <dt>Organization</dt>
-              <dd>{profile.organization}</dd>
-            </>
-          )}
-          {profile.encumbrance != null && (
-            <>
-              <dt>ENC</dt>
-              <dd>{profile.encumbrance}</dd>
-            </>
-          )}
-        </dl>
+
+        {hasKeyStats && (
+          <div className="enemy-info-chips">
+            {profile.threat && (
+              <div className="derived-chip">
+                <span className="derived-chip-label">Threat</span>
+                <span className="derived-chip-value">{profile.threat}</span>
+              </div>
+            )}
+            {profile.bounty != null && profile.bounty > 0 && (
+              <div className="derived-chip">
+                <span className="derived-chip-label">Bounty</span>
+                <span className="derived-chip-value">{profile.bounty}</span>
+              </div>
+            )}
+            {profile.naturalArmor != null && (
+              <div className="derived-chip">
+                <span className="derived-chip-label">Nat. Armor</span>
+                <span className="derived-chip-value">{profile.naturalArmor} SP</span>
+              </div>
+            )}
+          </div>
+        )}
+
+        {hasDescriptiveInfo && (
+          <dl className="monster-profile-grid">
+            {profile.height && (
+              <>
+                <dt>Height</dt>
+                <dd>{profile.height}</dd>
+              </>
+            )}
+            {profile.weight && (
+              <>
+                <dt>Weight</dt>
+                <dd>{profile.weight}</dd>
+              </>
+            )}
+            {profile.environment && (
+              <>
+                <dt>Environment</dt>
+                <dd>{profile.environment}</dd>
+              </>
+            )}
+            {profile.intelligence && (
+              <>
+                <dt>Intelligence</dt>
+                <dd>{profile.intelligence}</dd>
+              </>
+            )}
+            {profile.organization && (
+              <>
+                <dt>Organization</dt>
+                <dd>{profile.organization}</dd>
+              </>
+            )}
+            {profile.encumbrance != null && (
+              <>
+                <dt>ENC</dt>
+                <dd>{profile.encumbrance}</dd>
+              </>
+            )}
+          </dl>
+        )}
+
+        {!hasKeyStats && !hasDescriptiveInfo && (
+          <p className="readonly-empty">No additional info.</p>
+        )}
       </section>
 
-      <section className="panel enemy-attrs-panel enemy-statblock-span-2">
+      {/* ── Attributes (right col) ────────────────────────────── */}
+      <section className="panel enemy-attrs-panel">
         <div className="panel-title">Attributes</div>
         <div className="enemy-attr-grid">
           {Object.entries(ATTRIBUTES).map(([key, attr]) => (
@@ -219,6 +313,7 @@ export default function EnemyStatblock({
         </div>
       </section>
 
+      {/* ── Skills (full width) ───────────────────────────────── */}
       {skillRows.length > 0 && (
         <section className="panel enemy-skills-panel enemy-statblock-span-2">
           <div className="panel-title">Skills</div>
@@ -265,6 +360,7 @@ export default function EnemyStatblock({
         </section>
       )}
 
+      {/* ── Attacks (full width) ──────────────────────────────── */}
       {(character.weapons ?? []).length > 0 && (
         <section className="panel enemy-weapons-panel enemy-statblock-span-2">
           <div className="panel-title">Attacks</div>
@@ -358,6 +454,7 @@ export default function EnemyStatblock({
         </section>
       )}
 
+      {/* ── Vulnerabilities + Abilities (2-col) ───────────────── */}
       {profile.vulnerabilities && (
         <section className="panel enemy-vuln-panel">
           <div className="panel-title">Vulnerabilities</div>
@@ -372,6 +469,7 @@ export default function EnemyStatblock({
         </section>
       )}
 
+      {/* ── Loot (full width) ─────────────────────────────────── */}
       {profile.loot && (
         <section className="panel enemy-loot-panel enemy-statblock-span-2">
           <div className="panel-title">Loot</div>
@@ -379,6 +477,7 @@ export default function EnemyStatblock({
         </section>
       )}
 
+      {/* ── Worn armor (full width, NPC only) ─────────────────── */}
       {isNpcStatblock && (
         <section className="panel enemy-armor-panel enemy-statblock-span-2">
           <div className="panel-title">Worn armor</div>
@@ -439,6 +538,7 @@ export default function EnemyStatblock({
         </section>
       )}
 
+      {/* ── Combat notes (full width) ─────────────────────────── */}
       <section className="panel enemy-notes-panel enemy-statblock-span-2">
         <div className="panel-title">Combat notes</div>
         <div className="enemy-notes-grid">
