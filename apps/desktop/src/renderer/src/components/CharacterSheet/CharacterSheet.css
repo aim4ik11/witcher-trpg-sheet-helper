@@ -1097,3 +1097,105 @@ input.sheet-topbar-name {
   color: var(--gold);
   text-decoration: underline;
 }
+
+/* ── Attribute highlight (search result) ────────────────── */
+.attr-block--highlighted {
+  border-color: var(--gold) !important;
+  animation: attr-highlight-fade 2s ease-out forwards;
+}
+
+@keyframes attr-highlight-fade {
+  0%   { box-shadow: 0 0 0 3px oklch(0.76 0.15 75 / 0.35); }
+  70%  { box-shadow: 0 0 0 3px oklch(0.76 0.15 75 / 0.15); }
+  100% { box-shadow: none; }
+}
+
+/* ── Stats attribute search ─────────────────────────────── */
+.stats-search-trigger {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 90;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--bg-raise);
+  border: 1px solid var(--line2);
+  color: var(--text-muted);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.stats-search-trigger:hover,
+.stats-search-trigger--open {
+  background: var(--bg-panel);
+  border-color: var(--line);
+  color: var(--gold);
+}
+
+.stats-search-panel {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  z-index: 90;
+  width: 280px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line2);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  animation: modal-fade 0.12s ease;
+}
+
+.stats-search-input {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.stats-search-input::placeholder {
+  color: var(--text-faint);
+}
+
+.stats-search-results {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.stats-search-result {
+  display: block;
+  width: 100%;
+  padding: 8px 14px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 13px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.stats-search-result:hover {
+  background: var(--bg-raise);
+  color: var(--gold);
+}
+
+.stats-search-empty {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-faint);
+}

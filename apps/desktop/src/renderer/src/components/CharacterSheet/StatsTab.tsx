@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Character } from "@wilmak/shared";
 import { ATTRIBUTES, ATTRIBUTE_SKILLS, skillBase } from "@wilmak/game-data";
 import ProfessionSkillTree from "../ProfessionSkillTree";
@@ -61,6 +61,81 @@ export default function StatsTab({
   const [subTab, setSubTab] = useState<"attrs" | "tree">("attrs");
   const [attrEdit, setAttrEdit] = useState<AttrEditState | null>(null);
 
+  // ── Attribute search ────────────────────────────────────
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [highlightedKey, setHighlightedKey] = useState<string | null>(null);
+  const attrBlockRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const pendingScrollKey = useRef<string | null>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus();
+    else setSearchQuery("");
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setSearchOpen(false); };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (pendingScrollKey.current && subTab === "attrs") {
+      const key = pendingScrollKey.current;
+      pendingScrollKey.current = null;
+      requestAnimationFrame(() => {
+        attrBlockRefs.current.get(key)?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setHighlightedKey(key);
+        setTimeout(() => setHighlightedKey(null), 2000);
+      });
+    }
+  }, [subTab]);
+
+  const searchResults = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+    const seen = new Set<string>();
+    const results: Array<{ key: string; label: string }> = [];
+    for (const [key, attr] of Object.entries(ATTRIBUTES)) {
+      if (SKIP_ATTR_KEYS.includes(key) || seen.has(key)) continue;
+      const attrHit =
+        key.startsWith(q) ||
+        attr.short.toLowerCase().startsWith(q) ||
+        attr.label.toLowerCase().includes(q);
+      if (attrHit) {
+        seen.add(key);
+        results.push({ key, label: `${attr.short} · ${attr.label}` });
+        continue;
+      }
+      for (const skill of ATTRIBUTE_SKILLS[key] ?? []) {
+        if (skill.label.toLowerCase().includes(q) || skill.key.includes(q)) {
+          seen.add(key);
+          results.push({ key, label: `${attr.short} › ${skill.label}` });
+          break;
+        }
+      }
+    }
+    return results.slice(0, 6);
+  }, [searchQuery]);
+
+  function navigateToAttr(key: string) {
+    if (subTab !== "attrs") {
+      pendingScrollKey.current = key;
+      setSubTab("attrs");
+    } else {
+      requestAnimationFrame(() => {
+        attrBlockRefs.current.get(key)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+      setHighlightedKey(key);
+      setTimeout(() => setHighlightedKey(null), 2000);
+    }
+    setSearchOpen(false);
+    setSearchQuery("");
+  }
+  // ────────────────────────────────────────────────────────
+
   const profile = character.monsterProfile;
   const isMonster = character.enemyKind === "monster";
   const isEnemyStatblock = character.type === "enemy" && !!profile;
@@ -79,7 +154,11 @@ export default function StatsTab({
   function renderAttrBlock([key, attr]: [string, { key: string; label: string; short: string }]) {
     const skills = ATTRIBUTE_SKILLS[key] ?? [];
     return (
-      <div key={key} className="attr-block">
+      <div
+        key={key}
+        className={`attr-block${highlightedKey === key ? " attr-block--highlighted" : ""}`}
+        ref={(el) => { if (el) attrBlockRefs.current.set(key, el); else attrBlockRefs.current.delete(key); }}
+      >
         <div className={`attr-header attr-header--${key}`}>
           <div className="attr-header-text">
             <span className="attr-short">{attr.short}</span>
@@ -285,6 +364,47 @@ export default function StatsTab({
           }
           onApply={(c) => onChange?.(c)}
         />
+      )}
+
+      <button
+        type="button"
+        className={`stats-search-trigger${searchOpen ? " stats-search-trigger--open" : ""}`}
+        onClick={() => setSearchOpen((o) => !o)}
+        aria-label="Search attributes and skills"
+      >
+        ⌕
+      </button>
+
+      {searchOpen && (
+        <div className="stats-search-panel">
+          <input
+            ref={searchInputRef}
+            className="stats-search-input"
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Attribute or skill name…"
+          />
+          {searchQuery.trim() && (
+            <ul className="stats-search-results">
+              {searchResults.length > 0 ? (
+                searchResults.map((r) => (
+                  <li key={r.key}>
+                    <button
+                      type="button"
+                      className="stats-search-result"
+                      onClick={() => navigateToAttr(r.key)}
+                    >
+                      {r.label}
+                    </button>
+                  </li>
+                ))
+              ) : (
+                <li className="stats-search-empty">No results</li>
+              )}
+            </ul>
+          )}
+        </div>
       )}
 
       {attrEdit && (
