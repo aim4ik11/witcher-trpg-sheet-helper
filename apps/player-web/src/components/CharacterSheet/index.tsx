@@ -1,35 +1,22 @@
 import { useState, useMemo } from "react";
-import type { Character, Spell } from "@wilmak/shared";
+import type { Character } from "@wilmak/shared";
 import {
-  ATTRIBUTES,
-  ATTRIBUTE_SKILLS,
-  ARMOR_LABELS,
   calcVitalMaxes,
   calcDerivedStats,
-  skillBase,
   isSpellcastingOccupation,
   getMagicSections,
-  spellsForCategory,
-  raceLabel,
-  occupationLabel,
 } from "@wilmak/game-data";
-import ProfessionSkillTree from "../ProfessionSkillTree";
-import SpellDetailModal, { SpellNameButton } from "../SpellDetailModal";
-import PlayerProgressionPanel, {
-  SkillSpendButton,
-  StatSpendButton,
-} from "../PlayerProgressionPanel";
+import PlayerProgressionPanel from "../PlayerProgressionPanel";
+import CharacterInfoBar from "./CharacterInfoBar";
+import StatsTab from "./StatsTab";
+import CombatTab from "./CombatTab";
+import InventoryTab from "./InventoryTab";
+import MagicTab from "./MagicTab";
+import OtherTab from "./OtherTab";
 import "../DmSessionControls/DmSessionControls.css";
 import "./CharacterSheet.css";
 
-function VitalCard({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="vital-card">
-      <div className="vital-card-label">{label}</div>
-      {children}
-    </div>
-  );
-}
+const BASE_TABS = ["Stats", "Combat", "Inventory"];
 
 interface Props {
   character: Character;
@@ -39,16 +26,8 @@ interface Props {
   backLabel: string;
 }
 
-const BASE_TABS = ["Stats", "Combat", "Inventory"];
-
-export default function CharacterSheet({
-  character,
-  onChange,
-  onBack,
-  backLabel,
-}: Props) {
+export default function CharacterSheet({ character, onChange, onBack, backLabel }: Props) {
   const [tab, setTab] = useState("Stats");
-  const [detailSpell, setDetailSpell] = useState<Spell | null>(null);
   const statsLocked = character.creation?.complete === true;
   const playerCanSpend = statsLocked && !!onChange;
 
@@ -65,11 +44,6 @@ export default function CharacterSheet({
     return list;
   }, [showMagic]);
 
-  const metaParts = [
-    character.race ? raceLabel(character.race) : "",
-    occupation ? occupationLabel(occupation) : "",
-  ].filter(Boolean);
-
   return (
     <div className="sheet sheet-readonly">
       <header className="sheet-header">
@@ -78,356 +52,58 @@ export default function CharacterSheet({
         </button>
       </header>
 
-      <div className="sheet-hero">
+      <div className="sheet-page-body">
         <h1 className="sheet-name-display">{character.name}</h1>
-        {metaParts.length > 0 && (
-          <div className="sheet-meta-display">{metaParts.join(" · ")}</div>
+
+        <CharacterInfoBar
+          character={character}
+          hpMax={hpStaMax}
+          staMax={hpStaMax}
+          playerCanSpend={playerCanSpend}
+        />
+
+        <p className="readonly-banner">
+          {playerCanSpend
+            ? "Spend your I.P. and training points below — changes save automatically."
+            : "View only — your DM updates this sheet."}
+        </p>
+
+        {playerCanSpend && onChange && (
+          <PlayerProgressionPanel character={character} onApply={onChange} />
         )}
-      </div>
 
-      <p className="readonly-banner">
-        {playerCanSpend
-          ? "Spend your I.P. and training points below — changes save automatically."
-          : "View only — your DM updates this sheet."}
-      </p>
+        <div className="sheet-tabs-wrap">
+          <div className="tab-bar">
+            {tabs.map((t) => (
+              <button
+                key={t}
+                type="button"
+                className={tab === t ? "active" : ""}
+                onClick={() => setTab(t)}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+        </div>
 
-      {playerCanSpend && onChange && (
-        <PlayerProgressionPanel character={character} onApply={onChange} />
-      )}
-
-      <div className="sheet-tabs-wrap">
-        <div className="tab-bar">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              type="button"
-              className={tab === t ? "active" : ""}
-              onClick={() => setTab(t)}
-            >
-              {t}
-            </button>
-          ))}
+        <div className="sheet-body">
+          {tab === "Stats" && (
+            <StatsTab
+              character={character}
+              derived={derived}
+              playerCanSpend={playerCanSpend}
+              onChange={onChange}
+            />
+          )}
+          {tab === "Combat" && <CombatTab character={character} />}
+          {tab === "Inventory" && <InventoryTab character={character} />}
+          {tab === "Magic" && showMagic && (
+            <MagicTab character={character} magicSections={magicSections} />
+          )}
+          {tab === "Other" && <OtherTab character={character} />}
         </div>
       </div>
-
-      <div className="sheet-body">
-        {tab === "Stats" && (
-          <>
-            <section className="vitals-panel">
-              <div className="section-label">Vitals</div>
-              <div className="vitals-grid">
-                <VitalCard label="HP">
-                  <span className="counter-readonly">
-                    {character.vitals.hp.current}{" "}
-                    <span className="max">/ {hpStaMax}</span>
-                  </span>
-                </VitalCard>
-                <VitalCard label="STA">
-                  <span className="counter-readonly">
-                    {character.vitals.sta.current}{" "}
-                    <span className="max">/ {hpStaMax}</span>
-                  </span>
-                </VitalCard>
-                <VitalCard label="Wound threshold">
-                  <div className="vital-card-value">
-                    {character.vitals.woundThreshold}
-                  </div>
-                </VitalCard>
-              </div>
-            </section>
-
-            <ProfessionSkillTree
-              character={character}
-              readOnly
-              spendMode={playerCanSpend}
-              onTreeChange={() => {}}
-              onApply={onChange}
-            />
-
-            <section>
-              <div className="section-label">Attributes & skills</div>
-              <div className="attr-grid">
-                {Object.entries(ATTRIBUTES).map(([key, attr]) => (
-                  <div key={key} className="attr-block">
-                    <div className={`attr-header attr-header--${key}`}>
-                      <div className="attr-header-text">
-                        <span className="attr-short">{attr.short}</span>
-                        <span className="attr-full">{attr.label}</span>
-                      </div>
-                      <span className="readonly-value attr-value-input">
-                        {character.attributes[key] ?? 0}
-                      </span>
-                      {playerCanSpend && onChange && (
-                        <StatSpendButton
-                          character={character}
-                          attrKey={key}
-                          onApply={onChange}
-                        />
-                      )}
-                    </div>
-                    {(ATTRIBUTE_SKILLS[key] ?? []).map((skill) => {
-                      const level = character.skills[key]?.[skill.key]?.level ?? 0;
-                      return (
-                        <div
-                          key={skill.key}
-                          className={`skill-row${skill.special ? " special" : ""}`}
-                        >
-                          <span className="name">
-                            {skill.label}
-                            <span className="skill-lvl"> · {level}</span>
-                            {playerCanSpend && onChange && (
-                              <SkillSpendButton
-                                character={character}
-                                attrKey={key}
-                                skillKey={skill.key}
-                                label={skill.label}
-                                special={skill.special}
-                                onApply={onChange}
-                              />
-                            )}
-                          </span>
-                          <span className="base">
-                            {skillBase(character, key, skill.key)}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="misc-stats">
-              <div className="section-label">Movement & recovery</div>
-              <div className="derived-grid">
-                {[
-                  ["Run", derived.run],
-                  ["Leap", derived.leap],
-                  ["Stun", derived.stun],
-                  ["Rec", derived.rec],
-                ].map(([l, v]) => (
-                  <label key={l as string}>
-                    {l as string} <span className="readonly-value">{v as number}</span>
-                  </label>
-                ))}
-              </div>
-            </section>
-          </>
-        )}
-
-        {tab === "Combat" && (
-          <>
-            <section className="panel">
-              <div className="panel-title">Weapons</div>
-              {(character.weapons ?? []).length === 0 ? (
-                <p className="readonly-empty">None</p>
-              ) : (
-                <div className="dynamic-table-wrap">
-                  <table className="dynamic-table">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>WA</th>
-                        <th>DMG</th>
-                        <th>Rel</th>
-                        <th>Hand</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(character.weapons ?? []).map((w) => (
-                        <tr key={w.id ?? w.name}>
-                          <td>{w.name}</td>
-                          <td>{w.type}</td>
-                          <td>{w.wa}</td>
-                          <td>{w.dmg}</td>
-                          <td>{w.rel}</td>
-                          <td>{w.hand}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </section>
-            <section className="panel bonus-melee">
-              <div className="panel-title">Bonus melee</div>
-              <div className="derived-grid">
-                <label>
-                  Punch{" "}
-                  <span className="readonly-value">
-                    {character.bonusMelee?.punch || "—"}
-                  </span>
-                </label>
-                <label>
-                  Kick{" "}
-                  <span className="readonly-value">
-                    {character.bonusMelee?.kick || "—"}
-                  </span>
-                </label>
-              </div>
-            </section>
-            <section className="panel">
-              <div className="panel-title">Armor</div>
-              <div className="dynamic-table-wrap">
-                <table className="dynamic-table">
-                  <thead>
-                    <tr>
-                      <th>Location</th>
-                      <th>Piece</th>
-                      <th>SP</th>
-                      <th>Dam</th>
-                      <th>Effects</th>
-                      <th>Wt</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {(character.armor ?? []).map((piece) => (
-                      <tr key={piece.slot}>
-                        <td>{ARMOR_LABELS[piece.slot] ?? piece.slot}</td>
-                        <td>{piece.name || "—"}</td>
-                        <td>{piece.sp}</td>
-                        <td>{piece.damage}</td>
-                        <td>{piece.effects || "—"}</td>
-                        <td>{piece.weight}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              {character.armorNotes && (
-                <p className="readonly-notes">{character.armorNotes}</p>
-              )}
-            </section>
-          </>
-        )}
-
-        {tab === "Inventory" && (
-          <section className="panel">
-            <div className="panel-title">Consumables</div>
-            {(character.consumables ?? []).length === 0 ? (
-              <p className="readonly-empty">None</p>
-            ) : (
-              <div className="dynamic-table-wrap">
-                <table className="dynamic-table">
-                  <thead>
-                    <tr>
-                      <th>Qty</th>
-                      <th>Name</th>
-                      <th>Effect</th>
-                      <th>Wt</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {(character.consumables ?? []).map((c) => (
-                      <tr key={c.id ?? c.name}>
-                        <td>{c.qty}</td>
-                        <td>{c.name}</td>
-                        <td>{c.effect}</td>
-                        <td>{c.weight}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </section>
-        )}
-
-        {tab === "Magic" &&
-          showMagic &&
-          magicSections.map((section) => {
-            const rows = spellsForCategory(character.spells, section.key);
-            return (
-              <section key={section.key} className="panel magic-section">
-                <div className="panel-title">{section.label}</div>
-                {rows.length === 0 ? (
-                  <p className="readonly-empty">None</p>
-                ) : (
-                  <>
-                    <p className="spell-table-hint">Tap a spell name for full details.</p>
-                    <div className="dynamic-table-wrap">
-                      <table className="dynamic-table">
-                        <thead>
-                          <tr>
-                            <th>Name</th>
-                            <th>STA</th>
-                            <th>Defense</th>
-                            <th>Range</th>
-                            <th>Duration</th>
-                            <th>Effect</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {rows.map((s) => (
-                            <tr key={s.id ?? s.name}>
-                              <td>
-                                <SpellNameButton spell={s} onOpen={setDetailSpell} />
-                              </td>
-                              <td>{s.staCostText || s.staCost || "—"}</td>
-                              <td>{s.defense ?? "—"}</td>
-                              <td>{s.range || "—"}</td>
-                              <td>{s.duration || "—"}</td>
-                              <td>{s.effect || "—"}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </>
-                )}
-              </section>
-            );
-          })}
-
-        {tab === "Other" && (
-          <>
-            <section className="panel">
-              <div className="panel-title">Wounds</div>
-              {(character.wounds ?? []).length === 0 ? (
-                <p className="readonly-empty">None</p>
-              ) : (
-                <div className="dynamic-table-wrap">
-                  <table className="dynamic-table">
-                    <thead>
-                      <tr>
-                        <th>Description</th>
-                        <th>S/T</th>
-                        <th>Days</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(character.wounds ?? []).map((w) => (
-                        <tr key={w.id ?? w.description}>
-                          <td>{w.description}</td>
-                          <td>{w.severity}</td>
-                          <td>{w.days}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </section>
-            <section className="panel">
-              <div className="panel-title">Status effects</div>
-              {(character.statusEffects ?? []).length === 0 ? (
-                <p className="readonly-empty">None</p>
-              ) : (
-                <ul>
-                  {(character.statusEffects ?? []).map((e) => (
-                    <li key={e.id ?? e.description}>{e.description}</li>
-                  ))}
-                </ul>
-              )}
-            </section>
-          </>
-        )}
-      </div>
-
-      {detailSpell && (
-        <SpellDetailModal spell={detailSpell} onClose={() => setDetailSpell(null)} />
-      )}
     </div>
   );
 }
