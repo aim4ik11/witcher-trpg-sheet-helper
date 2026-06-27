@@ -1,0 +1,15 @@
+[
+  {
+    "id": "spell-ivan-spell",
+    "name": "Ivan Spell",
+    "category": "spell",
+    "staCost": 3,
+    "range": "8m",
+    "duration": "Immediate",
+    "effect": "Ivan Spell condenses moisture into a jagged 1m block of ice around a target while arcing lightning through it. If your Spell Casting roll beats the target’s defense, the lightning deals 2d6 damage. The ice block has 5 SP, shatters immediately after the strike, and leaves a 1m slick for 1 round (Athletics vs your Spell Casting to cross safely). The target has a 10% chance to be treated as frozen until they spend an action breaking free.",
+    "defense": "Dodge, Block, or Magical Shield",
+    "tags": ["novice", "mixed", "homebrew"],
+    "element": "mixed",
+    "tier": "novice"
+  }
+]

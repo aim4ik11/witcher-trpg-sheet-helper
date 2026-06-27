@@ -1,5 +1,8 @@
+import { useState } from "react";
 import type { Character, Spell } from "@wilmak/shared";
 import { spellsForCategory, MAGIC_ROW_EMPTY } from "@wilmak/game-data";
+import SpellDetailModal from "../SpellDetailModal";
+import "../SpellDetailModal/SpellDetailModal.css";
 import { DynamicTable } from "./helpers";
 import type { DynRow } from "./helpers";
 
@@ -35,11 +38,14 @@ export default function MagicTab({
   setPicker,
   onMagicCast,
 }: Props) {
+  const [detailSpell, setDetailSpell] = useState<Spell | null>(null);
+
   return (
     <>
       {magicSections.map((section) => (
         <section key={section.key} className="panel magic-section">
           <div className="panel-title">{section.label}</div>
+          <p className="spell-table-hint">Click a spell name for full details.</p>
           <DynamicTable
             readOnly={readOnly}
             columns={[
@@ -63,6 +69,19 @@ export default function MagicTab({
               );
             }}
             emptyRow={{ ...MAGIC_ROW_EMPTY }}
+            renderCell={(row, col) => {
+              if (col.key !== "name") return null;
+              const name = String(row.name || "—");
+              return (
+                <button
+                  type="button"
+                  className="spell-name-link"
+                  onClick={() => setDetailSpell(row as unknown as Spell)}
+                >
+                  {name}
+                </button>
+              );
+            }}
             renderRowActions={
               magicCastable
                 ? (row) => (
@@ -95,6 +114,10 @@ export default function MagicTab({
           />
         </section>
       ))}
+
+      {detailSpell && (
+        <SpellDetailModal spell={detailSpell} onClose={() => setDetailSpell(null)} />
+      )}
     </>
   );
 }

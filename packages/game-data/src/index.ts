@@ -20,6 +20,7 @@ export * from "./priestMagic";
 export * from "./characterData";
 export * from "./gameOptions";
 export * from "./catalog";
+export * from "./spellDetail";
 export * from "./professions";
 export * from "./skillTrees";
 export * from "./progression";
