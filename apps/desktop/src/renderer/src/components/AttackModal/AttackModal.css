@@ -62,7 +62,7 @@
 .attack-modifiers {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  padding: 12px;
+  padding: 10px 12px;
   margin: 0;
 }
 
@@ -75,10 +75,89 @@
   padding: 0 6px;
 }
 
-.attack-modifier-grid {
+.attack-mod-toprow {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr 108px;
   gap: 10px;
+  margin-bottom: 8px;
+}
+
+.attack-mod-checks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+
+.attack-mod-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  user-select: none;
+}
+
+.attack-mod-check:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--line);
+}
+
+.attack-mod-check:has(input:checked) {
+  background: rgba(200, 80, 80, 0.05);
+  border-color: rgba(200, 80, 80, 0.2);
+}
+
+.attack-mod-check[data-sign="pos"]:has(input:checked) {
+  background: rgba(90, 160, 90, 0.05);
+  border-color: rgba(90, 160, 90, 0.25);
+}
+
+.attack-mod-check input[type="checkbox"] {
+  margin-top: 2px;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.attack-mod-check-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.attack-mod-check-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.attack-mod-check-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.attack-mod-check-val {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.attack-mod-check-val--pos { color: #5aa05a; }
+.attack-mod-check-val--neg { color: var(--danger); }
+
+.attack-mod-check-desc {
+  display: block;
+  font-size: 10px;
+  color: var(--text-faint);
+  margin-top: 1px;
+  line-height: 1.3;
 }
 
 .attack-check {
@@ -191,6 +270,46 @@
   font-style: italic;
 }
 
+.attack-dc-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--text-faint);
+  line-height: 1.3;
+}
+
+.attack-def-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  align-self: start;
+}
+
+.attack-def-detail-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+.attack-def-detail-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.attack-def-detail-pen {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--danger);
+}
+
 .attack-apply-toggle {
   margin-bottom: 4px;
 }
@@ -226,8 +345,446 @@
 
 @media (max-width: 640px) {
   .attack-modal-grid,
-  .attack-modifier-grid,
   .attack-rolls {
     grid-template-columns: 1fr;
+  }
+
+  .attack-mod-checks,
+  .attack-mod-toprow {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Combatant VS Strip ─────────────────────────────────────────────────── */
+
+.attack-vs-strip {
+  display: grid;
+  grid-template-columns: 1fr 52px 1fr;
+  margin-bottom: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.attack-vs-card {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.attack-vs-card--target {
+  background: rgba(255, 255, 255, 0.015);
+  border-left: 1px solid var(--line);
+}
+
+.attack-vs-role {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-faint);
+}
+
+.attack-vs-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.attack-vs-type-pill {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-faint);
+}
+
+.attack-vs-target-select {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  padding: 2px 0 3px;
+  cursor: pointer;
+  width: 100%;
+  appearance: auto;
+}
+
+.attack-vs-target-select:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+}
+
+/* ─── Vital bars ─────────────────────────────────────────────────────────── */
+
+.attack-vital-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.attack-vital-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.attack-vital-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.attack-vital-bar--sta {
+  height: 4px;
+}
+
+.attack-vital-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.attack-vital-fill--ok  { background: #5aa05a; }
+.attack-vital-fill--mid { background: var(--gold); }
+.attack-vital-fill--low { background: var(--danger); }
+.attack-vital-fill--sta { background: rgba(100, 150, 220, 0.7); }
+
+.attack-vital-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 64px;
+  text-align: right;
+}
+
+.attack-vital-text--sta {
+  opacity: 0.7;
+  font-size: 10px;
+  min-width: 60px;
+}
+
+/* ─── Stat line (atk base / def base) ───────────────────────────────────── */
+
+.attack-vs-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.attack-vs-stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.attack-vs-stat-val {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.attack-vs-stat-mod {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+}
+
+/* ─── VS Divider ─────────────────────────────────────────────────────────── */
+
+.attack-vs-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.01);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  padding: 8px 4px;
+}
+
+.attack-vs-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+.attack-vs-edge {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.attack-vs-edge--strong { color: #5aa05a; }
+.attack-vs-edge--even   { color: var(--text-faint); }
+.attack-vs-edge--weak   { color: var(--danger); }
+
+/* ─── Armor slots ────────────────────────────────────────────────────────── */
+
+.attack-armor-slots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.attack-armor-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  min-width: 34px;
+}
+
+.attack-armor-cell-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.attack-armor-cell-sp {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+/* ─── Damage Preview (Step 2) ────────────────────────────────────────────── */
+
+.damage-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.damage-result {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.damage-result--hit {
+  border-color: rgba(201, 168, 108, 0.28);
+  background: rgba(201, 168, 108, 0.04);
+}
+
+.damage-result--miss {
+  background: rgba(255, 255, 255, 0.01);
+  opacity: 0.65;
+}
+
+.damage-result-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.damage-result-idx {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.damage-outcome {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.damage-outcome--hit {
+  background: rgba(90, 160, 90, 0.2);
+  color: #8fd48f;
+}
+
+.damage-outcome--miss {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+}
+
+.damage-location {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.damage-crit-tier {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgba(201, 168, 108, 0.15);
+  color: var(--gold);
+}
+
+.damage-rolls {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--font-mono);
+}
+
+.damage-roll-num {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.damage-roll-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.damage-roll-sep {
+  font-size: 11px;
+  color: var(--text-faint);
+  padding: 0 2px;
+}
+
+.damage-margin {
+  font-size: 12px;
+  font-weight: 600;
+  color: #5aa05a;
+  padding-left: 4px;
+}
+
+.damage-breakdown {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.damage-hp-delta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.damage-hp-track-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.damage-hp-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.damage-hp-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.damage-hp-fill--ok  { background: #5aa05a; }
+.damage-hp-fill--mid { background: var(--gold); }
+.damage-hp-fill--low { background: var(--danger); }
+
+.damage-hp-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 38px;
+}
+
+.damage-hp-arrow {
+  font-size: 13px;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+.damage-hp-taken {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--danger);
+  flex-shrink: 0;
+  min-width: 36px;
+  text-align: right;
+}
+
+.damage-crit-effect {
+  padding: 8px 10px;
+  background: rgba(201, 168, 108, 0.07);
+  border: 1px solid rgba(201, 168, 108, 0.22);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.damage-crit-roll {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--gold);
+  margin-right: 4px;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .attack-vs-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .attack-vs-divider {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 6px 14px;
+  }
+
+  .attack-vs-card--target {
+    border-left: none;
+    border-top: 1px solid var(--line);
   }
 }

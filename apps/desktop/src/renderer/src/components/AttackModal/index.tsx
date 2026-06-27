@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type {
   Character,
   CombatAttackResult,
@@ -17,9 +17,9 @@ import {
   attackTypeConfigForAttacker,
   buildModifierList,
   defenseBase,
-  formatCritWoundTier,
-  formatDamageBreakdown,
+
   getAllowedDefenseTypes,
+  getEffectiveArmorSp,
   inferDefenderBlockSkill,
   isDefenseAllowed,
   isMonsterAttacker,
@@ -31,7 +31,12 @@ import {
   type RangeBand,
 } from "@wilmak/game-data";
 import Modal from "../Modal";
+import CombatantStrip from "./CombatantStrip";
+import DamagePreview from "./DamagePreview";
 import "./AttackModal.css";
+import "../StartCombatModal/StartCombatModal.css";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type WeaponChoice =
   | { kind: "weapon"; weaponId: string }
@@ -50,6 +55,8 @@ interface Props {
   onClose: () => void;
 }
 
+// ─── Constants ────────────────────────────────────────────────────────────────
+
 const RANGE_BANDS: { id: RangeBand; label: string }[] = [
   { id: "pointBlank", label: "Point blank (+5)" },
   { id: "close", label: "Close (+0)" },
@@ -57,6 +64,15 @@ const RANGE_BANDS: { id: RangeBand; label: string }[] = [
   { id: "long", label: "Long (−4)" },
   { id: "extreme", label: "Extreme (−6)" },
 ];
+
+const ARMOR_LOCATIONS: { loc: HitLocation; label: string }[] = [
+  { loc: "head", label: "Hd" },
+  { loc: "torso", label: "Tr" },
+  { loc: "rArm", label: "Arm" },
+  { loc: "rLeg", label: "Leg" },
+];
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function defenseLabel(type: CombatDefenseType): string {
   if (type === "none") return "None (DC)";
@@ -76,6 +92,8 @@ function formatRofSummary(rof: number): string {
   return `ROF ${rof} — ${rof} separate attack rolls per action`;
 }
 
+// ─── Component ────────────────────────────────────────────────────────────────
+
 export default function AttackModal({
   combat,
   attacker,
@@ -83,6 +101,7 @@ export default function AttackModal({
   onSubmit,
   onClose,
 }: Props) {
+  // ── Targets ────────────────────────────────────────────────────────────────
   const targets = useMemo(
     () =>
       combat.participants
@@ -92,6 +111,7 @@ export default function AttackModal({
     [combat.participants, attacker.id, characters],
   );
 
+  // ── Form state ─────────────────────────────────────────────────────────────
   const [targetId, setTargetId] = useState(targets[0]?.id ?? "");
   const [weaponChoice, setWeaponChoice] = useState<WeaponChoice>(() => {
     if (attacker.weapons?.[0]) return { kind: "weapon", weaponId: attacker.weapons[0].id };
@@ -109,12 +129,15 @@ export default function AttackModal({
   const [ambush, setAmbush] = useState(false);
   const [outsideVisionCone, setOutsideVisionCone] = useState(false);
   const [customModifier, setCustomModifier] = useState("");
+
+  // ── Step / result state ────────────────────────────────────────────────────
   const [step, setStep] = useState<"attack" | "damage">("attack");
   const [preview, setPreview] = useState<CombatAttackResult[] | null>(null);
   const [applyDamage, setApplyDamage] = useState(true);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
+  // ── Derived values ─────────────────────────────────────────────────────────
   const target = targets.find((c) => c.id === targetId);
   const isPlayerAttacker = attacker.type === "player";
   const isPlayerDefender = target?.type === "player";
@@ -123,17 +146,20 @@ export default function AttackModal({
   const showUnarmed = !isEnemyAttacker || attackerWeapons.length === 0;
   const attackOptions = attackOptionsForAttacker(attacker);
 
-  const selectedSourceWeapon = useMemo(() => {
-    if (weaponChoice.kind !== "weapon") return undefined;
-    return attackerWeapons.find((w) => w.id === weaponChoice.weaponId);
-  }, [weaponChoice, attackerWeapons]);
+  const selectedSourceWeapon = useMemo(
+    () =>
+      weaponChoice.kind === "weapon"
+        ? attackerWeapons.find((w) => w.id === weaponChoice.weaponId)
+        : undefined,
+    [weaponChoice, attackerWeapons],
+  );
 
   const selectedWeapon = useMemo(() => {
     if (weaponChoice.kind === "unarmed") {
       const dmg =
         weaponChoice.unarmed === "punch"
-          ? attacker.bonusMelee?.punch ?? "1d6"
-          : attacker.bonusMelee?.kick ?? "1d6+2";
+          ? (attacker.bonusMelee?.punch ?? "1d6")
+          : (attacker.bonusMelee?.kick ?? "1d6+2");
       return unarmedCombatWeapon(weaponChoice.unarmed, dmg);
     }
     const w = attacker.weapons?.find((item) => item.id === weaponChoice.weaponId);
@@ -149,12 +175,6 @@ export default function AttackModal({
     : null;
   const fastStrikeCount = typeConfig?.attackCount ?? 1;
 
-  useEffect(() => {
-    if (isEnemyAttacker && attackType !== "normal") {
-      setAttackType("normal");
-    }
-  }, [isEnemyAttacker, attackType]);
-
   const allowedDefenses = useMemo(() => {
     if (!selectedWeapon || !target) return [];
     return getAllowedDefenseTypes(selectedWeapon).filter((d) =>
@@ -162,12 +182,52 @@ export default function AttackModal({
     );
   }, [selectedWeapon, target]);
 
-  useEffect(() => {
-    if (allowedDefenses.length > 0 && !allowedDefenses.includes(defenseType)) {
-      setDefenseType(allowedDefenses[0]!);
-    }
-  }, [allowedDefenses, defenseType]);
+  // Resolve select values without triggering re-renders via useEffect
+  const resolvedDefenseType =
+    allowedDefenses.length > 0 && !allowedDefenses.includes(defenseType)
+      ? allowedDefenses[0]!
+      : defenseType;
+  const resolvedAttackType =
+    isEnemyAttacker && attackType !== "normal" ? "normal" : attackType;
 
+  const attackBasePreview =
+    selectedWeapon && attacker
+      ? attackBase(attacker, selectedWeapon, selectedWeapon.isRanged ? rangeBand : undefined)
+      : null;
+
+  const defenderBlockSkill =
+    target && (resolvedDefenseType === "block" || resolvedDefenseType === "parry")
+      ? inferDefenderBlockSkill(target, resolvedDefenseType)
+      : undefined;
+
+  // ── Combatant strip data ───────────────────────────────────────────────────
+  const effectiveAtkBase =
+    attackBasePreview !== null
+      ? attackBasePreview + (typeConfig?.attackModifier ?? 0)
+      : null;
+  const defBaseValue =
+    target && resolvedDefenseType !== "none"
+      ? defenseBase(target, resolvedDefenseType, defenderBlockSkill)
+      : null;
+  const margin =
+    effectiveAtkBase !== null && defBaseValue !== null
+      ? effectiveAtkBase - defBaseValue
+      : null;
+
+  const targetArmorSp = useMemo(
+    () => {
+      const t = characters.find((c) => c.id === targetId);
+      return t
+        ? ARMOR_LOCATIONS.map(({ loc, label }) => ({
+            label,
+            sp: getEffectiveArmorSp(t, loc),
+          })).filter((entry) => entry.sp > 0)
+        : [];
+    },
+    [targetId, characters],
+  );
+
+  // ── Options builder ────────────────────────────────────────────────────────
   function buildOptions() {
     if (!target || !selectedWeapon) return null;
 
@@ -188,34 +248,31 @@ export default function AttackModal({
     }
 
     let defenderDieRollsPerAttack: (number[] | undefined)[] | undefined;
-    if (isPlayerDefender && defenseType !== "none") {
+    if (isPlayerDefender && resolvedDefenseType !== "none") {
       defenderDieRollsPerAttack = [];
       for (let i = 0; i < fastStrikeCount; i++) {
-        const input = defenderRollInputs[i] ?? "";
-        const parsed = parseManualDieRolls(input);
+        const parsed = parseManualDieRolls(defenderRollInputs[i] ?? "");
         if (!parsed) return null;
         defenderDieRollsPerAttack.push(parsed);
       }
     }
 
-    const dc = defenseType === "none" ? Number(defenseDc) : undefined;
-    if (defenseType === "none" && (!Number.isFinite(dc) || dc! < 0)) return null;
-
-    const blockSkillKey =
-      defenseType === "block" || defenseType === "parry"
-        ? inferDefenderBlockSkill(target, defenseType)
-        : undefined;
+    const dc = resolvedDefenseType === "none" ? Number(defenseDc) : undefined;
+    if (resolvedDefenseType === "none" && (!Number.isFinite(dc) || dc! < 0)) return null;
 
     return {
       attacker,
       target,
       weapon: selectedWeapon,
-      attackType,
-      defenseType,
+      attackType: resolvedAttackType,
+      defenseType: resolvedDefenseType,
       modifiers,
       rangeBand: selectedWeapon.isRanged ? rangeBand : undefined,
       defenseDc: dc,
-      blockSkillKey,
+      blockSkillKey:
+        resolvedDefenseType === "block" || resolvedDefenseType === "parry"
+          ? inferDefenderBlockSkill(target, resolvedDefenseType)
+          : undefined,
       attackerDieRolls,
       defenderDieRollsPerAttack,
       aimedLocation: aimLocation || undefined,
@@ -223,6 +280,7 @@ export default function AttackModal({
     };
   }
 
+  // ── Handlers ───────────────────────────────────────────────────────────────
   function handlePreview() {
     setError("");
     setStep("attack");
@@ -230,7 +288,7 @@ export default function AttackModal({
       setError(typeConfig?.disallowReason ?? "Attack type not allowed.");
       return;
     }
-    if (target && selectedWeapon && !isDefenseAllowed(defenseType, selectedWeapon, target)) {
+    if (target && selectedWeapon && !isDefenseAllowed(resolvedDefenseType, selectedWeapon, target)) {
       setError("That defense is not allowed against this attack.");
       return;
     }
@@ -242,9 +300,7 @@ export default function AttackModal({
     try {
       const results = resolveAttackActionWithDamage(options);
       setPreview(results);
-      if (results.some((r) => r.hit)) {
-        setStep("damage");
-      }
+      if (results.some((r) => r.hit)) setStep("damage");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to resolve attack.");
       setPreview(null);
@@ -277,48 +333,26 @@ export default function AttackModal({
         });
       }
 
-      await onSubmit({
-        results,
-        updatedCharacters: [...updatedById.values()],
-      });
+      await onSubmit({ results, updatedCharacters: [...updatedById.values()] });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to record attack.");
       setSubmitting(false);
     }
   }
 
-  const attackBasePreview =
-    selectedWeapon && attacker
-      ? attackBase(attacker, selectedWeapon, selectedWeapon.isRanged ? rangeBand : undefined)
-      : null;
-
-  const defenderBlockSkill =
-    target && (defenseType === "block" || defenseType === "parry")
-      ? inferDefenderBlockSkill(target, defenseType)
-      : undefined;
-
+  // ── Footer ─────────────────────────────────────────────────────────────────
   const footer = (
     <>
       <button type="button" onClick={onClose} disabled={submitting}>
         Cancel
       </button>
       {step === "damage" && (
-        <button
-          type="button"
-          className="btn-sm"
-          onClick={() => setStep("attack")}
-          disabled={submitting}
-        >
+        <button type="button" className="btn-sm" onClick={() => setStep("attack")} disabled={submitting}>
           ← Back
         </button>
       )}
       {step === "attack" && (
-        <button
-          type="button"
-          className="btn-sm"
-          onClick={handlePreview}
-          disabled={submitting}
-        >
+        <button type="button" className="btn-sm" onClick={handlePreview} disabled={submitting}>
           Preview
         </button>
       )}
@@ -331,23 +365,15 @@ export default function AttackModal({
         {submitting
           ? "Recording…"
           : step === "damage"
-            ? applyDamage
-              ? "Apply & confirm"
-              : "Log only"
-            : preview
-              ? "Confirm attack"
-              : "Resolve & confirm"}
+            ? applyDamage ? "Apply & confirm" : "Log only"
+            : preview ? "Confirm attack" : "Resolve & confirm"}
       </button>
     </>
   );
 
+  // ── Render ─────────────────────────────────────────────────────────────────
   return (
-    <Modal title={`Attack — ${attacker.name}`} size="xl" onClose={onClose} footer={footer}>
-      <p className="attack-modal-hint">
-        Round {combat.round}. Step {step === "attack" ? "1" : "2"}:{" "}
-        {step === "attack" ? "Attack vs defense" : "Damage resolution"}
-      </p>
-
+    <Modal title={`Attack — Round ${combat.round}`} size="xl" onClose={onClose} footer={footer}>
       {isMonsterAttacker(attacker) && step === "attack" && (
         <p className="attack-modal-monster-note">
           Monsters use bestiary weapons only — each weapon&apos;s ROF is how many attacks it
@@ -355,20 +381,27 @@ export default function AttackModal({
         </p>
       )}
 
+      {/* Always-visible combatant comparison */}
+      <CombatantStrip
+        attacker={attacker}
+        targets={targets}
+        target={target}
+        targetId={targetId}
+        onTargetChange={setTargetId}
+        effectiveAtkBase={effectiveAtkBase}
+        attackModifier={typeConfig?.attackModifier ?? 0}
+        defBaseValue={defBaseValue}
+        margin={margin}
+        resolvedDefenseType={resolvedDefenseType}
+        isThrown={selectedWeapon?.isThrown}
+        targetArmorSp={targetArmorSp}
+      />
+
+      {/* Step 1: Attack setup */}
       {step === "attack" && (
         <div className="attack-modal-form">
           <div className="attack-modal-grid">
-            <div className="field">
-              <label>Target</label>
-              <select value={targetId} onChange={(e) => setTargetId(e.target.value)}>
-                {targets.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name} ({c.type === "player" ? "Player" : "NPC"})
-                  </option>
-                ))}
-              </select>
-            </div>
-
+            {/* Weapon */}
             <div className="field">
               <label>{isEnemyAttacker ? "Attack" : "Weapon"}</label>
               <select
@@ -380,10 +413,7 @@ export default function AttackModal({
                 onChange={(e) => {
                   const v = e.target.value;
                   if (v.startsWith("u:")) {
-                    setWeaponChoice({
-                      kind: "unarmed",
-                      unarmed: v.slice(2) as "punch" | "kick",
-                    });
+                    setWeaponChoice({ kind: "unarmed", unarmed: v.slice(2) as "punch" | "kick" });
                   } else {
                     setWeaponChoice({ kind: "weapon", weaponId: v.slice(2) });
                   }
@@ -396,22 +426,19 @@ export default function AttackModal({
                 ))}
                 {showUnarmed && (
                   <>
-                    <option value="u:punch">
-                      Punch ({attacker.bonusMelee?.punch ?? "1d6"})
-                    </option>
-                    <option value="u:kick">
-                      Kick ({attacker.bonusMelee?.kick ?? "1d6+2"})
-                    </option>
+                    <option value="u:punch">Punch ({attacker.bonusMelee?.punch ?? "1d6"})</option>
+                    <option value="u:kick">Kick ({attacker.bonusMelee?.kick ?? "1d6+2"})</option>
                   </>
                 )}
               </select>
             </div>
 
+            {/* Attack type or ROF summary */}
             {attackOptions.showAttackTypes ? (
               <div className="field">
                 <label>Attack type</label>
                 <select
-                  value={attackType}
+                  value={resolvedAttackType}
                   onChange={(e) => setAttackType(e.target.value as CombatAttackType)}
                 >
                   {attackOptions.attackTypes.map((t) => {
@@ -443,25 +470,24 @@ export default function AttackModal({
               )
             )}
 
+            {/* Defense type */}
             <div className="field">
               <label>Defense</label>
               <select
-                value={defenseType}
+                value={resolvedDefenseType}
                 onChange={(e) => setDefenseType(e.target.value as CombatDefenseType)}
               >
                 {allowedDefenses.map((d) => (
                   <option key={d} value={d}>
                     {defenseLabel(d)}
-                    {d === "block" &&
-                      selectedWeapon?.isRanged &&
-                      !selectedWeapon.isThrown &&
-                      " (shield only)"}
+                    {d === "block" && selectedWeapon?.isRanged && !selectedWeapon.isThrown && " (shield only)"}
                     {d === "parry" && selectedWeapon?.isThrown && " (−5 vs thrown)"}
                   </option>
                 ))}
               </select>
             </div>
 
+            {/* Range band (ranged weapons only) */}
             {selectedWeapon?.isRanged && (
               <div className="field">
                 <label>Range</label>
@@ -470,15 +496,14 @@ export default function AttackModal({
                   onChange={(e) => setRangeBand(e.target.value as RangeBand)}
                 >
                   {RANGE_BANDS.map((b) => (
-                    <option key={b.id} value={b.id}>
-                      {b.label}
-                    </option>
+                    <option key={b.id} value={b.id}>{b.label}</option>
                   ))}
                 </select>
               </div>
             )}
 
-            {defenseType === "none" ? (
+            {/* Defense DC or block/parry skill info */}
+            {resolvedDefenseType === "none" ? (
               <div className="field">
                 <label>Defense DC</label>
                 <input
@@ -487,34 +512,40 @@ export default function AttackModal({
                   value={defenseDc}
                   onChange={(e) => setDefenseDc(e.target.value)}
                 />
+                <span className="attack-dc-hint">Attacker must meet or beat this</span>
               </div>
             ) : (
-              target && (
-                <div className="attack-base-preview">
-                  Defense base:{" "}
-                  <strong>
-                    {defenseBase(target, defenseType, defenderBlockSkill)}
-                  </strong>
-                  {defenseType === "parry" && selectedWeapon?.isThrown && " (−5 thrown)"}
-                  {defenseType === "parry" && !selectedWeapon?.isThrown && " (−3 parry)"}
-                  {defenderBlockSkill && ` · ${defenderBlockSkill}`}
+              target && defenderBlockSkill && (
+                <div className="attack-def-detail">
+                  <span className="attack-def-detail-label">Def skill</span>
+                  <span className="attack-def-detail-name">
+                    {defenderBlockSkill.charAt(0).toUpperCase() + defenderBlockSkill.slice(1)}
+                  </span>
+                  {resolvedDefenseType === "parry" && (
+                    <span className="attack-def-detail-pen">
+                      {selectedWeapon?.isThrown ? "−5 vs thrown" : "−3 parry penalty"}
+                    </span>
+                  )}
                 </div>
               )
             )}
           </div>
 
-          {attackBasePreview !== null && (
+          {/* Attack type modifier note */}
+          {attackBasePreview !== null && typeConfig && typeConfig.attackModifier !== 0 && (
             <div className="attack-base-preview">
-              Attack base: <strong>{attackBasePreview}</strong>
-              {typeConfig && typeConfig.attackModifier !== 0 && (
-                <span> (incl. {typeConfig.attackModifier} from attack type)</span>
-              )}
+              Weapon base: <strong>{attackBasePreview}</strong>
+              <span>
+                {" · "}type modifier: {typeConfig.attackModifier > 0 ? "+" : ""}
+                {typeConfig.attackModifier}
+              </span>
             </div>
           )}
 
+          {/* Modifiers */}
           <fieldset className="attack-modifiers">
             <legend>Modifiers</legend>
-            <div className="attack-modifier-grid">
+            <div className="attack-mod-toprow">
               <div className="field">
                 <label>Aim location</label>
                 <select
@@ -523,46 +554,12 @@ export default function AttackModal({
                 >
                   <option value="">Unaimed</option>
                   {Object.entries(AIM_LOCATION_PENALTIES).map(([loc, pen]) => (
-                    <option key={loc} value={loc}>
-                      {loc} ({pen})
-                    </option>
+                    <option key={loc} value={loc}>{loc} ({pen})</option>
                   ))}
                 </select>
               </div>
-              <label className="attack-check">
-                <input
-                  type="checkbox"
-                  checked={targetDodging}
-                  onChange={(e) => setTargetDodging(e.target.checked)}
-                />
-                Target dodging (−2)
-              </label>
-              <label className="attack-check">
-                <input
-                  type="checkbox"
-                  checked={fastDraw}
-                  onChange={(e) => setFastDraw(e.target.checked)}
-                />
-                Fast draw (−3)
-              </label>
-              <label className="attack-check">
-                <input
-                  type="checkbox"
-                  checked={ambush}
-                  onChange={(e) => setAmbush(e.target.checked)}
-                />
-                Ambush (+5)
-              </label>
-              <label className="attack-check">
-                <input
-                  type="checkbox"
-                  checked={outsideVisionCone}
-                  onChange={(e) => setOutsideVisionCone(e.target.checked)}
-                />
-                Outside vision cone (−3)
-              </label>
               <div className="field">
-                <label>Custom</label>
+                <label>Custom modifier</label>
                 <input
                   type="number"
                   value={customModifier}
@@ -571,8 +568,51 @@ export default function AttackModal({
                 />
               </div>
             </div>
+            <div className="attack-mod-checks">
+              <label className="attack-mod-check" data-sign="neg">
+                <input type="checkbox" checked={targetDodging} onChange={(e) => setTargetDodging(e.target.checked)} />
+                <div className="attack-mod-check-body">
+                  <div className="attack-mod-check-head">
+                    <span className="attack-mod-check-name">Target dodging</span>
+                    <span className="attack-mod-check-val attack-mod-check-val--neg">−2</span>
+                  </div>
+                  <span className="attack-mod-check-desc">Target actively evading</span>
+                </div>
+              </label>
+              <label className="attack-mod-check" data-sign="pos">
+                <input type="checkbox" checked={ambush} onChange={(e) => setAmbush(e.target.checked)} />
+                <div className="attack-mod-check-body">
+                  <div className="attack-mod-check-head">
+                    <span className="attack-mod-check-name">Ambush</span>
+                    <span className="attack-mod-check-val attack-mod-check-val--pos">+5</span>
+                  </div>
+                  <span className="attack-mod-check-desc">Target is unaware</span>
+                </div>
+              </label>
+              <label className="attack-mod-check" data-sign="neg">
+                <input type="checkbox" checked={fastDraw} onChange={(e) => setFastDraw(e.target.checked)} />
+                <div className="attack-mod-check-body">
+                  <div className="attack-mod-check-head">
+                    <span className="attack-mod-check-name">Fast draw</span>
+                    <span className="attack-mod-check-val attack-mod-check-val--neg">−3</span>
+                  </div>
+                  <span className="attack-mod-check-desc">Draw and strike in one action</span>
+                </div>
+              </label>
+              <label className="attack-mod-check" data-sign="neg">
+                <input type="checkbox" checked={outsideVisionCone} onChange={(e) => setOutsideVisionCone(e.target.checked)} />
+                <div className="attack-mod-check-body">
+                  <div className="attack-mod-check-head">
+                    <span className="attack-mod-check-name">Outside vision cone</span>
+                    <span className="attack-mod-check-val attack-mod-check-val--neg">−3</span>
+                  </div>
+                  <span className="attack-mod-check-desc">Rear or blind spot</span>
+                </div>
+              </label>
+            </div>
           </fieldset>
 
+          {/* Dice rolls */}
           <div className="attack-rolls">
             <div className="field">
               <label>Attacker d10{isPlayerAttacker ? "" : " (auto if empty)"}</label>
@@ -582,7 +622,7 @@ export default function AttackModal({
                 placeholder={isPlayerAttacker ? "e.g. 7 or 10,7" : "Leave empty to simulate"}
               />
             </div>
-            {defenseType !== "none" &&
+            {resolvedDefenseType !== "none" &&
               Array.from({ length: fastStrikeCount }, (_, i) => (
                 <div key={i} className="field">
                   <label>
@@ -605,64 +645,14 @@ export default function AttackModal({
         </div>
       )}
 
+      {/* Step 2: Damage preview */}
       {step === "damage" && preview && (
-        <div className="attack-modal-form">
-          <label className="attack-check attack-apply-toggle">
-            <input
-              type="checkbox"
-              checked={applyDamage}
-              onChange={(e) => setApplyDamage(e.target.checked)}
-            />
-            Apply damage to character sheet
-          </label>
-
-          <div className="attack-preview panel">
-            <h3>Damage breakdown</h3>
-            {preview.map((r) => (
-              <div key={r.id} className="attack-preview-row">
-                {r.attackIndex && <span className="attack-preview-tag">#{r.attackIndex}</span>}
-                <div>
-                  <strong>{r.hit ? "HIT" : "MISS"}</strong>
-                  {!r.hit && (
-                    <span>
-                      {" "}
-                      — attack {r.attackRoll.total}
-                      {r.defenseRoll ? ` vs ${r.defenseRoll.total}` : ""}
-                    </span>
-                  )}
-                  {r.hit && r.finalDamage !== undefined && (
-                    <span className="attack-preview-margin">
-                      {" "}
-                      · {r.hitLocation} ×{r.locationMultiplier} →{" "}
-                      <strong>{r.finalDamage} dmg</strong>
-                      {r.critWoundTier !== "none" && (
-                        <> · {formatCritWoundTier(r.critWoundTier)}</>
-                      )}
-                    </span>
-                  )}
-                </div>
-                {r.hit && (
-                  <ol className="attack-damage-breakdown">
-                    {formatDamageBreakdown(r).map((line, index) => (
-                      <li key={index}>{line}</li>
-                    ))}
-                    {r.criticalWoundEffect && (
-                      <li className="attack-crit-wound">
-                        Crit wound table ({r.criticalWoundRoll}): {r.criticalWoundEffect}
-                      </li>
-                    )}
-                    {target && applyDamage && (
-                      <li className="attack-hp-delta">
-                        HP: {target.vitals.hp.current} →{" "}
-                        {Math.max(0, target.vitals.hp.current - (r.finalDamage ?? 0))}
-                      </li>
-                    )}
-                  </ol>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <DamagePreview
+          preview={preview}
+          target={target}
+          applyDamage={applyDamage}
+          onApplyDamageChange={setApplyDamage}
+        />
       )}
 
       {error && <p className="modal-error">{error}</p>}

@@ -63,7 +63,7 @@ export default function Modal({
 
         {subheader && <div className="modal-subheader">{subheader}</div>}
 
-        <div className="modal-body">{children}</div>
+        <div className="modal-body scrollbar">{children}</div>
 
         {footer && <div className="modal-footer">{footer}</div>}
       </div>

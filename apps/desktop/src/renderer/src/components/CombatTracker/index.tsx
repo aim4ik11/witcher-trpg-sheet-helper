@@ -45,6 +45,16 @@ export default function CombatTracker({
     (p) => !characterById.has(p.characterId),
   );
 
+  const damageTaken = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const entry of combat.attackLog) {
+      if (entry.hit && entry.finalDamage !== undefined) {
+        map.set(entry.targetId, (map.get(entry.targetId) ?? 0) + entry.finalDamage);
+      }
+    }
+    return map;
+  }, [combat.attackLog]);
+
   async function handleAttackSubmit(payload: AttackSubmitPayload) {
     for (const character of payload.updatedCharacters) {
       await onUpdateCharacter(character);
@@ -58,7 +68,7 @@ export default function CombatTracker({
     await onCombatChange(advanceTurn(combat));
   }
 
-  const recentLog = combat.attackLog.slice(-8).reverse();
+  const recentLog = combat.attackLog.slice(-10).reverse();
 
   return (
     <>
@@ -89,7 +99,7 @@ export default function CombatTracker({
               Next turn
             </button>
             <button type="button" className="btn-sm" onClick={onAdd} disabled={!canAdd}>
-              + Add to combat
+              + Add
             </button>
             <button type="button" className="btn-sm danger" onClick={() => void onEnd()}>
               End combat
@@ -104,86 +114,127 @@ export default function CombatTracker({
           </p>
         )}
 
-        <table className="combat-init-table">
-          <thead>
-            <tr>
-              <th className="order">#</th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>HP</th>
-              <th>Initiative</th>
-              <th>Roll</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div className="combat-body">
+          <div className="combat-initiative-list">
             {combat.participants.map((p, index) => {
               const char = characterById.get(p.characterId);
+              const isCurrent = current?.index === index;
+              const hpCurrent = char?.vitals.hp.current ?? 0;
+              const hpMax = char?.vitals.hp.max ?? 1;
+              const staCurrent = char?.vitals.sta.current ?? 0;
+              const staMax = char?.vitals.sta.max ?? 1;
+              const hpPct = Math.max(0, Math.min(100, (hpCurrent / hpMax) * 100));
+              const staPct = Math.max(0, Math.min(100, (staCurrent / staMax) * 100));
+              const hpTier = hpPct > 60 ? "ok" : hpPct > 25 ? "mid" : "low";
+              const isWounded = char && hpCurrent < char.vitals.woundThreshold;
+              const dmg = damageTaken.get(p.characterId);
+
               return (
-                <tr
+                <div
                   key={p.characterId}
-                  className={
-                    current?.index === index ? "combat-init-row--current" : undefined
-                  }
+                  className={`combat-card${isCurrent ? " combat-card--current" : ""}`}
                 >
-                  <td className="order">{index + 1}</td>
-                  <td>
-                    {p.name}
-                    {current?.index === index && (
-                      <span className="combat-acting-badge">acting</span>
+                  <div className="combat-card-order">{index + 1}</div>
+
+                  <div className="combat-card-body">
+                    <div className="combat-card-name-row">
+                      <span className="combat-card-name">{p.name}</span>
+                      <span className="combat-type-pill">
+                        {p.type === "player" ? "Player" : "NPC"}
+                      </span>
+                      {isCurrent && <span className="combat-acting-badge">acting</span>}
+                      {isWounded && <span className="combat-wounded-badge">wounded</span>}
+                      {!char && <span className="combat-orphan-badge">missing</span>}
+                      {dmg !== undefined && (
+                        <span className="combat-dmg-taken">{dmg} dmg</span>
+                      )}
+                    </div>
+
+                    {char ? (
+                      <div className="combat-card-vitals">
+                        <div className="combat-vital-row">
+                          <div className="combat-vital-bar">
+                            <div
+                              className={`combat-vital-fill combat-vital-fill--${hpTier}`}
+                              style={{ width: `${hpPct}%` }}
+                            />
+                          </div>
+                          <span className="combat-vital-text">
+                            {hpCurrent}/{hpMax} HP
+                          </span>
+                        </div>
+                        <div className="combat-vital-row combat-vital-row--sta">
+                          <div className="combat-vital-bar combat-vital-bar--sta">
+                            <div
+                              className="combat-vital-fill combat-vital-fill--sta"
+                              style={{ width: `${staPct}%` }}
+                            />
+                          </div>
+                          <span className="combat-vital-text combat-vital-text--sta">
+                            {staCurrent}/{staMax} STA
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <span className="combat-vital-text">—</span>
                     )}
-                    {!char && <span className="combat-orphan-badge">missing</span>}
-                  </td>
-                  <td className="kind">{p.type === "player" ? "Player" : "NPC"}</td>
-                  <td className="hp">
-                    {char ? `${char.vitals.hp.current}/${char.vitals.hp.max}` : "—"}
-                  </td>
-                  <td className="initiative">{p.initiative}</td>
-                  <td className="breakdown">
-                    {p.ref} + {formatDieRolls(p)}
-                  </td>
-                </tr>
+                  </div>
+
+                  <div className="combat-card-init">
+                    <div className="combat-card-init-val">{p.initiative}</div>
+                    <div className="combat-card-init-break">
+                      {p.ref}+{formatDieRolls(p)}
+                    </div>
+                  </div>
+                </div>
               );
             })}
-          </tbody>
-        </table>
-
-        {recentLog.length > 0 && (
-          <div className="combat-attack-log">
-            <h3 className="combat-attack-log-title">Recent attacks</h3>
-            <ul className="combat-attack-log-list">
-              {recentLog.map((entry) => (
-                <li key={entry.id} className="combat-attack-log-item">
-                  <span
-                    className={`combat-hit-badge combat-hit-badge--${entry.hit ? "hit" : "miss"}`}
-                  >
-                    {entry.hit ? "HIT" : "MISS"}
-                  </span>
-                  <span>
-                    R{entry.round} {entry.attackerName} → {entry.targetName}
-                    {entry.attackIndex ? ` (#${entry.attackIndex})` : ""}
-                  </span>
-                  <span className="combat-attack-log-detail">
-                    {entry.attackRoll.total}
-                    {entry.defenseRoll
-                      ? ` vs ${entry.defenseRoll.total}`
-                      : entry.defenseDc !== undefined
-                        ? ` vs DC ${entry.defenseDc}`
-                        : ""}
-                    {entry.hit && entry.finalDamage !== undefined && (
-                      <> · {entry.finalDamage} dmg ({entry.hitLocation})</>
-                    )}
-                    {entry.hit && entry.hpBefore !== undefined && entry.hpAfter !== undefined && (
-                      <> · HP {entry.hpBefore}→{entry.hpAfter}</>
-                    )}
-                    {entry.hit && entry.critWoundTier !== "none" && (
-                      <> · {formatCritWoundTier(entry.critWoundTier)}</>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
-        )}
+
+          <div className="combat-log-panel">
+            <h3 className="combat-attack-log-title">Recent attacks</h3>
+            {recentLog.length === 0 ? (
+              <p className="combat-log-empty">No attacks yet this combat.</p>
+            ) : (
+              <ul className="combat-attack-log-list">
+                {recentLog.map((entry) => (
+                  <li key={entry.id} className="combat-attack-log-item">
+                    <div className="combat-log-item-head">
+                      <span
+                        className={`combat-hit-badge combat-hit-badge--${entry.hit ? "hit" : "miss"}`}
+                      >
+                        {entry.hit ? "HIT" : "MISS"}
+                      </span>
+                      <span className="combat-log-who">
+                        R{entry.round} {entry.attackerName} → {entry.targetName}
+                        {entry.attackIndex ? ` (#${entry.attackIndex})` : ""}
+                      </span>
+                    </div>
+                    <div className="combat-attack-log-detail">
+                      {entry.attackRoll.total}
+                      {entry.defenseRoll
+                        ? ` vs ${entry.defenseRoll.total}`
+                        : entry.defenseDc !== undefined
+                          ? ` vs DC ${entry.defenseDc}`
+                          : ""}
+                      {entry.hit && entry.finalDamage !== undefined && (
+                        <> · <strong>{entry.finalDamage} dmg</strong> ({entry.hitLocation})</>
+                      )}
+                      {entry.hit &&
+                        entry.hpBefore !== undefined &&
+                        entry.hpAfter !== undefined && (
+                          <> · HP {entry.hpBefore}→{entry.hpAfter}</>
+                        )}
+                      {entry.hit && entry.critWoundTier !== "none" && (
+                        <> · {formatCritWoundTier(entry.critWoundTier)}</>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
       </div>
 
       {attackOpen && attackerCharacter && (
