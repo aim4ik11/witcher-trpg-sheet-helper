@@ -444,6 +444,7 @@ export type HostToServer =
   | { type: "characters:delete"; requestId: string; id: string }
   | { type: "credentials:getAll"; requestId: string }
   | { type: "credentials:add"; requestId: string; nickname: string; code?: string }
+  | { type: "credentials:remove"; requestId: string; nickname: string }
   | { type: "combat:get"; requestId: string }
   | { type: "combat:set"; requestId: string; combat: CombatState | null }
   | { type: "skill-check:request"; requestId: string; data: SkillCheckRequest }
@@ -524,6 +525,7 @@ export interface Api {
   onPlayersUpdate(cb: (players: Player[]) => void): () => void;
   getCredentials(): Promise<PlayerCredential[]>;
   addCredential(nickname: string, code?: string): Promise<PlayerCredential>;
+  removeCredential(nickname: string): Promise<void>;
   onCredentialsUpdate(cb: (credentials: PlayerCredential[]) => void): () => void;
   characters: {
     getAll(): Promise<Character[]>;

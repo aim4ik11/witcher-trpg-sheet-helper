@@ -21,7 +21,6 @@ const DM_TABS: { id: DmTab; label: string }[] = [
 export default function DMDashboardScreen() {
   const server = useAppStore((s) => s.server);
   const config = useAppStore((s) => s.config);
-  const connected = useAppStore((s) => s.players);
   const credentials = useAppStore((s) => s.credentials);
   const syncCredentials = useCredentialsSync();
 
@@ -115,7 +114,6 @@ export default function DMDashboardScreen() {
             <SessionSection
               playUrls={playUrls}
               credentials={credentials}
-              connected={connected}
               serverActive={!!server}
               onAddInvite={handleAddInvite}
             />

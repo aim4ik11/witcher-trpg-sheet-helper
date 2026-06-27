@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Player, PlayerCredential } from "@wilmak/shared";
+import type { PlayerCredential } from "@wilmak/shared";
 import QrConnectModal from "../../../components/QrConnectModal";
 import AddInviteModal from "../../../components/AddInviteModal";
 import PlayerConnectionSection from "./PlayerConnectionSection";
@@ -8,7 +8,6 @@ import LobbySection from "./LobbySection";
 interface Props {
   playUrls: string[];
   credentials: PlayerCredential[];
-  connected: Player[];
   serverActive: boolean;
   onAddInvite: (nickname: string) => Promise<void>;
 }
@@ -16,7 +15,6 @@ interface Props {
 export default function SessionSection({
   playUrls,
   credentials,
-  connected,
   serverActive,
   onAddInvite,
 }: Props) {
@@ -28,14 +26,19 @@ export default function SessionSection({
     setInviteOpen(false);
   }
 
+  async function handleRemovePlayer(nickname: string) {
+    await window.api.removeCredential(nickname);
+  }
+
   return (
     <>
       <PlayerConnectionSection playUrls={playUrls} onQrOpen={() => setQrOpen(true)} />
       <LobbySection
         credentials={credentials}
-        connected={connected}
+        playUrls={playUrls}
         serverActive={serverActive}
         onAddPlayer={() => setInviteOpen(true)}
+        onRemovePlayer={handleRemovePlayer}
       />
 
       {qrOpen && <QrConnectModal playUrls={playUrls} onClose={() => setQrOpen(false)} />}

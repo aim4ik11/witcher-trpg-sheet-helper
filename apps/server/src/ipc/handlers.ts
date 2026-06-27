@@ -4,6 +4,7 @@ import {
   notifyHost,
   makeCharacter,
   ensureCredential,
+  pushCredentials,
   normalizeNickname,
 } from "../utils";
 import { normalizeCharacter, normalizeCombatState } from "@wilmak/game-data";
@@ -126,6 +127,23 @@ export function handleGmMessage(msg: HostToServer): void {
     case "credentials:add": {
       const cred = ensureCredential(msg.nickname, msg.code);
       notifyHost({ type: "characters:result", requestId: msg.requestId, data: cred });
+      break;
+    }
+    case "credentials:remove": {
+      const nick = normalizeNickname(msg.nickname);
+      state.config.players = state.config.players.filter((p) => p.nickname !== nick);
+      pushCredentials();
+      for (const [id, char] of state.characters) {
+        if (char.type === "player" && normalizeNickname(char.nickname ?? "") === nick) {
+          const { nickname: _removed, ...rest } = char;
+          const unassigned = normalizeCharacter(rest as Character);
+          state.characters.set(id, unassigned);
+          state.io?.to(`character:${id}`).emit("character:unassigned", id);
+        }
+      }
+      state.io?.emit("characters-changed");
+      notifyHost({ type: "characters:result", requestId: msg.requestId, data: null });
+      notifyHost({ type: "characters:changed" });
       break;
     }
     case "combat:get":

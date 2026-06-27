@@ -1,16 +1,13 @@
-import type { Player, PlayerCredential } from "@wilmak/shared";
+import type { PlayerCredential } from "@wilmak/shared";
 
 interface Props {
   credentials: PlayerCredential[];
-  connected: Player[];
   onCopyCode?: (code: string) => void;
+  onQrInvite?: (cred: PlayerCredential) => void;
+  onRemovePlayer?: (cred: PlayerCredential) => void;
 }
 
-export default function PlayerInvitesList({
-  credentials,
-  connected,
-  onCopyCode,
-}: Props) {
+export default function PlayerInvitesList({ credentials, onCopyCode, onQrInvite, onRemovePlayer }: Props) {
   if (credentials.length === 0) {
     return (
       <p className="invite-empty">
@@ -19,36 +16,46 @@ export default function PlayerInvitesList({
     );
   }
 
-  const online = new Set(connected.map((p) => p.nickname));
-
   return (
     <ul className="invite-list">
-      {credentials.map((c) => {
-        const isOnline = online.has(c.nickname);
-        return (
-          <li key={c.nickname} className="invite-row">
-            <span className="invite-nick">{c.nickname}</span>
-            <span
-              className={`status-pill ${isOnline ? "status-pill--online" : "status-pill--offline"}`}
-            >
-              <span className="status-pill__dot" />
-              {isOnline ? "online" : "offline"}
-            </span>
-            <div className="invite-code-wrap">
-              <code className="invite-code">{c.code}</code>
-              {onCopyCode && (
-                <button
-                  type="button"
-                  className="invite-copy"
+      {credentials.map((c) => (
+        <li key={c.nickname} className="invite-row">
+          <span className="invite-nick">{c.nickname}</span>
+          <div className="invite-code-wrap">
+            {
+              onCopyCode && (
+                <div
+                  className='invite-code-wrapper'
                   onClick={() => onCopyCode(c.code)}
                 >
-                  copy
-                </button>
-              )}
-            </div>
-          </li>
-        );
-      })}
+                  <span>Code</span>
+                  <code className="invite-code">{c.code}</code>
+                </div>
+              )
+            }
+            {onQrInvite && (
+              <button
+                type="button"
+                className="btn-sm"
+                onClick={() => onQrInvite(c)}
+                title="Show QR invite"
+              >
+                Invite
+              </button>
+            )}
+            {onRemovePlayer && (
+              <button
+                type="button"
+                className="btn-sm danger"
+                onClick={() => onRemovePlayer(c)}
+                title="Remove player"
+              >
+                Remove
+              </button>
+            )}
+          </div>
+        </li>
+      ))}
     </ul>
   );
 }

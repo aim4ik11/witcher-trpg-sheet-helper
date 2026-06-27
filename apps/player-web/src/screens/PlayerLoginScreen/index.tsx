@@ -1,24 +1,21 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { setToken } from "../../api";
 import { joinSession } from "../../socket";
 
 export default function PlayerLoginScreen() {
-  const [nickname, setNickname] = useState("");
-  const [code, setCode] = useState("");
+  const [searchParams] = useSearchParams();
+  const [nickname, setNickname] = useState(searchParams.get("nickname") ?? "");
+  const [code, setCode] = useState(searchParams.get("code") ?? "");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function submit(nick: string, c: string) {
     setError("");
     setLoading(true);
     try {
-      const ack = await joinSession({
-        nickname: nickname.trim(),
-        code: code.trim(),
-      });
+      const ack = await joinSession({ nickname: nick.trim(), code: c.trim() });
       if (ack.ok && ack.token) {
         setToken(ack.token);
         navigate("/sheet");
@@ -32,13 +29,27 @@ export default function PlayerLoginScreen() {
     }
   }
 
+  useEffect(() => {
+    const nick = searchParams.get("nickname");
+    const c = searchParams.get("code");
+    if (nick && c) {
+      void submit(nick, c);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    void submit(nickname, code);
+  }
+
   return (
     <div className="player-login">
       <div className="login-card panel">
         <div className="medallion-sm">🐺</div>
         <h1>Player Login</h1>
         <p className="login-hint">Введіть нікнейм та код, які дав вам DM.</p>
-        <form onSubmit={(e) => void handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Нікнейм"

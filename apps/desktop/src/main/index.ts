@@ -350,6 +350,9 @@ ipcMain.handle("characters:update", (_e, id: string, character: Character) =>
 ipcMain.handle("characters:unassign", (_e, id: string) =>
   requestServer<Character>({ type: "characters:unassign", requestId: randomUUID(), id }),
 );
+ipcMain.handle("credentials:remove", (_e, nickname: string) =>
+  requestServer<void>({ type: "credentials:remove", requestId: randomUUID(), nickname }),
+);
 ipcMain.handle("characters:delete", (_e, id: string) =>
   requestServer<void>({ type: "characters:delete", requestId: randomUUID(), id }),
 );

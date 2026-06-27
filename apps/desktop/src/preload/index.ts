@@ -29,6 +29,8 @@ const api: Api = {
   getCredentials: () => ipcRenderer.invoke("credentials:getAll"),
   addCredential: (nickname: string, code?: string) =>
     ipcRenderer.invoke("credentials:add", nickname, code),
+  removeCredential: (nickname: string) =>
+    ipcRenderer.invoke("credentials:remove", nickname),
   onCredentialsUpdate: (cb: (credentials: PlayerCredential[]) => void) => {
     const handler = (_e: IpcRendererEvent, credentials: PlayerCredential[]) =>
       cb(credentials);
