@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Character } from "@wilmak/shared";
 import { ATTRIBUTES, ATTRIBUTE_SKILLS, skillBase } from "@wilmak/game-data";
 import ProfessionSkillTree from "../ProfessionSkillTree";
@@ -21,6 +21,8 @@ interface Props {
   derived: DerivedStats;
   playerCanSpend: boolean;
   onChange?: (c: Character) => void;
+  navKey?: string | null;
+  onNavConsumed?: () => void;
 }
 
 interface AttrBlockProps {
@@ -29,12 +31,25 @@ interface AttrBlockProps {
   character: Character;
   playerCanSpend: boolean;
   onChange?: (c: Character) => void;
+  highlighted?: boolean;
+  attrRef?: (el: HTMLDivElement | null) => void;
 }
 
-function AttrBlock({ attrKey, attr, character, playerCanSpend, onChange }: AttrBlockProps) {
+function AttrBlock({
+  attrKey,
+  attr,
+  character,
+  playerCanSpend,
+  onChange,
+  highlighted,
+  attrRef,
+}: AttrBlockProps) {
   const skills = ATTRIBUTE_SKILLS[attrKey] ?? [];
   return (
-    <div className="attr-block">
+    <div
+      ref={attrRef}
+      className={`attr-block${highlighted ? " attr-block--highlighted" : ""}`}
+    >
       <div className={`attr-header attr-header--${attrKey}`}>
         <div className="attr-header-text">
           <span className="attr-short">{attr.short}</span>
@@ -73,8 +88,51 @@ function AttrBlock({ attrKey, attr, character, playerCanSpend, onChange }: AttrB
   );
 }
 
-export default function StatsTab({ character, derived, playerCanSpend, onChange }: Props) {
+export default function StatsTab({
+  character,
+  derived,
+  playerCanSpend,
+  onChange,
+  navKey,
+  onNavConsumed,
+}: Props) {
   const [subTab, setSubTab] = useState<"attrs" | "tree">("attrs");
+  const [highlightedKey, setHighlightedKey] = useState<string | null>(null);
+  const attrBlockRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const pendingScrollKey = useRef<string | null>(null);
+  const highlightTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function scrollAndHighlight(key: string) {
+    requestAnimationFrame(() => {
+      attrBlockRefs.current.get(key)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      setHighlightedKey(key);
+      if (highlightTimer.current) clearTimeout(highlightTimer.current);
+      highlightTimer.current = setTimeout(() => setHighlightedKey(null), 2000);
+      onNavConsumed?.();
+    });
+  }
+
+  // When navKey arrives: switch sub-tab if needed, then scroll+highlight
+  useEffect(() => {
+    if (!navKey) return;
+    if (subTab !== "attrs") {
+      pendingScrollKey.current = navKey;
+      setSubTab("attrs");
+    } else {
+      scrollAndHighlight(navKey);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navKey]);
+
+  // After sub-tab switches to "attrs", flush any pending scroll
+  useEffect(() => {
+    if (pendingScrollKey.current && subTab === "attrs") {
+      const key = pendingScrollKey.current;
+      pendingScrollKey.current = null;
+      scrollAndHighlight(key);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subTab]);
 
   const mainAttrEntries = useMemo(
     () =>
@@ -87,6 +145,13 @@ export default function StatsTab({ character, derived, playerCanSpend, onChange 
     () => Object.entries(ATTRIBUTES).filter(([k]) => COMPACT_ATTR_KEYS.includes(k)),
     [],
   );
+
+  function makeRef(key: string) {
+    return (el: HTMLDivElement | null) => {
+      if (el) attrBlockRefs.current.set(key, el);
+      else attrBlockRefs.current.delete(key);
+    };
+  }
 
   return (
     <>
@@ -138,6 +203,8 @@ export default function StatsTab({ character, derived, playerCanSpend, onChange 
                 character={character}
                 playerCanSpend={playerCanSpend}
                 onChange={onChange}
+                highlighted={highlightedKey === key}
+                attrRef={makeRef(key)}
               />
             ))}
             {compactAttrEntries.length > 0 && (
@@ -150,6 +217,8 @@ export default function StatsTab({ character, derived, playerCanSpend, onChange 
                     character={character}
                     playerCanSpend={playerCanSpend}
                     onChange={onChange}
+                    highlighted={highlightedKey === key}
+                    attrRef={makeRef(key)}
                   />
                 ))}
               </div>
