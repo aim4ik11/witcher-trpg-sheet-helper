@@ -20,6 +20,7 @@ import MagicCastBanner from "../../components/MagicCastBanner";
 export default function PlayerSheetScreen() {
   const [character, setCharacter] = useState<Character | null>(null);
   const [waitingForSheet, setWaitingForSheet] = useState(false);
+  const [unassigned, setUnassigned] = useState(false);
   const [pendingSkillCheck, setPendingSkillCheck] = useState<SkillCheckRequest | null>(
     null,
   );
@@ -73,6 +74,9 @@ export default function PlayerSheetScreen() {
     const stopResume = watchSessionResume(token, joinCharacterRoom, invalidateSession);
 
     const socket = getPlayerSocket();
+    const onUnassigned = (characterId: string) => {
+      if (characterId === character?.id) setUnassigned(true);
+    };
     const onUpdate = (updated: Character) => {
       if (updated.id === character?.id) setCharacter(updated);
     };
@@ -106,6 +110,7 @@ export default function PlayerSheetScreen() {
     const onMagicCancel = (requestId: string) => {
       setPendingMagicCast((prev) => (prev?.id === requestId ? null : prev));
     };
+    socket.on("character:unassigned", onUnassigned);
     socket.on("character-updated", onUpdate);
     socket.on("skill-check:request", onSkillRequest);
     socket.on("skill-check:resolved", onSkillResolved);
@@ -116,6 +121,7 @@ export default function PlayerSheetScreen() {
 
     return () => {
       stopResume();
+      socket.off("character:unassigned", onUnassigned);
       socket.off("character-updated", onUpdate);
       socket.off("skill-check:request", onSkillRequest);
       socket.off("skill-check:resolved", onSkillResolved);
@@ -147,6 +153,23 @@ export default function PlayerSheetScreen() {
           </button>
           <button type="button" style={{ marginTop: "0.5rem" }} onClick={handleLogout}>
             Logout
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (unassigned) {
+    return (
+      <div className="player-login">
+        <div className="login-card panel">
+          <div className="medallion-sm">🐺</div>
+          <h1>Unassigned</h1>
+          <p className="login-hint">
+            The GM has unlinked this character from your account. Ask them to reassign it or create a new one.
+          </p>
+          <button type="button" className="primary" onClick={handleLogout}>
+            Back to login
           </button>
         </div>
       </div>

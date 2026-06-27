@@ -11,6 +11,8 @@ interface Props {
   loading: boolean;
   credentialByNick: Map<string, string>;
   onOpen: (id: string) => void;
+  onAssign: (charId: string, nickname: string) => Promise<void>;
+  onUnassign: (id: string) => Promise<void>;
   onDelete: (id: string, name: string) => Promise<void>;
   onRest: (character: Character) => Promise<void>;
   onCreateCharacter: (data: Partial<Character>) => Promise<void>;
@@ -22,6 +24,8 @@ export default function RosterSection({
   loading,
   credentialByNick,
   onOpen,
+  onAssign,
+  onUnassign,
   onDelete,
   onRest,
   onCreateCharacter,
@@ -40,6 +44,8 @@ export default function RosterSection({
         loading={loading}
         credentialByNick={credentialByNick}
         onOpen={onOpen}
+        onAssign={onAssign}
+        onUnassign={onUnassign}
         onDelete={onDelete}
         onRest={onRest}
         onCreatePlayer={() => setCreateType("player")}

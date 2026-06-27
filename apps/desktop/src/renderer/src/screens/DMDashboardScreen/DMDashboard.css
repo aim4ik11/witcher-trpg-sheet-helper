@@ -386,3 +386,10 @@
   padding: 7px 12px;
   margin-left: auto;
 }
+
+.char-confirm-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  align-self: center;
+  white-space: nowrap;
+}

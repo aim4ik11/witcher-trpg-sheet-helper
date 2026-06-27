@@ -41,6 +41,7 @@ const api: Api = {
     create: (data: Partial<Character>) => ipcRenderer.invoke("characters:create", data),
     update: (id: string, character: Character) =>
       ipcRenderer.invoke("characters:update", id, character),
+    unassign: (id: string) => ipcRenderer.invoke("characters:unassign", id),
     delete: (id: string) => ipcRenderer.invoke("characters:delete", id),
   },
   onCharactersChanged: (cb: () => void) => {

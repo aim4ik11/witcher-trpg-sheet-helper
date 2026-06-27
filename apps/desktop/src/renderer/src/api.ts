@@ -10,5 +10,6 @@ export const api = {
   createCharacter: (data: Partial<Character>) => window.api.characters.create(data),
   updateCharacter: (id: string, char: Character) =>
     window.api.characters.update(id, char),
+  unassignCharacter: (id: string) => window.api.characters.unassign(id),
   deleteCharacter: (id: string) => window.api.characters.delete(id),
 };

@@ -35,6 +35,18 @@ export function useCharacters() {
     void load();
   }
 
+  async function handleAssign(charId: string, nickname: string) {
+    const char = characters.find((c) => c.id === charId);
+    if (!char) return;
+    await api.updateCharacter(charId, { ...char, nickname });
+    void load();
+  }
+
+  async function handleUnassign(id: string) {
+    await api.unassignCharacter(id);
+    void load();
+  }
+
   async function handleDelete(id: string, name: string) {
     if (!confirm(`Delete "${name}"?`)) return;
     await api.deleteCharacter(id);
@@ -58,6 +70,8 @@ export function useCharacters() {
     players: characters.filter((c) => c.type === "player"),
     enemies: characters.filter((c) => c.type === "enemy"),
     handleCreateCharacter,
+    handleAssign,
+    handleUnassign,
     handleDelete,
     handleRest,
     handleUpdateCharacter,

@@ -37,10 +37,11 @@ export default function IdentityTab({
         <OccupationSelect race={race} value={occupation} onChange={onOccupationChange} />
       </div>
       <div className="field">
-        <label>Player nickname <span className="required">*</span></label>
+        <label>Player nickname</label>
         <input
           value={nickname}
           onChange={(e) => onNicknameChange(normalizeNickname(e.target.value))}
+          placeholder="Leave blank to create an unassigned preset"
         />
       </div>
     </>

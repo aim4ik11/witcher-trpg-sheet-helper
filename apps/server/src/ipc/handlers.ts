@@ -95,6 +95,21 @@ export function handleGmMessage(msg: HostToServer): void {
       });
       break;
     }
+    case "characters:unassign": {
+      const existing = state.characters.get(msg.id);
+      if (!existing) {
+        notifyHost({ type: "characters:error", requestId: msg.requestId, message: "Not found" });
+        break;
+      }
+      const { nickname: _removed, ...rest } = existing;
+      const unassigned = normalizeCharacter(rest as Character);
+      state.characters.set(msg.id, unassigned);
+      state.io?.to(`character:${msg.id}`).emit("character:unassigned", msg.id);
+      state.io?.emit("characters-changed");
+      notifyHost({ type: "characters:result", requestId: msg.requestId, data: unassigned });
+      notifyHost({ type: "characters:changed" });
+      break;
+    }
     case "characters:delete":
       state.characters.delete(msg.id);
       state.io?.emit("characters-changed");

@@ -29,7 +29,7 @@ export default function DMDashboardScreen() {
 
   const navigate = useNavigate();
 
-  const { characters, loading, players, enemies, handleCreateCharacter, handleDelete, handleRest, handleUpdateCharacter } =
+  const { characters, loading, players, enemies, handleCreateCharacter, handleAssign, handleUnassign, handleDelete, handleRest, handleUpdateCharacter } =
     useCharacters();
 
   const { combat, canAddToCombat, handleStartCombat, handleAddToCombat, handleCombatChange, handleEndCombat } =
@@ -128,6 +128,8 @@ export default function DMDashboardScreen() {
               loading={loading}
               credentialByNick={credentialByNick}
               onOpen={(id) => navigate(`/session/character/${id}`)}
+              onAssign={handleAssign}
+              onUnassign={handleUnassign}
               onDelete={handleDelete}
               onRest={handleRest}
               onCreateCharacter={handleCreateCharacter}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Character } from "@wilmak/shared";
 import { raceLabel, occupationLabel } from "@wilmak/game-data";
 
@@ -20,11 +21,14 @@ interface Props {
   character: Character;
   loginCode?: string;
   onOpen: () => void;
+  onAssign?: () => void;
+  onUnassign?: () => void;
   onDelete: () => void;
   onRest: () => void;
 }
 
-export default function CharCard({ character, loginCode, onOpen, onDelete, onRest }: Props) {
+export default function CharCard({ character, loginCode, onOpen, onAssign, onUnassign, onDelete, onRest }: Props) {
+  const [confirmingUnassign, setConfirmingUnassign] = useState(false);
   const isMonster = character.enemyKind === "monster";
   const isPlayer = character.type === "player";
   const profile = character.monsterProfile;
@@ -158,21 +162,53 @@ export default function CharCard({ character, loginCode, onOpen, onDelete, onRes
 
       {/* ── Actions ──────────────────────────────────────── */}
       <div className="char-card-actions">
-        <button type="button" className="btn-sm" onClick={onOpen}>
-          Open sheet
-        </button>
-        <button
-          type="button"
-          className="btn-sm"
-          onClick={onRest}
-          disabled={atFullHealth}
-          title={atFullHealth ? "Already at full HP and STA" : "Restore HP and STA to max"}
-        >
-          Rest
-        </button>
-        <button type="button" className="danger btn-sm" onClick={onDelete}>
-          Delete
-        </button>
+        {confirmingUnassign ? (
+          <>
+            <span className="char-confirm-label">Unassign player?</span>
+            <button
+              type="button"
+              className="danger btn-sm"
+              onClick={() => { onUnassign?.(); setConfirmingUnassign(false); }}
+            >
+              Confirm
+            </button>
+            <button type="button" className="btn-sm" onClick={() => setConfirmingUnassign(false)}>
+              Cancel
+            </button>
+          </>
+        ) : (
+          <>
+            <button type="button" className="btn-sm" onClick={onOpen}>
+              Open sheet
+            </button>
+            <button
+              type="button"
+              className="btn-sm"
+              onClick={onRest}
+              disabled={atFullHealth}
+              title={atFullHealth ? "Already at full HP and STA" : "Restore HP and STA to max"}
+            >
+              Rest
+            </button>
+            {onAssign && (
+              <button type="button" className="btn-sm" onClick={onAssign}>
+                Assign
+              </button>
+            )}
+            {onUnassign && (
+              <button
+                type="button"
+                className="btn-sm"
+                onClick={() => setConfirmingUnassign(true)}
+              >
+                Unassign
+              </button>
+            )}
+            <button type="button" className="danger btn-sm" onClick={onDelete}>
+              Delete
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

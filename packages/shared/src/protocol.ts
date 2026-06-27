@@ -440,6 +440,7 @@ export type HostToServer =
   | { type: "characters:get"; requestId: string; id: string }
   | { type: "characters:create"; requestId: string; data: Partial<Character> }
   | { type: "characters:update"; requestId: string; id: string; character: Character }
+  | { type: "characters:unassign"; requestId: string; id: string }
   | { type: "characters:delete"; requestId: string; id: string }
   | { type: "credentials:getAll"; requestId: string }
   | { type: "credentials:add"; requestId: string; nickname: string; code?: string }
@@ -485,6 +486,7 @@ export interface ServerToClientEvents {
   "players:update": (players: Player[]) => void;
   "game:event": (event: GameEvent) => void;
   "character-updated": (character: Character) => void;
+  "character:unassigned": (characterId: string) => void;
   "characters-changed": () => void;
   "combat:update": (combat: CombatState | null) => void;
   "skill-check:request": (request: SkillCheckRequest) => void;
@@ -528,6 +530,7 @@ export interface Api {
     get(id: string): Promise<Character>;
     create(data: Partial<Character>): Promise<Character>;
     update(id: string, character: Character): Promise<Character>;
+    unassign(id: string): Promise<Character>;
     delete(id: string): Promise<void>;
   };
   onCharactersChanged(cb: () => void): () => void;

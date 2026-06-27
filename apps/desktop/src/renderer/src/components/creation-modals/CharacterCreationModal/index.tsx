@@ -70,7 +70,6 @@ export default function CharacterCreationModal({ onSubmit, onClose }: Props) {
     const creation = { complete: true, pointBuy, level };
     const err =
       (!name.trim() ? "Name is required" : null) ??
-      (!normalizeNickname(nickname) ? "Nickname is required" : null) ??
       (!race || !occupation ? "Race and occupation are required" : null) ??
       validateCreationAttributes(attributes, pointBuy) ??
       validateCharacterCreation({ race, occupation, attributes, skills, professionTree, creation });
@@ -83,7 +82,7 @@ export default function CharacterCreationModal({ onSubmit, onClose }: Props) {
       name: name.trim(),
       race,
       occupation,
-      nickname: normalizeNickname(nickname),
+      ...(normalizeNickname(nickname) && { nickname: normalizeNickname(nickname) }),
       type: "player",
       attributes,
       skills,
