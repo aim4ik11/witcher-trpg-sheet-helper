@@ -1,0 +1,7305 @@
+[
+  {
+    "id": "alchemical-formula-acid-solution-formula",
+    "name": "Acid Solution Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 84,
+    "effect": "Craft Acid Solution",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "15 Minutes"
+  },
+  {
+    "id": "alchemical-formula-adda-s-tomb-formula",
+    "name": "Adda’s Tomb Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 27,
+    "effect": "Craft Adda’s Tomb",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 13,
+    "time": "5 Rounds"
+  },
+  {
+    "id": "alchemical-formula-alchemical-adhesive-formula",
+    "name": "Alchemical Adhesive Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 52,
+    "effect": "Craft Alchemical Adhesive",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "journeyman"
+    ],
+    "craftingDc": 15,
+    "time": "10 Minutes"
+  },
+  {
+    "id": "alchemical-formula-base-powder-formula",
+    "name": "Base Powder Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 27,
+    "effect": "Craft Base Powder",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "5 Rounds"
+  },
+  {
+    "id": "alchemical-formula-black-venom-formula",
+    "name": "Black Venom Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 67,
+    "effect": "Craft Black Venom",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "journeyman"
+    ],
+    "craftingDc": 15,
+    "time": "10 Minutes"
+  },
+  {
+    "id": "alchemical-formula-bredan-s-fury-formula",
+    "name": "Bredan’s Fury Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 142,
+    "effect": "Craft Bredan’s Fury",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "1/2 Hour"
+  },
+  {
+    "id": "alchemical-formula-chloroform-formula",
+    "name": "Chloroform Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 54,
+    "effect": "Craft Chloroform",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "15 Minutes"
+  },
+  {
+    "id": "alchemical-formula-clotting-powder-formula",
+    "name": "Clotting Powder Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 30,
+    "effect": "Craft Clotting Powder",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "5 Rounds"
+  },
+  {
+    "id": "alchemical-formula-fisstech-formula",
+    "name": "Fisstech Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 120,
+    "effect": "Craft Fisstech",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "master"
+    ],
+    "craftingDc": 18,
+    "time": "1/2 Hour"
+  },
+  {
+    "id": "alchemical-formula-hallucinogen-formula",
+    "name": "Hallucinogen Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 47,
+    "effect": "Craft Hallucinogen",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "5 Rounds"
+  },
+  {
+    "id": "alchemical-formula-invisible-ink-formula",
+    "name": "Invisible Ink Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 22,
+    "effect": "Craft Invisible Ink",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 11,
+    "time": "5 Rounds"
+  },
+  {
+    "id": "alchemical-formula-numbing-herbs-formula",
+    "name": "Numbing Herbs Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 18,
+    "effect": "Craft Numbing Herbs",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "5 Rounds"
+  },
+  {
+    "id": "alchemical-formula-pantagran-s-elixir-formula",
+    "name": "Pantagran’s Elixir Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 100,
+    "effect": "Craft Pantagran’s Elixir",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "master"
+    ],
+    "craftingDc": 17,
+    "time": "15 Minutes"
+  },
+  {
+    "id": "alchemical-formula-perfume-potion-formula",
+    "name": "Perfume Potion Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 114,
+    "effect": "Craft Perfume Potion",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "master"
+    ],
+    "craftingDc": 18,
+    "time": "1/2 Hour"
+  },
+  {
+    "id": "alchemical-formula-poisoner-s-friend-formula",
+    "name": "Poisoner’s Friend Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 24,
+    "effect": "Craft Poisoner’s Friend",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "10 Minutes"
+  },
+  {
+    "id": "alchemical-formula-quick-fire-formula",
+    "name": "Quick Fire Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 67,
+    "effect": "Craft Quick Fire",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "15 Minutes"
+  },
+  {
+    "id": "alchemical-formula-smelling-salts-formula",
+    "name": "Smelling Salts Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 37,
+    "effect": "Craft Smelling Salts",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "10 Minutes"
+  },
+  {
+    "id": "alchemical-formula-sterilizing-fluid-formula",
+    "name": "Sterilizing Fluid Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 33,
+    "effect": "Craft Sterilizing Fluid",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "5 Rounds"
+  },
+  {
+    "id": "alchemical-formula-succubus-breath-formula",
+    "name": "Succubus’ Breath Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 30,
+    "effect": "Craft Succubus’ Breath",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "10 Minutes"
+  },
+  {
+    "id": "alchemical-formula-talgar-s-tears-formula",
+    "name": "Talgar’s Tears Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 118,
+    "effect": "Craft Talgar’s Tears",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "master"
+    ],
+    "craftingDc": 20,
+    "time": "1/2 Hour"
+  },
+  {
+    "id": "alchemical-formula-wives-tears-potion-formula",
+    "name": "Wives’ Tears Potion Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 28,
+    "effect": "Craft Wives’ Tears Potion",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "10 Minutes"
+  },
+  {
+    "id": "alchemical-formula-zerrikanian-fire-formula",
+    "name": "Zerrikanian Fire Formula",
+    "category": "alchemical-formula",
+    "source": "alchemical-formulae",
+    "weight": 0.0,
+    "cost": 97,
+    "effect": "Craft Zerrikanian Fire",
+    "tags": [
+      "alchemical-formula",
+      "alchemical-formulae",
+      "master"
+    ],
+    "craftingDc": 17,
+    "time": "15 Minutes"
+  },
+  {
+    "id": "alchemical-item-acid-solution",
+    "name": "Acid Solution",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.5,
+    "cost": 56,
+    "effect": "Acid solution does 2d6 damage to any living creature it is thrown on and does 1d6/2 ablation damage to weapons and armor. Throwing it is an Athletics attack with a range equal to your BODYx2m, and the acid splatters in a 2m cone directly away from where it lands.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "alchemical-item-adda-s-tomb",
+    "name": "Adda’s Tomb",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 18,
+    "effect": "A dose of Adda’s tomb can be poured onto perishable foods or even corpses. Treated perishables will not begin to rot or spoil for 1d10 days. Preserving a human-sized body requires 2 doses.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-alchemical-adhesive",
+    "name": "Alchemical Adhesive",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 28,
+    "effect": "Alchemical adhesive can be thrown or poured onto a place or person. After 2 rounds the solution will harden, sticking objects together, and sticking people to one another or to objects. The objects must be pried apart with a DC:16 Physique check. Throwing it is an Athletics attack with a range equal to your BODYx2m.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-base-powder",
+    "name": "Base Powder",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 18,
+    "effect": "Base powder counteracts the effects of acid, negating one dose of acid solution per dose of base powder used. Base powder can also negate damage from a torn stomach critical wound.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-black-venom",
+    "name": "Black Venom",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 45,
+    "effect": "Black venom immediately poisons a target if it gets into their bloodstream or is ingested. A DC:16 Endurance check ends the effect, but the target can become poisoned again if they consume more black venom or are cut by a poisoned weapon.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-bredan-s-fury",
+    "name": "Bredan’s Fury",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.5,
+    "cost": 95,
+    "effect": "Bredan’s fury explodes when exposed to air, doing 2d6 damage to every body location of any creature within 2m. Throwing it is a an Athletics attack with a range equal to your BODYx2m.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "r"
+    ],
+    "avail": "R"
+  },
+  {
+    "id": "alchemical-item-chloroform",
+    "name": "Chloroform",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 36,
+    "effect": "Chloroform forces anyone who breathes it to make a Stun save at -2 or be knocked unconcious until they do make the save. Using it usually requires a Melee attack with a cloth soaked in the chloroform. It can also be poured into a vessel. Each bottle contains 25 doses.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-clotting-powder",
+    "name": "Clotting Powder",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 20,
+    "effect": "Applying clotting powder to a wound stops the bleeding effect for 2d10 rounds. After the rounds elapse the wound begins bleeding again. Y ou can then apply another dose.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-fisstech",
+    "name": "Fisstech",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 80,
+    "effect": "Fisstech sends those who snort it or rub it on their gums into a euphoric trance-like state. It is often used as an anesthetic, as it numbs pain. It is highly addictive. After each use, make an Endurance check at DC:18. If you fail, you become addicted. See pg.32 for addiction rules.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "alchemical-item-hallucinogen",
+    "name": "Hallucinogen",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 25,
+    "effect": "Hallucinogen can be thrown on a target within 3m or slipped into a drink. If the target fails a DC:15 Endurance check, they start hallucinating. These hallucinations last for 1d10 rounds.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-invisible-ink",
+    "name": "Invisible Ink",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 12,
+    "effect": "Invisible ink allows you to write messages that can only be read when exposed to heat for 1 turn. .1 15 Quick Fire If a target doused in quick fire is hit by a spell or item which has a percent chance to light them on fire, the odds raise by 50%. Put Some Powder on It With the War on, I keep a lot of material stocked. Make a few runs every month down from the Mahakams to Vizima and Ellander. Poor bastards need good steel, and with the black ones on the rise there’s nobody stupid enough to try and break the siege line and get it to ‘em. Well, no one but yours truly, heh. Also carry a lotta medical supplies. Clottin’ powder ‘specially. Tell ya friend, get’s real hard to think straight when you’re pumpin’ blood. When I was a scout in the First War we had this poor bastard, Aldi. Took a broadhead in the thigh from the black archers. The rest of the detachment sends the black ones packin’ but Aldi’s holdin’ his leg, blood’s goin’ everywhere, and he ain’t got much time. Best I can figure is to tie some cloth ‘round his thigh, but it ain’t stoppin’ the bleedin’. Aldi’s goin’ pale and the dirt’s turnin’ to bloody mud underneath him. Finally one of the other scouts, digs out some clottin’ powder. Saved Aldi’s life but just barely. –Rodolf Kazmer Numbing Herbs E Numbing herbs placed in a wound relieve pain, lowering negatives from critical wounds by 2. Numbing herbs also lessen penalties from being near death by 2. Numbing herbs work for 2d10 rounds, and then you can apply another dose.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-pantagran-s-elixir",
+    "name": "Pantagran’s Elixir",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.5,
+    "cost": 67,
+    "effect": "Consuming a draught of Pantagran’s elixir brings delirious happiness. This effect lasts for 1d6/2 hours and leaves the imbiber incredibly suceptible to Persuasion, Charisma, and Seduction, giving them a -2 to Resist Coercion.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "alchemical-item-perfume-potion",
+    "name": "Perfume Potion",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.5,
+    "cost": 76,
+    "effect": "Someone who consumes a draught of perfume potion must make a DC:16 Endurance check. Failure causes intoxication for 1d10 Hours. This intoxication can only be undone by magic or wives’ tears potion. Perfume potion has a Toxicity of 25%.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "alchemical-item-poisoner-s-friend",
+    "name": "Poisoner’s Friend",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 16,
+    "effect": "Poisoner’s friend is a clear liquid that can be poured into food or drink to give it a potent savory or sweet taste. This raises the DC to detect poison to 20.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-quick-fire",
+    "name": "Quick Fire",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 45,
+    "effect": "A dose of quick fire poured on a person, surface, or object, dries quickly. Anything so treated is extremely flammable. There’s a 50% chance it will ignite each time it’s exposed to flame or sparks of any kind.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "alchemical-item-smelling-salts",
+    "name": "Smelling Salts",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 25,
+    "effect": "Smelling salts can be placed under an unconcious or stunned person, or creature’s nose to immediately bring them out of their stunned state. Smelling salts can be used 25 times.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-sterilizing-fluid",
+    "name": "Sterilizing Fluid",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 22,
+    "effect": "Sterilizing fluid poured on a wound raises the patient’s natural healing rate by 2 points and lessens the number of days a critical wound takes to heal by 2. Multiple uses of sterilizing fluid don’t stack.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-succubus-breath",
+    "name": "Succubus’ Breath",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 20,
+    "effect": "A dose of succubus’ breath can be used to aid seduction. Used on the skin, it gives you a +2 to Seduction. If poured into someone’s drink, it gives them a -5 to Seduction Resistance. Like black venom , it takes a DC:16 Awareness check to realize there is succubus’ breath in a drink.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "alchemical-item-talgar-s-tears",
+    "name": "Talgar’s Tears",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.5,
+    "cost": 79,
+    "effect": "Talgar’s tears immediately freezes anything it is thrown on. If used on weapons, armor, or objects, those items take double ablation damage. Throwing it is an Athletics attack with a range equal to your BODYx2m, and the liquid splatters in a 2m cone directly away from where it lands, freezing anything it hits.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "alchemical-item-wive-s-tears-potion",
+    "name": "Wive’s Tears Potion",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.1,
+    "cost": 56,
+    "effect": "Imbibing wives’ tears potion negates the effects of intoxication. Immediately after drinking a dose of wives’ tears potion the imbiber sobers up.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "alchemical-item-zerrikanian-fire",
+    "name": "Zerrikanian Fire",
+    "category": "alchemical-item",
+    "source": "alchemical-items",
+    "weight": 0.5,
+    "cost": 65,
+    "effect": "Zerrikanian fire immediately sets whatever it touches on fire. Throwing it is an Athletics attack with a range equal to your BODYx2m, and the it splatters in a 2m cone away from where it lands, lighting anyone and anything in that area on fire.",
+    "tags": [
+      "alchemical-item",
+      "alchemical-items",
+      "consumable",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "alchemical-substance-allspice-root",
+    "name": "Allspice Root",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 18,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-arachas-chitin",
+    "name": "Arachas Chitin",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 5.0,
+    "cost": 106,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on arachasae"
+  },
+  {
+    "id": "alchemical-substance-arachas-eyes",
+    "name": "Arachas Eyes",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 95,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on arachasae"
+  },
+  {
+    "id": "alchemical-substance-arachas-venom",
+    "name": "Arachas Venom",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 76,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on arachasae"
+  },
+  {
+    "id": "alchemical-substance-balisse-fruit",
+    "name": "Balisse Fruit",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-balisse-leaves",
+    "name": "Balisse Leaves",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-barley",
+    "name": "Barley",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 9,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-berbercane-fruit",
+    "name": "Berbercane Fruit",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 9,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Mountains & swamps"
+  },
+  {
+    "id": "alchemical-substance-bryonia",
+    "name": "Bryonia",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Mountains & cities"
+  },
+  {
+    "id": "alchemical-substance-calcium-equum",
+    "name": "Calcium Equum",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 12,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "alchemical-substance-celandine",
+    "name": "Celandine",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Fields & Forests"
+  },
+  {
+    "id": "alchemical-substance-cortinarius",
+    "name": "Cortinarius",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 18,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Forests"
+  },
+  {
+    "id": "alchemical-substance-crow-s-eye",
+    "name": "Crow’s Eye",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 17,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Fields & forests"
+  },
+  {
+    "id": "alchemical-substance-dog-tallow",
+    "name": "Dog Tallow",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on dogs & wolves"
+  },
+  {
+    "id": "alchemical-substance-drowner-brain",
+    "name": "Drowner Brain",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 1.0,
+    "cost": 80,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on drowners"
+  },
+  {
+    "id": "alchemical-substance-drowner-tongue",
+    "name": "Drowner Tongue",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 86,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on drowners"
+  },
+  {
+    "id": "alchemical-substance-ducal-water",
+    "name": "Ducal Water",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 20,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "alchemical-substance-dwarven-immortelle",
+    "name": "Dwarven Immortelle",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 75,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "18",
+    "location": "Underground"
+  },
+  {
+    "id": "alchemical-substance-endrega-embryo",
+    "name": "Endrega Embryo",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 1.5,
+    "cost": 55,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on endrega"
+  },
+  {
+    "id": "alchemical-substance-endrega-saliva",
+    "name": "Endrega Saliva",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 38,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Found on endrega"
+  },
+  {
+    "id": "alchemical-substance-essence-of-water",
+    "name": "Essence of Water",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 46,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on drowners & sirens"
+  },
+  {
+    "id": "alchemical-substance-essence-of-wraith",
+    "name": "Essence of Wraith",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 95,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on wraiths"
+  },
+  {
+    "id": "alchemical-substance-fiend-s-eye",
+    "name": "Fiend’s Eye",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 149,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on fiends"
+  },
+  {
+    "id": "alchemical-substance-fool-s-parsley",
+    "name": "Fool’s Parsley",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 2,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "e"
+    ],
+    "rarity": "E",
+    "quantity": "2d6 Units",
+    "forageDc": "10",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-ghoul-claw",
+    "name": "Ghoul Claw",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 1.0,
+    "cost": 60,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on ghouls"
+  },
+  {
+    "id": "alchemical-substance-ghoul-marrow",
+    "name": "Ghoul Marrow",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 80,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on ghouls"
+  },
+  {
+    "id": "alchemical-substance-ginatia-petals",
+    "name": "Ginatia Petals",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 17,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-golem-heart",
+    "name": "Golem Heart",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 1.0,
+    "cost": 167,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on golems"
+  },
+  {
+    "id": "alchemical-substance-grave-hag-ear",
+    "name": "Grave Hag Ear",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 134,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on grave hags"
+  },
+  {
+    "id": "alchemical-substance-grave-hag-tongue",
+    "name": "Grave Hag Tongue",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 80,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on grave hags"
+  },
+  {
+    "id": "alchemical-substance-green-mold",
+    "name": "Green Mold",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Caves"
+  },
+  {
+    "id": "alchemical-substance-griffin-egg",
+    "name": "Griffin Egg",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 1.0,
+    "cost": 150,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on griffins or in griffin nests"
+  },
+  {
+    "id": "alchemical-substance-griffin-feathers",
+    "name": "Griffin Feathers",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 148,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on griffins"
+  },
+  {
+    "id": "alchemical-substance-hag-teeth",
+    "name": "Hag Teeth",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 90,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on grave hags"
+  },
+  {
+    "id": "alchemical-substance-han-fiber",
+    "name": "Han Fiber",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 17,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-hellebore-petals",
+    "name": "Hellebore Petals",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 19,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Forests"
+  },
+  {
+    "id": "alchemical-substance-honeysuckle",
+    "name": "Honeysuckle",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 21,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-light-essence",
+    "name": "Light Essence",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 43,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on noon wraiths"
+  },
+  {
+    "id": "alchemical-substance-lunar-shards",
+    "name": "Lunar Shards",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 91,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "18",
+    "location": "Mountains or Underground"
+  },
+  {
+    "id": "alchemical-substance-mandrake-root",
+    "name": "Mandrake Root",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 65,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "18",
+    "location": "Fields & forests"
+  },
+  {
+    "id": "alchemical-substance-mistletoe",
+    "name": "Mistletoe",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Fields & forests"
+  },
+  {
+    "id": "alchemical-substance-nekker-claw",
+    "name": "Nekker Claw",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 40,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on nekkers"
+  },
+  {
+    "id": "alchemical-substance-nekker-heart",
+    "name": "Nekker Heart",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on nekker"
+  },
+  {
+    "id": "alchemical-substance-nekker-teeth",
+    "name": "Nekker Teeth",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on nekkers"
+  },
+  {
+    "id": "alchemical-substance-optima-mater",
+    "name": "Optima Mater",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 100,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "18",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "alchemical-substance-pearl",
+    "name": "Pearl",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 100,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/3 Units",
+    "forageDc": "20",
+    "location": "Ocean floor & shore"
+  },
+  {
+    "id": "alchemical-substance-phosphorus",
+    "name": "Phosphorus",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 20,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "alchemical-substance-scleroderm",
+    "name": "Scleroderm",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 5,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "e"
+    ],
+    "rarity": "E",
+    "quantity": "2d6 Units",
+    "forageDc": "10",
+    "location": "Forests & caves"
+  },
+  {
+    "id": "alchemical-substance-sewant-mushrooms",
+    "name": "Sewant Mushrooms",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 17,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Caves"
+  },
+  {
+    "id": "alchemical-substance-siren-vocal-chords",
+    "name": "Siren Vocal Chords",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 65,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on sirens"
+  },
+  {
+    "id": "alchemical-substance-solution",
+    "name": "Solution",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 77,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "18",
+    "location": "Mountains or underground"
+  },
+  {
+    "id": "alchemical-substance-specter-dust",
+    "name": "Specter Dust",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.0,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "N/A",
+    "location": "Found on wraiths"
+  },
+  {
+    "id": "alchemical-substance-sulfur",
+    "name": "Sulfur",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 14,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "alchemical-substance-troll-hide",
+    "name": "Troll Hide",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 4.5,
+    "cost": 147,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on rock trolls"
+  },
+  {
+    "id": "alchemical-substance-troll-liver",
+    "name": "Troll Liver",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 1.0,
+    "cost": 87,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on rock trolls"
+  },
+  {
+    "id": "alchemical-substance-vampire-saliva",
+    "name": "Vampire Saliva",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 155,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on katakans"
+  },
+  {
+    "id": "alchemical-substance-vampire-teeth",
+    "name": "Vampire Teeth",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 150,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on katakans"
+  },
+  {
+    "id": "alchemical-substance-verbena",
+    "name": "Verbena",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 18,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-werewolf-saliva",
+    "name": "Werewolf Saliva",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 60,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on werewolves"
+  },
+  {
+    "id": "alchemical-substance-white-myrtle-petals",
+    "name": "White Myrtle Petals",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Fields"
+  },
+  {
+    "id": "alchemical-substance-wine-stone",
+    "name": "Wine Stone",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.5,
+    "cost": 88,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "18",
+    "location": "Breweries"
+  },
+  {
+    "id": "alchemical-substance-wolf-s-aloe-leaves",
+    "name": "Wolf ’s Aloe Leaves",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 39,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "The Blue Mountains"
+  },
+  {
+    "id": "alchemical-substance-wolfsbane",
+    "name": "Wolfsbane",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 9,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "15",
+    "location": "Fields, forests & mountains"
+  },
+  {
+    "id": "alchemical-substance-wyvern-egg",
+    "name": "Wyvern Egg",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 2.0,
+    "cost": 150,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on wyverns"
+  },
+  {
+    "id": "alchemical-substance-wyvern-eyes",
+    "name": "Wyvern Eyes",
+    "category": "alchemical-substance",
+    "source": "alchemical-substances",
+    "weight": 0.1,
+    "cost": 75,
+    "effect": "",
+    "tags": [
+      "alchemical-substance",
+      "alchemical-substances",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Found on wyverns"
+  },
+  {
+    "id": "armor-enhancement-chain",
+    "name": "Chain",
+    "category": "armor-enhancement",
+    "source": "armor-enhancements",
+    "weight": 3.0,
+    "cost": 125,
+    "effect": "Mail +3 X X",
+    "tags": [
+      "armor-enhancement",
+      "armor-enhancements",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "armor-enhancement-dwarven",
+    "name": "Dwarven",
+    "category": "armor-enhancement",
+    "source": "armor-enhancements",
+    "weight": 3.5,
+    "cost": 195,
+    "effect": "+5 X X",
+    "tags": [
+      "armor-enhancement",
+      "armor-enhancements",
+      "r"
+    ],
+    "avail": "R"
+  },
+  {
+    "id": "armor-enhancement-elven",
+    "name": "Elven",
+    "category": "armor-enhancement",
+    "source": "armor-enhancements",
+    "weight": 0.5,
+    "cost": 200,
+    "effect": "+1 Stealth +3 X X",
+    "tags": [
+      "armor-enhancement",
+      "armor-enhancements",
+      "r"
+    ],
+    "avail": "R"
+  },
+  {
+    "id": "armor-enhancement-fiber",
+    "name": "Fiber",
+    "category": "armor-enhancement",
+    "source": "armor-enhancements",
+    "weight": 0.5,
+    "cost": 40,
+    "effect": "Bleed Resistance +1",
+    "tags": [
+      "armor-enhancement",
+      "armor-enhancements",
+      "e"
+    ],
+    "avail": "E"
+  },
+  {
+    "id": "armor-enhancement-hardened",
+    "name": "Hardened",
+    "category": "armor-enhancement",
+    "source": "armor-enhancements",
+    "weight": 1.5,
+    "cost": 130,
+    "effect": "Leather Fire Resistance +2 X X",
+    "tags": [
+      "armor-enhancement",
+      "armor-enhancements",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "armor-enhancement-steel",
+    "name": "Steel",
+    "category": "armor-enhancement",
+    "source": "armor-enhancements",
+    "weight": 3.5,
+    "cost": 145,
+    "effect": "+4 X X",
+    "tags": [
+      "armor-enhancement",
+      "armor-enhancements",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "armor-enhancement-studded",
+    "name": "Studded",
+    "category": "armor-enhancement",
+    "source": "armor-enhancements",
+    "weight": 1.0,
+    "cost": 80,
+    "effect": "Leather +2 X",
+    "tags": [
+      "armor-enhancement",
+      "armor-enhancements",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "blade-oil-beast-oil",
+    "name": "Beast Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against beasts",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-cursed-oil",
+    "name": "Cursed Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against cursed ones",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-draconid-oil",
+    "name": "Draconid Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against draconids",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-elementa-oil",
+    "name": "Elementa Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against elementa",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-hanged-man-s-venom",
+    "name": "Hanged Man’s Venom",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against humanoids",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-hybrid-oil",
+    "name": "Hybrid Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against hybrids",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-insectoid-oil",
+    "name": "Insectoid Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against insectoids",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-necrophage-oil",
+    "name": "Necrophage Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against necrophages",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-ogroid-oil",
+    "name": "Ogroid Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against ogroids",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-relict-oil",
+    "name": "Relict Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against relicts",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-specter-oil",
+    "name": "Specter Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against specters",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "blade-oil-vampire-oil",
+    "name": "Vampire Oil",
+    "category": "blade-oil",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 damage against vampires",
+    "tags": [
+      "blade-oil",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "30 minutes"
+  },
+  {
+    "id": "clothing-basic-clothing",
+    "name": "Basic Clothing",
+    "category": "clothing",
+    "source": "general-gear",
+    "weight": 2.0,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "clothing",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "clothing-cold-weather-clothing",
+    "name": "Cold Weather Clothing",
+    "category": "clothing",
+    "source": "general-gear",
+    "weight": 3.0,
+    "cost": 45,
+    "effect": "",
+    "tags": [
+      "clothing",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "clothing-fashionable-clothing",
+    "name": "Fashionable Clothing",
+    "category": "clothing",
+    "source": "general-gear",
+    "weight": 2.0,
+    "cost": 70,
+    "effect": "",
+    "tags": [
+      "clothing",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "clothing-jewelry",
+    "name": "Jewelry",
+    "category": "clothing",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 50,
+    "effect": "",
+    "tags": [
+      "clothing",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "clothing-rogue-s-clothing",
+    "name": "Rogue’s Clothing",
+    "category": "clothing",
+    "source": "general-gear",
+    "weight": 1.5,
+    "cost": 50,
+    "effect": "",
+    "tags": [
+      "clothing",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-bandolier",
+    "name": "Bandolier",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 19,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-basket",
+    "name": "Basket",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-belt-pouch",
+    "name": "Belt Pouch",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 7,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-sack",
+    "name": "Sack",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 3,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-satchel",
+    "name": "Satchel",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 14,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-secret-pocket",
+    "name": "Secret Pocket",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 11,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-sheath-bow",
+    "name": "Sheath, Bow",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 1.5,
+    "cost": 24,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-sheath-garter",
+    "name": "Sheath, Garter",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 11,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-sheath-sleeve",
+    "name": "Sheath, Sleeve",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 13,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-wooden-chest",
+    "name": "Wooden Chest",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 18,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "containers-wooden-chest-large",
+    "name": "Wooden Chest, Large",
+    "category": "containers",
+    "source": "general-gear",
+    "weight": 10.0,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "containers",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "crafting-component-ashes",
+    "name": "Ashes",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 1,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "e"
+    ],
+    "rarity": "E",
+    "quantity": "1d10 Units",
+    "forageDc": "10",
+    "location": "Fires & burned items"
+  },
+  {
+    "id": "crafting-component-beast-bones",
+    "name": "Beast Bones",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 4.0,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "Variable",
+    "forageDc": "N/A",
+    "location": "Found on monsters & beasts"
+  },
+  {
+    "id": "crafting-component-coal",
+    "name": "Coal",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 1,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "14",
+    "location": "Fires, mountains or underground"
+  },
+  {
+    "id": "crafting-component-cotton",
+    "name": "Cotton",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 1,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "12",
+    "location": "Fields & plantations"
+  },
+  {
+    "id": "crafting-component-cow-hide",
+    "name": "Cow Hide",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 5.0,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought"
+  },
+  {
+    "id": "crafting-component-dark-iron",
+    "name": "Dark Iron",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.5,
+    "cost": 52,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6 Units",
+    "forageDc": "18",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "crafting-component-dark-steel",
+    "name": "Dark Steel",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 82,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-darkening-oil",
+    "name": "Darkening Oil",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 24,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "16",
+    "location": "Forests"
+  },
+  {
+    "id": "crafting-component-dimeritium",
+    "name": "Dimeritium",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 240,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-dimeritium-crafting-components",
+    "name": "Dimeritium",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 300,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-draconid-leather",
+    "name": "Draconid Leather",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 5.0,
+    "cost": 58,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-draconid-scales",
+    "name": "Draconid Scales",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 5.0,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6 Units",
+    "forageDc": "N/A",
+    "location": "Found on wyverns"
+  },
+  {
+    "id": "crafting-component-drake-oil",
+    "name": "Drake Oil",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 45,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "16",
+    "location": "Rivers & coasts"
+  },
+  {
+    "id": "crafting-component-ester-grease",
+    "name": "Ester Grease",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "14",
+    "location": "Forests & fields"
+  },
+  {
+    "id": "crafting-component-etching-acid",
+    "name": "Etching Acid",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 2,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "14",
+    "location": "Caves & mountains"
+  },
+  {
+    "id": "crafting-component-feathers",
+    "name": "Feathers",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 4,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "e"
+    ],
+    "rarity": "E",
+    "quantity": "1d6 Units",
+    "forageDc": "N/A",
+    "location": "Found on birds"
+  },
+  {
+    "id": "crafting-component-fifth-essence",
+    "name": "Fifth Essence",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 82,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "Variable",
+    "forageDc": "N/A",
+    "location": "Places of Power, mages & fiends"
+  },
+  {
+    "id": "crafting-component-gemstone",
+    "name": "Gemstone",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 100,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "24",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "crafting-component-glass",
+    "name": "Glass",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.5,
+    "cost": 5,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-glowing-ore",
+    "name": "Glowing Ore",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 80,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "20",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "crafting-component-gold",
+    "name": "Gold",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 85,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "18",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "crafting-component-hardened-leather",
+    "name": "Hardened Leather",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 3.0,
+    "cost": 48,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-hardened-timber",
+    "name": "Hardened Timber",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 16,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-iron",
+    "name": "Iron",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.5,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "16",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "crafting-component-leather",
+    "name": "Leather",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 2.0,
+    "cost": 28,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-linen",
+    "name": "Linen",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 22,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-linen-crafting-components",
+    "name": "Linen",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 9,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-lyrian-leather",
+    "name": "Lyrian Leather",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 2.0,
+    "cost": 60,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-mahakaman-steel",
+    "name": "Mahakaman Steel",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 114,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-meteorite",
+    "name": "Meteorite",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 98,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "24",
+    "location": "Anywhere above ground"
+  },
+  {
+    "id": "crafting-component-ogre-wax",
+    "name": "Ogre Wax",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "14",
+    "location": "Caves"
+  },
+  {
+    "id": "crafting-component-oil",
+    "name": "Oil",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 3,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-powder",
+    "name": "Powder",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6/2 Units",
+    "forageDc": "18",
+    "location": "Mountains or underground"
+  },
+  {
+    "id": "crafting-component-resin",
+    "name": "Resin",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 2,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d6 Units",
+    "forageDc": "10",
+    "location": "Forests"
+  },
+  {
+    "id": "crafting-component-river-clay",
+    "name": "River Clay",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.5,
+    "cost": 5,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "14",
+    "location": "Rivers or shores"
+  },
+  {
+    "id": "crafting-component-sharpening-grit",
+    "name": "Sharpening Grit",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 32,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "1d6 Units",
+    "forageDc": "16",
+    "location": "Mountains & caves"
+  },
+  {
+    "id": "crafting-component-silk",
+    "name": "Silk",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 50,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought"
+  },
+  {
+    "id": "crafting-component-silver",
+    "name": "Silver",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 72,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "r"
+    ],
+    "rarity": "R",
+    "quantity": "1d6/2 Units",
+    "forageDc": "16",
+    "location": "Mountains & underground"
+  },
+  {
+    "id": "crafting-component-steel",
+    "name": "Steel",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 48,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-stone",
+    "name": "Stone",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 2.0,
+    "cost": 4,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "e"
+    ],
+    "rarity": "E",
+    "quantity": "2d6 Units",
+    "forageDc": "8",
+    "location": "Everywhere"
+  },
+  {
+    "id": "crafting-component-tanning-herbs",
+    "name": "Tanning Herbs",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 3,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d10 Units",
+    "forageDc": "14",
+    "location": "Fields & forests"
+  },
+  {
+    "id": "crafting-component-thread",
+    "name": "Thread",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 3,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-timber",
+    "name": "Timber",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 3,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "e"
+    ],
+    "rarity": "E",
+    "quantity": "2d6 Units",
+    "forageDc": "8",
+    "location": "Forests"
+  },
+  {
+    "id": "crafting-component-tretegor-steel",
+    "name": "Tretegor Steel",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 1.0,
+    "cost": 64,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "p"
+    ],
+    "rarity": "P",
+    "quantity": "N/A",
+    "forageDc": "N/A",
+    "location": "Bought or crafted"
+  },
+  {
+    "id": "crafting-component-wax",
+    "name": "Wax",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 0.1,
+    "cost": 2,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "quantity": "1d6 Units",
+    "forageDc": "12",
+    "location": "Forests & fields"
+  },
+  {
+    "id": "crafting-component-wolf-hide",
+    "name": "Wolf Hide",
+    "category": "crafting-component",
+    "source": "crafting-components",
+    "weight": 3.0,
+    "cost": 14,
+    "effect": "",
+    "tags": [
+      "crafting-component",
+      "crafting-components",
+      "c"
+    ],
+    "rarity": "C",
+    "forageDc": "N/A",
+    "location": "Found on wolves 3 Units"
+  },
+  {
+    "id": "crafting-diagram-aedirnian-gambeson-diagram",
+    "name": "Aedirnian Gambeson Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 362,
+    "effect": "Craft Aedirnian Gambeson",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "6 Hours",
+    "components": "Linen (x6), Thread (x6), Leather (x2)",
+    "investmentCost": 131
+  },
+  {
+    "id": "crafting-diagram-ammunition-diagrams-grand-master-diagrams-dwarven-pole-hammer-diagram",
+    "name": "Ammunition Diagrams Grand Master Diagrams Dwarven Pole Hammer Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1248,
+    "effect": "Craft Ammunition Diagrams Grand Master Diagrams Dwarven Pole Hammer",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Hardened Timber (x6), Mahakaman Steel (x3), Hardened Leather (x3), Sharpening Grit (x1), Ogre Wax (x1)",
+    "investmentCost": 624
+  },
+  {
+    "id": "crafting-diagram-ammunition-bodkin-x10-diagram",
+    "name": "Ammunition, Bodkin (x10) Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 224,
+    "effect": "Craft Ammunition, Bodkin (x10)",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "1 Hour",
+    "components": "Hardened Timber (x1), Steel (x1), Feathers (x1), Sharpening Grit (x1), Ogre Wax (x1)",
+    "investmentCost": 110
+  },
+  {
+    "id": "crafting-diagram-ammunition-broadhead-x10-diagram",
+    "name": "Ammunition, Broadhead (x10) Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 125,
+    "effect": "Craft Ammunition, Broadhead (x10)",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 15,
+    "time": "1 Hour",
+    "components": "Timber (x1), Iron (x1), Feathers (x1), Sharpening Grit (x1)",
+    "investmentCost": 69
+  },
+  {
+    "id": "crafting-diagram-ammunition-standard-x30-diagram",
+    "name": "Ammunition, Standard (x30) Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 14,
+    "effect": "Craft Ammunition, Standard (x30)",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "2 Hour",
+    "components": "Timber (x1), Iron (x1), Feathers (x1)",
+    "investmentCost": 37
+  },
+  {
+    "id": "crafting-diagram-arming-sword-diagram",
+    "name": "Arming Sword Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 404,
+    "effect": "Craft Arming Sword",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 13,
+    "time": "7 Hours",
+    "components": "Timber (x2), Hardened Leather (x2), Steel (x3)",
+    "investmentCost": 201
+  },
+  {
+    "id": "crafting-diagram-armor-diagrams-grand-master-diagrams-gnomish-chain-diagram",
+    "name": "Armor Diagrams Grand Master Diagrams Gnomish Chain Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1462,
+    "effect": "Craft Armor Diagrams Grand Master Diagrams Gnomish Chain",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "24 Hours",
+    "components": "Dark Steel (x8), Leather (x2), Darkening Oil (x1)",
+    "investmentCost": 736
+  },
+  {
+    "id": "crafting-diagram-armored-trousers-diagram",
+    "name": "Armored Trousers Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 374,
+    "effect": "Craft Armored Trousers",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "8 Hours",
+    "components": "Hardened Leather (x2), Steel (x1), Leather (x1), Thread (x5)",
+    "investmentCost": 187
+  },
+  {
+    "id": "crafting-diagram-battle-axe-diagram",
+    "name": "Battle Axe Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 786,
+    "effect": "Craft Battle Axe",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 17,
+    "time": "9 Hours",
+    "components": "Hardened Timber (x4), Steel (x3), Leather (x3), Ester Grease (x4), Ogre Wax (x5), River Clay (x5)",
+    "investmentCost": 389
+  },
+  {
+    "id": "crafting-diagram-brass-knuckles-diagram",
+    "name": "Brass Knuckles Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 125,
+    "effect": "Craft Brass Knuckles",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "2 Hours",
+    "components": "Steel (x1), Hardened Timber (x1), Resin (x2), Wax (x1)",
+    "investmentCost": 72
+  },
+  {
+    "id": "crafting-diagram-brigandine-diagram",
+    "name": "Brigandine Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 450,
+    "effect": "Craft Brigandine",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "8 Hours",
+    "components": "Leather (x3), Hardened Leather (x3)",
+    "investmentCost": 228
+  },
+  {
+    "id": "crafting-diagram-cavalry-trousers-diagram",
+    "name": "Cavalry Trousers Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 112,
+    "effect": "Craft Cavalry Trousers",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 13,
+    "time": "7 Hours",
+    "components": "Linen (x5), Thread (x4)",
+    "investmentCost": 57
+  },
+  {
+    "id": "crafting-diagram-chain-coif-diagram",
+    "name": "Chain Coif Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 374,
+    "effect": "Craft Chain Coif",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "4 Hours",
+    "components": "Steel (x4)",
+    "investmentCost": 192
+  },
+  {
+    "id": "crafting-diagram-crossbow-diagram",
+    "name": "Crossbow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 682,
+    "effect": "Craft Crossbow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 17,
+    "time": "9 Hours",
+    "components": "Hardened Timber (x4), Thread (x5), Wax (x3), Resin (x2), Steel (x2), Hardened Leather (x1), Ester Grease (x2), Ogre Wax (x2), Iron (x1)",
+    "investmentCost": 343
+  },
+  {
+    "id": "crafting-diagram-crystal-staff-diagram",
+    "name": "Crystal Staff Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1296,
+    "effect": "Craft Crystal Staff",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Timber (x6), Steel (x2), Fifth Essence (x4), Ester Grease (x3), Wax (x1), Gemstone (x1), Etching Acid (x4), Drake Oil (x1)",
+    "investmentCost": 623
+  },
+  {
+    "id": "crafting-diagram-dagger-diagram",
+    "name": "Dagger Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 74,
+    "effect": "Craft Dagger",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 8,
+    "time": "2 Hours",
+    "components": "Timber (x1), Iron (x1)",
+    "investmentCost": 33
+  },
+  {
+    "id": "crafting-diagram-dark-steel-diagram",
+    "name": "Dark Steel Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 110,
+    "effect": "Craft Dark Steel",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 17,
+    "time": "1 Hour",
+    "components": "Dark Iron (x1), Coal (x5)",
+    "investmentCost": 55
+  },
+  {
+    "id": "crafting-diagram-dimeritium-diagram",
+    "name": "Dimeritium Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 320,
+    "effect": "Craft Dimeritium",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 20,
+    "time": "1 Hour",
+    "components": "Glowing Ore (x2)",
+    "investmentCost": 160
+  },
+  {
+    "id": "crafting-diagram-double-woven-gambeson-diagram",
+    "name": "Double Woven Gambeson Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 374,
+    "effect": "Craft Double Woven Gambeson",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 15,
+    "time": "8 Hours",
+    "components": "Double Woven Linen (x5), Thread (x6)",
+    "investmentCost": 187
+  },
+  {
+    "id": "crafting-diagram-double-woven-hood-diagram",
+    "name": "Double Woven Hood Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 262,
+    "effect": "Craft Double Woven Hood",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 13,
+    "time": "4 Hours",
+    "components": "Double Woven Linen (x3), Leather (x2), Thread (x7), Wax (x3)",
+    "investmentCost": 129
+  },
+  {
+    "id": "crafting-diagram-double-woven-trousers-diagram",
+    "name": "Double Woven Trousers Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 336,
+    "effect": "Craft Double Woven Trousers",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 15,
+    "time": "8 Hours",
+    "components": "Double Woven Linen (x4), Thread (x6)",
+    "investmentCost": 165
+  },
+  {
+    "id": "crafting-diagram-draconid-leather-diagram",
+    "name": "Draconid Leather Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 78,
+    "effect": "Craft Draconid Leather",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 18,
+    "time": "1 Hour",
+    "components": "Draconid Scales (x1), Tanning Herb (x3)",
+    "investmentCost": 39
+  },
+  {
+    "id": "crafting-diagram-dwarven-cleaver-diagram",
+    "name": "Dwarven Cleaver Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 750,
+    "effect": "Craft Dwarven Cleaver",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 19,
+    "time": "10 Hours",
+    "components": "Mahakaman Steel (x2), Hardened Timber (x1), Leather (x1), Sharpening Grit (x1), Drake Oil (x1), River Clay (x5)",
+    "investmentCost": 374
+  },
+  {
+    "id": "crafting-diagram-dwarven-cloak-diagram",
+    "name": "Dwarven Cloak Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 2100,
+    "effect": "Craft Dwarven Cloak",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 18,
+    "time": "9 Hours",
+    "components": "Hardened Leather (x12), Resin (x10), Leather (x6), Thread (x10), Ogre Wax (x10), Drake Oil (x2), Ester Grease (x7), Cow Hide (x1)",
+    "investmentCost": 1050
+  },
+  {
+    "id": "crafting-diagram-dwarven-diagram",
+    "name": "Dwarven Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 292,
+    "effect": "Craft Dwarven",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "6 Hours",
+    "components": "Mahakaman Steel (x1), Wolf Hide (x1), Thread (x5)",
+    "investmentCost": 144
+  },
+  {
+    "id": "crafting-diagram-dwarven-heavy-crossbow-diagram",
+    "name": "Dwarven Heavy Crossbow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1274,
+    "effect": "Craft Dwarven Heavy Crossbow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "12 Hours",
+    "components": "Hardened Timber (x5), Mahakaman Steel (x3), Hardened Leather (x2), Thread (x4), Ogre Wax (x5), Dark Iron (x1)",
+    "investmentCost": 632
+  },
+  {
+    "id": "crafting-diagram-elven-burrower-x5-diagram",
+    "name": "Elven Burrower (x5) Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 100,
+    "effect": "Craft Elven Burrower (x5)",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 20,
+    "time": "1/2 Hour",
+    "components": "Dark Steel (x1), Hardened Timber (x1), Feathers (x2), Sharpening Grit (x2), Ogre Wax (x1), Resin (x1), Thread (x1)",
+    "investmentCost": 185
+  },
+  {
+    "id": "crafting-diagram-elven-diagram",
+    "name": "Elven Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 300,
+    "effect": "Craft Elven",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "6 Hours",
+    "components": "Dark Steel (x1), Hardened Leather (x1), Thread (x5), Feathers (x1)",
+    "investmentCost": 149
+  },
+  {
+    "id": "crafting-diagram-elven-glaive-diagram",
+    "name": "Elven Glaive Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1386,
+    "effect": "Craft Elven Glaive",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 19,
+    "time": "10 Hours",
+    "components": "Hardened Timber (x6), Dark Steel (x4), Steel (x1), Leather (x4), Feathers (x3), Sharpening Grit (x2), Ester Grease (x4)",
+    "investmentCost": 692
+  },
+  {
+    "id": "crafting-diagram-elven-messer-diagram",
+    "name": "Elven Messer Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 892,
+    "effect": "Craft Elven Messer",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 19,
+    "time": "10 Hours",
+    "components": "Hardened Timber (x2), Leather (x3), Dark Steel (x3), Silk (x1), Sharpening Grit (x1), Etching Acid (x1)",
+    "investmentCost": 446
+  },
+  {
+    "id": "crafting-diagram-elven-shield-diagram",
+    "name": "Elven Shield Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1050,
+    "effect": "Craft Elven Shield",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 20,
+    "time": "5 Hours",
+    "components": "Hardened Wood (x5), Hardened Leather (x5), Dark Steel (x2), Ester Grease (x2), Etching Oil (x4), Ogre Wax (x2)",
+    "investmentCost": 528
+  },
+  {
+    "id": "crafting-diagram-elven-travel-bow-diagram",
+    "name": "Elven Travel Bow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 862,
+    "effect": "Craft Elven Travel Bow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "11 Hours",
+    "components": "Hardened Timber (x4), Thread (x4), Wax (x4), Fifth Essence (x1), Leather (x1), Feathers (x3), Beast Bones (x2), Dark Steel (x1), Ester Grease (x5), Etching Acid (x3)",
+    "investmentCost": 432
+  },
+  {
+    "id": "crafting-diagram-elven-walking-staff-diagram",
+    "name": "Elven Walking Staff Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1470,
+    "effect": "Craft Elven Walking Staff",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Hardened Timber (x6), Gold (x2), Ester Grease (x6), Wolf Hide (x2), Dark Steel (x1), Silk (x1), Fifth Essence (x3), Gemstone (x1)",
+    "investmentCost": 735
+  },
+  {
+    "id": "crafting-diagram-elven-zefhar-diagram",
+    "name": "Elven Zefhar Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1660,
+    "effect": "Craft Elven Zefhar",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Hardened Timber (x8), Thread (x8), Ogre Wax (x8), Fifth Essence (x2), Leather (x2), Feathers (x4), Beast Bones (x4), Dark Steel (x2), Ester Grease (x8), Etching Acid (x6)",
+    "investmentCost": 830
+  },
+  {
+    "id": "crafting-diagram-esboda-diagram",
+    "name": "Esboda Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 974,
+    "effect": "Craft Esboda",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 17,
+    "time": "9 Hours",
+    "components": "Hardened Timber (x2), Steel (x3), Dark Steel (x2), Hardened Leather (x2), Drake Oil (x1)",
+    "investmentCost": 481
+  },
+  {
+    "id": "crafting-diagram-gambeson-diagram",
+    "name": "Gambeson Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 150,
+    "effect": "Craft Gambeson",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "5 Hours",
+    "components": "Linen (x6), Thread (x6)",
+    "investmentCost": 75
+  },
+  {
+    "id": "crafting-diagram-gleddyf-diagram",
+    "name": "Gleddyf Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 426,
+    "effect": "Craft Gleddyf",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "7 Hours",
+    "components": "Hardened Timber (x1), Hardened Leather (x1), Leather (x1), Iron (x1), Steel (x3)",
+    "investmentCost": 210
+  },
+  {
+    "id": "crafting-diagram-gnomish-black-axe-diagram",
+    "name": "Gnomish Black Axe Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1376,
+    "effect": "Craft Gnomish Black Axe",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Hardened Timber (x4), Hardened Leather (x2), Dimeritium (x1), Dark Steel (x3), Sharpening Grit (x1), Ogre Wax (x1)",
+    "investmentCost": 688
+  },
+  {
+    "id": "crafting-diagram-gnomish-buckler-diagram",
+    "name": "Gnomish Buckler Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 674,
+    "effect": "Craft Gnomish Buckler",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "6 Hours",
+    "components": "Dark Steel (x3), Leather (x1), Ester Grease (x1), Etching Acid (x4), Drake Oil (x1)",
+    "investmentCost": 335
+  },
+  {
+    "id": "crafting-diagram-gnomish-dragoon-armor-diagram",
+    "name": "Gnomish Dragoon Armor Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 4274,
+    "effect": "Craft Gnomish Dragoon Armor",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "25 Hours",
+    "components": "Dark Steel (x12), Mahakaman Dimeritium (x2), Ester Grease (x8), Etching Acid (x12), Double Woven Linen (x5), Darkening Oil (x4), Drake Oil (x1), Meteorite (x1), Thread (x15)",
+    "investmentCost": 2131
+  },
+  {
+    "id": "crafting-diagram-gnomish-gwyhyr-diagram",
+    "name": "Gnomish Gwyhyr Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1628,
+    "effect": "Craft Gnomish Gwyhyr",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Hardened Timber (x2), Hardened Leather (x1), Dimeritium (x2), Dark Steel (x1), Sharpening Grit (x3), Ester Grease (x4), Darkening Oil (x1)",
+    "investmentCost": 814
+  },
+  {
+    "id": "crafting-diagram-gnomish-hand-crossbow-diagram",
+    "name": "Gnomish Hand Crossbow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 634,
+    "effect": "Craft Gnomish Hand Crossbow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Hardened Timber (x2), Thread (x4), Wax (x2), Resin (x2), Dark Steel (x2), Darkening Oil (x2), Drake Oil (x1), Ester Grease (x1)",
+    "investmentCost": 317
+  },
+  {
+    "id": "crafting-diagram-gnomish-staff-diagram",
+    "name": "Gnomish Staff Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1364,
+    "effect": "Craft Gnomish Staff",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "11 Hours",
+    "components": "Hardened Timber (x6), Fifth Essence (x5), Darkening Oil (x3), Dark Steel (x1), Double Woven Linen (x1)",
+    "investmentCost": 682
+  },
+  {
+    "id": "crafting-diagram-great-helm-diagram",
+    "name": "Great Helm Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 862,
+    "effect": "Craft Great Helm",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 19,
+    "time": "5 Hours",
+    "components": "Steel (x6), Hardened Leather (x3), Thread (x6), Ogre Wax (x2), Linen (x1)",
+    "investmentCost": 431
+  },
+  {
+    "id": "crafting-diagram-halfling-protective-doublet-diagram",
+    "name": "Halfling Protective Doublet Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 562,
+    "effect": "Craft Halfling Protective Doublet",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 18,
+    "time": "9 Hours",
+    "components": "Silk (x4), Double Woven Linen (x2), Thread (x10), Cotton (x7)",
+    "investmentCost": 281
+  },
+  {
+    "id": "crafting-diagram-halfling-rondel-diagram",
+    "name": "Halfling Rondel Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 726,
+    "effect": "Craft Halfling Rondel",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 19,
+    "time": "10 Hours",
+    "components": "Dark Steel (x2), Hardened Timber (x1), Hardened Leather (x1), Sharpening Grit (x3), Darkening Oil (x1), Ester Grease (x2)",
+    "investmentCost": 364
+  },
+  {
+    "id": "crafting-diagram-hand-axe-diagram",
+    "name": "Hand Axe Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 306,
+    "effect": "Craft Hand Axe",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "3 Hours",
+    "components": "Hardened Timber (x1), Steel (x1), Hardened Leather (x1), Leather (x1), Resin (x4)",
+    "investmentCost": 148
+  },
+  {
+    "id": "crafting-diagram-hand-crossbow-diagram",
+    "name": "Hand Crossbow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 426,
+    "effect": "Craft Hand Crossbow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 15,
+    "time": "8 Hours",
+    "components": "Hardened Timber (x2), Thread (x4), Wax (x2), Resin (x2), Steel (x1), Hardened Leather (x1), Ester Grease (x2), Ogre Wax (x2), Iron (x1)",
+    "investmentCost": 214
+  },
+  {
+    "id": "crafting-diagram-hardened-leather-diagram",
+    "name": "Hardened Leather Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 64,
+    "effect": "Craft Hardened Leather",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "1/2 Hour",
+    "components": "Leather (x1), Wax (x2)",
+    "investmentCost": 32
+  },
+  {
+    "id": "crafting-diagram-hardened-leather-diagram-crafting-diagrams",
+    "name": "Hardened Leather Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 195,
+    "effect": "Craft Hardened Leather",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "4 Hours",
+    "components": "Hardened Leather (x1), Leather (x1), Thread (x5), Wax (x3)",
+    "investmentCost": 97
+  },
+  {
+    "id": "crafting-diagram-hardened-timber-diagram",
+    "name": "Hardened Timber Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 21,
+    "effect": "Craft Hardened Timber",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "1/2 Hour",
+    "components": "Timber (x1), Resin (x3)",
+    "investmentCost": 11
+  },
+  {
+    "id": "crafting-diagram-highland-mauler-diagram",
+    "name": "Highland Mauler Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1440,
+    "effect": "Craft Highland Mauler",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Dark Iron (x5), Dark Steel (x1), Hardened Timber (x7), Hardened Leather (x1), Etching Acid (x4), Beast Bones (x10), Ester Grease (x4), Meteorite (x1)",
+    "investmentCost": 720
+  },
+  {
+    "id": "crafting-diagram-hindarsfjall-heavy-armor-diagram",
+    "name": "Hindarsfjall Heavy Armor Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1124,
+    "effect": "Craft Hindarsfjall Heavy Armor",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "11 Hours",
+    "components": "Dark Steel (x4), Hardened Leather (x1), Beast Bones (x5), Thread (x6), Drake Oil (x1)",
+    "investmentCost": 565
+  },
+  {
+    "id": "crafting-diagram-hindarsfjall-heavy-chausses-diagram",
+    "name": "Hindarsfjall Heavy Chausses Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1124,
+    "effect": "Craft Hindarsfjall Heavy Chausses",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "11 Hours",
+    "components": "Dark Steel (x3), Hardened Leather (x2), Leather (x1), Beast Bones (x5), Thread (x8), Drake Oil (x1),",
+    "investmentCost": 565
+  },
+  {
+    "id": "crafting-diagram-hooked-staff-diagram",
+    "name": "Hooked Staff Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 824,
+    "effect": "Craft Hooked Staff",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 18,
+    "time": "9 Hours",
+    "components": "Timber (x6), Steel (x1), Fifth Essence (x2), Ester Grease (x2), Wax (x1), Steel (x2), Etching Acid (x2), Hardened Leather (x1), Thread (x4)",
+    "investmentCost": 412
+  },
+  {
+    "id": "crafting-diagram-hunter-s-falchion-diagram",
+    "name": "Hunter’s Falchion Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 486,
+    "effect": "Craft Hunter’s Falchion",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "7 Hours",
+    "components": "Hardened Timber (x1), Hardened Leather (x2), Steel (x3), Ester Grease (x4)",
+    "investmentCost": 240
+  },
+  {
+    "id": "crafting-diagram-iron-long-sword-diagram",
+    "name": "Iron Long Sword Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 240,
+    "effect": "Craft Iron Long Sword",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "5 Hours",
+    "components": "Timber (x1), Iron (x2), Leather (x2)",
+    "investmentCost": 119
+  },
+  {
+    "id": "crafting-diagram-iron-staff-diagram",
+    "name": "Iron Staff Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1012,
+    "effect": "Craft Iron Staff",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 20,
+    "time": "10 Hours",
+    "components": "Dark Iron (x4), Fifth Essence (x2), Dark Steel (x1), Leather (x1), Etching Acid (x2), Hardened Timber (x1)",
+    "investmentCost": 506
+  },
+  {
+    "id": "crafting-diagram-jambiya-diagram",
+    "name": "Jambiya Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 660,
+    "effect": "Craft Jambiya",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 20,
+    "time": "5 Hours",
+    "components": "Hardened Timber (x1), Draconid Leather (x1), Dark Steel (x1), Steel (x2), Sharpening Grit (x2), Resin (x1), Darkening Oil (x1)",
+    "investmentCost": 342
+  },
+  {
+    "id": "crafting-diagram-kaedweni-shield-diagram",
+    "name": "Kaedweni Shield Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 600,
+    "effect": "Craft Kaedweni Shield",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 19,
+    "time": "5 Hours",
+    "components": "Hardened Timber (x5), Dark Steel (x1), Beast Bones (x7), Leather (x1), Ogre Wax (x5), Wax (x2)",
+    "investmentCost": 300
+  },
+  {
+    "id": "crafting-diagram-kord-diagram",
+    "name": "Kord Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1012,
+    "effect": "Craft Kord",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "11 Hours",
+    "components": "Hardened Timber (x2), Dark Steel (x3), Dark Iron (x2), Hardened Leather (x2), Resin (x4), Beast Bones (x7), Silk (x1)",
+    "investmentCost": 525
+  },
+  {
+    "id": "crafting-diagram-krigsverd-diagram",
+    "name": "Krigsverd Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 854,
+    "effect": "Craft Krigsverd",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "8 Hours",
+    "components": "Hardened Timber (x2), Dark Steel (x3), Hardened Leather (x2), Resin (x4), Beast Bones (x7)",
+    "investmentCost": 423
+  },
+  {
+    "id": "crafting-diagram-leather-diagram",
+    "name": "Leather Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 38,
+    "effect": "Craft Leather",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "1 Hour",
+    "components": "Cow Hide (x1), Tanning Herb (x3)",
+    "investmentCost": 19
+  },
+  {
+    "id": "crafting-diagram-leather-shield-diagram",
+    "name": "Leather Shield Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 74,
+    "effect": "Craft Leather Shield",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "3 Hours",
+    "components": "Leather (x1), Timber (x2), Tanning Herbs (x1)",
+    "investmentCost": 37
+  },
+  {
+    "id": "crafting-diagram-linen-diagram",
+    "name": "Linen Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 12,
+    "effect": "Craft Linen",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "15 Minutes",
+    "components": "Thread (x2)",
+    "investmentCost": 6
+  },
+  {
+    "id": "crafting-diagram-long-bow-diagram",
+    "name": "Long Bow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 712,
+    "effect": "Craft Long Bow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "8 Hours",
+    "components": "Hardened Timber (x6), Thread (x6), Wax (x4), Resin (x2), Ester Grease (x3), Steel (x1), Hardened Leather (x1)",
+    "investmentCost": 252
+  },
+  {
+    "id": "crafting-diagram-lyrian-leather-diagram",
+    "name": "Lyrian Leather Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 80,
+    "effect": "Craft Lyrian Leather",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 17,
+    "time": "1 Hour",
+    "components": "Leather (x1), Ogre Wax (x1), Coal (x2)",
+    "investmentCost": 40
+  },
+  {
+    "id": "crafting-diagram-lyrian-leather-jacket-diagram",
+    "name": "Lyrian Leather Jacket Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 786,
+    "effect": "Craft Lyrian Leather Jacket",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 18,
+    "time": "9 Hours",
+    "components": "Lyrian Leather (x4), Thread (x6), Leather (x2), Linen (x4), Steel (x1)",
+    "investmentCost": 392
+  },
+  {
+    "id": "crafting-diagram-lyrian-leather-trousers-diagram",
+    "name": "Lyrian Leather Trousers Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 786,
+    "effect": "Craft Lyrian Leather Trousers",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 18,
+    "time": "9 Hours",
+    "components": "Lyrian Leather (x4), Thread (x6), Leather (x2), Linen (x4), Steel (x1)",
+    "investmentCost": 392
+  },
+  {
+    "id": "crafting-diagram-mace-diagram",
+    "name": "Mace Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 786,
+    "effect": "Craft Mace",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "8 Hours",
+    "components": "Hardened Timber (x2), Steel (x3), Iron (x4), Hardened Leather (x2), Ogre Wax (x4)",
+    "investmentCost": 384
+  },
+  {
+    "id": "crafting-diagram-mahakaman-dimeritium-diagram",
+    "name": "Mahakaman Dimeritium Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 402,
+    "effect": "Craft Mahakaman Dimeritium",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "1 Hour",
+    "components": "Glowing Ore (x2), River Clay (x3), Ashes (x2), Beast Bones (x3)",
+    "investmentCost": 201
+  },
+  {
+    "id": "crafting-diagram-mahakaman-martell-diagram",
+    "name": "Mahakaman Martell Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1350,
+    "effect": "Craft Mahakaman Martell",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "11 Hours",
+    "components": "Mahakaman Steel (x5), Hardened Timber (x3), Hardened Leather (x2), Wolf Hide (x1), Sharpening Grit (x1), Ester Grease (x3), Drake Oil (x2), River Clay (x4), Linen (x1)",
+    "investmentCost": 675
+  },
+  {
+    "id": "crafting-diagram-mahakaman-pavise-diagram",
+    "name": "Mahakaman Pavise Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1574,
+    "effect": "Craft Mahakaman Pavise",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 26,
+    "time": "7 Hours",
+    "components": "Hardened Timber (x10), Hardened Leather (x5), Ogre Wax (x3), Mahakaman Steel (x2), Ester Grease (x2), Etching Acid (x2), Leather (x1)",
+    "investmentCost": 788
+  },
+  {
+    "id": "crafting-diagram-mahakaman-plate-armor-diagram",
+    "name": "Mahakaman Plate Armor Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 5286,
+    "effect": "Craft Mahakaman Plate Armor",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 28,
+    "time": "28 Hours",
+    "components": "Mahakaman Steel (x12), Mahakaman Dimeritium (x2), Ester Grease (x8), Etching Acid (x12), Hardened Leather (x5), Darkening Oil (x2), Drake Oil (x1), Meteorite (x2), Ogre Wax (x3), Thread (x10)",
+    "investmentCost": 2645
+  },
+  {
+    "id": "crafting-diagram-mahkaman-steel-diagram",
+    "name": "Mahkaman Steel Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 152,
+    "effect": "Craft Mahkaman Steel",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "1 Hour",
+    "components": "Iron (x1), Coal (x5), Ashes (x2), River Clay (x3), Beast Bones (x3)",
+    "investmentCost": 76
+  },
+  {
+    "id": "crafting-diagram-meteorite-chain-mace-diagram",
+    "name": "Meteorite Chain Mace Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1352,
+    "effect": "Craft Meteorite Chain Mace",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Meteorite (x5), Hardened Timber (x1), Hardened Leather (x1), Ester Grease (x1), Dark Steel (x1), Sharpening Grit (x1)",
+    "investmentCost": 676
+  },
+  {
+    "id": "crafting-diagram-meteorite-sword-diagram",
+    "name": "Meteorite Sword Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1312,
+    "effect": "Craft Meteorite Sword",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 20,
+    "time": "10 Hours",
+    "components": "Hardened Timber (x2), Leather (x2), Meteorite (x5), Sharpening Grit (x2), Etching Acid (x2), Ester Grease (x1)",
+    "investmentCost": 650
+  },
+  {
+    "id": "crafting-diagram-monster-hunter-s-crossbow-diagram",
+    "name": "Monster Hunter’s Crossbow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1686,
+    "effect": "Craft Monster Hunter’s Crossbow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "12 Hours",
+    "components": "Hardened Timber (x6), Thread (x6), Wax (x4), Resin (x4), Dark Steel (x4), Hardened Leather (x3), Ester Grease (x2), Ogre Wax (x4), Dark Iron (x2), Beast Bones (x4)",
+    "investmentCost": 844
+  },
+  {
+    "id": "crafting-diagram-nilfgaardian-greaves-diagram",
+    "name": "Nilfgaardian Greaves Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1274,
+    "effect": "Craft Nilfgaardian Greaves",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "12 Hours",
+    "components": "Dark Steel (x4), Hardened Leather (x2), Leather (x2), Darkening Oil (x1), Drake Oil (x1), Linen (x1), Ashes (x10)",
+    "investmentCost": 631
+  },
+  {
+    "id": "crafting-diagram-nilfgaardian-helm-diagram",
+    "name": "Nilfgaardian Helm Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1200,
+    "effect": "Craft Nilfgaardian Helm",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "6 Hours",
+    "components": "Dark Steel (x5), Hardened Leather (x1), Darkening Oil (x1), Drake Oil (x1), Ashes (x10)",
+    "investmentCost": 600
+  },
+  {
+    "id": "crafting-diagram-nilfgaardian-pavise-diagram",
+    "name": "Nilfgaardian Pavise Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 900,
+    "effect": "Craft Nilfgaardian Pavise",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "6 Hours",
+    "components": "Hardened Timber (x10), Hardened Leather (x3), Ogre Wax (x1), Dark Steel (x1), Ester Grease (x2), Darkening Oil (x1), Ashes (x10), Etching Acid (x2)",
+    "investmentCost": 450
+  },
+  {
+    "id": "crafting-diagram-nilfgaardian-plate-armor-diagram",
+    "name": "Nilfgaardian Plate Armor Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1274,
+    "effect": "Craft Nilfgaardian Plate Armor",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "12 Hours",
+    "components": "Dark Steel (x5), Hardened Leather (x1), Leather (x1), Darkening Oil (x1), Drake Oil (x1), Linen (x1), Ashes (x10)",
+    "investmentCost": 637
+  },
+  {
+    "id": "crafting-diagram-orions-x3-diagram",
+    "name": "Orions (x3) Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 125,
+    "effect": "Craft Orions (x3)",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "1 Hour",
+    "components": "Steel Ingot (x1), Oil (x2), River Clay (x2)",
+    "investmentCost": 62
+  },
+  {
+    "id": "crafting-diagram-padded-trousers-diagram",
+    "name": "Padded Trousers Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 186,
+    "effect": "Craft Padded Trousers",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "7 Hours",
+    "components": "Linen (x5), Thread (x4), Cotton (x10), Leather (x1)",
+    "investmentCost": 94
+  },
+  {
+    "id": "crafting-diagram-pavise-diagram",
+    "name": "Pavise Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 750,
+    "effect": "Craft Pavise",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 19,
+    "time": "5 Hours",
+    "components": "Hardened Timber (x10), Hardened Leather (x3), Ogre Wax (x1), Steel (x1), Ester Grease (x2)",
+    "investmentCost": 378
+  },
+  {
+    "id": "crafting-diagram-plate-armor-diagram",
+    "name": "Plate Armor Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 937,
+    "effect": "Craft Plate Armor",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 19,
+    "time": "10 Hours",
+    "components": "Steel (x6), Hardened Leather (x3), Thread (x7), Etching Acid (x4), Drake Oil (x1), Ogre Wax (x1)",
+    "investmentCost": 468
+  },
+  {
+    "id": "crafting-diagram-plate-greaves-diagram",
+    "name": "Plate Greaves Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 798,
+    "effect": "Craft Plate Greaves",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 19,
+    "time": "10 Hours",
+    "components": "Steel (x5), Hardened Leather (x4), Thread (x7), Etching Acid (x4), Drake Oil (x1), Ogre Wax (x1)",
+    "investmentCost": 468
+  },
+  {
+    "id": "crafting-diagram-pole-axe-diagram",
+    "name": "Pole Axe Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 690,
+    "effect": "Craft Pole Axe",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "8 Hours",
+    "components": "Hardened Timber (x5), Dark Steel (x2), Leather (x2), Sharpening Grit (x1), Ester Grease (x2)",
+    "investmentCost": 349
+  },
+  {
+    "id": "crafting-diagram-poniard-diagram",
+    "name": "Poniard Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 534,
+    "effect": "Craft Poniard",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 18,
+    "time": "4 Hours",
+    "components": "Hardened Timber (x1), Dark Steel (x1), Hardened Leather (x1), Sharpening Grit (x2), Etching Acid (x4), Beast Bones (x4)",
+    "investmentCost": 250
+  },
+  {
+    "id": "crafting-diagram-red-halberd-diagram",
+    "name": "Red Halberd Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1296,
+    "effect": "Craft Red Halberd",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "11 Hours",
+    "components": "Hardened Timber (x6), Dark Steel (x3), Tretegor Steel (x2), Hardened Leather (x2), Sharpening Grit (x2), Ester Grease (x2)",
+    "investmentCost": 647
+  },
+  {
+    "id": "crafting-diagram-redanian-greaves-diagram",
+    "name": "Redanian Greaves Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 600,
+    "effect": "Craft Redanian Greaves",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 17,
+    "time": "9 Hours",
+    "components": "Hardened Leather (x4), Leather (x2), Tretegor Steel (x3), Thread (x5)",
+    "investmentCost": 295
+  },
+  {
+    "id": "crafting-diagram-redanian-halberdier-s-armor-diagram",
+    "name": "Redanian Halberdier’s Armor Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 600,
+    "effect": "Craft Redanian Halberdier’s Armor",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 17,
+    "time": "9 Hours",
+    "components": "Hardened Leather (x2), Leather (x1), Tretegor Steel (x5), Thread (x5)",
+    "investmentCost": 299
+  },
+  {
+    "id": "crafting-diagram-scoia-tael-armor-diagram",
+    "name": "Scoia’tael Armor Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 3486,
+    "effect": "Craft Scoia’tael Armor",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 20,
+    "time": "20 Hours",
+    "components": "Dark Steel (x12), Wolf Hide (x3), Ester Grease (x10), Etching Acid (x12), Ashes (x10), Double Woven Linen (x7), Darkening Oil (x4), Hardened Timber (x12), Drake Oil (x2), Thread (x9)",
+    "investmentCost": 1738
+  },
+  {
+    "id": "crafting-diagram-short-bow-diagram",
+    "name": "Short Bow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 434,
+    "effect": "Craft Short Bow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 15,
+    "time": "8 Hours",
+    "components": "Hardened Timber (x4), Thread (x4), Wax (x2), Resin (x2), Ester Grease (x3), Iron (x1), Leather (x2)",
+    "investmentCost": 210
+  },
+  {
+    "id": "crafting-diagram-skellige-helm-diagram",
+    "name": "Skellige Helm Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1050,
+    "effect": "Craft Skellige Helm",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "6 Hours",
+    "components": "Dark Steel (x4), Hardened Leather (x2), Beast Bones (x5), Thread (x6), Drake Oil (x1)",
+    "investmentCost": 527
+  },
+  {
+    "id": "crafting-diagram-skellige-raider-shield-diagram",
+    "name": "Skellige Raider Shield Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 486,
+    "effect": "Craft Skellige Raider Shield",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 18,
+    "time": "5 Hours",
+    "components": "Hardened Timber (x5), Dark Steel (x1), Beast Bones (x5), Leather (x1), Ogre Wax (x1)",
+    "investmentCost": 240
+  },
+  {
+    "id": "crafting-diagram-spear-diagram",
+    "name": "Spear Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 562,
+    "effect": "Craft Spear",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 12,
+    "time": "6 Hours",
+    "components": "Hardened Timber (x5), Steel (x2), Resin (x2), Leather (x2)",
+    "investmentCost": 276
+  },
+  {
+    "id": "crafting-diagram-spectacle-helm-diagram",
+    "name": "Spectacle Helm Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 300,
+    "effect": "Craft Spectacle Helm",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 15,
+    "time": "4 Hours",
+    "components": "Steel (x3), Beast Bones (x1)",
+    "investmentCost": 152
+  },
+  {
+    "id": "crafting-diagram-staff-diagram",
+    "name": "Staff Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 502,
+    "effect": "Craft Staff",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 18,
+    "time": "9 Hours",
+    "components": "Timber (x6), Steel (x1), Fifth Essence (x2), Ester Grease (x2), Wax (x1)",
+    "investmentCost": 250
+  },
+  {
+    "id": "crafting-diagram-steel-buckler-diagram",
+    "name": "Steel Buckler Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 224,
+    "effect": "Craft Steel Buckler",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 15,
+    "time": "4 Hours",
+    "components": "Steel (x1), Hardened Timber (x1), Hardened Leather (x1), Ogre Wax (x2)",
+    "investmentCost": 112
+  },
+  {
+    "id": "crafting-diagram-steel-diagram",
+    "name": "Steel Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 70,
+    "effect": "Craft Steel",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 15,
+    "time": "1 Hour",
+    "components": "Iron (x1), Coal (x5)",
+    "investmentCost": 35
+  },
+  {
+    "id": "crafting-diagram-steel-diagram-crafting-diagrams",
+    "name": "Steel Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 217,
+    "effect": "Craft Steel",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 18,
+    "time": "5 Hours",
+    "components": "Steel (x2), Thread (x3), Etching Acid (x2)",
+    "investmentCost": 109
+  },
+  {
+    "id": "crafting-diagram-steel-kite-shield-diagram",
+    "name": "Steel Kite Shield Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 600,
+    "effect": "Craft Steel Kite Shield",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 17,
+    "time": "5 Hours",
+    "components": "Steel (x4), Dark Steel (x1), Leather (x1)",
+    "investmentCost": 302
+  },
+  {
+    "id": "crafting-diagram-stiletto-diagram",
+    "name": "Stiletto Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 412,
+    "effect": "Craft Stiletto",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "4 Hours",
+    "components": "Timber (x1), Resin (x1), Dark Steel (x1), Wax (x2), Darkening Oil (x1), Sharpening Grit (x2), Coal (x5)",
+    "investmentCost": 184
+  },
+  {
+    "id": "crafting-diagram-studded-leather-diagram",
+    "name": "Studded Leather Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 120,
+    "effect": "Craft Studded Leather",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 14,
+    "time": "3 Hours",
+    "components": "Leather (x1), Iron (x1), Thread (x1)",
+    "investmentCost": 61
+  },
+  {
+    "id": "crafting-diagram-temerian-armet-diagram",
+    "name": "Temerian Armet Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 712,
+    "effect": "Craft Temerian Armet",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 18,
+    "time": "5 Hours",
+    "components": "Steel (x4), Leather (x3), Hardened Leather (x3), Ester Grease (x2)",
+    "investmentCost": 352
+  },
+  {
+    "id": "crafting-diagram-temerian-shield-diagram",
+    "name": "Temerian Shield Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 342,
+    "effect": "Craft Temerian Shield",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 16,
+    "time": "4 Hours",
+    "components": "Hardened Timber (x3), Iron (x1), Hardened Leather (x3), Ogre Wax (x1)",
+    "investmentCost": 172
+  },
+  {
+    "id": "crafting-diagram-thread-diagram",
+    "name": "Thread Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 4,
+    "effect": "Craft Thread",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "15 Minutes",
+    "components": "Cotton (x2)",
+    "investmentCost": 2
+  },
+  {
+    "id": "crafting-diagram-throwing-axes-x3-diagram",
+    "name": "Throwing Axes (x3) Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 116,
+    "effect": "Craft Throwing Axes (x3)",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "1 Hour",
+    "components": "Timber (x2), Steel Ingot (x1)",
+    "investmentCost": 51
+  },
+  {
+    "id": "crafting-diagram-throwing-knives-x3-diagram",
+    "name": "Throwing Knives (x3) Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 74,
+    "effect": "Craft Throwing Knives (x3)",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 8,
+    "time": "1 Hour",
+    "components": "Steel Ingot (x1)",
+    "investmentCost": 48
+  },
+  {
+    "id": "crafting-diagram-tir-tochair-blade-diagram",
+    "name": "Tir Tochair Blade Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1776,
+    "effect": "Craft Tir Tochair Blade",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 26,
+    "time": "13 Hours",
+    "components": "Hardened Timber (x2), Hardened Leather (x1), Mahakaman Dimeritium (x2), Dark Steel (x1), Sharpening Grit (x1), Ester Grease (x2), Draconid Leather (x1)",
+    "investmentCost": 888
+  },
+  {
+    "id": "crafting-diagram-torr-wr-diagram",
+    "name": "Torr wr Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1462,
+    "effect": "Craft Torr wr",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 25,
+    "time": "13 Hours",
+    "components": "Hardened Timber (x3), Dark Steel (x5), Steel (x2), Hardened Leather (x3), Resin (x5), Ashes (x4), Beast Bones (x2), Sharpening Grit (x1)",
+    "investmentCost": 760
+  },
+  {
+    "id": "crafting-diagram-tretogor-steel-diagram",
+    "name": "Tretogor Steel Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 86,
+    "effect": "Craft Tretogor Steel",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "journeyman"
+    ],
+    "craftingDc": 16,
+    "time": "1 Hour",
+    "components": "Iron (x1), Coal (x5), Feathers (x2)",
+    "investmentCost": 43
+  },
+  {
+    "id": "crafting-diagram-verden-archer-s-hood-diagram",
+    "name": "Verden Archer’s Hood Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 150,
+    "effect": "Craft Verden Archer’s Hood",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "novice"
+    ],
+    "craftingDc": 10,
+    "time": "3 Hours",
+    "components": "Linen (x2), Leather (x1), Thread (x6), Wax (x3)",
+    "investmentCost": 70
+  },
+  {
+    "id": "crafting-diagram-vicovarian-blade-diagram",
+    "name": "Vicovarian Blade Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1282,
+    "effect": "Craft Vicovarian Blade",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "12 Hours",
+    "components": "Hardened Timber (x3), Dark Steel (x4), Dark Iron (x2), Hardened Leather (x3), Resin (x4), Ashes (x4), Beast Bones (x5)",
+    "investmentCost": 660
+  },
+  {
+    "id": "crafting-diagram-vrihedd-cavalry-sword-diagram",
+    "name": "Vrihedd Cavalry Sword Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1117,
+    "effect": "Craft Vrihedd Cavalry Sword",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 24,
+    "time": "12 Hours",
+    "components": "Hardened Timber (x2), Silk (x1), Dark Steel (x4), Sharpening Grit (x3), Ester Grease (x4), River Clay (x4)",
+    "investmentCost": 558
+  },
+  {
+    "id": "crafting-diagram-war-b-ow-diagram",
+    "name": "War B ow Diagram",
+    "category": "crafting-diagram",
+    "source": "crafting-diagrams",
+    "weight": 0.0,
+    "cost": 1296,
+    "effect": "Craft War B ow",
+    "tags": [
+      "crafting-diagram",
+      "crafting-diagrams",
+      "master"
+    ],
+    "craftingDc": 22,
+    "time": "11 Hours",
+    "components": "Hardened Timber (x6), Thread (x6), Wax (x4), Resin (x4), Ester Grease (x3), Dark Steel (x4), Hardened Leather (x1), Drake Oil (x2)",
+    "investmentCost": 626
+  },
+  {
+    "id": "food-drink-a-feast",
+    "name": "A Feast",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 5.0,
+    "cost": 100,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "food-drink-a-good-meal",
+    "name": "A Good Meal",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 2.5,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "food-drink-a-simple-meal",
+    "name": "A Simple Meal",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "food-drink-alcohest",
+    "name": "Alcohest",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "food-drink-beer",
+    "name": "Beer",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 5,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "food-drink-raw-meat",
+    "name": "Raw Meat",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "food-drink-spirits",
+    "name": "Spirits",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "food-drink-sweets",
+    "name": "Sweets",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 5,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "food-drink-wine",
+    "name": "Wine",
+    "category": "food-drink",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "food-drink",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-20m-of-rope",
+    "name": "20m of Rope",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.5,
+    "cost": 20,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-bedroll",
+    "name": "Bedroll",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.5,
+    "cost": 16,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-candles-x5",
+    "name": "Candles (x5)",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 5,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-chalk",
+    "name": "Chalk",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 2,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-dice-poker-board",
+    "name": "Dice Poker Board",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 25,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-flint-steel",
+    "name": "Flint & Steel",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 6,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-grappling-hook",
+    "name": "Grappling Hook",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 13,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-gwent-deck",
+    "name": "Gwent Deck",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 5,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-hand-mirror",
+    "name": "Hand Mirror",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 27,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-holy-symbol",
+    "name": "Holy Symbol",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 14,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-hourglass",
+    "name": "Hourglass",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 38,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-hourglass-minute",
+    "name": "Hourglass, Minute",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 18,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-instrument",
+    "name": "Instrument",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 38,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-journal-ledger",
+    "name": "Journal/Ledger",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-lantern",
+    "name": "Lantern",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 33,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-lantern-bullseye",
+    "name": "Lantern, Bullseye",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 39,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-loaded-dice",
+    "name": "Loaded Dice",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 12,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-lock",
+    "name": "Lock",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 34,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-lock-strong",
+    "name": "Lock, Strong",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 68,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-manacles",
+    "name": "Manacles",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 30,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-map-of-the-continent",
+    "name": "Map of the Continent",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 18,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-perfume-cologne",
+    "name": "Perfume/Cologne",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 22,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-pipe",
+    "name": "Pipe",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 19,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-pitons-x5",
+    "name": "Pitons (x5)",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.5,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-prosthetic-basic",
+    "name": "Prosthetic, Basic",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.0,
+    "cost": 50,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-prosthetic-quality",
+    "name": "Prosthetic, Quality",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.5,
+    "cost": 100,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-shackles",
+    "name": "Shackles",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 2.0,
+    "cost": 50,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-soap",
+    "name": "Soap",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 4,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-tarp",
+    "name": "Tarp",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 1.5,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-tent",
+    "name": "Tent",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 4.0,
+    "cost": 19,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-tent-large",
+    "name": "Tent, Large",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 8.0,
+    "cost": 36,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "general-gear-tobacco",
+    "name": "Tobacco",
+    "category": "general-gear",
+    "source": "general-gear",
+    "weight": 0.1,
+    "cost": 4,
+    "effect": "",
+    "tags": [
+      "general-gear",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "glyph-glyph-of-air",
+    "name": "Glyph of Air",
+    "category": "glyph",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "When wearing this armor, either your spell DCs rise by 3 or your spell damage increases by 1d6. This applies only to air spells.",
+    "tags": [
+      "glyph",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "glyph-glyph-of-earth",
+    "name": "Glyph of Earth",
+    "category": "glyph",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "When wearing this armor, either your spell DCs rise by 3 or your spell damage increases by 1d6. This applies only to earth spells.",
+    "tags": [
+      "glyph",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "glyph-glyph-of-fire",
+    "name": "Glyph of Fire",
+    "category": "glyph",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "When wearing this armor, either your spell DCs rise by 3 or your spell damage increases by 1d6. This applies only to fire spells.",
+    "tags": [
+      "glyph",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "glyph-glyph-of-magic",
+    "name": "Glyph of Magic",
+    "category": "glyph",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "When wearing this armor, either your spell DCs rise by 3 or your spell damage increases by 1d6. This applies only to mixed element spells.",
+    "tags": [
+      "glyph",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "glyph-glyph-of-water",
+    "name": "Glyph of Water",
+    "category": "glyph",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "When wearing this armor, either your spell DCs rise by 3 or your spell damage increases by 1d6. This applies only to water spells.",
+    "tags": [
+      "glyph",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "lodging-average-inn-room-per-night",
+    "name": "Average Inn Room (Per Night)",
+    "category": "lodging",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 16,
+    "effect": "",
+    "tags": [
+      "lodging",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "lodging-cheap-inn-room-per-night",
+    "name": "Cheap Inn Room (Per Night)",
+    "category": "lodging",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "lodging",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "lodging-high-class-inn-room-per-night",
+    "name": "High Class Inn Room (Per Night)",
+    "category": "lodging",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 72,
+    "effect": "",
+    "tags": [
+      "lodging",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "lodging-quality-inn-room-per-night",
+    "name": "Quality Inn Room (Per Night)",
+    "category": "lodging",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 36,
+    "effect": "",
+    "tags": [
+      "lodging",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "lodging-sketchy-inn-room-per-night",
+    "name": "Sketchy Inn Room (Per Night)",
+    "category": "lodging",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 4,
+    "effect": "",
+    "tags": [
+      "lodging",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "lodging-stabling-per-night",
+    "name": "Stabling (Per Night)",
+    "category": "lodging",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 2,
+    "effect": "",
+    "tags": [
+      "lodging",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "lodging-straw-on-the-floor-per-night",
+    "name": "Straw On the Floor (Per Night)",
+    "category": "lodging",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 2,
+    "effect": "",
+    "tags": [
+      "lodging",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "mount-gear-blinders",
+    "name": "Blinders",
+    "category": "mount-gear",
+    "source": "transportation",
+    "weight": 0.1,
+    "cost": 100,
+    "effect": "+1 to calm your mount",
+    "tags": [
+      "mount-gear",
+      "transportation",
+      "e"
+    ],
+    "avail": "E"
+  },
+  {
+    "id": "mount-gear-leather-barding",
+    "name": "Leather Barding",
+    "category": "mount-gear",
+    "source": "transportation",
+    "weight": 10.0,
+    "cost": 550,
+    "effect": "SP: 10 to your whole mount",
+    "tags": [
+      "mount-gear",
+      "transportation",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "mount-gear-military-saddlebags",
+    "name": "Military Saddlebags",
+    "category": "mount-gear",
+    "source": "transportation",
+    "weight": 2.0,
+    "cost": 150,
+    "effect": "Rugged saddlebags that have enough room to carry 50kg of small or medium items in each of the two bags, with straps for up to 6 large items on the outside.",
+    "tags": [
+      "mount-gear",
+      "transportation",
+      "p"
+    ],
+    "avail": "P"
+  },
+  {
+    "id": "mount-gear-racing-blinders",
+    "name": "Racing Blinders",
+    "category": "mount-gear",
+    "source": "transportation",
+    "weight": 0.1,
+    "cost": 125,
+    "effect": "+2 to calm your mount",
+    "tags": [
+      "mount-gear",
+      "transportation",
+      "c"
+    ],
+    "avail": "C"
+  },
+  {
+    "id": "mount-gear-saddle",
+    "name": "Saddle",
+    "category": "mount-gear",
+    "source": "transportation",
+    "weight": 5.0,
+    "cost": 100,
+    "effect": "No penalties for Riding",
+    "tags": [
+      "mount-gear",
+      "transportation",
+      "e"
+    ],
+    "avail": "E"
+  },
+  {
+    "id": "mount-vehicle-carriage",
+    "name": "Carriage",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 600.0,
+    "cost": 660,
+    "effect": "Athletics N/A; Control -1; Speed Animal’s -3; Health 60",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mount-vehicle-cart",
+    "name": "Cart",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 300.0,
+    "cost": 200,
+    "effect": "Athletics N/A; Control +0; Speed Animal’s -1; Health 30",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mount-vehicle-cutter",
+    "name": "Cutter",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 610.0,
+    "cost": 1670,
+    "effect": "Athletics N/A; Control +0; Speed 10; Health 60",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mount-vehicle-horse",
+    "name": "Horse",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 100.0,
+    "cost": 520,
+    "effect": "Athletics 15; Control +2; Speed 20; Health 30",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mount-vehicle-mule",
+    "name": "Mule",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 150.0,
+    "cost": 200,
+    "effect": "Athletics 10; Control +0; Speed 15; Health 40",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mount-vehicle-ox",
+    "name": "Ox",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 300.0,
+    "cost": 278,
+    "effect": "Athletics 8; Control -2; Speed 15; Health 65",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mount-vehicle-sailing-boat",
+    "name": "Sailing Boat",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 130.0,
+    "cost": 230,
+    "effect": "Athletics N/A; Control -1; Speed 6; Health 30",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mount-vehicle-sailing-ship",
+    "name": "Sailing Ship",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 2040.0,
+    "cost": 2180,
+    "effect": "Athletics N/A; Control -2; Speed 8; Health 80",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mount-vehicle-war-horse",
+    "name": "War Horse",
+    "category": "mount-vehicle",
+    "source": "transportation",
+    "weight": 270.0,
+    "cost": 1600,
+    "effect": "Athletics 12; Control -2; Speed 18; Health 50",
+    "tags": [
+      "mount-vehicle",
+      "transportation"
+    ]
+  },
+  {
+    "id": "mutagen-arachas-mutagen",
+    "name": "Arachas Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+5 HP",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "green",
+      "witcher"
+    ],
+    "alchemyDc": 18,
+    "minorMutation": "Green bodily fluids"
+  },
+  {
+    "id": "mutagen-fiend-mutagen",
+    "name": "Fiend Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+1 BODY",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "green",
+      "witcher"
+    ],
+    "alchemyDc": 22,
+    "minorMutation": "Small antlers"
+  },
+  {
+    "id": "mutagen-golem-mutagen",
+    "name": "Golem Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+2 Vigor threshold",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "blue",
+      "witcher"
+    ],
+    "alchemyDc": 18,
+    "minorMutation": "Hard protrusions"
+  },
+  {
+    "id": "mutagen-grave-mutagen",
+    "name": "Grave Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "Hag +5 HP",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "green",
+      "witcher"
+    ],
+    "alchemyDc": 18,
+    "minorMutation": "Long grey tongue"
+  },
+  {
+    "id": "mutagen-griffin-mutagen",
+    "name": "Griffin Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+2 melee damage",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "red",
+      "witcher"
+    ],
+    "alchemyDc": 18,
+    "minorMutation": "Feather growth"
+  },
+  {
+    "id": "mutagen-katakan-mutagen",
+    "name": "Katakan Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+1 REF",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "red",
+      "witcher"
+    ],
+    "alchemyDc": 22,
+    "minorMutation": "Gangly proportions"
+  },
+  {
+    "id": "mutagen-nekker-mutagen",
+    "name": "Nekker Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+1 melee damage",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "red",
+      "witcher"
+    ],
+    "alchemyDc": 15,
+    "minorMutation": "Baldness & grey skin"
+  },
+  {
+    "id": "mutagen-noonwraith-mutagen",
+    "name": "Noonwraith Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+10 HP",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "green",
+      "witcher"
+    ],
+    "alchemyDc": 20,
+    "minorMutation": "Dry, taut skin"
+  },
+  {
+    "id": "mutagen-rock-mutagen",
+    "name": "Rock Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "Troll +10 HP",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "green",
+      "witcher"
+    ],
+    "alchemyDc": 20,
+    "minorMutation": "Hunched posture"
+  },
+  {
+    "id": "mutagen-siren-mutagen",
+    "name": "Siren Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+1 Vigor threshold",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "blue",
+      "witcher"
+    ],
+    "alchemyDc": 15,
+    "minorMutation": "Small fins"
+  },
+  {
+    "id": "mutagen-werewolf-mutagen",
+    "name": "Werewolf Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+3 melee damage",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "red",
+      "witcher"
+    ],
+    "alchemyDc": 20,
+    "minorMutation": "Rapid hair growth"
+  },
+  {
+    "id": "mutagen-wyvern-mutagen",
+    "name": "Wyvern Mutagen",
+    "category": "mutagen",
+    "source": "mutagens",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+3 melee damage",
+    "tags": [
+      "mutagen",
+      "mutagens",
+      "red",
+      "witcher"
+    ],
+    "alchemyDc": 20,
+    "minorMutation": "Rough skin"
+  },
+  {
+    "id": "relic-item-caroline",
+    "name": "Caroline",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 20",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-cleaver-hood",
+    "name": "Cleaver Hood",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 16",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-decapitator",
+    "name": "Decapitator",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 14",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-devine",
+    "name": "Devine",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 18",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-draug-armor",
+    "name": "Draug Armor",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 18",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-fate",
+    "name": "Fate",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 19",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-maugrim",
+    "name": "Maugrim",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 22",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-moon-blade",
+    "name": "Moon Blade",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 18",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-mountain-folk-armor",
+    "name": "Mountain Folk Armor",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 16",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-ogh-r",
+    "name": "Ogh’r",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 17",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-raven-s-armor",
+    "name": "Raven’s Armor",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 14",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-red-death",
+    "name": "Red Death",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 16",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-succubus-wand",
+    "name": "Succubus’ Wand",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 20",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-the-abyss-guard",
+    "name": "The Abyss Guard",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 18",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-the-moon-bow",
+    "name": "The Moon Bow",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 17",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-thorn",
+    "name": "Thorn",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 15",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "relic-item-wolf",
+    "name": "Wolf",
+    "category": "relic-item",
+    "source": "relic-items",
+    "weight": 0.0,
+    "cost": 0,
+    "effect": "Education DC: 16",
+    "tags": [
+      "relic-item",
+      "relic-items",
+      "relic"
+    ]
+  },
+  {
+    "id": "rune-chemobog",
+    "name": "Chemobog",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "Roll 1d6 when your weapon would take damage. On a roll of a 4, 5, or 6, the weapon takes no damage.",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-dazhbog",
+    "name": "Dazhbog",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 600,
+    "effect": "Fire (30%)",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-devanna",
+    "name": "Devanna",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "Bleed (30%)",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-morana",
+    "name": "Morana",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "Poison (30%)",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-perun",
+    "name": "Perun",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "Each time you gain an adrenaline die, add a second one.",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-stribog",
+    "name": "Stribog",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 500,
+    "effect": "Stagger (30%)",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-svarog",
+    "name": "Svarog",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 600,
+    "effect": "Armor Piercing",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-triglav",
+    "name": "Triglav",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 575,
+    "effect": "Stun (-1)",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-veles",
+    "name": "Veles",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 600,
+    "effect": "Greater Focus",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "rune-zoria",
+    "name": "Zoria",
+    "category": "rune",
+    "source": "runes-glyphs",
+    "weight": 0.5,
+    "cost": 550,
+    "effect": "Freeze (30%)",
+    "tags": [
+      "rune",
+      "runes-glyphs"
+    ]
+  },
+  {
+    "id": "services-bath-cold",
+    "name": "Bath, Cold",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-bath-hot",
+    "name": "Bath, Hot",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 16,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-carriage-ride",
+    "name": "Carriage Ride",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 85,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-chronicler",
+    "name": "Chronicler",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 25,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-craftsman-per-piece",
+    "name": "Craftsman (Per Piece)",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 35,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-doctor-per-patient",
+    "name": "Doctor (Per Patient)",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 50,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-entertainment-per-hour",
+    "name": "Entertainment (Per Hour)",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-hireling-per-day",
+    "name": "Hireling (Per Day)",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 15,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-investigator",
+    "name": "Investigator",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 45,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-laundry",
+    "name": "Laundry",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 8,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-lawyer",
+    "name": "Lawyer",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 50,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-messenger",
+    "name": "Messenger",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-prostitute-per-hour",
+    "name": "Prostitute (Per Hour)",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 12,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-rented-horse-per-day",
+    "name": "Rented Horse (Per Day)",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 50,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-sea-voyage",
+    "name": "Sea Voyage",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 85,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "services-toll-gate",
+    "name": "Toll Gate",
+    "category": "services",
+    "source": "general-gear",
+    "weight": 0.0,
+    "cost": 10,
+    "effect": "",
+    "tags": [
+      "services",
+      "general-gear"
+    ]
+  },
+  {
+    "id": "tool-kit-alchemy-set",
+    "name": "Alchemy Set",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 3.0,
+    "cost": 80,
+    "effect": "Allows you to craft alchemical items",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "L"
+  },
+  {
+    "id": "tool-kit-amulet-gemstone",
+    "name": "Amulet, Gemstone",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 0.1,
+    "cost": 500,
+    "effect": "Focus (3)",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "T"
+  },
+  {
+    "id": "tool-kit-amulet-simple",
+    "name": "Amulet, Simple",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 0.1,
+    "cost": 250,
+    "effect": "Focus (1)",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "T"
+  },
+  {
+    "id": "tool-kit-cooking-tools",
+    "name": "Cooking Tools",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 3.0,
+    "cost": 15,
+    "effect": "Allows you to cook",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "L"
+  },
+  {
+    "id": "tool-kit-crafting-tools",
+    "name": "Crafting Tools",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 5.0,
+    "cost": 83,
+    "effect": "Allows you to craft weapons & armor",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "L"
+  },
+  {
+    "id": "tool-kit-disguise-kit",
+    "name": "Disguise Kit",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 1.0,
+    "cost": 58,
+    "effect": "+2 Disguise",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "S"
+  },
+  {
+    "id": "tool-kit-fine-art-tools",
+    "name": "Fine Art Tools",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 0.5,
+    "cost": 27,
+    "effect": "Allows you to create a form of art (Painting, Jewelry, Sculpture, etc.) S 2 55 Fishing Gear +2 Wilderness Survival for fishing",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "T"
+  },
+  {
+    "id": "tool-kit-forgery-kit",
+    "name": "Forgery Kit",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 0.5,
+    "cost": 58,
+    "effect": "Allows you to make false coins & false documents",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "S"
+  },
+  {
+    "id": "tool-kit-makeup-kit",
+    "name": "Makeup Kit",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 0.5,
+    "cost": 35,
+    "effect": "+2 Seduction & Charisma",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "T"
+  },
+  {
+    "id": "tool-kit-merchant-s-tools",
+    "name": "Merchant’s Tools",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 1.5,
+    "cost": 60,
+    "effect": "+2 Business for appraising goods",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "S"
+  },
+  {
+    "id": "tool-kit-surgeon-s-kit",
+    "name": "Surgeon’s Kit",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 1.0,
+    "cost": 83,
+    "effect": "Allows you to perform surgery",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "S"
+  },
+  {
+    "id": "tool-kit-telecommunicator",
+    "name": "Telecommunicator",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 4,
+    "cost": 1000,
+    "effect": "Allows you to communicate with the Telecommunication ritual",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "L"
+  },
+  {
+    "id": "tool-kit-thieves-tools",
+    "name": "Thieves’ Tools",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 1,
+    "cost": 80,
+    "effect": "Allows you to pick locks",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "T"
+  },
+  {
+    "id": "tool-kit-tinker-s-forge",
+    "name": "Tinker’s Forge",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 5,
+    "cost": 111,
+    "effect": "Allows you to forge weapons and armor anywhere",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "L"
+  },
+  {
+    "id": "tool-kit-writing-kit",
+    "name": "Writing Kit",
+    "category": "tool-kit",
+    "source": "tool-kits",
+    "weight": 1,
+    "cost": 25,
+    "effect": "Allows you to write letters, notes, and such",
+    "tags": [
+      "tool-kit",
+      "tool-kits"
+    ],
+    "concealment": "S"
+  },
+  {
+    "id": "witcher-potion-cat",
+    "name": "Cat",
+    "category": "witcher-potion",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "No penalties for darkness or dim light. Y ou also cannot be hypnotised, and gain a +2 to see through illusions.",
+    "tags": [
+      "witcher-potion",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "2 Hours",
+    "toxicity": "25%"
+  },
+  {
+    "id": "witcher-potion-full",
+    "name": "Full",
+    "category": "witcher-potion",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "Moon Grants you +30 temporary Health Points until the end of the duration. Full Moon potions do not stack with one another.",
+    "tags": [
+      "witcher-potion",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "1/2 Hour",
+    "toxicity": "75%"
+  },
+  {
+    "id": "witcher-potion-golden-oriole-grants-immunity-to-poisons-and-neutralizes-any-poisons-in-your",
+    "name": "Golden Oriole Grants immunity to poisons and neutralizes any poisons in your",
+    "category": "witcher-potion",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "system.",
+    "tags": [
+      "witcher-potion",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "1/2 Hour",
+    "toxicity": "50%"
+  },
+  {
+    "id": "witcher-potion-killer-whale-increases-your-ability-to-hold-your-breath-by-half-and-negates",
+    "name": "Killer Whale Increases your ability to hold your breath by half and negates",
+    "category": "witcher-potion",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "sight penalties underwater.",
+    "tags": [
+      "witcher-potion",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "1/2 Hour",
+    "toxicity": "25%"
+  },
+  {
+    "id": "witcher-potion-maribor",
+    "name": "Maribor",
+    "category": "witcher-potion",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "Forest Each time you gain an adrenaline die, add a second one.",
+    "tags": [
+      "witcher-potion",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "15 Rounds",
+    "toxicity": "50%"
+  },
+  {
+    "id": "witcher-potion-petri-s",
+    "name": "Petri’s",
+    "category": "witcher-potion",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "Filter +2 point in Spellcasting, Hex Weaving, and Ritual Crafting",
+    "tags": [
+      "witcher-potion",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "15 Rounds",
+    "toxicity": "75%"
+  },
+  {
+    "id": "witcher-potion-thunderbolt",
+    "name": "Thunderbolt",
+    "category": "witcher-potion",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "+3 damage on physical attacks.",
+    "tags": [
+      "witcher-potion",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "15 Rounds",
+    "toxicity": "75%"
+  },
+  {
+    "id": "witcher-potion-white",
+    "name": "White",
+    "category": "witcher-potion",
+    "source": "witcher-gear",
+    "weight": 0.5,
+    "cost": 0,
+    "effect": "Honey Clears toxicity and removes all potion effects.",
+    "tags": [
+      "witcher-potion",
+      "witcher-gear",
+      "consumable",
+      "witcher"
+    ],
+    "duration": "N/A",
+    "toxicity": "N/A"
+  }
+]

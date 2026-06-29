@@ -33,7 +33,7 @@ interface Props {
   isEnemyStatblock: boolean;
 }
 
-type ModalField = "level" | "ip" | "trainingIp" | "nickname";
+type ModalField = "level" | "ip" | "trainingIp" | "nickname" | "crowns";
 
 function hpColorClass(current: number, max: number): "high" | "medium" | "low" {
   if (max === 0) return "low";
@@ -101,6 +101,7 @@ export default function CharacterInfoBar({
   const canEdit = isDM;
   const ip = character.improvementPoints?.ip ?? 0;
   const trainingIp = character.improvementPoints?.trainingIp ?? 0;
+  const crowns = character.crowns ?? 0;
   const level = character.creation?.level ?? 1;
   const luckUsed = character.luck?.used ?? 0;
   const luckMax = derived.luckMax || character.luck?.max || 0;
@@ -256,6 +257,15 @@ export default function CharacterInfoBar({
         {isPlayerSheet && (
           <>
             <div
+              className="info-chip info-chip--money"
+              role={canEdit ? "button" : undefined}
+              onClick={canEdit ? () => setModal("crowns") : undefined}
+              title={canEdit ? "Edit crowns" : undefined}
+            >
+              <span className="chip-label">Crowns</span>
+              <span className="chip-value">{crowns}</span>
+            </div>
+            <div
               className="info-chip"
               role={canEdit ? "button" : undefined}
               onClick={canEdit ? () => setModal("ip") : undefined}
@@ -275,6 +285,19 @@ export default function CharacterInfoBar({
         )}
       </div>
 
+      {modal === "crowns" && (
+        <ValueInputModal
+          type="number"
+          title="Edit Crowns"
+          initial={crowns}
+          min={0}
+          onConfirm={(v) => {
+            update({ crowns: v });
+            setModal(null);
+          }}
+          onClose={() => setModal(null)}
+        />
+      )}
       {modal === "level" && (
         <ValueInputModal
           type="number"

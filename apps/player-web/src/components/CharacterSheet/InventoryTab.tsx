@@ -5,12 +5,19 @@ interface Props {
 }
 
 export default function InventoryTab({ character }: Props) {
-  const consumables = character.consumables ?? [];
+  const inventory = character.inventory ?? [];
+  const totalWeight = inventory.reduce(
+    (sum, item) => sum + (item.qty ?? 0) * (item.weight ?? 0),
+    0,
+  );
 
   return (
     <section className="panel">
-      <div className="panel-title">Consumables</div>
-      {consumables.length === 0 ? (
+      <div className="panel-title">Inventory</div>
+      <p className="sheet-muted">
+        Total carried item weight: {Number(totalWeight.toFixed(2))} kg
+      </p>
+      {inventory.length === 0 ? (
         <p className="readonly-empty">None</p>
       ) : (
         <div className="dynamic-table-wrap">
@@ -19,17 +26,21 @@ export default function InventoryTab({ character }: Props) {
               <tr>
                 <th>Qty</th>
                 <th>Name</th>
+                <th>Category</th>
                 <th>Effect</th>
                 <th>Wt</th>
+                <th>Cost</th>
               </tr>
             </thead>
             <tbody>
-              {consumables.map((c) => (
+              {inventory.map((c) => (
                 <tr key={c.id ?? c.name}>
                   <td>{c.qty}</td>
                   <td>{c.name}</td>
+                  <td>{c.category}</td>
                   <td>{c.effect}</td>
                   <td>{c.weight}</td>
+                  <td>{c.cost ?? 0}</td>
                 </tr>
               ))}
             </tbody>

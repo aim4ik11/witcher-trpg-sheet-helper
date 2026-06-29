@@ -41,6 +41,7 @@ export default function CharacterInfoBar({ character, hpMax, staMax, playerCanSp
   const luckMax = character.luck?.max ?? character.attributes?.luck ?? 0;
   const ip = character.improvementPoints?.ip ?? 0;
   const trainingIp = character.improvementPoints?.trainingIp ?? 0;
+  const crowns = character.crowns ?? 0;
   const occupation = character.occupation || "";
 
   const metaParts = [
@@ -48,7 +49,7 @@ export default function CharacterInfoBar({ character, hpMax, staMax, playerCanSp
     occupation ? occupationLabel(occupation) : "",
   ].filter(Boolean);
 
-  const showResources = luckMax > 0 || playerCanSpend;
+  const showResources = luckMax > 0 || playerCanSpend || crowns > 0;
 
   return (
     <div className="char-info-bar">
@@ -91,6 +92,10 @@ export default function CharacterInfoBar({ character, hpMax, staMax, playerCanSp
               </div>
             </div>
           )}
+          <div className="info-chip info-chip--static info-chip--money">
+            <span className="chip-label">Crowns</span>
+            <span className="chip-value">{crowns}</span>
+          </div>
           {playerCanSpend && (
             <>
               <div className="info-chip info-chip--static">

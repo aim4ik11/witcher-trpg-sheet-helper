@@ -98,6 +98,11 @@ function itemSubtitle(item: CatalogItem): string {
   if (w["dmg"]) return [w["type"], w["dmg"], w["hand"]].filter(Boolean).join(" · ");
   if (w["sp"] != null) return `SP ${w["sp"]}${w["slot"] ? ` · ${w["slot"]}` : ""}`;
   if (w["category"]) {
+    if (w["source"] || w["cost"] != null || w["weight"] != null) {
+      return [w["category"], w["source"], w["weight"] ? `${w["weight"]} kg` : "", w["cost"] ? `${w["cost"]} cr` : ""]
+        .filter(Boolean)
+        .join(" · ");
+    }
     const sta = w["staCostText"] || (w["staCost"] ? `STA ${w["staCost"]}` : "");
     return [sta, w["defense"], w["range"], w["tier"], w["element"]]
       .filter(Boolean)

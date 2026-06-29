@@ -2,6 +2,7 @@ import type { Spell } from "@wilmak/shared";
 import weaponsCatalog from "./data/weapons.json";
 import armorCatalog from "./data/armor.json";
 import magicCatalog from "./data/magic.json";
+import itemsCatalog from "./data/items.json";
 
 export interface CatalogWeapon {
   id: string;
@@ -49,14 +50,34 @@ export interface CatalogMagic {
   tags?: string[];
 }
 
-export type CatalogItem = CatalogWeapon | CatalogArmor | CatalogMagic;
+export interface CatalogInventoryItem {
+  id: string;
+  name: string;
+  category: string;
+  source?: string;
+  weight?: number;
+  cost?: number;
+  effect?: string;
+  rarity?: string;
+  avail?: string;
+  quantity?: string;
+  forageDc?: string;
+  location?: string;
+  duration?: string;
+  toxicity?: string;
+  time?: string;
+  tags?: string[];
+}
+
+export type CatalogItem = CatalogWeapon | CatalogArmor | CatalogMagic | CatalogInventoryItem;
 
 export const WEAPONS_CATALOG: CatalogWeapon[] = weaponsCatalog as CatalogWeapon[];
 export const ARMOR_CATALOG: CatalogArmor[] = armorCatalog as CatalogArmor[];
 export const MAGIC_CATALOG: CatalogMagic[] = magicCatalog as CatalogMagic[];
+export const ITEMS_CATALOG: CatalogInventoryItem[] = itemsCatalog as CatalogInventoryItem[];
 
 function searchText(item: CatalogItem): string {
-  const w = item as CatalogWeapon & CatalogArmor & CatalogMagic;
+  const w = item as unknown as Record<string, unknown>;
   return [
     item.id,
     item.name,
@@ -75,6 +96,13 @@ function searchText(item: CatalogItem): string {
     w.staCostText,
     w.danger,
     w.components,
+    w.source,
+    w.rarity,
+    w.avail,
+    w.quantity,
+    w.forageDc,
+    w.location,
+    w.toxicity,
     ...(item.tags ?? []),
   ]
     .filter(Boolean)
@@ -141,6 +169,20 @@ export function catalogToSpell(item: CatalogMagic, category?: string) {
     defense: item.defense ?? "",
     catalogId: item.id,
     element,
+  };
+}
+
+export function catalogToInventoryItem(item: CatalogInventoryItem, qty = 1) {
+  return {
+    id: crypto.randomUUID(),
+    qty,
+    name: item.name,
+    category: item.category,
+    effect: item.effect ?? "",
+    weight: item.weight ?? 0,
+    cost: item.cost ?? 0,
+    catalogId: item.id,
+    source: item.source ?? "",
   };
 }
 

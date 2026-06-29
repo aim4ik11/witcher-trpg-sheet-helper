@@ -54,6 +54,25 @@ export interface CharacterLike {
   movement?: { run?: number; leap?: number };
   recovery?: { stun?: number; rec?: number };
   bonusMelee?: { punch?: string; kick?: string };
+  crowns?: number;
+  inventory?: {
+    id?: string;
+    qty?: number;
+    name?: string;
+    category?: string;
+    effect?: string;
+    weight?: number;
+    cost?: number;
+    catalogId?: string;
+    source?: string;
+  }[];
+  consumables?: {
+    id?: string;
+    qty?: number;
+    name?: string;
+    effect?: string;
+    weight?: number;
+  }[];
   /** @deprecated Optional rule removed — stripped on normalize. */
   adrenaline?: number;
 }
@@ -195,6 +214,35 @@ function migrateProfessionTree(char: CharacterLike): Record<string, number> | un
   return Object.keys(tree).length ? tree : undefined;
 }
 
+function migrateInventory(char: CharacterLike) {
+  const inventory = (char.inventory ?? []).map((item) => ({
+    id: item.id ?? crypto.randomUUID(),
+    qty: item.qty ?? 1,
+    name: item.name ?? "",
+    category: item.category ?? "custom",
+    effect: item.effect ?? "",
+    weight: item.weight ?? 0,
+    ...(item.cost != null ? { cost: item.cost } : {}),
+    ...(item.catalogId ? { catalogId: item.catalogId } : {}),
+    ...(item.source ? { source: item.source } : {}),
+  }));
+  if (inventory.length > 0) return inventory;
+  return (char.consumables ?? []).map((item) => ({
+    id: item.id ?? crypto.randomUUID(),
+    qty: item.qty ?? 1,
+    name: item.name ?? "",
+    category: "consumable",
+    effect: item.effect ?? "",
+    weight: item.weight ?? 0,
+  }));
+}
+
+function normalizeCrowns(value: number | undefined): number | undefined {
+  if (value == null) return undefined;
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.floor(value));
+}
+
 function stripRemovedFields<T extends CharacterLike>(char: T): T {
   const next = { ...char };
   delete next.adrenaline;
@@ -219,6 +267,7 @@ export function normalizeCharacter<T extends CharacterLike>(char: T): T {
   const definingSkillLevel =
     professionTree?.[`${normalizeOccupation(occupation)}:core`] ??
     migrateDefiningSkillLevel(cleaned);
+  const inventory = migrateInventory(cleaned);
 
   const next = {
     ...cleaned,
@@ -226,6 +275,8 @@ export function normalizeCharacter<T extends CharacterLike>(char: T): T {
     occupation,
     attributes,
     skills,
+    crowns: normalizeCrowns(cleaned.crowns),
+    inventory,
     ...(professionTree ? { professionTree } : {}),
     ...(definingSkillLevel != null ? { definingSkillLevel } : {}),
   };

@@ -18,9 +18,11 @@ export interface ProgressionCharacter {
   enemyKind?: string;
   bestiaryId?: string;
   monsterProfile?: unknown;
+  crowns?: number;
   weapons?: unknown;
   armor?: unknown;
   armorNotes?: string;
+  inventory?: unknown;
   consumables?: unknown;
   spells?: unknown;
   wounds?: unknown;
@@ -100,9 +102,11 @@ export function isPlayerProgressionPatch(
     "bestiaryId",
     "monsterProfile",
     "creation",
+    "crowns",
     "weapons",
     "armor",
     "armorNotes",
+    "inventory",
     "consumables",
     "spells",
     "wounds",

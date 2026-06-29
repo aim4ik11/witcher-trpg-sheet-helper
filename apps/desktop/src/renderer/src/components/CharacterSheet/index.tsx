@@ -16,9 +16,11 @@ import {
 } from "@wilmak/game-data";
 import {
   WEAPONS_CATALOG,
+  ITEMS_CATALOG,
   catalogToWeapon,
   catalogToArmorPiece,
   catalogToSpell,
+  catalogToInventoryItem,
   getArmorForSlot,
   getMagicForCategory,
 } from "@wilmak/game-data";
@@ -64,7 +66,7 @@ function trainedSkills(character: Character) {
 }
 
 interface PickerState {
-  kind: "weapon" | "armor" | "magic";
+  kind: "weapon" | "armor" | "magic" | "item";
   slotIndex?: number;
   slot?: string;
   category?: string;
@@ -296,6 +298,7 @@ export default function CharacterSheet({
                 character={character}
                 update={update}
                 readOnly={readOnly}
+                setPicker={setPicker}
               />
             )}
 
@@ -391,6 +394,43 @@ export default function CharacterSheet({
             ]);
             setPicker(null);
           }}
+          onClose={() => setPicker(null)}
+        />
+      )}
+
+      {picker?.kind === "item" && (
+        <CatalogPickerModal
+          title="Add Inventory Item"
+          items={ITEMS_CATALOG}
+          onSelect={(item) => {
+            update({
+              inventory: [
+                ...(character.inventory ?? []),
+                catalogToInventoryItem(
+                  item as Parameters<typeof catalogToInventoryItem>[0],
+                ),
+              ],
+            });
+            setPicker(null);
+          }}
+          onCustom={() => {
+            update({
+              inventory: [
+                ...(character.inventory ?? []),
+                {
+                  id: crypto.randomUUID(),
+                  qty: 1,
+                  name: "",
+                  category: "custom",
+                  effect: "",
+                  weight: 0,
+                  cost: 0,
+                },
+              ],
+            });
+            setPicker(null);
+          }}
+          customLabel="Add custom item"
           onClose={() => setPicker(null)}
         />
       )}

@@ -135,6 +135,18 @@ export interface ConsumableItem {
   weight: number;
 }
 
+export interface InventoryItem {
+  id: string;
+  qty: number;
+  name: string;
+  category: string;
+  effect: string;
+  weight: number;
+  cost?: number;
+  catalogId?: string;
+  source?: string;
+}
+
 export interface ProfessionAbility {
   id: string;
   name: string;
@@ -416,10 +428,14 @@ export interface Character {
   movement?: { run: number; leap: number };
   recovery?: { stun: number; rec: number };
   improvementPoints?: { ip: number; trainingIp: number };
+  /** Currency carried by the character, in crowns. */
+  crowns?: number;
   weapons?: Weapon[];
   armor?: ArmorPiece[];
   armorNotes?: string;
   bonusMelee?: { punch: string; kick: string };
+  inventory?: InventoryItem[];
+  /** @deprecated Migrated to inventory — kept for legacy saves. */
   consumables?: ConsumableItem[];
   spells?: Spell[];
   /** @deprecated Migrated to definingSkillLevel — kept for legacy saves. */

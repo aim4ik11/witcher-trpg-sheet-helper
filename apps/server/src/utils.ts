@@ -95,6 +95,7 @@ export function makeCharacter(
     movement: { run: 0, leap: 0 },
     recovery: { stun: 0, rec: 0 },
     improvementPoints: { ip: 0, trainingIp: 0 },
+    crowns: 0,
     weapons: [],
     armor: [
       { slot: "head", name: "", sp: 0, damage: 0, effects: "", weight: 0 },
@@ -106,6 +107,7 @@ export function makeCharacter(
     ],
     armorNotes: "",
     bonusMelee: { punch: "", kick: "" },
+    inventory: [],
     consumables: [],
     spells: [],
     wounds: [],

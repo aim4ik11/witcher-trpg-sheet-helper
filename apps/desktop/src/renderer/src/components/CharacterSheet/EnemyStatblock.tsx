@@ -1,7 +1,10 @@
+import { useState } from "react";
 import type { Character } from "@wilmak/shared";
 import { ATTRIBUTES, ARMOR_LABELS } from "@wilmak/game-data";
 import { NumInput, DynamicTable } from "./helpers";
 import type { DynRow } from "./helpers";
+import InventoryTab from "./InventoryTab";
+import ValueInputModal from "../ValueInputModal";
 
 interface DerivedStats {
   run: number;
@@ -22,7 +25,7 @@ interface SkillRow {
 }
 
 interface PickerState {
-  kind: "weapon" | "armor" | "magic";
+  kind: "weapon" | "armor" | "magic" | "item";
   slotIndex?: number;
   slot?: string;
   category?: string;
@@ -117,6 +120,8 @@ export default function EnemyStatblock({
 }: Props) {
   const profile = character.monsterProfile!;
   const canEdit = !readOnly;
+  const [editingCrowns, setEditingCrowns] = useState(false);
+  const crowns = character.crowns ?? 0;
 
   const hasKeyStats =
     !!profile.threat ||
@@ -218,6 +223,16 @@ export default function EnemyStatblock({
                 <span className="derived-chip-value">{profile.vigor}</span>
               </div>
             )}
+            <button
+              type="button"
+              className="derived-chip money-badge"
+              disabled={!canEdit}
+              onClick={() => canEdit && setEditingCrowns(true)}
+              title={canEdit ? "Edit crowns" : undefined}
+            >
+              <span className="derived-chip-label">Crowns</span>
+              <span className="derived-chip-value">{crowns}</span>
+            </button>
           </div>
         </div>
       </section>
@@ -538,6 +553,15 @@ export default function EnemyStatblock({
         </section>
       )}
 
+      <div className="enemy-statblock-span-2">
+        <InventoryTab
+          character={character}
+          update={update}
+          readOnly={readOnly}
+          setPicker={setPicker}
+        />
+      </div>
+
       {/* ── Combat notes (full width) ─────────────────────────── */}
       <section className="panel enemy-notes-panel enemy-statblock-span-2">
         <div className="panel-title">Combat notes</div>
@@ -600,6 +624,19 @@ export default function EnemyStatblock({
           </div>
         </div>
       </section>
+      {editingCrowns && (
+        <ValueInputModal
+          type="number"
+          title="Edit Crowns"
+          initial={crowns}
+          min={0}
+          onConfirm={(v) => {
+            update({ crowns: v });
+            setEditingCrowns(false);
+          }}
+          onClose={() => setEditingCrowns(false)}
+        />
+      )}
     </div>
   );
 }
