@@ -1,5 +1,6 @@
 import type { Character, CombatState, Spell } from "@wilmak/shared";
 import { formatDamageBreakdown } from "@wilmak/game-data";
+import { GiD10 } from "react-icons/gi";
 import Modal from "../Modal";
 import CombatantStrip from "../AttackModal/CombatantStrip";
 import { useSpellAttackForm } from "./useSpellAttackForm";
@@ -46,6 +47,8 @@ export default function SpellAttackModal({
     defenderRollInput, setDefenderRollInput,
     fumbleRollInput, setFumbleRollInput,
     focusExplosionRollInput, setFocusExplosionRollInput,
+    showAllDice, setShowAllDice,
+    damageDieRollInput, setDamageDieRollInput,
     preview, applyDamage, setApplyDamage,
     error, submitting,
     isPlayerAttacker, isPlayerDefender,
@@ -221,6 +224,19 @@ export default function SpellAttackModal({
 
           {/* Dice rolls */}
           <div className="attack-rolls">
+            <div className="attack-rolls-header">
+              <span className="attack-rolls-label">Dice rolls</span>
+              <button
+                type="button"
+                className={`dice-toggle-btn${showAllDice ? " dice-toggle-btn--active" : ""}`}
+                onClick={() => setShowAllDice(!showAllDice)}
+                title={showAllDice ? "Hide damage dice inputs" : "Enter damage dice manually"}
+              >
+                <GiD10 />
+                {showAllDice ? "Hide damage dice" : "Enter damage dice"}
+              </button>
+            </div>
+
             <div className="field">
               <label>Caster d10{isPlayerAttacker ? "" : " (auto if empty)"}</label>
               <input
@@ -267,6 +283,20 @@ export default function SpellAttackModal({
                   value={defenderRollInput}
                   onChange={(e) => setDefenderRollInput(e.target.value)}
                   placeholder={isPlayerDefender ? "e.g. 6" : "Leave empty to simulate"}
+                />
+              </div>
+            )}
+
+            {showAllDice && dmgExpression.trim() && (
+              <div className="field">
+                <label>
+                  Spell damage dice — {dmgExpression}
+                  <span className="dice-optional-tag"> optional</span>
+                </label>
+                <input
+                  value={damageDieRollInput}
+                  onChange={(e) => setDamageDieRollInput(e.target.value)}
+                  placeholder="e.g. 4,2 — leave empty to auto-roll"
                 />
               </div>
             )}

@@ -61,6 +61,8 @@ export interface ResolveSpellAttackOptions {
   focusExplosionRoll?: number;
   /** Spell damage dice expression (e.g. "3d6"). Leave empty for non-damaging spells. */
   dmgExpression?: string;
+  /** Manually supplied damage die values — when provided, skips RNG for damage dice. */
+  damageDieRolls?: number[];
   staSpent?: number;
   focusReduction?: number;
   aimedLocation?: HitLocation;
@@ -209,6 +211,7 @@ export function resolveSpellAttack(options: ResolveSpellAttackOptions): SpellAtt
       critWoundTier: "none",
       aimedLocation: options.aimedLocation,
       rng,
+      damageDieRolls: options.damageDieRolls,
     });
   }
 

@@ -597,6 +597,7 @@ export function resolveAttackWithDamage(
     target: Character;
     aimedLocation?: HitLocation;
     rng?: DiceRng;
+    damageDieRolls?: number[];
   },
 ): CombatAttackResult {
   if (!attack.hit) return attack;
@@ -609,6 +610,7 @@ export function resolveAttackWithDamage(
     aimedLocation: options.aimedLocation,
     strongStrikeMultiplier: typeConfig.damageMultiplier,
     rng: options.rng,
+    damageDieRolls: options.damageDieRolls,
   });
 }
 
@@ -617,15 +619,18 @@ export function resolveAttackActionWithDamage(
     round: number;
     aimedLocation?: HitLocation;
     defenderDieRollsPerAttack?: (number[] | undefined)[];
+    /** Per-attack manual damage die values. Index matches fast-strike order. */
+    damageDieRollsPerAttack?: (number[] | undefined)[];
     rng?: DiceRng;
   },
 ): CombatAttackResult[] {
   const attacks = resolveAttackAction(options);
-  return attacks.map((attack) =>
+  return attacks.map((attack, i) =>
     resolveAttackWithDamage(attack, {
       target: options.target,
       aimedLocation: options.aimedLocation,
       rng: options.rng,
+      damageDieRolls: options.damageDieRollsPerAttack?.[i],
     }),
   );
 }

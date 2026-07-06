@@ -62,6 +62,8 @@ export function useAttackForm({ combat, attacker, characters, onSubmit }: Params
   const [defenseDc, setDefenseDc] = useState("10");
   const [attackerRollInput, setAttackerRollInput] = useState("");
   const [defenderRollInputs, setDefenderRollInputs] = useState<string[]>(["", ""]);
+  const [showAllDice, setShowAllDice] = useState(false);
+  const [damageDieRollInputs, setDamageDieRollInputs] = useState<string[]>(["", ""]);
   const [aimLocation, setAimLocation] = useState<HitLocation | "">("");
   const [targetDodging, setTargetDodging] = useState(false);
   const [fastDraw, setFastDraw] = useState(false);
@@ -189,6 +191,18 @@ export function useAttackForm({ combat, attacker, characters, onSubmit }: Params
     const dc = resolvedDefenseType === "none" ? Number(defenseDc) : undefined;
     if (resolvedDefenseType === "none" && (!Number.isFinite(dc) || dc! < 0)) return null;
 
+    let damageDieRollsPerAttack: (number[] | undefined)[] | undefined;
+    if (showAllDice) {
+      damageDieRollsPerAttack = Array.from({ length: fastStrikeCount }, (_, i) => {
+        const raw = damageDieRollInputs[i] ?? "";
+        if (!raw.trim()) return undefined;
+        return raw.split(",").map((s) => Number(s.trim())).filter((n) => !isNaN(n));
+      });
+      if (damageDieRollsPerAttack.every((r) => r === undefined)) {
+        damageDieRollsPerAttack = undefined;
+      }
+    }
+
     return {
       attacker,
       target,
@@ -204,6 +218,7 @@ export function useAttackForm({ combat, attacker, characters, onSubmit }: Params
           : undefined,
       attackerDieRolls,
       defenderDieRollsPerAttack,
+      damageDieRollsPerAttack,
       aimedLocation: aimLocation || undefined,
       round: combat.round,
     };
@@ -277,6 +292,8 @@ export function useAttackForm({ combat, attacker, characters, onSubmit }: Params
     defenseDc, setDefenseDc,
     attackerRollInput, setAttackerRollInput,
     defenderRollInputs, setDefenderRollInputs,
+    showAllDice, setShowAllDice,
+    damageDieRollInputs, setDamageDieRollInputs,
     aimLocation, setAimLocation,
     targetDodging, setTargetDodging,
     fastDraw, setFastDraw,

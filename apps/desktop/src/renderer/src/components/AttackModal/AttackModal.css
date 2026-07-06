@@ -179,6 +179,62 @@
   gap: 12px;
 }
 
+.attack-rolls-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.attack-rolls-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* ─── Dice toggle button ──────────────────────────────────────────────────── */
+
+.dice-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.dice-toggle-btn svg {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.dice-toggle-btn:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dice-toggle-btn--active {
+  color: var(--gold);
+  border-color: rgba(201, 168, 108, 0.5);
+  background: rgba(201, 168, 108, 0.07);
+}
+
+.dice-optional-tag {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-faint);
+  margin-left: 2px;
+}
+
 .attack-preview {
   padding: 12px 14px;
   background: rgba(201, 168, 108, 0.05);

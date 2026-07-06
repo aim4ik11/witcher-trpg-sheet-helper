@@ -154,6 +154,35 @@ export interface ResolveDamageOptions {
   aimedLocation?: HitLocation;
   strongStrikeMultiplier?: number;
   rng?: DiceRng;
+  /** Manually supplied damage die values — when provided, skips RNG for damage expression. */
+  damageDieRolls?: number[];
+}
+
+function buildDamageRollFromManual(
+  expression: string,
+  manualRolls: number[],
+): import("./dice").DiceRollBreakdown {
+  const match = expression
+    .trim()
+    .match(/^(\d+)\s*d\s*(\d+)(?:\s*\/\s*(\d+))?(?:\s*([+\-−]\s*\d+))?$/i);
+  const count = match ? Number(match[1]) : 1;
+  const divisor = match?.[3] ? Number(match[3]) : undefined;
+  const modifier = match?.[4]
+    ? Number(match[4].replace(/\s/g, "").replace("−", "-"))
+    : 0;
+  const rolls = manualRolls.slice(0, count);
+  const diceSum = rolls.reduce((s, v) => s + v, 0);
+  const resolved = divisor ? Math.ceil(diceSum / divisor) : diceSum;
+  return {
+    expression,
+    count,
+    sides: match ? Number(match[2]) : 6,
+    divisor,
+    modifier,
+    rolls,
+    diceSum,
+    total: resolved + modifier,
+  };
 }
 
 export function resolveDamageFromHit(
@@ -187,12 +216,15 @@ export function resolveDamageFromHit(
     aimedLocation,
     strongStrikeMultiplier = 1,
     rng = defaultRng,
+    damageDieRolls,
   } = options;
 
   const { location, roll: locationRoll } = rollHitLocation(target, aimedLocation, rng);
   const locationMultiplier = LOCATION_MULTIPLIERS[location];
   const expression = weapon.dmg ?? "1d6";
-  const damageRoll = rollDiceExpression(expression, rng);
+  const damageRoll = damageDieRolls
+    ? buildDamageRollFromManual(expression, damageDieRolls)
+    : rollDiceExpression(expression, rng);
   const critBonus = critWoundDamageBonus(critWoundTier);
   const rawDamage = damageRoll.total * strongStrikeMultiplier + critBonus;
 

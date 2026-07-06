@@ -55,6 +55,8 @@ export default function AttackSetupForm({ form, attacker }: Props) {
     outsideVisionCone, setOutsideVisionCone,
     attackerRollInput, setAttackerRollInput,
     defenderRollInputs, setDefenderRollInputs,
+    showAllDice, setShowAllDice,
+    damageDieRollInputs, setDamageDieRollInputs,
     isPlayerAttacker, isPlayerDefender,
     fastStrikeCount,
   } = form;
@@ -231,6 +233,15 @@ export default function AttackSetupForm({ form, attacker }: Props) {
           setDefenderRollInputs(next);
         }}
         resolvedDefenseType={resolvedDefenseType}
+        showAllDice={showAllDice}
+        onToggleAllDice={() => setShowAllDice(!showAllDice)}
+        damageDieRollInputs={damageDieRollInputs}
+        onDamageDieRollChange={(i, v) => {
+          const next = [...damageDieRollInputs];
+          next[i] = v;
+          setDamageDieRollInputs(next);
+        }}
+        weaponDmgExpression={selectedWeapon?.dmg ?? undefined}
       />
     </div>
   );

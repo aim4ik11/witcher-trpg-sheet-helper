@@ -62,6 +62,8 @@ export function useSpellAttackForm({ combat, attacker, characters, onSubmit }: P
   const [defenderRollInput, setDefenderRollInput] = useState("");
   const [fumbleRollInput, setFumbleRollInput] = useState("");
   const [focusExplosionRollInput, setFocusExplosionRollInput] = useState("");
+  const [showAllDice, setShowAllDice] = useState(false);
+  const [damageDieRollInput, setDamageDieRollInput] = useState("");
   const [step, setStep] = useState<"cast" | "result">("cast");
   const [preview, setPreview] = useState<CombatAttackResult | null>(null);
   const [previewUpdatedAttacker, setPreviewUpdatedAttacker] = useState<Character | null>(null);
@@ -161,6 +163,14 @@ export function useSpellAttackForm({ combat, attacker, characters, onSubmit }: P
 
     const modifiers = customMod !== 0 ? [{ label: "Custom", value: customMod }] : [];
 
+    let damageDieRolls: number[] | undefined;
+    if (showAllDice && damageDieRollInput.trim()) {
+      damageDieRolls = damageDieRollInput
+        .split(",")
+        .map((s) => Number(s.trim()))
+        .filter((n) => !isNaN(n));
+    }
+
     return {
       attacker,
       target,
@@ -173,6 +183,7 @@ export function useSpellAttackForm({ combat, attacker, characters, onSubmit }: P
       fumbleSecondRoll,
       focusExplosionRoll,
       dmgExpression: dmgExpression.trim() || undefined,
+      damageDieRolls,
       staSpent: staSpentNum,
       round: combat.round,
     };
@@ -248,6 +259,8 @@ export function useSpellAttackForm({ combat, attacker, characters, onSubmit }: P
     defenderRollInput, setDefenderRollInput,
     fumbleRollInput, setFumbleRollInput,
     focusExplosionRollInput, setFocusExplosionRollInput,
+    showAllDice, setShowAllDice,
+    damageDieRollInput, setDamageDieRollInput,
     step, setStep,
     preview,
     applyDamage, setApplyDamage,
