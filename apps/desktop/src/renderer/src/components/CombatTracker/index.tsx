@@ -9,6 +9,7 @@ import {
 } from "@wilmak/game-data";
 import AttackModal, { type AttackSubmitPayload } from "../AttackModal";
 import SpellAttackModal from "../SpellAttackModal";
+import CombatantEditModal from "../CombatantEditModal";
 import "../AttackModal/AttackModal.css";
 import "../StartCombatModal/StartCombatModal.css";
 
@@ -34,6 +35,7 @@ export default function CombatTracker({
   const current = getCurrentParticipant(combat);
   const [attackOpen, setAttackOpen] = useState(false);
   const [spellAttackOpen, setSpellAttackOpen] = useState(false);
+  const [editCharacterId, setEditCharacterId] = useState<string | null>(null);
 
   const characterById = useMemo(
     () => new Map(characters.map((c) => [c.id, c])),
@@ -80,6 +82,11 @@ export default function CombatTracker({
   }
 
   const recentLog = combat.attackLog.slice(-10).reverse();
+
+  const editParticipant = editCharacterId
+    ? combat.participants.find((p) => p.characterId === editCharacterId) ?? null
+    : null;
+  const editCharacter = editCharacterId ? (characterById.get(editCharacterId) ?? null) : null;
 
   return (
     <>
@@ -150,9 +157,12 @@ export default function CombatTracker({
               const dmg = damageTaken.get(p.characterId);
 
               return (
-                <div
+                <button
                   key={p.characterId}
-                  className={`combat-card${isCurrent ? " combat-card--current" : ""}`}
+                  type="button"
+                  className={`combat-card combat-card--btn${isCurrent ? " combat-card--current" : ""}`}
+                  onClick={() => setEditCharacterId(p.characterId)}
+                  title="Click to edit vitals / initiative"
                 >
                   <div className="combat-card-order">{index + 1}</div>
 
@@ -206,7 +216,7 @@ export default function CombatTracker({
                       {p.ref}+{formatDieRolls(p)}
                     </div>
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -274,6 +284,17 @@ export default function CombatTracker({
           characters={characters}
           onSubmit={handleSpellAttackSubmit}
           onClose={() => setSpellAttackOpen(false)}
+        />
+      )}
+
+      {editParticipant && editCharacter && (
+        <CombatantEditModal
+          participant={editParticipant}
+          character={editCharacter}
+          combat={combat}
+          onUpdateCharacter={onUpdateCharacter}
+          onCombatChange={onCombatChange}
+          onClose={() => setEditCharacterId(null)}
         />
       )}
     </>

@@ -1,0 +1,166 @@
+.cedit-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ─── Header chips ─────────────────────────────────────────────────────────── */
+
+.cedit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cedit-chip {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-faint);
+}
+
+.cedit-chip--danger {
+  background: color-mix(in srgb, var(--danger, #e05252) 15%, transparent);
+  color: var(--danger, #e05252);
+}
+
+.cedit-chip--muted {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: transparent;
+  padding: 2px 0;
+}
+
+/* ─── Vital block ──────────────────────────────────────────────────────────── */
+
+.cedit-vital {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cedit-vital-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.cedit-vital-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.cedit-vital-nums {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cedit-vital-nums--sta {
+  color: rgba(100, 150, 220, 0.9);
+}
+
+/* ─── Bar ──────────────────────────────────────────────────────────────────── */
+
+.cedit-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.cedit-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.2s ease;
+}
+
+.cedit-bar-fill--ok  { background: #5aa05a; }
+.cedit-bar-fill--mid { background: var(--gold); }
+.cedit-bar-fill--low { background: var(--danger, #e05252); }
+.cedit-bar-fill--sta { background: rgba(100, 150, 220, 0.7); }
+
+/* ─── Stepper row ──────────────────────────────────────────────────────────── */
+
+.cedit-stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cedit-step {
+  height: 28px;
+  min-width: 32px;
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: background 0.1s;
+  flex-shrink: 0;
+}
+
+.cedit-step:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cedit-input {
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--bg-2, rgba(255, 255, 255, 0.04));
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cedit-input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+/* ─── Initiative row ───────────────────────────────────────────────────────── */
+
+.cedit-initiative {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cedit-input--init {
+  width: 70px;
+  flex: none;
+}
+
+.cedit-init-hint {
+  font-size: 11px;
+  color: var(--text-faint);
+  flex: 1;
+  min-width: 120px;
+}
+
+/* ─── Footer remove button ─────────────────────────────────────────────────── */
+
+.cedit-footer-remove {
+  margin-right: auto;
+}

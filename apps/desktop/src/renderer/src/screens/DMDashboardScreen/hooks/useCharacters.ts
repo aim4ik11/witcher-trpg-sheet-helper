@@ -30,6 +30,12 @@ export function useCharacters() {
     return window.api.onCharactersChanged(() => void load());
   }, [load]);
 
+  useEffect(() => {
+    return window.api.onCharacterUpdated((updated) => {
+      setCharacters((prev) => prev.map((c) => (c.id === updated.id ? updated : c)));
+    });
+  }, []);
+
   async function handleCreateCharacter(data: Partial<Character>) {
     await api.createCharacter(data);
     void load();
