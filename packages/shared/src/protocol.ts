@@ -325,6 +325,10 @@ export interface CombatAttackWeapon {
   /** Bestiary rate of fire — attacks per action. */
   rateOfFire?: number;
   effect?: string;
+  /** True when this is a spell attack rather than a physical weapon. */
+  isMagic?: boolean;
+  spellId?: string;
+  spellCategory?: string;
 }
 
 export interface CombatRollBreakdown {
@@ -392,6 +396,20 @@ export interface CombatAttackResult {
   damageApplied?: boolean;
   notes?: string;
   timestamp: string;
+  /** Magic attack: HP cost from casting overexertion (caster self-damage). */
+  overexertionHp?: number;
+  /** Magic attack: fumble outcome from the magic fumble table. */
+  magicFumble?: {
+    tier: string;
+    element: string;
+    selfDamage: number;
+    stunned: boolean;
+    knockedBackMeters: number;
+    onFire: boolean;
+    frozen: boolean;
+    focusExplodes: boolean;
+    focusExplosionDamage?: number;
+  };
 }
 
 export interface CombatState {

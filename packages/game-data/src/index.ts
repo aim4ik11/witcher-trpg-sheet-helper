@@ -1,5 +1,6 @@
 export * from "./skillCheck";
 export * from "./attack";
+export * from "./spellAttack";
 export * from "./combat";
 export * from "./damage";
 export * from "./dice";

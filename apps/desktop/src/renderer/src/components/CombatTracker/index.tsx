@@ -8,6 +8,7 @@ import {
   getCurrentParticipant,
 } from "@wilmak/game-data";
 import AttackModal, { type AttackSubmitPayload } from "../AttackModal";
+import SpellAttackModal from "../SpellAttackModal";
 import "../AttackModal/AttackModal.css";
 import "../StartCombatModal/StartCombatModal.css";
 
@@ -32,6 +33,7 @@ export default function CombatTracker({
 }: Props) {
   const current = getCurrentParticipant(combat);
   const [attackOpen, setAttackOpen] = useState(false);
+  const [spellAttackOpen, setSpellAttackOpen] = useState(false);
 
   const characterById = useMemo(
     () => new Map(characters.map((c) => [c.id, c])),
@@ -64,6 +66,15 @@ export default function CombatTracker({
     setAttackOpen(false);
   }
 
+  async function handleSpellAttackSubmit(payload: AttackSubmitPayload) {
+    for (const character of payload.updatedCharacters) {
+      await onUpdateCharacter(character);
+    }
+    const next = applyAttackToCombatState(combat, payload.results);
+    await onCombatChange(next);
+    setSpellAttackOpen(false);
+  }
+
   async function handleNextTurn() {
     await onCombatChange(advanceTurn(combat));
   }
@@ -93,6 +104,15 @@ export default function CombatTracker({
                 onClick={() => setAttackOpen(true)}
               >
                 Attack
+              </button>
+            )}
+            {current && attackerCharacter && (attackerCharacter.spells?.length ?? 0) > 0 && (
+              <button
+                type="button"
+                className="primary btn-sm"
+                onClick={() => setSpellAttackOpen(true)}
+              >
+                Cast Spell
               </button>
             )}
             <button type="button" className="btn-sm" onClick={() => void handleNextTurn()}>
@@ -244,6 +264,16 @@ export default function CombatTracker({
           characters={characters}
           onSubmit={handleAttackSubmit}
           onClose={() => setAttackOpen(false)}
+        />
+      )}
+
+      {spellAttackOpen && attackerCharacter && (
+        <SpellAttackModal
+          combat={combat}
+          attacker={attackerCharacter}
+          characters={characters}
+          onSubmit={handleSpellAttackSubmit}
+          onClose={() => setSpellAttackOpen(false)}
         />
       )}
     </>

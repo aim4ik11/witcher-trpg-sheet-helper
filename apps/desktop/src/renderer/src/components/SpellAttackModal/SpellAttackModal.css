@@ -1,0 +1,90 @@
+.spell-attack-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-2, var(--bg-2));
+  margin-bottom: 0;
+}
+
+.spell-attack-info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.spell-attack-info-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.spell-attack-info-cat {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.spell-attack-info-costs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.spell-attack-overexert {
+  color: var(--danger, #e05252);
+}
+
+.spell-attack-effect {
+  font-size: 0.82rem;
+  color: var(--text-secondary, var(--text-muted));
+  margin: 0;
+  line-height: 1.4;
+}
+
+.spell-attack-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.spell-attack-result-spell {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+.spell-attack-caster-costs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  padding: 6px 0 2px;
+  border-top: 1px solid var(--border);
+  margin-top: 6px;
+}
+
+.spell-attack-fumble {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin-top: 6px;
+  background: color-mix(in srgb, var(--danger, #e05252) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger, #e05252) 30%, transparent);
+  border-radius: 5px;
+  font-size: 0.82rem;
+}
+
+.spell-attack-fumble-title {
+  font-weight: 600;
+  color: var(--danger, #e05252);
+}
