@@ -1,0 +1,70 @@
+/* ─── Force-save floating button ──────────────────────────────────────────── */
+
+.force-save-portal {
+  position: fixed;
+  top: 10px;
+  right: 14px;
+  z-index: 500;
+  pointer-events: none;
+}
+
+.force-save-btn {
+  pointer-events: all;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(20, 19, 26, 0.82);
+  backdrop-filter: blur(6px);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s, opacity 0.15s;
+  white-space: nowrap;
+}
+
+.force-save-btn:hover:not(:disabled) {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(30, 29, 38, 0.92);
+}
+
+.force-save-btn:disabled {
+  cursor: default;
+}
+
+.force-save-btn__icon {
+  font-size: 15px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.force-save-btn__label {
+  line-height: 1;
+}
+
+/* State variants */
+
+.force-save-btn--saving {
+  color: var(--text-faint);
+  opacity: 0.7;
+}
+
+.force-save-btn--saved {
+  color: #5aa05a;
+  border-color: rgba(90, 160, 90, 0.4);
+  background: rgba(90, 160, 90, 0.08);
+}
+
+.force-save-btn--saved .force-save-btn__icon {
+  opacity: 1;
+}
+
+.force-save-btn--error {
+  color: var(--danger, #e05252);
+  border-color: rgba(224, 82, 82, 0.4);
+  background: rgba(224, 82, 82, 0.08);
+}

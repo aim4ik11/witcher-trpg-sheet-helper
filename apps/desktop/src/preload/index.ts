@@ -95,6 +95,7 @@ const api: Api = {
     ipcRenderer.on("magic-cast:resolved", handler);
     return () => ipcRenderer.removeListener("magic-cast:resolved", handler);
   },
+  forceSave: () => ipcRenderer.invoke("characters:forceSave"),
 };
 
 contextBridge.exposeInMainWorld("api", api);

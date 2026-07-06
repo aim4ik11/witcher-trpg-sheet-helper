@@ -584,4 +584,5 @@ export interface Api {
   cancelMagicCast(characterId: string, magicCastId: string): Promise<void>;
   onMagicCastRequest(cb: (request: MagicCastRequest) => void): () => void;
   onMagicCastResolved(cb: (result: MagicCastResolved) => void): () => void;
+  forceSave(): Promise<void>;
 }

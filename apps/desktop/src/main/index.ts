@@ -281,6 +281,14 @@ app.on("window-all-closed", () => {
 });
 
 // GM privileged control surface (renderer -> IPC -> main -> server).
+ipcMain.handle("characters:forceSave", async (): Promise<void> => {
+  if (persistCharactersTimer) {
+    clearTimeout(persistCharactersTimer);
+    persistCharactersTimer = null;
+  }
+  await persistCharactersFromServer();
+});
+
 ipcMain.handle("session:loadLast", (): SessionConfig | null => loadMostRecentSession());
 ipcMain.handle("session:saveLast", (_e, config: SessionConfig) => {
   saveSession(config);
